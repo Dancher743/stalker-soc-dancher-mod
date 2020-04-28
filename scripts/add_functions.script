@@ -1,0 +1,48 @@
+----------------------------------------------------------
+---------------Сообщения о смерти сталкеров---------------
+local level_name = {
+  ["l01_escape"] = "На Кордоне",
+  ["l02_garbage"] = "На Свалке",
+  ["l03_agroprom"] = "Возле Агропрома",
+  ["l03u_agr_underground"] = "В подземельях Агропрома",
+  ["l04_darkvalley"] = "В Тёмной долине",
+  ["l04u_labx18"] = "В лаборатории X-18",
+  ["k01_darkscape"] = "В Тёмной лощине",
+  ["l05_bar"] = "На базе Долга",
+  ["l06_rostok"] = "На Дикой территории",
+  ["l07_military"] = "На Армейских складах",
+  ["l08_yantar"] = "На Янтаре",
+  ["l08u_brainlab"] = "В лаборатории X-16",
+  ["l09_deadcity"] = "В Мертвом городе",
+  ["l10u_bunker"] = "В лаборатории X-10",
+  ["l10_radar"] = "Возле выжигателя",
+  ["l11_pripyat"] = "В Припяти",
+  ["l12_stancia"] = "На ЧАЭС",
+  ["l12_stancia_2"] = "На ЧАЭС",
+  ["l12u_sarcofag"] = "В Саркофаге",
+  ["l13_generators"] = "У Генераторов",
+  ["l13u_warlab"] = "В Военной лаборатории",
+  ["l12u_control_monolith"] = "В Саркофаге"
+            }
+ 
+local community = {
+	["stalker"] = "одиночка",
+	["monolith"] = "монолитовец",
+	["military"] = "военный",
+	["bandit"] = "бандит",
+	["killer"] = "наемник",
+	["ecolog"] = "учёный",
+	["dolg"] = "долговец",
+	["freedom"] = "свободовец",
+	["zombied"] = "пропавший",
+	["trader"] = "торговец",
+	["arena_enemy"] = "сталкер"
+	        }
+ 
+function kill_npc(victim, who)
+  if victim and IsStalker(victim) then
+local dead_news = ""..level_name[level.name()].." погиб "..community[victim:character_community()].." "..victim:character_name()..""
+db.actor:give_game_news(dead_news, "ui\\ui_iconstotal", Frect():set(497,188,83,47), 10000, 2000)
+   end
+end
+----------------------------------------------------------------------------------------------------

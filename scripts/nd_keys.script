@@ -1,0 +1,8 @@
+--Для тех, кто использует другую раскладку клавиатуры--
+-------------меняем эти кнопки на свои-----------------
+function bind_keys()
+get_console():execute("bind active_jobs kP") --ПДА-----
+get_console():execute("bind map kM") --Карта-----------
+get_console():execute("bind contacts kH") --Контакты---
+end
+-------------------------------------------------------

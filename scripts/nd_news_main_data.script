@@ -1,0 +1,176 @@
+--[[---------------------------------------------------------------------------------------
+
+	file: news_main_data.script
+	author: OGS Evolution - team
+	ver.1.0
+	description: Вспомогательные функции для новостей
+
+---------------------------------------------------------------------------------------]]--
+
+local post_message_prob = 1 -- 1 - работает , 0 - вылет!
+
+local prob1 = nd_news_main.show_news_trade
+local prob2 = nd_news_main.show_news_another
+local prob3 = nd_news_main.show_news_dolg
+local prob4 = nd_news_main.show_news_freedom
+--local prob5 = nd_news_main.show_news_random
+local prob6 = nd_news_main.show_news_death_loners
+local prob7 = nd_news_main.show_news_death_bandit
+local prob8 = nd_news_main.show_news_death_monolith
+local prob9 = nd_news_main.show_news_death_military
+local prob10 = nd_news_main.show_news_death_duty
+local prob11 = nd_news_main.show_news_death_freedom
+local prob12 = nd_news_main.show_news_death_merc
+local prob13 = nd_news_main.show_news_low_danger
+local prob14 = nd_news_main.show_news_mid_danger
+local prob15 = nd_news_main.show_news_hig_danger
+local prob16 = nd_news_main.show_news_simple
+
+local time = time_global()
+--Главная функция
+
+
+function show_news_main()
+if (isIsolatedLevel(level.name()) == true) then return end
+if db.actor:has_info("surge_pda") then
+	get_console():execute("unbind active_jobs")
+	get_console():execute("unbind map")
+	get_console():execute("unbind contacts")
+	--news_manager.send_tip(db.actor, "Связь со спутником потеряна", nil, "default", 5000)
+   return false 
+ end	
+
+local uptime = time_global()
+
+if uptime <= time then return else 
+time = time + math.random(15000, 80000) end -- срабатывает рандомно
+
+ft = { 
+prob1,
+prob1,
+prob2,
+prob3,
+prob4,
+prob2,
+--prob6,
+--prob7,
+--prob8,
+--prob9,
+--prob10,
+--prob11,
+--prob12,
+--prob13,
+--prob14,
+--prob15,
+prob6,
+prob7,
+prob8,
+prob9,
+prob10,
+prob11,
+prob12,
+prob13,
+prob14,
+prob15,
+prob16
+}
+ft[math.random(table.getn(ft))]()
+end
+
+--"Статус соединения:"
+local connect_templates = {
+	"\\n%c[255,255,128,128]PDA\\n%c[default]Сигнал найден.",
+	"\\n%c[255,255,128,128]PDA\\n%c[default]Сеть доступна.",
+	"\\n%c[255,255,128,128]PDA\\n%c[default]Подключено к сети.",
+}
+
+local disconnect_templates = {
+	"\\n%c[255,255,128,128]PDA\\n%c[default]Недостаточный уровень сигнала.",
+	"\\n%c[255,255,128,128]PDA\\n%c[default]Связь прервана.",
+	"\\n%c[255,255,128,128]PDA\\n%c[default]Сеть недоступна.",
+	"\\n%c[255,255,128,128]PDA\\n%c[default]Сигнал не найден.",                  
+}
+
+--Вспомагательный функции
+function on_connect()
+
+if math.random() < post_message_prob then
+		connect_templates = connect_templates[math.random(table.getn(connect_templates))]
+	end
+
+
+  if (connect_templates ~= "") then
+		
+		local news_text = connect_templates
+		db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(498,235,83,47), 4000, 15000)
+
+       end
+end
+
+function on_disconnect()
+
+if math.random() < post_message_prob then
+		disconnect_templates = disconnect_templates[math.random(table.getn(disconnect_templates))]
+	end
+
+if (disconnect_templates ~= "") then
+		
+		local news_text = disconnect_templates
+		db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(498,235,83,47), 3000, 15000)
+
+       end
+end
+
+
+function isIsolatedLevel(level_name)
+	local result = false
+	local ln = level_name
+	if (ln == "l03u_agr_underground" or ln == "l04u_labx18" or ln == "l08u_brainlab" or ln == "l10u_bunker") then
+		result = true
+	end
+	return result
+end
+
+
+-- 04:30 - 07:00
+morning_templates = {
+	"Мужики, рассветает... красиво-то как.",
+	"Рассветает...",
+	"Народ, тут это, рассветает - думаю, можно уже выдвигаться, мало ли на кого теперь натолкнёмся, не то что ночью.",
+	"Рассвело. Выдвигаемся, сейчас более-менее безопасно.",
+	"Мужики, подъём! Утро уже!",
+	"Эх, мужики! Наконец-то светает, а то устал уже я дрожать от страха в темноте. Уж лучше при свете дня... дрожать...",
+	"Меня кто-нибудь слышит? Сегодня ночью пропала группа наших ребят. Должны были вернуться к утру с Агропрома. До сих пор нет. Через час отправляемся на поиски. Присоединяйтесь.",
+	"Чёрт, кто придумал утро... Сегодня ж всю ночь пили... Повар, сволочь, водку палёную опять притащил откуда-то... \"Свобода\", спим дальше... рейд на базу \"Долга\" подождёт...",
+	"Мужики, вы бы видели, какой тут на Янтаре рассвет. Это что-то... И страшно, и красиво... И трупы снорков так классно дрейфуют в искрящейся в утреннем солнце глади озера... Романтика...",
+	"О, вояки что-то всполошились, видать монстры с утречка решили блокпост снести! "
+}
+
+-- 20:30 - 22:00
+evening_templates = {
+	"Чёрт, мужики, вы как хотите, а я за хабаром сегодня уже не пойду. Ночь скоро...",
+	"Не, не пойду я уже никуда. Поздно уже, скоро дряни всякой повылазит...",
+	"Так, закат уже... потихоньку возвращайтесь, сейчас в Зоне небезопасно.",
+	"Идите-ка вы, мужики... в ночь... на кровососов... одни. Экстремалы, блин.",
+	"Ну что? Кто со мной пойдёт валить стаю псевдособак? А то я боюсь ночью в палатке спать, вдруг этот... тёмный... водички опять попросит... Уж лучше побродить где-нибудь...",
+	"Луна скоро взойдёт... Чёрт, не успеваю до лагеря добраться... Мужики есть кто поблизости? Чую, меня какая-то тварь уже преследует.",
+	"Всем внимание! Учёные сообщают о подозрительной активности мутантов на Янтаре этой ночью. Всем оставаться в лагерях."
+}
+
+
+-------------------- Advanced Reconstruction Stalker Mod v0.5 --------------------
+--[[
+
+If you're going to use the whole of this script or its parts in your own creative 
+developments for the S.T.A.L.K.E.R. game, please don't become such a goddamn 
+motherfucker like the notorious author of the ABC Mod - Carbrobro. Leave the 
+copyrights, note the real author(s) and don't claim others' ideas and their 
+realization to be your own ones. It's just simple Modmakers' Ethics. Thank you!
+
+Если вы собираетесь использовать данный скрипт целиком или частично в своих 
+разработках по игре S.T.A.L.K.E.R., пожалуйста не опускайтесь до уровня печально 
+известного автора ABC мода - Carbrobro. Не удаляйте копирайты, указывайте настоящего 
+автора(ов) и не выдавайте чужие идеи и их реализацию за свои. Ведь это элементарная 
+этика модостроителей! Спасибо за понимание.
+
+]]--
