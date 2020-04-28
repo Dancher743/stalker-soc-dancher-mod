@@ -55,6 +55,9 @@ function actor_binder:net_spawn(data)
 
 	--' Загружаем настройки дропа
 	death_manager.init_drop_settings()
+-------- пауза при загрузке ---------------
+	ui_main_menu.start()
+-------------------------------------------
 
 
 	ogsm_funcs.on_game_load()

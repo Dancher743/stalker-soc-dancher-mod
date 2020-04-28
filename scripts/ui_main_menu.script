@@ -6,12 +6,41 @@
 -- Author:      Serhiy Vynnychenko (narrator@gsc-game.kiev.ua)
 -- Version:     0.9
 
+---------------------->> CoP style load mod
+-- руками не трогать
+local press_any_key_on_start = false
+local sound_volume_eff,sound_volume_music = 0,0
+----------------------<< CoP style load mod
+
 class "main_menu" (CUIScriptWnd)
 
 function main_menu:__init() super()
 	self.mbox_mode = 0
    self:InitControls()
    self:InitCallBacks()
+---------------------->> CoP style load mod
+	if level.present() and not press_any_key_on_start then
+		level.hide_indicators()
+        self.start_btn=CUIStatic()
+        self.start_btn:SetWndRect(Frect():set(0,0,1024,768))
+        self.start_btn:InitTexture("ui\\ui_load")
+        self.start_btn:SetText("Нажмите любую клавишу для перехода к игре")
+        self.start_btn:SetTextAlign(CGameFont.alCenter)
+        self.start_btn:SetTextY(695)
+--		self.start_btn:SetFont(GetFontLetterica18Russian())
+		self.start_btn:SetFont(GetFontGraffiti19Russian())
+        self.alpha = 0
+        self:AttachChild(self.start_btn)
+        self:Show(false)
+        local con=get_console()
+        sound_volume_eff=con:get_float("snd_volume_eff")
+        con:execute("snd_volume_eff 0")
+        sound_volume_music=con:get_float("snd_volume_music")
+        con:execute("snd_volume_music 0")
+		self.tmr = profile_timer() -- создаем таймер
+		self.tmr:start() -- запускаем его
+	end
+---------------------<< CoP style load mod
 end
 
 function main_menu:__finalize()
@@ -32,10 +61,8 @@ function main_menu:InitControls()
 	self:Register(self.message_box, "msg_box")	
 	
 	local _ver = xml:InitStatic		("static_version",self)
-	local ogsm_ver = xml:InitStatic		("ogsm_version",self)
 	local mm						= _G.main_menu.get_main_menu()
-	_ver:SetText					("S.T.A.L.K.E.R. v" .. mm:GetGSVer())
-	ogsm_ver:SetText					("Blowout Mod v1.0")
+	_ver:SetText					("ver. " .. mm:GetGSVer())
 	
 end
 
@@ -254,11 +281,35 @@ function main_menu:Dispatch(cmd, param)  --virtual function
 	return true
 end
 
+------------------->> CoP style load mod
+function main_menu:Update()
+	CUIScriptWnd.Update(self) 
+	if self.tmr then
+		self.tmr:stop() -- останавливаем таймер
+		if not self.last_time then self.last_time = self.tmr:time() end -- инициализируем время последнего апдейта
+		if self.tmr:time() - self.last_time > 7000 then -- если прошло больше 7 мс ( чем больше значение, тем медленнее моргание надписи )
+			self.last_time = self.tmr:time() -- запоминаем время текущего апдейта
+			self.start_btn:SetTextColor(self.alpha,159,142,126)
+			if self.alpha > 250 then self.step = -3 elseif self.alpha < 60 then self.step = 3 end
+			self.alpha = self.alpha + self.step
+		end
+		self.tmr:start() -- таймер продолжает работу
+	end
+end
+-------------------<< CoP style load mod
+
 function main_menu:OnKeyboard(dik, keyboard_action)  --virtual function
 	CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
 	local bind = dik_to_bind(dik)
 	local console = get_console()
 	
+------------------->> CoP style load mod
+	if self.start_btn and dik ~= DIK_keys.DIK_GRAVE then
+		self.OnButton_return_game()
+		return true
+	end
+-------------------<< CoP style load mod
+
 	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
 		if dik == DIK_keys.DIK_ESCAPE then
 			if level.present() and (db.actor ~= nil) and db.actor:alive() then
@@ -298,7 +349,6 @@ function main_menu:OnKeyboard(dik, keyboard_action)  --virtual function
 	return true
 end
 
-
 k = 1000
 
 function acc_time()
@@ -326,3 +376,34 @@ function dec_time()
 		news_manager.send_tip(db.actor, "%c[255,240,155,25]Таймфактор уменьшен до "..t.."", nil, nil, 20000)
 	end	
 end
+
+-------------------->> CoP style load mod
+local timer = 0
+function f1() return timer<time_global() end
+
+function f2()
+	set_inactivate_input_time(5)
+	get_console():execute("main_menu 1")
+	timer = time_global() + 200
+	level.add_call(f1,f3)
+end
+
+function f3()
+	local console = get_console()
+	console:hide()
+	press_any_key_on_start = true
+	level.show_indicators()
+	console:execute("snd_volume_eff " .. sound_volume_eff) 
+	console:execute("snd_volume_music " .. sound_volume_music)
+	sound_volume_eff,sound_volume_music = nil,nil
+end
+
+function start()
+	if has_alife_info("storyline_actor_start") then
+		timer = time_global() + 500
+		level.add_call(f1,f2)
+	else
+		press_any_key_on_start = true
+	end
+end
+--------------------<< CoP style load mod
