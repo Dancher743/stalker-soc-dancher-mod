@@ -35,6 +35,8 @@
 		<!--actor_dialog>bar_bar_barmen_jobs_room_complete</actor_dialog-->
 		<actor_dialog>tm_barman_dialog</actor_dialog>
 		<actor_dialog>tm_barman_reward</actor_dialog>
+		<actor_dialog>weapons_upgrade_mod</actor_dialog>
+		<actor_dialog>outfits_upgrade_mod</actor_dialog>
 	</specific_character>
 
 	<specific_character id="bar_stalker_white_novice_1" team_default = "1">
@@ -301,7 +303,7 @@
 		<community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
 		<money min="200" max="600" infinitive="0"></money>
 
-		<rank>711</rank>
+		<rank>247</rank>
 		<reputation>0</reputation>
  
 		<visual>actors\neytral\stalker_bar_security</visual>

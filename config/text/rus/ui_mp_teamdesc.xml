@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="svoboda_outfit_name_m1">
+		<text>Комбез Свободы М2</text>
+	</string>
+	<string id="team_1_desc">
+		<text>Анархисты Зоны. Исповедует идею, что Зона - это заповедник свободы. Считают, что все законы, правила и условности внешнего мира здесь теряют силу. Их девиз - «Делай что хочешь, но не мешай другим». Борются против правительственных попыток взять Зону под контроль и Наемников. «Свобода» экипирована, в основном, стрелковым оружием бывшего СССР и России.</text>
+	</string>
+	<string id="team_1_name">
+		<text>Группировка «Свобода» (Свободные сталкеры)</text>
+	</string>
+	<string id="team_2_desc">
+		<text>Искатели приключений и головорезы со всего мира, не гнушающиеся никакой, даже самой грязной работы. Их девиз: «Деньги не пахнут». Здесь артефакты, а значит - пахнет большими деньгами... «Наемники» экипированы в основном западным стрелковым вооружением.</text>
+	</string>
+	<string id="team_2_name">
+		<text>Группировка «Наемники» (Головорезы)</text>
+	</string>
+	<string id="name_of_trg">
+		<text>Оружие</text>
+	</string>
+	<string id="upgrade_mod_tochnost_am">
+		<text>Автомат с увеличенной точностью</text>
+	</string>
+	<string id="upgrade_mod_sila_am">
+		<text>Автомат с увеличенным поврежением</text>
+	</string>
+	<string id="upgrade_mod_full_am">
+		<text>Автомат с увеличенным магазином</text>
+	</string>
+	<string id="upgrade_mod_tip_am">
+		<text>Автомат с заменой калибра под патрон НАТО - 56x45</text>
+	</string>
+	<string id="upgrade_mod_tip_pa">
+		<text>Автомат с заменой калибра под патрон 9x18</text>
+	</string>
+	<string id="upgrade_mod_tochnost_rf">
+		<text>Сн. винтовка с увеличенной точностью</text>
+	</string>
+	<string id="upgrade_mod_sila_rf">
+		<text>Сн. винтовка с увеличенным поврежением</text>
+	</string>
+	<string id="upgrade_mod_full_rf">
+		<text>Сн. винтовка с увеличенным магазином</text>
+	</string>
+	<string id="upgrade_mod_tochnost_dr">
+		<text>Дробовик с увеличенной точностью</text>
+	</string>
+	<string id="upgrade_mod_sila_dr">
+		<text>Дробовик с увеличенным поврежением</text>
+	</string>
+	<string id="upgrade_mod_tochnost_pa">
+		<text>Полуавтомат с увеличенной точностью</text>
+	</string>
+	<string id="upgrade_mod_sila_pa">
+		<text>Полуавтомат с увеличенным поврежением</text>
+	</string>
+	<string id="upgrade_mod_full_pa">
+		<text>Полуавтомат с увеличенным магазином</text>
+	</string>
+	<string id="upgrade_mod_tip_pa">
+		<text>Полуавтомат с заменой калибра под патрон НАТО - 56x45</text>
+	</string>
+	<string id="upgrade_mod_tip_pa">
+		<text>Полуавтомат с заменой калибра под патрон 9x18</text>
+	</string>
+	<string id="upgrade_mod_sila">
+		<text>Пистолет с увеличенным повреждением</text>
+	</string>
+	<string id="upgrade_mod_tochnost">
+		<text>Пистолет с увеличенной точностью</text>
+	</string>
+	<string id="upgrade_mod_mag_size">
+		<text>Пистолет с увеличенным магазином</text>
+	</string>
+	<string id="upgrade_mod_ammo_change_to_9x18">
+		<text>Пистолет, подстроенный под патрон 9х18</text>
+	</string>
+	<string id="upgrade_mod_ammo_change_to_9x39">
+		<text>Пистолет, подстроенный под патрон 9х39</text>
+	</string>
+	<string id="upgrade_mod_ammo_change_to_9x19">
+		<text>Пистолет, подстроенный под патрон 9х19</text>
+	</string>
+	<string id="wpn_desert_eagle">
+		<text>Черный ястреб</text>
+	</string>
+	<string id="wpn_hpsa">
+		<text>ХПСС-1м</text>
+	</string>
+	<string id="wpn_usp">
+		<text>УДП Компакт</text>
+	</string>
+	<string id="wpn_abakan">
+		<text>Обокан</text>
+	</string>
+	<string id="wpn_ak74">
+		<text>Акм 74/2</text>
+	</string>
+	<string id="wpn_ak74u">
+		<text>Акм 74/2У</text>
+	</string>
+	<string id="wpn_beretta">
+		<text>Марта</text>
+	</string>
+	<string id="wpn_bm16">
+		<text>Обрез двустволки</text>
+	</string>
+	<string id="wpn_colt1911">
+		<text>Кора-919</text>
+	</string>
+	<string id="wpn_eagle_m1">
+		<text>Большой Бэн</text>
+	</string>
+	<string id="wpn_fn2000">
+		<text>ФТ 200М</text>
+	</string>
+	<string id="wpn_fort">
+		<text>Фора-12Мк2</text>
+	</string>
+	<string id="wpn_g36">
+		<text>ГП37</text>
+	</string>
+	<string id="wpn_groza">
+		<text>Гром С14</text>
+	</string>
+	<string id="wpn_l85">
+		<text>ИЛ86</text>
+	</string>
+	<string id="wpn_lr300">
+		<text>ТРс 301</text>
+	</string>
+	<string id="wpn_mp5">
+		<text>Гадюка 5</text>
+	</string>
+	<string id="wpn_pb">
+		<text>ПБ1с</text>
+	</string>
+	<string id="wpn_pm">
+		<text>ПМм</text>
+	</string>
+	<string id="wpn_sig220">
+		<text>СИП-т М200</text>
+	</string>
+	<string id="wpn_sig550">
+		<text>СГИ 5к</text>
+	</string>
+	<string id="wpn_spas12">
+		<text>СПСА14</text>
+	</string>
+	<string id="wpn_svd">
+		<text>СВДм 2</text>
+	</string>
+	<string id="wpn_svu">
+		<text>СВУмк2</text>
+	</string>
+	<string id="wpn_toz34">
+		<text>ТОС-34</text>
+	</string>
+	<string id="wpn_val">
+		<text>Спецавтомат "ВЛА"</text>
+	</string>
+	<string id="wpn_vintorez">
+		<text>Винтарь ВС</text>
+	</string>
+	<string id="wpn_walther">
+		<text>Волкер П9м</text>
+	</string>
+	<string id="wpn_wincheaster1300">
+		<text>Чейзер 13</text>
+	</string>
+	<string id="novice_outfit">
+		<text>Кожаная куртка</text>
+	</string>
+	<string id="bandit_outfit">
+		<text>Бандитская куртка</text>
+	</string>
+	<string id="killer_outfit">
+		<text>Комбинезон наемника</text>
+	</string>
+	<string id="monolit_outfit">
+		<text>Комбинезон монолита</text>
+	</string>
+	<string id="specops_outfit">
+		<text>Бронекостюм Берилл-5М</text>
+	</string>
+	<string id="military_outfit">
+		<text>Армейский бронекостюм</text>
+	</string>
+	<string id="stalker_outfit">
+		<text>Комбинезон сталкера</text>
+	</string>
+	<string id="scientific_outfit">
+		<text>Комбинезон "СЕВА"</text>
+	</string>
+	<string id="exo_outfit">
+		<text>Экзоскелет</text>
+	</string>
+	<string id="svoboda_light_outfit">
+		<text>Комбинезон "Ветер свободы"</text>
+	</string>
+	<string id="svoboda_heavy_outfit">
+		<text>Комбинезон "Страж свободы"</text>
+	</string>
+	<string id="dolg_outfit">
+		<text>ПСЗ-9д "Броня Долга"</text>
+	</string>
+	<string id="dolg_scientific_outfit">
+		<text>ПСЗ-9Мд "Универсальная защита"</text>
+	</string>
+	<string id="ecolog_outfit">
+		<text>ССП-99 "Эколог"</text>
+	</string>
+	<string id="protection_outfit">
+		<text>Комбинезон ССП-99М</text>
+	</string>
+	<string id="copyright1">
+		<text>This Real EQ Engine</text>
+	</string>
+	<string id="copyright2">
+		<text>Спасибо за использование мода Light Upgrade. Автор - Rekongstor.</text>
+	</string>
+</string_table>

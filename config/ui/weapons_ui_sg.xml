@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<upgrade_ui1>
+	<background x="0" y="0" width="700" height="1000" stretch="1">
+		<texture x="0" y="0" width="650" height="800">ui\ui_trg_background</texture>
+	</background>
+	<bm16 x="100" y="60" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_trg_e</texture_e>
+	<texture_t>ui\ui_btn_trg_t</texture_t>
+	<texture_h>ui\ui_btn_trg_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="200" g="200" b="200">Обрез</text>
+	</bm16>
+	<spas x="100" y="95" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_trg_e</texture_e>
+	<texture_t>ui\ui_btn_trg_t</texture_t>
+	<texture_h>ui\ui_btn_trg_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="200" g="200" b="200">СПАС</text>
+	</spas>
+	<w-ter x="100" y="130" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_trg_e</texture_e>
+	<texture_t>ui\ui_btn_trg_t</texture_t>
+	<texture_h>ui\ui_btn_trg_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="200" g="200" b="200">Чейзер 13</text>
+	</w-ter>
+	<toz x="100" y="165" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_trg_e</texture_e>
+	<texture_t>ui\ui_btn_trg_t</texture_t>
+	<texture_h>ui\ui_btn_trg_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="200" g="200" b="200">ТОЗ-34</text>
+	</toz>
+	<quits x="190" y="530" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_trg_e</texture_e>
+	<texture_t>ui\ui_btn_trg_t</texture_t>
+	<texture_h>ui\ui_btn_trg_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="200" g="200" b="200">Выход</text>
+	</quits>
+	<back x="20" y="530" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_trg_e</texture_e>
+	<texture_t>ui\ui_btn_trg_t</texture_t>
+	<texture_h>ui\ui_btn_trg_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="200" g="200" b="200">Назад</text>
+	</back>
+	
+	<static_name x="25" y="15" width="100" height="30">
+		<text align="l" font="graffiti19" r="200" g="200" b="200" complex_mode="0"/>
+	</static_name>
+
+</upgrade_ui1>

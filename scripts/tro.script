@@ -1,0 +1,953 @@
+--------------------[[[[[[[[[[[[[[[[[[[[ MADE BY REKO(Спецаков Павел) }}}}}}}}}}}}}}}}}}}}--------------------
+
+--------------------<<<<<<<<<<<<<<<<<<<<    COPYRIGHT   >>>>>>>>>>>>>>>>>>>>--------------------
+
+--	Убедительная просьба не удалять копирайты при использовании данного мода или его части в своих целях
+
+--	Не удалять\изменять настоящие имя\фамилию\ник при использовании мода\частей мода
+
+--	При заспространении мода на других сайтах без ведома автора - указать его личные данные (ник или имя с фамилией)
+
+--	P.S. Не нарушайте копирайт ради собственной выгоды. Данные действия могут привести к последствиям.
+
+--------------------<<<<<<<<<<<<<<<<<<<<    COPYRIGHT   >>>>>>>>>>>>>>>>>>>>--------------------
+
+
+--------------------{{{{{{{{{{{{{{{{{{{{ MADE BY REKO(Спецаков Павел) }}}}}}}}}}}}}}}}}}]]--------------------
+
+
+
+local peremennaya
+local global_sg
+local global_rf
+local name
+local global_what = "nothing"
+local global_exo
+
+function create_guns(section) -- тестовая функция
+alife():create(section,db.actor:position(),db.actor:level_vertex_id(),db.actor:game_vertex_id(),db.actor:id())
+end
+
+
+function nothing() -- do nothing
+end
+ 
+function name_trg()
+end
+
+function weap_moding()
+	level.start_stop_menu(tro_outfits_ui(get_hud()), true)
+	peremennaya = "nothing"
+	global_exo = "nothing"
+	dvizhok()
+end
+
+function weap_am_tro_tips_ui()
+	level.start_stop_menu(tro_tips_ui_am(get_hud()), true)
+end
+
+function weap_tro_tips_ui()
+	level.start_stop_menu(tro_tips_ui(get_hud()), true)
+end
+
+function tro_outfits_ui_back()
+	level.start_stop_menu(classes_ui(get_hud()), true)
+end
+
+function weapons_sg_ui_back()
+	level.start_stop_menu(classes_ui(get_hud()), true)
+end
+
+function weapons_am_ui_back()
+	level.start_stop_menu(classes_ui(get_hud()), true)
+end
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
+class "tro_outfits_ui" (CUIScriptWnd)
+
+function tro_outfits_ui:__init(owner) super()
+	self.owner = owner
+	self:InitControls()
+	self:InitCallBacks()
+end
+
+function tro_outfits_ui:__finalize() 
+end
+
+function tro_outfits_ui:InitControls()
+	self:Init(0,0,1024,768)
+	local xml = CScriptXmlInit()
+	xml:ParseFile("tro_outfits_ui.xml")
+	xml:InitStatic("background", self)
+	self:Register(xml:Init3tButton("novice_outfit", self),"novice_outfit")
+	self:Register(xml:Init3tButton("bandit_outfit", self),"bandit_outfit")
+	self:Register(xml:Init3tButton("killer_outfit", self),"killer_outfit")
+	self:Register(xml:Init3tButton("monolit_outfit", self),"monolit_outfit")
+	self:Register(xml:Init3tButton("specops_outfit", self),"specops_outfit")
+	self:Register(xml:Init3tButton("military_outfit", self),"military_outfit")
+	self:Register(xml:Init3tButton("stalker_outfit", self),"stalker_outfit")
+	self:Register(xml:Init3tButton("scientific_outfit", self),"scientific_outfit")
+	self:Register(xml:Init3tButton("exo_outfit", self),"exo_outfit")
+	self:Register(xml:Init3tButton("svoboda_light_outfit", self),"svoboda_light_outfit")
+	self:Register(xml:Init3tButton("svoboda_heavy_outfit", self),"svoboda_heavy_outfit")
+	self:Register(xml:Init3tButton("dolg_outfit", self),"dolg_outfit")
+	self:Register(xml:Init3tButton("dolg_scientific_outfit", self),"dolg_scientific_outfit")
+	self:Register(xml:Init3tButton("ecolog_outfit", self),"ecolog_outfit")
+	self:Register(xml:Init3tButton("protection_outfit", self),"protection_outfit")
+	self:Register(xml:Init3tButton("quits", self),"quits")
+end
+
+function tro_outfits_ui:InitCallBacks()
+	self:AddCallback("novice_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_novice_outfit, self)
+	self:AddCallback("bandit_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_bandit_outfit, self)
+	self:AddCallback("killer_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_killer_outfit, self)
+	self:AddCallback("monolit_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_monolit_outfit, self)
+	self:AddCallback("specops_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_specops_outfit, self)
+	self:AddCallback("military_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_military_outfit, self)
+	self:AddCallback("stalker_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_stalker_outfit, self)
+	self:AddCallback("scientific_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_scientific_outfit, self)
+	self:AddCallback("exo_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_exo_outfit, self)
+	self:AddCallback("svoboda_light_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_svoboda_light_outfit, self)
+	self:AddCallback("svoboda_heavy_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_svoboda_heavy_outfit, self)
+	self:AddCallback("dolg_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_dolg_outfit, self)
+	self:AddCallback("dolg_scientific_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_dolg_scientific_outfit, self)
+	self:AddCallback("ecolog_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_ecolog_outfit, self)
+	self:AddCallback("protection_outfit", ui_events.BUTTON_CLICKED, self.tro_outfits_ui_protection_outfit, self)
+	self:AddCallback("quits", ui_events.BUTTON_CLICKED, self.quits, self)
+end
+
+function tro_outfits_ui:tro_outfits_ui_novice_outfit()
+ if actor_have_novice_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "novice_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_bandit_outfit()
+ if actor_have_bandit_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "bandit_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_killer_outfit()
+ if actor_have_killer_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "killer_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_monolit_outfit()
+ if actor_have_monolit_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "monolit_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_specops_outfit()
+ if actor_have_specops_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "specops_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_military_outfit()
+ if actor_have_military_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "military_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_stalker_outfit()
+ if actor_have_stalker_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "stalker_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_scientific_outfit()
+ if actor_have_scientific_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "scientific_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_exo_outfit()
+ if actor_have_exo_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	global_exo = "exo"
+	weap_tro_tips_ui()
+	peremennaya = "exo_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_svoboda_light_outfit()
+ if actor_have_svoboda_light_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "svoboda_light_outfit"
+ end
+end
+
+
+function tro_outfits_ui:tro_outfits_ui_svoboda_heavy_outfit()
+ if actor_have_svoboda_heavy_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "svoboda_heavy_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_dolg_outfit()
+ if actor_have_dolg_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "dolg_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_dolg_scientific_outfit()
+ if actor_have_dolg_scientific_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "dolg_scientific_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_ecolog_outfit()
+ if actor_have_ecolog_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "ecolog_outfit"
+ end
+end
+
+function tro_outfits_ui:tro_outfits_ui_protection_outfit()
+ if actor_have_protection_outfit() then
+	self:GetHolder():start_stop_menu (self,true)
+	weap_tro_tips_ui()
+	peremennaya = "protection_outfit"
+ end
+end
+
+function tro_outfits_ui:quits()
+	self:GetHolder():start_stop_menu (self,true)
+end
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+function exo_check()
+if global_exo == "exo" then
+return "Бег - спринт"
+end
+if global_exo ~= "exo" then
+return "Ув. макс. веса"
+end
+end
+function dvizhok()
+if (not has_alife_info("tutorial_artefact_done")) then
+cpr()
+db.actor:give_info_portion("tutorial_artefact_done") -- всё равно не используется
+end
+end
+class "tro_tips_ui" (CUIScriptWnd)
+
+function tro_tips_ui:__init(owner) super()
+	self.owner = owner
+	self:InitControls()
+	self:InitCallBacks()
+end
+
+function tro_tips_ui:__finalize() 
+end
+
+function tro_tips_ui:InitControls()
+	self:Init(0,0,1024,768)
+	local xml = CScriptXmlInit()
+	xml:ParseFile("tro_tips_ui.xml")
+	xml:InitStatic("background", self)
+	self:Register(xml:Init3tButton("power", self),"power")
+	self:Register(xml:Init3tButton("degree", self),"degree")
+	self:Register(xml:Init3tButton("clip", self),"clip")
+	local exo_checking = xml:InitStatic("clip_text",self)
+	exo_checking:SetText("" .. exo_check())
+	self:Register(xml:Init3tButton("calibrate", self),"calibrate")
+	self:Register(xml:Init3tButton("quits", self),"quits")
+	self:Register(xml:Init3tButton("back", self),"back")
+local _name = xml:InitStatic		( "static_name" ,self)
+	_name:SetText					( "This Real EQ" )
+end
+
+function tro_tips_ui:InitCallBacks()
+	self:AddCallback("power", ui_events.BUTTON_CLICKED, self.power, self)
+	self:AddCallback("degree", ui_events.BUTTON_CLICKED, self.degree, self)
+	self:AddCallback("clip", ui_events.BUTTON_CLICKED, self.clip, self)
+	self:AddCallback("calibrate", ui_events.BUTTON_CLICKED, self.calibrate, self)
+	self:AddCallback("quits", ui_events.BUTTON_CLICKED, self.quits, self)
+	self:AddCallback("back", ui_events.BUTTON_CLICKED, self.back, self)
+end
+function tro_tips_ui:power()
+if db.actor then
+	self:GetHolder():start_stop_menu (self,true)
+	if peremennaya == "novice_outfit" then
+give_novice_outfit_antianom()
+	end 
+if peremennaya == "bandit_outfit" then
+give_bandit_outfit_antianom()
+	end 
+if peremennaya == "killer_outfit" then
+give_killer_outfit_antianom()
+	end 
+if peremennaya == "monolit_outfit" then
+give_monolit_outfit_antianom()
+	end 
+if peremennaya == "specops_outfit" then
+give_specops_outfit_antianom()
+	end
+if peremennaya == "military_outfit" then
+give_military_outfit_antianom()
+	end 
+if peremennaya == "stalker_outfit" then
+give_stalker_outfit_antianom()
+	end 
+if peremennaya == "scientific_outfit" then
+give_scientific_outfit_antianom()
+	end 
+if peremennaya == "exo_outfit" then
+give_exo_outfit_antianom()
+	end 
+if peremennaya == "svoboda_light_outfit" then
+give_svoboda_light_outfit_antianom()
+	end
+if peremennaya == "svoboda_heavy_outfit" then
+give_svoboda_heavy_outfit_antianom()
+	end
+if peremennaya == "dolg_outfit" then
+give_dolg_outfit_antianom()
+	end
+if peremennaya == "dolg_scientific_outfit" then
+give_dolg_scientific_outfit_antianom()
+	end
+if peremennaya == "ecolog_outfit" then
+give_ecolog_outfit_antianom()
+	end
+if peremennaya == "protection_outfit" then
+give_protection_outfit_antianom()
+	end
+end
+end
+
+function tro_tips_ui:degree()
+if db.actor then
+	self:GetHolder():start_stop_menu (self,true)
+	if peremennaya == "novice_outfit" then
+give_novice_outfit_antistrike()
+	end 
+if peremennaya == "bandit_outfit" then
+give_bandit_outfit_antistrike()
+	end 
+if peremennaya == "killer_outfit" then
+give_killer_outfit_antistrike()
+	end 
+if peremennaya == "monolit_outfit" then
+give_walter_antistrike()
+	end 
+if peremennaya == "specops_outfit" then
+give_specops_outfit_antistrike()
+	end 
+if peremennaya == "military_outfit" then
+give_military_outfit_antistrike()
+	end 
+if peremennaya == "stalker_outfit" then
+give_stalker_outfit_antistrike()
+	end 
+if peremennaya == "scientific_outfit" then
+give_scientific_outfit_antistrike()
+	end 
+if peremennaya == "exo_outfit" then
+give_exo_outfit_antistrike()
+	end 
+if peremennaya == "svoboda_light_outfit" then
+give_svoboda_light_outfit_antistrike()
+	end
+if peremennaya == "svoboda_heavy_outfit" then
+give_svoboda_heavy_outfit_antistrike()
+	end
+if peremennaya == "dolg_outfit" then
+give_dolg_outfit_antistrike()
+	end
+if peremennaya == "dolg_scientific_outfit" then
+give_dolg_scientific_outfit_antistrike()
+	end
+if peremennaya == "ecolog_outfit" then
+give_ecolog_outfit_antistrike()
+	end
+if peremennaya == "protection_outfit" then
+give_protection_outfit_antistrike()
+	end
+end
+end
+
+function tro_tips_ui:clip()
+if db.actor then
+	self:GetHolder():start_stop_menu (self,true)
+	if peremennaya == "novice_outfit" then
+give_novice_outfit_moreweight()
+	end 
+	if peremennaya == "bandit_outfit" then
+give_bandit_outfit_moreweight()
+	end 
+	if peremennaya == "killer_outfit" then
+give_killer_outfit_moreweight()
+	end 
+	if peremennaya == "monolit_outfit" then
+give_walter_moreweight()
+	end 
+	if peremennaya == "specops_outfit" then
+give_specops_outfit_moreweight()
+	end 
+	if peremennaya == "military_outfit" then
+give_military_outfit_moreweight()
+	end 
+	if peremennaya == "stalker_outfit" then
+give_stalker_outfit_moreweight()
+	end 
+	if peremennaya == "scientific_outfit" then
+give_scientific_outfit_moreweight()
+	end 
+	if peremennaya == "exo_outfit" then
+give_exo_outfit_moreweight()
+	end 
+	if peremennaya == "svoboda_light_outfit" then
+give_svoboda_light_outfit_moreweight()
+end
+	if peremennaya == "svoboda_heavy_outfit" then
+give_svoboda_heavy_outfit_moreweight()
+end
+	if peremennaya == "dolg_outfit" then
+give_dolg_outfit_moreweight()
+end
+	if peremennaya == "dolg_scientific_outfit" then
+give_dolg_scientific_outfit_moreweight()
+end
+	if peremennaya == "ecolog_outfit" then
+give_ecolog_outfit_moreweight()
+end
+	if peremennaya == "protection_outfit" then
+give_protection_outfit_moreweight()
+end
+end
+end
+
+function tro_tips_ui:calibrate()
+if db.actor then
+	self:GetHolder():start_stop_menu (self,true)
+	if peremennaya == "novice_outfit" then
+give_novice_outfit_nightvision()
+	end 
+	if peremennaya == "bandit_outfit" then
+give_bandit_outfit_nightvision()
+	end 
+	if peremennaya == "killer_outfit" then
+give_killer_outfit_nightvision()
+	end 
+	if peremennaya == "monolit_outfit" then
+give_walter_nightvision()
+	end 
+	if peremennaya == "specops_outfit" then
+give_specops_outfit_nightvision()
+	end 
+	if peremennaya == "military_outfit" then
+give_military_outfit_nightvision()
+	end 
+	if peremennaya == "stalker_outfit" then
+give_stalker_outfit_nightvision()
+	end 
+	if peremennaya == "scientific_outfit" then
+give_scientific_outfit_nightvision()
+	end 
+	if peremennaya == "exo_outfit" then
+give_exo_outfit_nightvision()
+	end 
+	if peremennaya == "svoboda_light_outfit" then
+give_svoboda_light_outfit_nightvision()
+end
+	if peremennaya == "svoboda_heavy_outfit" then
+give_svoboda_heavy_outfit_nightvision()
+end
+	if peremennaya == "dolg_outfit" then
+give_dolg_outfit_nightvision()
+end
+	if peremennaya == "dolg_scientific_outfit" then
+give_dolg_scientific_outfit_nightvision()
+end
+	if peremennaya == "ecolog_outfit" then
+give_ecolog_outfit_nightvision()
+end
+	if peremennaya == "protection_outfit" then
+give_protection_outfit_nightvision()
+end
+end
+end
+
+
+function tro_tips_ui:back()
+	weap_moding()
+	self:GetHolder():start_stop_menu (self,true)
+end
+
+function tro_tips_ui:quits()
+	self:GetHolder():start_stop_menu (self,true)
+end
+
+
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+--------------------[[[[[[[[[[[[[[[[[[[[ MADE BY REKO(Спецаков Павел) }}}}}}}}}}}}}}}}}}}}--------------------
+
+
+--------------------<<<<<<<<<<<<<<<<<<<<    COPYRIGHT   >>>>>>>>>>>>>>>>>>>>--------------------
+
+--	Убедительная просьба не удалять копирайты при использовании данного мода или его части в своих целях
+
+--	Не удалять\изменять настоящие имя\фамилию\ник при использовании мода\частей мода
+
+--	При заспространении мода на других сайтах без ведома автора - указать его личные данные (ник или имя с фамилией)
+
+--	P.S. Не нарушайте копирайт ради собственной выгоды. Данные действия могут привести к последствиям.
+
+--------------------<<<<<<<<<<<<<<<<<<<<    COPYRIGHT   >>>>>>>>>>>>>>>>>>>>--------------------
+
+
+--------------------{{{{{{{{{{{{{{{{{{{{ MADE BY REKO(Спецаков Павел) }}}}}}}}}}}}}}}}}}]]--------------------
+
+
+
+
+
+
+function remove_item_from_inventory_by_name(remove_item_name,npc)		 	
+	remove_item_from_inventory(npc:object(remove_item_name),npc)	 	
+end										 									
+																			
+function remove_item_from_inventory(remove_item,npc)	-- MADE BY AMK TEAM
+	if npc==nil then npc=db.actor end					 					
+	if remove_item~=nil then						 						
+	    npc:mark_item_dropped(remove_item)					 				
+		alife():release(alife():object(remove_item:id()), true)		 		
+		return true							 								
+	end									 									
+	return false								 							
+end										 									
+
+function delete_guns(gun_names)			-- MADE BY AMK TEAM					 					
+	remove_item_from_inventory_by_name(gun_names,db.actor)		 	
+end										 									
+
+
+
+
+
+
+local gun_condition = 0
+
+function delete_gun(gun_name,upgrade_gun_name)
+	local item_weap_unupg = db.actor:object(gun_name)
+	if delete_money(item_weap_unupg:cost(),"not","within") == "have_money" then
+	upgrade_gun(db.actor, "finish", gun_name)
+	delete_guns(gun_name)
+	local objecture = alife():create(upgrade_gun_name,db.actor:position(),db.actor:level_vertex_id(),db.actor:game_vertex_id(),db.actor:id())
+	delete_money(item_weap_unupg:cost(),"yes","within")
+	end
+	if delete_money(item_weap_unupg:cost(),"not","within") == "dont_have_money" then
+	upgrade_gun(db.actor, "gnhem", gun_name)
+	end
+end	
+
+
+function upgrade_gun(actor, type, amount)
+if db.actor == nil then 
+	return false 
+end
+if type == "finish" then
+	local texts = { "Улучшение завершено!", "Оружие улучшено!", "Апгрейд установлен!" }
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_weapons")
+		local news_text = "%c[255,160,160,160]"..game.translate_string(texts[math.random(3)]).."\\n".."%c[default]"..game.translate_string(amount)
+		
+		if db.actor:is_talking() then
+			db.actor:give_talk_message(news_text, task_texture, task_rect, "iconed_answer_item")
+		else
+			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 6000)
+		end		
+end
+if type == "gnhem" then
+		local texts = "Нехватает денег"		
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
+		local news_text = "%c[255,160,160,160]"..game.translate_string(texts).."\\n".."%c[default]"..game.translate_string(amount)
+		
+		if db.actor:is_talking() then
+			db.actor:give_talk_message(news_text, task_texture, task_rect, "iconed_answer_item")
+		else
+			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 6000)
+		end	
+end
+end
+
+-- Мой скрипт из незаконченного мода
+
+function del_money(num, type, victim) -- начальная функция - "relocate_money"
+		if type == "in" then
+			db.actor:give_money(num)
+			game_stats.money_quest_update (num) 
+		elseif type == "out" then
+			db.actor:transfer_money(num, victim)
+			game_stats.money_quest_update (-num) 
+		end
+		news_manager.relocate_money(db.actor, type, num)
+
+end
+
+function del_moneys(num, type, victim) -- начальная функция - "relocate_money"
+		if type == "in" then
+			db.actor:give_money(num)
+			game_stats.money_quest_update (num) 
+		elseif type == "out" then
+			db.actor:transfer_money(num, victim)
+			game_stats.money_quest_update (-num) 
+		end
+		--news_manager.relocate_money(db.actor, type, num)
+end
+
+	local baida = "false"
+	local how_much
+	
+function delete_money(how_many, type, how)
+	how_much = how_many * 0.5
+	if type == "not" then
+	if db.actor:money() >= how_much  then
+		if how == "within" then
+		return "have_money"
+		end
+	end 
+	if db.actor:money() < how_much then
+	return "dont_have_money"
+	end
+	end
+	if type == "yes" then
+		how_much = how_many * 0.5
+		del_money(how_much, "out", obj)
+		del_moneys(how_much*-1, "in", obj)
+	end
+end
+
+
+-- Мой скрипт из незаконченного мода
+function cpr()
+		local texts = "Спасибо за использование мода Light Upgrade. Автор - Rekongstor."
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
+		local news_text = "%c[255,160,160,160]".."This Real EQ Engine".."\\n".."%c[default]"..game.translate_string(texts)
+		if db.actor:is_talking() then
+			db.actor:give_talk_message(news_text, task_texture, task_rect, "iconed_answer_item")
+		else
+			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+		end	
+end
+
+function test_cond()
+end
+
+-----------------------------------------------------------------------------------
+-- Улучшение оружий
+-----------------------------------------------------------------------------------
+function actor_have_novice_outfit()
+	return db.actor:object("novice_outfit") ~= nil
+end
+function actor_have_bandit_outfit()
+	return db.actor:object("bandit_outfit") ~= nil
+end
+function actor_have_killer_outfit()
+	return db.actor:object("killer_outfit") ~= nil
+end
+function actor_have_monolit_outfit()
+	return db.actor:object("monolit_outfit") ~= nil
+end
+function actor_have_specops_outfit()
+	return db.actor:object("specops_outfit") ~= nil
+end
+function actor_have_military_outfit()
+	return db.actor:object("military_outfit") ~= nil
+end
+function actor_have_stalker_outfit()
+	return db.actor:object("stalker_outfit") ~= nil
+end
+function actor_have_scientific_outfit()
+	return db.actor:object("scientific_outfit") ~= nil
+end
+function actor_have_exo_outfit()
+	return db.actor:object("exo_outfit") ~= nil
+end
+function actor_have_svoboda_light_outfit()
+	return db.actor:object("svoboda_light_outfit") ~= nil
+end
+function actor_have_svoboda_heavy_outfit()
+	return db.actor:object("svoboda_heavy_outfit") ~= nil
+end
+function actor_have_dolg_outfit()
+	return db.actor:object("dolg_outfit") ~= nil
+end
+function actor_have_dolg_scientific_outfit()
+	return db.actor:object("dolg_scientific_outfit") ~= nil
+end
+function actor_have_ecolog_outfit()
+	return db.actor:object("ecolog_outfit") ~= nil
+end
+function actor_have_protection_outfit()
+	return db.actor:object("protection_outfit") ~= nil
+end
+
+
+
+function give_novice_outfit_antianom()
+	delete_gun("novice_outfit","novice_outfit_antianom")
+end
+function give_bandit_outfit_antianom()
+	delete_gun("bandit_outfit","bandit_outfit_antianom")
+end
+function give_killer_outfit_antianom()
+	delete_gun("killer_outfit","killer_outfit_antianom")
+end
+function give_monolit_outfit_antianom()
+	delete_gun("monolit_outfit","monolit_outfit_antianom")
+end
+function give_specops_outfit_antianom()
+	delete_gun("specops_outfit","specops_outfit_antianom")
+end
+function give_military_outfit_antianom()
+	delete_gun("military_outfit","military_outfit_antianom")
+end
+function give_stalker_outfit_antianom()
+	delete_gun("stalker_outfit","stalker_outfit_antianom")
+end
+function give_scientific_outfit_antianom()
+	delete_gun("scientific_outfit","scientific_outfit_antianom")
+end
+function give_exo_outfit_antianom()
+	delete_gun("exo_outfit","exo_outfit_antianom")
+end
+function give_svoboda_light_outfit_antianom()
+	delete_gun("svoboda_light_outfit","svoboda_light_outfit_antianom")
+end
+function give_svoboda_heavy_outfit_antianom()
+	delete_gun("svoboda_heavy_outfit","svoboda_heavy_outfit_antianom")
+end
+function give_dolg_outfit_antianom()
+	delete_gun("dolg_outfit","dolg_outfit_antianom")
+end
+function give_dolg_scientific_outfit_antianom()
+	delete_gun("dolg_scientific_outfit","dolg_scientific_outfit_antianom")
+end
+function give_ecolog_outfit_antianom()
+	delete_gun("ecolog_outfit","ecolog_outfit_antianom")
+end
+function give_protection_outfit_antianom()
+	delete_gun("protection_outfit","protection_outfit_antianom")
+end
+
+
+
+function give_novice_outfit_antistrike()
+	delete_gun("novice_outfit","novice_outfit_antistrike")
+end
+function give_bandit_outfit_antistrike()
+	delete_gun("bandit_outfit","bandit_outfit_antistrike")
+end
+function give_killer_outfit_antistrike()
+	delete_gun("killer_outfit","killer_outfit_antistrike")
+end
+function give_monolit_outfit_antistrike()
+	delete_gun("monolit_outfit","monolit_outfit_antistrike")
+end
+function give_specops_outfit_antistrike()
+	delete_gun("specops_outfit","specops_outfit_antistrike")
+end
+function give_military_outfit_antistrike()
+	delete_gun("military_outfit","military_outfit_antistrike")
+end
+function give_stalker_outfit_antistrike()
+	delete_gun("stalker_outfit","stalker_outfit_antistrike")
+end
+function give_scientific_outfit_antistrike()
+	delete_gun("scientific_outfit","scientific_outfit_antistrike")
+end
+function give_exo_outfit_antistrike()
+	delete_gun("exo_outfit","exo_outfit_antistrike")
+end
+function give_svoboda_light_outfit_antistrike()
+	delete_gun("svoboda_light_outfit","svoboda_light_outfit_antistrike")
+end
+function give_svoboda_heavy_outfit_antistrike()
+	delete_gun("svoboda_heavy_outfit","svoboda_heavy_outfit_antistrike")
+end
+function give_dolg_outfit_antistrike()
+	delete_gun("dolg_outfit","dolg_outfit_antistrike")
+end
+function give_dolg_scientific_outfit_antistrike()
+	delete_gun("dolg_scientific_outfit","dolg_scientific_outfit_antistrike")
+end
+function give_ecolog_outfit_antistrike()
+	delete_gun("ecolog_outfit","ecolog_outfit_antistrike")
+end
+function give_protection_outfit_antistrike()
+	delete_gun("protection_outfit","protection_outfit_antistrike")
+end
+
+function give_novice_outfit_moreweight()
+	delete_gun("novice_outfit","novice_outfit_moreweight")
+end
+function give_bandit_outfit_moreweight()
+	delete_gun("bandit_outfit","bandit_outfit_moreweight")
+end
+function give_killer_outfit_moreweight()
+	delete_gun("killer_outfit","killer_outfit_moreweight")
+end
+function give_monolit_outfit_moreweight()
+	delete_gun("monolit_outfit","monolit_outfit_moreweight")
+end
+function give_specops_outfit_moreweight()
+	delete_gun("specops_outfit","specops_outfit_moreweight")
+end
+function give_military_outfit_moreweight()
+	delete_gun("military_outfit","military_outfit_moreweight")
+end
+function give_stalker_outfit_moreweight()
+	delete_gun("stalker_outfit","stalker_outfit_moreweight")
+end
+function give_scientific_outfit_moreweight()
+	delete_gun("scientific_outfit","scientific_outfit_moreweight")
+end
+function give_exo_outfit_moreweight()
+	delete_gun("exo_outfit","exo_outfit_moreweight")
+end
+function give_svoboda_light_outfit_moreweight()
+	delete_gun("svoboda_light_outfit","svoboda_light_outfit_moreweight")
+end
+function give_svoboda_heavy_outfit_moreweight()
+	delete_gun("svoboda_heavy_outfit","svoboda_heavy_outfit_moreweight")
+end
+function give_dolg_outfit_moreweight()
+	delete_gun("dolg_outfit","dolg_outfit_moreweight")
+end
+function give_dolg_scientific_outfit_moreweight()
+	delete_gun("dolg_scientific_outfit","dolg_scientific_outfit_moreweight")
+end
+function give_ecolog_outfit_moreweight()
+	delete_gun("ecolog_outfit","ecolog_outfit_moreweight")
+end
+function give_protection_outfit_moreweight()
+	delete_gun("protection_outfit","protection_outfit_moreweight")
+end
+
+function give_novice_outfit_nightvision()
+	delete_gun("novice_outfit","novice_outfit_nightvision")
+end
+function give_bandit_outfit_nightvision()
+	delete_gun("bandit_outfit","bandit_outfit_nightvision")
+end
+function give_killer_outfit_nightvision()
+	delete_gun("killer_outfit","killer_outfit_nightvision")
+end
+function give_monolit_outfit_nightvision()
+	delete_gun("monolit_outfit","monolit_outfit_nightvision")
+end
+function give_specops_outfit_nightvision()
+	delete_gun("specops_outfit","specops_outfit_nightvision")
+end
+function give_military_outfit_nightvision()
+	delete_gun("military_outfit","military_outfit_nightvision")
+end
+function give_stalker_outfit_nightvision()
+	delete_gun("stalker_outfit","stalker_outfit_nightvision")
+end
+function give_scientific_outfit_nightvision()
+	delete_gun("scientific_outfit","scientific_outfit_nightvision")
+end
+function give_exo_outfit_nightvision()
+	delete_gun("exo_outfit","exo_outfit_nightvision")
+end
+function give_svoboda_light_outfit_nightvision()
+	delete_gun("svoboda_light_outfit","svoboda_light_outfit_nightvision")
+end
+function give_svoboda_heavy_outfit_nightvision()
+	delete_gun("svoboda_heavy_outfit","svoboda_heavy_outfit_nightvision")
+end
+function give_dolg_outfit_nightvision()
+	delete_gun("dolg_outfit","dolg_outfit_nightvision")
+end
+function give_dolg_scientific_outfit_nightvision()
+	delete_gun("dolg_scientific_outfit","dolg_scientific_outfit_nightvision")
+end
+function give_ecolog_outfit_nightvision()
+	delete_gun("ecolog_outfit","ecolog_outfit_nightvision")
+end
+function give_protection_outfit_nightvision()
+	delete_gun("protection_outfit","protection_outfit_nightvision")
+end
+
+
+
+
+
+
+
+
+--------------------[[[[[[[[[[[[[[[[[[[[ MADE BY REKO(Спецаков Павел) }}}}}}}}}}}}}}}}}}}}--------------------
+
+
+--------------------<<<<<<<<<<<<<<<<<<<<    COPYRIGHT   >>>>>>>>>>>>>>>>>>>>--------------------
+
+--	Убедительная просьба не удалять копирайты при использовании данного мода или его части в своих целях
+
+--	Не удалять\изменять настоящие имя\фамилию\ник при использовании мода\частей мода
+
+--	При заспространении мода на других сайтах без ведома автора - указать его личные данные (ник или имя с фамилией)
+
+--	P.S. Не нарушайте копирайт ради собственной выгоды. Данные действия могут привести к последствиям.
+
+--------------------<<<<<<<<<<<<<<<<<<<<    COPYRIGHT   >>>>>>>>>>>>>>>>>>>>--------------------
+
+
+--------------------{{{{{{{{{{{{{{{{{{{{ MADE BY REKO(Спецаков Павел) }}}}}}}}}}}}}}}}}}]]--------------------
