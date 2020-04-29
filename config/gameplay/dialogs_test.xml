@@ -104,7 +104,7 @@
     <dialog id="weapons_upgrade_mod">
         <phrase_list>
             <phrase id="0">
-                <text>Улучши моё оружие.</text>
+                <text>Улучши оружие.</text>
                 <action>dialogs.break_dialog</action>
                 <action>trg.weap_moding</action>
             </phrase>
