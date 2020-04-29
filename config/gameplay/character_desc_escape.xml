@@ -26,7 +26,6 @@
 		<actor_dialog>escape_trader_done_blockpost_box</actor_dialog>
 		<actor_dialog>weapons_upgrade_mod</actor_dialog>
 		<actor_dialog>outfits_upgrade_mod</actor_dialog>
-		<actor_dialog>escape_trader_repair</actor_dialog>
 	</specific_character>
 <!---------------------------------------esc_wolf----------------------------------------------------->
 	<specific_character id="esc_wolf" team_default = "1">
