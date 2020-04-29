@@ -16,3 +16,4 @@ Using mods:
 8. Show quest rewards (AMK Team)
 9. M_BCCF_Full (LLSNeitrino)
 10. Real Night Fight (gordon-x)
+11. New Guiders Mod v2.0 Final (Stalk15)
