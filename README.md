@@ -1,7 +1,7 @@
 # stalker-soc-dancher-mod
 My mod for S.T.A.L.K.E.R.: Shadow of Chernobyl
 
-Version: 1.0004
+Game version: 1.0004
 
 Install: Place gamedata to game folder
 
