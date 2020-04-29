@@ -12,7 +12,7 @@ Using mods:
 4. Pause CoP to ShoC (Charsi)
 5. Light Upgrade MOD (Rekongstor)
 6. Upgrade Weapon Mod (lez0)
-7. Repair Mod (Shebuka)
+7. Repair from ITS mod 2.0 (femten, BotKILLer aka DiR.X)
 8. Show quest rewards (AMK Team)
 9. M_BCCF_Full (LLSNeitrino)
 10. Real Night Fight (gordon-x)
