@@ -15,3 +15,4 @@ Using mods:
 7. Repair Mod (Shebuka)
 8. Show quest rewards (AMK Team)
 9. M_BCCF_Full (LLSNeitrino)
+10. Real Night Fight (gordon-x)
