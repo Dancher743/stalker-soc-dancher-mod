@@ -1361,7 +1361,7 @@ end
 	local how_much
 	
 function delete_money(how_many, type, how)
-	how_much = how_many * 0.1
+	how_much = how_many * 1
 	if type == "not" then
 	if db.actor:money() >= how_much  then
 		if how == "within" then
@@ -1373,7 +1373,7 @@ function delete_money(how_many, type, how)
 	end
 	end
 	if type == "yes" then
-		how_much = how_many * 0.1
+		how_much = how_many * 1
 		del_money(how_much, "out", obj)
 		del_moneys(how_much*-1, "in", obj)
 	end

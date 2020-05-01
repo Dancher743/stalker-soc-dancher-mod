@@ -28,7 +28,7 @@
 		<text>Автомат с увеличенным магазином</text>
 	</string>
 	<string id="upgrade_mod_tip_am">
-		<text>Автомат с заменой калибра под патрон НАТО - 56x45</text>
+		<text>Автомат с заменой калибра под другой патрон</text>
 	</string>
 	<string id="upgrade_mod_tip_pa">
 		<text>Автомат с заменой калибра под патрон 9x18</text>
@@ -58,7 +58,7 @@
 		<text>Полуавтомат с увеличенным магазином</text>
 	</string>
 	<string id="upgrade_mod_tip_pa">
-		<text>Полуавтомат с заменой калибра под патрон НАТО - 56x45</text>
+		<text>Полуавтомат с заменой калибра под другой патрон</text>
 	</string>
 	<string id="upgrade_mod_tip_pa">
 		<text>Полуавтомат с заменой калибра под патрон 9x18</text>

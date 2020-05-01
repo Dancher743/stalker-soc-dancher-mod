@@ -33,7 +33,7 @@
 	<texture_e>ui\ui_btn_trg_e</texture_e>
 	<texture_t>ui\ui_btn_trg_t</texture_t>
 	<texture_h>ui\ui_btn_trg_h</texture_h>
-		<text x="3" y="-4" font="graffiti19" r="200" g="200" b="200">Скорострельнсоть</text>
+		<text x="3" y="-4" font="graffiti19" r="200" g="200" b="200">Скорострельность</text>
 	</zadrachivalka>
 	<quits x="190" y="530" width="100" height="35" stretch="1">
 	<texture_e>ui\ui_btn_trg_e</texture_e>
