@@ -3,7 +3,7 @@ My mod for S.T.A.L.K.E.R.: Shadow of Chernobyl
 
 Game version: 1.0004
 
-Install: Place gamedata to game folder
+Install: Place all files to empty 'gamedata' folder.
 
 Using mods:
 1. Freeplay Mod v1.3 (DEXXX)
@@ -17,3 +17,4 @@ Using mods:
 9. M_BCCF_Full (LLSNeitrino)
 10. Real Night Fight (gordon-x)
 11. New Guiders Mod v2.0 Final (Stalk15)
+12. Stashes fix from Shadows Addon 0.8.5 (Ray Twitty aka Shadows)
