@@ -1,0 +1,872 @@
+--[[-----------------------------------------------------------------------------------------------
+ File         : sa_utils.script
+ Description  : Вспомогательные функции
+ Copyright    : Shadows Addon
+ Author       : Ray Twitty aka Shadows
+ Date         : 16.06.2013
+ Last edit    : 08.11.2018
+--]]-----------------------------------------------------------------------------------------------
+_G.base_time_factor = level.get_time_factor()
+_G.NEAR_ACTOR = vector():set(0, 0, 1)
+_G.pressed_keys = {}
+---------------------------------------------------------------------------------------------------
+local dev = device()
+local hud = get_hud()
+local console = get_console()
+--[[-----------------------------------------------------------------------------------------------
+ * Actor
+--]]-----------------------------------------------------------------------------------------------
+function _G.check_actor_state(state)
+	return toboolean(bit_and(db.actor:actor_body_state(), state))
+end
+---------------------------------------------------------------------------------------------------
+function _G.change_max_walk_weight(max_walk_weight)
+	db.actor:set_actor_max_walk_weight(db.actor:get_actor_max_walk_weight() + max_walk_weight)
+end
+---------------------------------------------------------------------------------------------------
+function _G.change_max_weight(max_weight)
+	db.actor:set_actor_max_weight(db.actor:get_actor_max_weight() + max_weight)
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Car
+--]]-----------------------------------------------------------------------------------------------
+function _G.change_car_health(obj, health)
+	if obj and health > 0 then
+		local car = obj:get_car()
+		if car then
+			car:SetfHealth(math.clamp(car:GetfHealth() + health, 0, 1))
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.change_car_fuel(obj, fuel)
+	if obj and fuel > 0 then
+		obj:set_fuel(math.clamp(obj:get_fuel() + fuel, 0, obj:get_fuel_tank()))
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Light
+--]]-----------------------------------------------------------------------------------------------
+function _G.enable_light(obj, enable)
+	if obj then
+		local lamp = obj:get_hanging_lamp()
+		if lamp then
+			if enable then
+				lamp:turn_on()
+			else
+				lamp:turn_off()
+			end
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.enable_all_lights(enable)
+	for k, v in pairs(db.storage) do
+		local obj = level.object_by_id(k)
+		if obj and obj:is_hanging_lamp() then
+			enable_light(obj, enable)
+		end
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Object data
+--]]-----------------------------------------------------------------------------------------------
+function _G.get_weapon_data(obj, param)
+	if obj and param then
+		if param == "is_attached_scope" then
+			return toboolean(bit_and(obj:get_wpn_int(nil, 936), 1))
+		elseif param == "is_attached_grenade_launcher" then
+			return toboolean(bit_and(obj:get_wpn_int(nil, 936), 2))
+		elseif param == "is_attached_silencer" then
+			return toboolean(bit_and(obj:get_wpn_int(nil, 936), 4))
+		elseif param == "addon_flags" then
+			return bit_and(obj:get_wpn_int(nil, 936), 7)
+		elseif param == "ammo_type" then
+			return obj:get_wpn_int(nil, 1444)
+		elseif param == "weapon_state" then
+			return obj:get_wpn_int(nil, 652)
+		elseif param == "current_fire_mode" then
+			return obj:get_wpn_int(nil, 1928)
+		elseif param == "grenade_mode" and obj:is_weapon_gl() then
+			return toboolean(bit_and(obj:get_wpn_int(nil, 2392), 1))
+		elseif param == "mag_size" then
+			return obj:get_wpn_int(nil, 1408)
+		elseif param == "available_ammo" then
+			return obj:get_wpn_int(nil, 1412)
+		elseif param == "zoom_mode" then
+			return toboolean(bit_and(obj:get_wpn_int(nil, 1012), 1))
+		elseif param == "scope_enabled" then
+			return toboolean(obj:get_wpn_int(nil, 1000))
+		elseif param == "scope_name" then
+			set_int_arg0(952)
+			return obj:get_wpn_shared_str()
+		elseif param == "silencer_name" then
+			set_int_arg0(956)
+			return obj:get_wpn_shared_str()
+		elseif param == "grenade_launcher_name" then
+			set_int_arg0(960)
+			return obj:get_wpn_shared_str()
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_ammo_data(obj, param)
+	if obj and param then
+		if param == "box_size" then
+			return obj:get_go_int16(nil, 476)
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_actor_data(param)
+	if param then
+		if param == "camera_type" then
+			return db.actor:get_actor_int(nil, 1328)
+		elseif param == "camera_height" then
+			return db.actor:get_actor_float(1204)
+		elseif param == "zoom_mode" then
+			return toboolean(bit_and(db.actor:get_actor_int(nil, 1480), 1))
+		elseif param == "current_holder_object" then
+			local holder_id = db.actor:get_actor_int16(nil, 1240)
+			if holder_id ~= 65535 then
+				return level.object_by_id(holder_id)
+			end
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.set_actor_data(param, value)
+	if param and value then
+		if param == "camera_type" then
+			db.actor:set_actor_int(1328, value)
+		elseif param == "camera_height" then
+			db.actor:set_actor_float(nil, value, 1204)
+		elseif param == "health" then
+			db.actor:set_actor_condition_float(nil, value, 4)
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_light_data(obj, param)
+	if obj and param then
+		if param == "health" then
+			return obj:get_go_float(484)
+		elseif param == "brightness" then
+			return obj:get_go_float(488)
+		elseif param == "ambient_power" then
+			return obj:get_go_float(476)
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.set_light_data(obj, param, value)
+	if obj and param and value then
+		if param == "health" then
+			obj:set_go_float(nil, value, 484)
+		elseif param == "brightness" then
+			obj:set_go_float(nil, value, 488)
+		elseif param == "ambient_power" then
+			obj:set_go_float(nil, value, 476)
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_monster_data(obj, param)
+	if obj and param then
+		if param == "speed" then
+			return obj:get_custom_monster_float(920)
+		elseif param == "invisible" then
+			return toboolean(obj:get_custom_monster_int(nil, 1713))
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_outfit_data(obj, param)
+	if obj and param then
+		if param == "power_loss" then
+			return obj:get_inventory_item_float(696)
+		elseif param == "additional_inventory_weight" then
+			return obj:get_inventory_item_float(716)
+		elseif param == "additional_inventory_weight2" then
+			return obj:get_inventory_item_float(720)
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_inventory_item_data(obj, param)
+	if obj and param then
+		if param == "slot" then
+			return obj:get_inventory_item_int(nil, 156)
+		elseif param == "inv_name" then
+			set_int_arg0(140)
+			return obj:get_inventory_item_shared_str()
+		elseif param == "inv_name_short" then
+			set_int_arg0(144)
+			return obj:get_inventory_item_shared_str()
+		elseif param == "description" then
+			set_int_arg0(172)
+			return obj:get_inventory_item_shared_str()
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.set_inventory_item_flag(obj, flag_idx, value)
+	obj:set_inventory_item_int16(132, flags16():assign(obj:get_inventory_item_int16(nil, 132)):set(flag_idx, value):get())
+end
+---------------------------------------------------------------------------------------------------
+function _G.set_item_tradability_highlight_color(obj, color_idx)
+	obj:set_inventory_item_int16(134, bit_or(bit_and(obj:get_inventory_item_int16(nil, 134), 65520), color_idx))
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_hud_data(obj, param)
+	if obj and param then
+		if param == "hud_section" then
+			set_int_arg0(24)
+			return obj:get_hud_shared_str()
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_car_data(obj, param)
+	if obj and param then
+		if param == "camera_position_x" then
+			return obj:get_car_float(1324)
+		elseif param == "camera_position_y" then
+			return obj:get_car_float(1328)
+		elseif param == "camera_position_z" then
+			return obj:get_car_float(1332)
+		elseif param == "exit_position_x" then
+			return obj:get_car_float(1221)
+		elseif param == "exit_position_y" then
+			return obj:get_car_float(1225)
+		elseif param == "exit_position_z" then
+			return obj:get_car_float(1229)
+		elseif param == "current_transmission_num" then
+			return obj:get_car_int(nil, 1560)
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.set_car_data(obj, param, value)
+	if obj and param and value then
+		if param == "camera_position_x" then
+			obj:set_car_float(nil, value, 1324)
+		elseif param == "camera_position_y" then
+			obj:set_car_float(nil, value, 1328)
+		elseif param == "camera_position_z" then
+			obj:set_car_float(nil, value, 1332)
+		elseif param == "exit_position_x" then
+			obj:set_car_float(nil, value, 1221)
+		elseif param == "exit_position_y" then
+			obj:set_car_float(nil, value, 1225)
+		elseif param == "exit_position_z" then
+			obj:set_car_float(nil, value, 1229)
+		end
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Sounds
+--]]-----------------------------------------------------------------------------------------------
+function _G.play_safe_sound_object(sound_path, timeout, volume)
+	if sound_path then
+		if not timeout then
+			timeout = 0
+		end
+		if not volume then
+			volume = 1.0
+		end
+		sound_object(sound_path):play_no_feedback(db.actor, sound_object.s2d, timeout, vector(), volume)
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.play_near_safe_sound_object(sound_path, timeout, volume)
+	if sound_path then
+		if not timeout then
+			timeout = 0
+		end
+		if not volume then
+			volume = 1.0
+		end
+		sound_object(sound_path):play_no_feedback(db.actor, sound_object.s2d, timeout, NEAR_ACTOR, volume)
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.sound_volume_tuner(sound, start_volume, final_volume, time)
+	local min_volume = math.min(start_volume, final_volume)
+	local max_volume = math.max(start_volume, final_volume)
+	local time_end = time_global() + time
+	local step = final_volume / time
+	if start_volume > final_volume then
+		step = -start_volume / time
+	end
+	sound.volume = start_volume
+	level.add_call(
+		function()
+			if sound:playing() then
+				sound.volume = math.clamp(sound.volume + step * dev.f_time_delta * 1000, min_volume, max_volume)
+				return time_global() > time_end
+			end
+			return true
+		end,
+		function()
+			if sound:playing() then
+				sound.volume = final_volume
+			end
+		end
+	)
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Particles
+--]]-----------------------------------------------------------------------------------------------
+local safe_particle_objects = {}
+local safe_particle_objects_id = 0
+---------------------------------------------------------------------------------------------------
+function _G.safe_particle_object(particle_path)
+	if particle_path then
+		safe_particle_objects_id = safe_particle_objects_id + 1
+		safe_particle_objects[safe_particle_objects_id] = particles_object(particle_path)
+		return safe_particle_objects[safe_particle_objects_id]
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Camera
+--]]-----------------------------------------------------------------------------------------------
+function actor_move_on_position(pos, dir, delay, action, ...)
+	local args = {...}
+	local cam_inert = console:get_float("cam_inert")
+	local time_end = 0
+	console:execute("cam_inert 0.9")
+	db.actor:set_actor_position(pos)
+	db.actor:set_actor_direction(dir)
+	level.disable_input()
+	level.add_call(
+		function()
+			if dev.cam_pos:similar(vector():set(pos.x, pos.y + 1.66, pos.z), 0.05) == 1 then
+				if time_end == 0 then
+					time_end = time_global() + delay
+				else
+					return time_global() > time_end
+				end
+			else
+				return false
+			end
+		end,
+		function()
+			console:execute("cam_inert "..cam_inert)
+			level.enable_input()
+			if action then
+				loadstring("return function(args) "..action.."(unpack(args)) end")()(args)
+			end
+		end
+	)
+end
+---------------------------------------------------------------------------------------------------
+function _G.camera_rotate_on_position(pos, speed, action, ...)
+	if pos and speed >= 1 and speed <= 20 then
+		local args = {...}
+		local current_dir = dev.cam_dir:mul(level.get_target_dist())
+		local end_dir = pos:sub(dev.cam_pos)
+		local current_angle = -current_dir:getH()
+		local end_angle = -end_dir:getH()
+		if vector():crossproduct(end_dir, dev.cam_dir).y > 0 then
+			speed = -speed
+		end
+		level.add_call(
+			function()
+				if current_angle > 1.57 then
+					current_angle = -4.71
+				elseif current_angle < -4.71 then
+					current_angle = 1.57
+				end
+				current_angle = current_angle + speed / 1000
+				db.actor:set_camera_direction(vector():set(current_angle, 0, 0))
+				return math.abs(current_angle - end_angle) < 0.01
+			end,
+			function()
+				if action then
+					loadstring("return function(args) "..action.."(unpack(args)) end")()(args)
+				end
+			end
+		)
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * HUD
+--]]-----------------------------------------------------------------------------------------------
+function _G.add_message(xml, text, x, y, a, r, g, b)
+	if xml and text then
+		local st = hud:AddCustomStatic(xml, true):wnd()
+		st:SetTextST(text)
+		if x then st:SetTextX(x) end
+		if y then st:SetTextY(y) end
+		if a and r and g and b then st:SetTextColor(a, r, g, b) end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.start_message_box(text, pic_type, mode, actions, position, hide_indicators)
+	if text then
+		if not hide_indicators then
+			hide_indicators = true
+		end
+		level.start_stop_menu(sa_dynamic_msg_box.CUIDynamicMessageBox(text, pic_type, mode, actions, position), hide_indicators)
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * UI
+--]]-----------------------------------------------------------------------------------------------
+function _G.cursor_over_window(script_wnd, wnd)
+	local cursor_pos_x = script_wnd:GetCursorX()
+	local cursor_pos_y = script_wnd:GetCursorY()
+	local absolute_pos_x = wnd:GetAbsolutePosX()
+	local absolute_pos_y = wnd:GetAbsolutePosY()
+	local r = Frect():set(absolute_pos_x, absolute_pos_y, absolute_pos_x + wnd:GetWidth(), absolute_pos_y + wnd:GetHeight())
+	return cursor_pos_x >= r.x1 and cursor_pos_x <= r.x2 and cursor_pos_y >= r.y1 and cursor_pos_y <= r.y2
+end
+---------------------------------------------------------------------------------------------------
+function _G.validate_list(list)
+	if list and list:GetSize() ~= 0 then
+		local index = list:GetSelectedItem()
+		return index ~= -1 and list:GetItem(index)
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.GetColorComponents(color)
+	local clr = fcolor():set(color)
+	return clr.a * 255, clr.r * 255, clr.g * 255, clr.b * 255
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Game log
+--]]-----------------------------------------------------------------------------------------------
+function _G.msg(fmt, ...)
+	log1(string.format(tostring(fmt), ...))
+end
+---------------------------------------------------------------------------------------------------
+function _G.msg_vector(prefix, v)
+	msg("%s {%.2f,%.2f,%.2f}", prefix, v.x, v.y, v.z)
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Extended level namespace
+--]]-----------------------------------------------------------------------------------------------
+function level.add_cam_effector3(time, amplitude, period_number, power)
+	if time and amplitude and period_number and power then
+		level.set_ce_time(time)
+		level.set_ce_amplitude(amplitude)
+		level.set_ce_period_number(period_number)
+		level.set_ce_power(power)
+		level.add_ce()
+	end
+end
+---------------------------------------------------------------------------------------------------
+function level.change_game_time(m, h, d)
+	level.advance_game_time((m or 0) * 60000 + (h or 0) * 3600000 + (d or 0) * 86400000)
+	set_ignore_game_state_update()
+end
+---------------------------------------------------------------------------------------------------
+function level.indoor()
+	return level.present() and read_line(level.name(), "indoor", "bool", game_ini())
+end
+---------------------------------------------------------------------------------------------------
+function level.object_by_name(name)
+	if name then
+		for i = 1, 65534 do
+			local obj = level.object_by_id(i)
+			if obj and obj:name() == name then
+				return obj
+			end
+		end
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Extended math namespace
+--]]-----------------------------------------------------------------------------------------------
+function math.round(v, exp)
+	if v then
+		if not exp then
+			exp = 0
+		end
+		return tonumber(string.format("%."..exp.."f", v))
+	end
+end
+---------------------------------------------------------------------------------------------------
+function math.clamp(v, min, max)
+	if v then
+		if v < min then
+			return min
+		elseif v > max then
+			return max
+		end
+		return v
+	end
+end
+---------------------------------------------------------------------------------------------------
+function math.in_interval(n, a, b)
+	if a >= b then
+		return n < b or n >= a
+	else
+		return n < b and n >= a
+	end
+end
+---------------------------------------------------------------------------------------------------
+function math.log2(n)
+	return math.log(n) / math.log(2)
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Extended string namespace
+--]]-----------------------------------------------------------------------------------------------
+function string.count(s, pattern)
+	local res, c = string.gsub(s, pattern, "_")
+	return c
+end
+---------------------------------------------------------------------------------------------------
+function string.split(s, separator)
+	if s and separator then
+		local t = {}
+		for k in string.gmatch(s, "[^%s%"..separator.."]+") do
+			table.insert(t, tonumber(k) or k)
+		end
+		return t
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Extended table namespace
+--]]-----------------------------------------------------------------------------------------------
+function table.size(t)
+	if t then
+		local c = 0
+		for k, v in pairs(t) do
+			c = c + 1
+		end
+		return c
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Ini
+--]]-----------------------------------------------------------------------------------------------
+function _G.read_list(section, ini)
+	if section then
+		if not ini then
+			ini = system_ini()
+		end
+		local t = {}
+		for i = 0, ini:line_count(section) - 1 do
+			local result, id, value = ini:r_line(section, i, "", "")
+			if result then
+				t[id] = value
+			end
+		end
+		return t
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.read_line(section, line, line_type, ini, default_value)
+	if section and line then
+		if not ini then
+			ini = system_ini()
+		end
+		if not line_type then
+			line_type = "number"
+		end
+		if ini:section_exist(section) and ini:line_exist(section, line) then
+			if line_type == "string" then
+				return ini:r_string(section, line)
+			elseif line_type == "number" then
+				return ini:r_float(section, line)
+			elseif line_type == "bool" then
+				return ini:r_bool(section, line)
+			elseif line_type == "vector" then
+				return ini:r_vector(section, line)
+			end
+		end
+		return default_value
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.exist_line(section, line, ini)
+	if section and line then
+		if not ini then
+			ini = system_ini()
+		end
+		return ini:section_exist(section) and ini:line_exist(section, line)
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.exist_section(section, ini)
+	if section then
+		if not ini then
+			ini = system_ini()
+		end
+		return ini:section_exist(section)
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Pstor
+--]]-----------------------------------------------------------------------------------------------
+function _G.save_variable(name, value)
+	xr_logic.pstor_store(db.actor, name, value)
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_variable(name, default_value)
+	return xr_logic.pstor_retrieve(db.actor, name, default_value)
+end
+---------------------------------------------------------------------------------------------------
+function _G.remove_variable(name)
+	if db.storage[db.actor:id()].pstor[name] then
+		db.storage[db.actor:id()].pstor[name] = nil
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Alife
+--]]-----------------------------------------------------------------------------------------------
+function _G.spawn_item_in_inv(item, npc)
+	if not npc then
+		npc = db.actor
+	end
+	return alife():create(item, npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id())
+end
+---------------------------------------------------------------------------------------------------
+function _G.spawn_ammo_in_inv(item, ammo_count, npc)
+	if not npc then
+		npc = db.actor
+	end
+	if ammo_count > 0 then
+		return se_respawn.create_ammo(item, npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id(), ammo_count)
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.spawn_object_near(section, distance, npc)
+	if not npc then
+		npc = db.actor
+	end
+	return alife():create(section, npc:position():add(npc:direction():mul(distance)), npc:level_vertex_id(), npc:game_vertex_id())
+end
+---------------------------------------------------------------------------------------------------
+function _G.remove_object(id)
+	local se_obj = alife():object(id)
+	if se_obj then
+		alife():release(se_obj, true)
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Timers (with save)
+--]]-----------------------------------------------------------------------------------------------
+local timers = {}
+---------------------------------------------------------------------------------------------------
+function _G.start_timer(name, action, type, sec, min, hour)
+	if not sec then sec = 0 end
+	if not min then min = 0 end
+	if not hour then hour = 0 end
+	timers[name] = {}
+	local time = game.CTime()
+	if type == "real" then
+		time:setHMS(hour * base_time_factor, min * base_time_factor, sec * base_time_factor)
+	elseif type == "game" then
+		time:setHMS(hour, min, sec)
+	end
+	timers[name].time = time + game.get_game_time()
+	timers[name].action = action
+end
+---------------------------------------------------------------------------------------------------
+function _G.has_timer(name)
+	if timers[name] then
+		return true
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.stop_timer(name)
+	if timers[name] then
+		timers[name] = nil
+	end
+end
+---------------------------------------------------------------------------------------------------
+function update()
+	for name, params in pairs(timers) do
+		if params.time:diffSec(game.get_game_time()) < 1 then
+			local func = loadstring(params.action)
+			stop_timer(name)
+			func()
+		end
+	end
+end
+---------------------------------------------------------------------------------------------------
+function save(packet)
+	local count = 0
+	for k, v in pairs(timers) do
+		count = count + 1
+	end
+	packet:w_u8(count)
+	for name, params in pairs(timers) do
+		packet:w_stringZ(name)
+		packet:w_stringZ(params.action)
+		utils.w_CTime(packet, params.time)
+	end
+end
+---------------------------------------------------------------------------------------------------
+function load(reader)
+	local count = reader:r_u8()
+	for i = 1, count do
+		local name = reader:r_stringZ()
+		local action = reader:r_stringZ()
+		timers[name] = {}
+		timers[name].action = action
+		timers[name].time = utils.r_CTime(reader)
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Realtime quick timers
+--]]-----------------------------------------------------------------------------------------------
+local real_timers = {}
+---------------------------------------------------------------------------------------------------
+function _G.start_real_timer(name, time, action, ...)
+	local args = {...}
+	real_timers[name] = time_global() + time
+	level.add_call(
+		function()
+			if real_timers[name] then
+				return time_global() > real_timers[name]
+			end
+			return true
+		end,
+		function()
+			if real_timers[name] then
+				loadstring("return function(args) "..action.."(unpack(args)) end")()(args)
+			end
+			stop_real_timer(name)
+		end
+	)
+end
+---------------------------------------------------------------------------------------------------
+function _G.stop_real_timer(name)
+	if real_timers[name] then
+		real_timers[name] = nil
+	end
+end
+--[[-----------------------------------------------------------------------------------------------
+ * Others
+--]]-----------------------------------------------------------------------------------------------
+function _G.is_widescreen()
+	return dev.width / dev.height > 1.34
+end
+---------------------------------------------------------------------------------------------------
+function _G.is_key_pressed(dik)
+	return dik and pressed_keys[dik]
+end
+---------------------------------------------------------------------------------------------------
+function _G.toboolean(e)
+	return e ~= nil and e ~= 0 and e ~= "0" and e ~= "false" and e ~= false
+end
+---------------------------------------------------------------------------------------------------
+function _G.level_name_by_game_vertex(game_vertex_id)
+	if game_vertex_id then
+		return alife():level_name(game_graph():vertex(game_vertex_id):level_id())
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.parked_call(action, x, ...)
+	if not x then
+		x = 2
+	end
+	local args = {...}
+	level.add_call(
+		function()
+			x = x - 1
+			return x == 0
+		end,
+		function()
+			loadstring("return function(args) "..action.."(unpack(args)) end")()(args)
+		end
+	)
+end
+---------------------------------------------------------------------------------------------------
+-- TODO: read animations length
+function _G.run_animation_sequencer(obj, ...)
+	local args = {...}
+	local timers = {[1] = 2700, [2] = 2670, [3] = 6330, [4] = 670}
+	local i = 1
+	local next_anim_time = 0
+	obj:set_fastcall(
+		function()
+			if time_global() > next_anim_time then
+				obj:play_cycle(args[i], false)
+				if i == #args then
+					return true
+				else
+					next_anim_time = time_global() + timers[i]
+					i = i + 1
+				end
+			end
+			return false
+		end
+	)
+end
+---------------------------------------------------------------------------------------------------
+function _G.get_bone_name_by_id(obj, bone_id)
+	if obj then
+		set_int_arg0(bone_id)
+		return obj:get_bone_name()
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.make_hit(victim, power, impulse, type, direction, who, bone_name)
+	if victim then
+		if not type then type = hit.wound end
+		if not direction then direction = vector() end
+		if not power then power = 1 end
+		if not impulse then impulse = 1 end
+		if not who then who = victim end
+		local h = hit()
+		h.type = type
+		h.direction = direction
+		if bone_name then
+			h:bone(bone_name)
+		end
+		h.power = power
+		h.impulse = impulse
+		h.draftsman = who
+		victim:hit(h)
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.generate_name(group)
+	local fname, sname = "", ""
+	if group == "stalker" then
+		fname = game.translate_string("name_stalker_"..math.random(102))
+		sname = game.translate_string("lname_stalker_"..math.random(599))
+	elseif group == "bandit" then
+		fname = game.translate_string("name_bandit_"..math.random(36))
+		sname = game.translate_string("lname_bandit_"..math.random(180))
+	elseif group == "science" then
+		fname = game.translate_string("name_science_"..math.random(14))
+		sname = game.translate_string("lname_science_"..math.random(27))
+	elseif group == "private" then
+		fname = game.translate_string("name_private_1")
+		sname = game.translate_string("lname_private_"..math.random(200))
+	elseif group == "sergeant" then
+		fname = game.translate_string("name_sergeant_1")
+		sname = game.translate_string("lname_sergeant_"..math.random(200))
+	elseif group == "lieutenant" then
+		fname = game.translate_string("name_lieutenant_1")
+		sname = game.translate_string("lname_lieutenant_"..math.random(200))
+	elseif group == "captain" then
+		fname = game.translate_string("name_captain_1")
+		sname = game.translate_string("lname_captain_"..math.random(200))
+	end
+	return string.format("%s %s", fname, sname)
+end
+---------------------------------------------------------------------------------------------------
+function _G.scenario_autosave(save_name)
+	if save_name then
+		console:execute("save "..user_name().." - "..game.translate_string(save_name))
+	end
+end
+---------------------------------------------------------------------------------------------------
+function _G.send_tip(news_text, header, timeout, showtime, sender, sound)
+	if news_text then
+		if not header then header = game.translate_string("st_tip") end
+		if not timeout then timeout = 0 end
+		if not showtime then showtime = 5 end
+		if not (sender and news_manager.tips_icons[sender]) then sender = "default" end
+		if sound then sound_object("device\\pda\\"..sound):play(db.actor, timeout, sound_object.s2d) end
+		local x, y = news_manager.tips_icons[sender][1], news_manager.tips_icons[sender][2]
+		db.actor:give_game_news("%c[230,255,128,64]"..header.."\\n"..news_text, "ui\\ui_icons_task", Frect():set(x, y, 50, 50), timeout * 1000, showtime * 1000)
+	end
+end
