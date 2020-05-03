@@ -62,8 +62,7 @@ function actor_binder:net_spawn(data)
 
 	ogsm_funcs.on_game_load()
 	ogsm_freeplay.mark_lc()
-	guiders.message_from_the_guider_and_effect()
-	
+
 	return true
 end
 ----------------------------------------------------------------------------------------------------------------------
