@@ -32,6 +32,7 @@
 		<actor_dialog>weapons_upgrade_mod</actor_dialog>
 		<actor_dialog>outfits_upgrade_mod</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
+		<actor_dialog>fast_travel_dialog_sakharov</actor_dialog>
 	</specific_character>
 
 <!---------------------------RESCUE_ECOLOG------------------------>

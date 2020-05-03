@@ -62,6 +62,7 @@ function actor_binder:net_spawn(data)
 
 	ogsm_funcs.on_game_load()
 	ogsm_freeplay.mark_lc()
+	level_changer_manager.clear()
 
 	return true
 end

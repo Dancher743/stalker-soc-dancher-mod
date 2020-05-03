@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+<!-- СидорОвич -->
+		<dialog id="fast_travel_dialog_sidorovich">
+		<has_info>yan_kill_brain_done</has_info>
+          <phrase_list>
+             <phrase id="0">
+                <text>fast_travel_dialog_00</text>
+				<next>1</next>
+             </phrase>
+			 <phrase id="1">
+				<text>fast_travel_dialog_01</text>
+				<next>2</next>
+				<next>3</next>
+				<next>4</next>
+				<next>5</next>
+				<next>6</next>
+				<next>7</next>
+				<next>8</next>
+             </phrase>
+			 <phrase id="2">
+                <text>fast_travel_dialog_level_02</text>
+				<action>ft_manager.to_garbage</action>
+             </phrase>
+			 <phrase id="3">
+                <text>fast_travel_dialog_level_03</text>
+				<action>ft_manager.to_agroprom</action>
+             </phrase>
+			 <phrase id="4">
+                <text>fast_travel_dialog_level_04</text>
+				<action>ft_manager.to_darkvalley</action>
+             </phrase>
+			 <phrase id="5">
+                <text>fast_travel_dialog_level_05</text>
+				<action>ft_manager.to_bar</action>
+             </phrase>
+			 <phrase id="6">
+                <text>fast_travel_dialog_level_06</text>
+				<action>ft_manager.to_rostok</action>
+             </phrase>
+			 <phrase id="7">
+                <text>fast_travel_dialog_level_07</text>
+				<action>ft_manager.to_military</action>
+             </phrase>
+			 <phrase id="8">
+                <text>fast_travel_dialog_level_08</text>
+				<action>ft_manager.to_yantar</action>
+             </phrase>
+			 <phrase id="9">
+                <text>fast_travel_dialog_02</text>
+             </phrase>
+          </phrase_list>
+        </dialog>
+<!-- Бармен -->		
+		<dialog id="fast_travel_dialog_barman">
+		<has_info>yan_kill_brain_done</has_info>
+          <phrase_list>
+             <phrase id="0">
+                <text>fast_travel_dialog_00</text>
+				<next>1</next>
+             </phrase>
+			 <phrase id="1">
+				<text>fast_travel_dialog_01</text>
+				<next>2</next>
+				<next>3</next>
+				<next>4</next>
+				<next>5</next>
+				<next>6</next>
+				<next>7</next>
+				<next>8</next>
+				<next>9</next>
+             </phrase>
+			 <phrase id="2">
+                <text>fast_travel_dialog_level_01</text>
+				<action>ft_manager.to_escape</action>
+             </phrase>
+			 <phrase id="3">
+                <text>fast_travel_dialog_level_02</text>
+				<action>ft_manager.to_garbage</action>
+             </phrase>
+			 <phrase id="4">
+                <text>fast_travel_dialog_level_03</text>
+				<action>ft_manager.to_agroprom</action>
+             </phrase>
+			 <phrase id="5">
+                <text>fast_travel_dialog_level_04</text>
+				<action>ft_manager.to_darkvalley</action>
+             </phrase>
+			 <phrase id="6">
+                <text>fast_travel_dialog_level_06</text>
+				<action>ft_manager.to_rostok</action>
+             </phrase>
+			 <phrase id="7">
+                <text>fast_travel_dialog_level_07</text>
+				<action>ft_manager.to_military</action>
+             </phrase>
+			 <phrase id="8">
+                <text>fast_travel_dialog_level_08</text>
+				<action>ft_manager.to_yantar</action>
+             </phrase>
+			 <phrase id="9">
+                <text>fast_travel_dialog_02</text>
+             </phrase>
+          </phrase_list>
+        </dialog>
+<!-- Профессор Сахаров  -->
+		<dialog id="fast_travel_dialog_sakharov">
+		<has_info>yan_kill_brain_done</has_info>
+          <phrase_list>
+             <phrase id="0">
+                <text>fast_travel_dialog_00</text>
+				<next>1</next>
+             </phrase>
+			 <phrase id="1">
+				<text>fast_travel_dialog_01</text>
+				<next>2</next>
+				<next>3</next>
+				<next>4</next>
+				<next>5</next>
+				<next>6</next>
+				<next>7</next>
+				<next>8</next>
+				<next>9</next>
+             </phrase>
+			 <phrase id="2">
+                <text>fast_travel_dialog_level_01</text>
+				<action>ft_manager.to_escape</action>
+             </phrase>
+			 <phrase id="3">
+                <text>fast_travel_dialog_level_02</text>
+				<action>ft_manager.to_garbage</action>
+             </phrase>
+			 <phrase id="4">
+                <text>fast_travel_dialog_level_03</text>
+				<action>ft_manager.to_agroprom</action>
+             </phrase>
+			 <phrase id="5">
+                <text>fast_travel_dialog_level_04</text>
+				<action>ft_manager.to_darkvalley</action>
+             </phrase>
+			 <phrase id="6">
+                <text>fast_travel_dialog_level_05</text>
+				<action>ft_manager.to_bar</action>
+             </phrase>
+			 <phrase id="7">
+                <text>fast_travel_dialog_level_06</text>
+				<action>ft_manager.to_rostok</action>
+             </phrase>
+			 <phrase id="8">
+                <text>fast_travel_dialog_level_07</text>
+				<action>ft_manager.to_military</action>
+             </phrase>
+			 <phrase id="9">
+                <text>fast_travel_dialog_02</text>
+             </phrase>
+          </phrase_list>
+        </dialog>
+</game_dialogs>

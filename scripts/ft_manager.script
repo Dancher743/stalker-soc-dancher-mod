@@ -1,0 +1,241 @@
+--
+-- Fast travel manager
+-- Author: Daniil Dubovik (Dancher)
+--
+-----------------------------------------------------------------
+-------------------- Конфигурационные значение ------------------
+-----------------------------------------------------------------
+
+-- Стоимость услуги проводника
+cost = 2500
+
+-- Звук нотификации
+pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+
+-----------------------------------------------------------------
+-------------------- Функции телепортов -------------------------
+-----------------------------------------------------------------
+
+-- 01. Телепорт ГГ на Кордон
+function to_escape(npc,actor)
+
+	if player_has_need_money() then
+		on_teleport(npc,actor)
+		
+		-- Точка спавна: all.spawn/[esc2_bloodsucker1_home_1]
+		level_changer_manager.create(
+			74301, 
+			db.actor:position(), 
+			db.actor:level_vertex_id(), 
+			db.actor:game_vertex_id(),
+			265783,--л-вертекс на локации, куда телепортируемся------
+			88,--г-вертекс на локации, куда телепортируемся------
+			vector():set(-11.4765520095825,2.48006772994995,56.7034339904785), ---координаты на локации, куда телепортируемся----
+			vector():set(0.0, 0.0, 0.0),
+			"l01_escape", --локация, куда телепортируемся--
+			1)
+	else
+		no_money_message()
+	end
+end
+
+-- 02. Телепорт ГГ на Свалку
+function to_garbage(npc,actor)
+
+	if player_has_need_money() then
+		on_teleport(npc,actor)
+		
+		-- Точка спавна: all.spawn/[gar_angar_seryi_walk]
+		level_changer_manager.create(
+			74302, 
+			db.actor:position(), 
+			db.actor:level_vertex_id(), 
+			db.actor:game_vertex_id(),
+			134754,--л-вертекс на локации, куда телепортируемся------
+			330,--г-вертекс на локации, куда телепортируемся------
+			vector():set(-62.9394302368164,0.78938889503479,8.37425422668457), ---координаты на локации, куда телепортируемся----
+			vector():set(0.0, 0.0, 0.0),
+			"l02_garbage", --локация, куда телепортируемся--
+			1)
+	else
+		no_money_message()
+	end
+end
+
+-- 03. Телепорт ГГ на Агропром
+function to_agroprom(npc,actor)
+
+	if player_has_need_money() then
+		on_teleport(npc,actor)
+
+		-- Точка спавна: all.spawn/[agr2_st_factory_kamp_1]
+		level_changer_manager.create(
+			74303, 
+			db.actor:position(), 
+			db.actor:level_vertex_id(), 
+			db.actor:game_vertex_id(),
+			236732,--л-вертекс на локации, куда телепортируемся------
+			481,--г-вертекс на локации, куда телепортируемся------
+			vector():set(-3.77024435997009,2.5000114440918,15.2934789657593), ---координаты на локации, куда телепортируемся----
+			vector():set(0.0, 0.0, 0.0),
+			"l03_agroprom", --локация, куда телепортируемся--
+			1)
+	else
+		no_money_message()
+	end
+end
+
+-- 04. Телепорт ГГ в Тёмную Долину
+function to_darkvalley(npc,actor)
+
+	if player_has_need_money() then
+		on_teleport(npc,actor)
+
+		-- Точка спавна: all.spawn/[val_escort_guards_leave_walk]/p0
+		level_changer_manager.create(
+			74304, 
+			db.actor:position(), 
+			db.actor:level_vertex_id(), 
+			db.actor:game_vertex_id(),
+			248261,--л-вертекс на локации, куда телепортируемся------
+			855,--г-вертекс на локации, куда телепортируемся------
+			vector():set(59.4496078491211,0.047027587890625,-250.625793457031), ---координаты на локации, куда телепортируемся----
+			vector():set(0.0, 0.0, 0.0),
+			"l04_darkvalley", --локация, куда телепортируемся--
+			1)
+	else
+		no_money_message()
+	end
+end
+
+-- 05. Телепорт ГГ в Бар
+function to_bar(npc,actor)
+	if player_has_need_money() then
+		on_teleport(npc,actor)
+
+		-- Точка спавна: all.spawn/[bar_visitors_walker_walk]/p0
+		level_changer_manager.create(
+			74305, 
+			db.actor:position(), 
+			db.actor:level_vertex_id(), 
+			db.actor:game_vertex_id(),
+			39145,--л-вертекс на локации, куда телепортируемся------
+			1228,--г-вертекс на локации, куда телепортируемся------
+			vector():set(145.646743774414,-0.0400199890136719,60.8574523925781), ---координаты на локации, куда телепортируемся----
+			vector():set(0.0, 0.0, 0.0),
+			"l05_bar", --локация, куда телепортируемся--
+			1)
+	else
+		no_money_message()
+	end
+end
+
+-- 06. Телепорт ГГ на Дикую территорию
+function to_rostok(npc,actor)
+	if player_has_need_money() then
+		on_teleport(npc,actor)
+
+		-- Точка спавна: all.spawn/[bar_ambush_killer_1_walk]
+		level_changer_manager.create(
+			74306, 
+			db.actor:position(), 
+			db.actor:level_vertex_id(), 
+			db.actor:game_vertex_id(),
+			39377,--л-вертекс на локации, куда телепортируемся------
+			1313,--г-вертекс на локации, куда телепортируемся------
+			vector():set(-146.714569091797,-0.00471210479736328,141.635528564453), ---координаты на локации, куда телепортируемся----
+			vector():set(0.0, 0.0, 0.0),
+			"l06_rostok", --локация, куда телепортируемся--
+			1)
+	else
+		no_money_message()
+	end
+		
+end
+
+-- 07. Телепорт ГГ на Арм. Склады
+function to_military(npc,actor)
+	if player_has_need_money() then
+		on_teleport(npc,actor)
+
+		-- Точка спавна: all.spawn/[mil_lager_kamp_1]
+		level_changer_manager.create(
+			74306, 
+			db.actor:position(), 
+			db.actor:level_vertex_id(), 
+			db.actor:game_vertex_id(),
+			222641,--л-вертекс на локации, куда телепортируемся------
+			1734,--г-вертекс на локации, куда телепортируемся------
+			vector():set(-93.8184814453125,-20.6965179443359,218.334915161133), ---координаты на локации, куда телепортируемся----
+			vector():set(0.0, 0.0, 0.0),
+			"l07_military", --локация, куда телепортируемся--
+			1)
+	else
+		no_money_message()
+	end
+end
+
+-- 08. Телепорт ГГ на Янтарь
+function to_yantar(npc,actor)
+	if player_has_need_money() then
+		on_teleport(npc,actor)
+
+		-- Точка спавна: all.spawn/[yan_scientist_look_research]
+		level_changer_manager.create(
+			74306, 
+			db.actor:position(), 
+			db.actor:level_vertex_id(), 
+			db.actor:game_vertex_id(),
+			132052,--л-вертекс на локации, куда телепортируемся------
+			1451,--г-вертекс на локации, куда телепортируемся------
+			vector():set(168.013442993164,-7.61951589584351,-93.6985244750977), ---координаты на локации, куда телепортируемся----
+			vector():set(0.0, 0.0, 0.0),
+			"l08_yantar", --локация, куда телепортируемся--
+			1)
+	else
+		no_money_message()
+	end
+end
+
+-----------------------------------------------------------------
+-------------------- Вспомогательные функции --------------------
+-----------------------------------------------------------------
+
+-- Функция, выполняеющая доп. действия перед телепортом ГГ
+function on_teleport(npc,actor)
+	npc:stop_talk()
+	actor:stop_talk()
+	remove_money(cost)
+	yes_money_message()
+end
+
+
+-- Функция, выполняющая оплату за телепорт
+function remove_money(amount)
+	db.actor:give_money(amount * -1)
+	game_stats.money_quest_update(amount * -1)
+end
+
+-- Функция выводящая сообщение о нехватке средств
+function no_money_message()
+	local service_text = "Недостаточно средств для использования проводника"
+	local news_text = "\\n%c[default]"..game.translate_string(service_text)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_provodnik_task")
+	
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+end
+
+-- Функция, выводящая сообщение о "хватке" средств
+function yes_money_message()
+	local service_text = "Потрачены деньги на проводника"
+	local news_text = "%c[default]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(cost)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+end
+
+-- Валидация нужной суммы денег
+function player_has_need_money()
+	return db.actor:money() >= cost
+end

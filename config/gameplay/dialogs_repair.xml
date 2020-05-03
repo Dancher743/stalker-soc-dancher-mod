@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
 	<dialog id="repair">
+	<has_info>esc_serious_talk</has_info>
           <phrase_list>
              <phrase id="0">
                 <text>Почини снаряжение.</text>

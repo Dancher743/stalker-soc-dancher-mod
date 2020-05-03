@@ -38,6 +38,7 @@
 		<actor_dialog>weapons_upgrade_mod</actor_dialog>
 		<actor_dialog>outfits_upgrade_mod</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
+		<actor_dialog>fast_travel_dialog_barman</actor_dialog>
 	</specific_character>
 
 	<specific_character id="bar_stalker_white_novice_1" team_default = "1">
