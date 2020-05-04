@@ -1,0 +1,13 @@
+--
+-- Фикс сброса визуала ГГ
+-- Взято из мода Final Upgrade v3
+--
+function visual_fix(obj)
+	if obj:clsid() == clsid.equ_stalker_s or obj:clsid() == clsid.equ_exo then
+		local outfit = db.actor:get_current_outfit()
+		
+		if outfit and outfit:id() ~= obj:id() then
+			db.actor:transfer_item(outfit, db.actor)
+		end
+	end
+end
