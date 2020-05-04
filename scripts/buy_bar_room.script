@@ -5,19 +5,24 @@
 
 room_cost = 20000
 
-function player_have_money_on_room()
-	return db.actor:money() >= room_cost
+function check_player_money(actor, barman)
+	if actor:money() >= room_cost then
+		return true
+	end
+	
+	return false
 end
 
-function check_player_on_money()
-	if not player_have_money_on_room() then
+--[[function check_player_on_money()
+	if not player_money() then
 		db.actor:give_info_portion("buy_bar_room_player_cant_pay")
 	else
 		db.actor:disable_info_portion("buy_bar_room_player_cant_pay") 
 	end
-end
+end]]--
 
 function pay(actor, npc)
 	db.actor:give_money(room_cost * -1)
 	game_stats.money_quest_update(room_cost * -1)
+	dialogs.relocate_money(actor, room_cost, "out")
 end

@@ -4088,7 +4088,8 @@
             </phrase>
 			
 			<phrase id="2">
-				<dont_has_info>buy_bar_room_player_cant_pay</dont_has_info>
+				<!--<dont_has_info>buy_bar_room_player_cant_pay</dont_has_info>-->
+				<precondition>buy_bar_room.check_player_money</precondition>
                 <text>barman_sleep_dialog_buy_room_2</text>
 				<action>buy_bar_room.pay</action>
 				<next>4</next>
