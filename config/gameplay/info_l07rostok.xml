@@ -421,5 +421,5 @@
 	<info_portion id="guard_said_can_go_2"></info_portion> <!-- Общий диалог с Гариком -->
     <info_portion id="guard_can_be_used"></info_portion> <!-- Можно юзать разговор с Гариком -->
 	<info_portion id="guard_didnot_say_stop"></info_portion> <!-- Гарик больше не будет говорит: Тебе сюда нельзя! -->
-	
+	<info_portion id="buy_bar_room_player_cant_pay"></info_portion>
 </game_information_portions>

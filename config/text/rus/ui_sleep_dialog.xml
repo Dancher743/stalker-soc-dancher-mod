@@ -18,29 +18,35 @@
 	<string id="st_sleep_hours">
 		<text>ч</text>
 	</string>
-	<string id="barman_sleep_dialog_1">
+	<string id="barman_sleep_dialog_buy_room_0">
 		<text>Мне бы прилечь где-нибудь...</text>
 	</string>
-	<string id="barman_sleep_dialog_2">
-		<text>Проходи в заднюю комнату и располагайся там. Я скажу Гарику, чтобы он тебя пропускал. Можешь проходить когда захочешь.</text>
+	<string id="barman_sleep_dialog_buy_room_1">
+		<text>У меня как раза пустует задняя комната, так как бывшего владельца я выселил... За 20000 тысяч она станет твоей.</text>
 	</string>
-	<string id="barman_sleep_dialog_3">
-		<text>Спасибо</text>
+	<string id="barman_sleep_dialog_buy_room_2">
+		<text>Я согласен. Вот деньги.</text>
+	</string>
+	<string id="barman_sleep_dialog_buy_room_3">
+		<text>Дороговато как-то. В другой раз.</text>
+	</string>
+	<string id="barman_sleep_dialog_buy_room_4">
+		<text>Отлично. Проходи в заднюю комнату и располагайся там. Я скажу Гарику, чтобы он тебя пропускал. Можешь проходить когда захочешь.</text>
 	</string>
 	<string id="guard_sleep_dialog_1_1">
-		<text>Бармен сказал, что мне можно войти...</text>
+		<text>Привет. Бармен сказал, что мне можно войти.</text>
 	</string>
 	<string id="guard_sleep_dialog_1_2">
-		<text>Да, можешь проходить. Если опять приспичит, "свисни" мне. Работа у меня такая - не пропускать кого попало.</text>
+		<text>Да, проходи. Если опять приспичит, "свисни" мне. Работа у меня такая - не пропускать кого попало.</text>
 	</string>
 	<string id="guard_sleep_dialog_1_3">
-		<text>Ну, так я теперь не "кого попало"... Гы-гы... Шучу...</text>
+		<text>Хех, так я теперь не "кого попало". Ладно, шучу...</text>
 	</string>
 	<string id="guard_sleep_dialog_2_1">
 		<text>Пропусти, свои.</text>
 	</string>
 	<string id="guard_sleep_dialog_2_2">
-		<text>А, это опять ты...</text>
+		<text>А, это ты.</text>
 	</string>
 	<string id="guard_sleep_dialog_2_3">
 		<text>Ага...</text>
