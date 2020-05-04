@@ -55,6 +55,10 @@ function actor_binder:net_spawn(data)
 
 	--' Загружаем настройки дропа
 	death_manager.init_drop_settings()
+	
+	--' Восстанавливаем ход времени после быстрого перемещения
+	ft_manager.reset_time_factor()
+	
 -------- пауза при загрузке ---------------
 	ui_main_menu.start()
 -------------------------------------------

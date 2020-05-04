@@ -12,6 +12,11 @@ cost = 2500
 -- Звук нотификации
 pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
+-- Границы значений для рандомизации ускорения времени во время быстрого перемещения
+-- Значение '1000' - это час игрового времени
+min_random_time_factor = 500
+max_random_time_factor = 1500
+
 -----------------------------------------------------------------
 -------------------- Функции телепортов -------------------------
 -----------------------------------------------------------------
@@ -19,8 +24,8 @@ pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 -- 01. Телепорт ГГ на Кордон
 function to_escape(npc,actor)
 
-	if player_has_need_money() then
-		on_teleport(npc,actor)
+	if try_pay() then
+		before_fast_travel(npc,actor)
 		
 		-- Точка спавна: all.spawn/[esc2_bloodsucker1_home_1]
 		level_changer_manager.create(
@@ -34,16 +39,14 @@ function to_escape(npc,actor)
 			vector():set(0.0, 0.0, 0.0),
 			"l01_escape", --локация, куда телепортируемся--
 			1)
-	else
-		no_money_message()
 	end
 end
 
 -- 02. Телепорт ГГ на Свалку
 function to_garbage(npc,actor)
 
-	if player_has_need_money() then
-		on_teleport(npc,actor)
+	if try_pay() then
+		before_fast_travel(npc,actor)
 		
 		-- Точка спавна: all.spawn/[gar_angar_seryi_walk]
 		level_changer_manager.create(
@@ -57,16 +60,14 @@ function to_garbage(npc,actor)
 			vector():set(0.0, 0.0, 0.0),
 			"l02_garbage", --локация, куда телепортируемся--
 			1)
-	else
-		no_money_message()
 	end
 end
 
 -- 03. Телепорт ГГ на Агропром
 function to_agroprom(npc,actor)
 
-	if player_has_need_money() then
-		on_teleport(npc,actor)
+	if try_pay() then
+		before_fast_travel(npc,actor)
 
 		-- Точка спавна: all.spawn/[agr2_st_factory_kamp_1]
 		level_changer_manager.create(
@@ -80,16 +81,14 @@ function to_agroprom(npc,actor)
 			vector():set(0.0, 0.0, 0.0),
 			"l03_agroprom", --локация, куда телепортируемся--
 			1)
-	else
-		no_money_message()
 	end
 end
 
 -- 04. Телепорт ГГ в Тёмную Долину
 function to_darkvalley(npc,actor)
 
-	if player_has_need_money() then
-		on_teleport(npc,actor)
+	if try_pay() then
+		before_fast_travel(npc,actor)
 
 		-- Точка спавна: all.spawn/[val_escort_guards_leave_walk]/p0
 		level_changer_manager.create(
@@ -103,15 +102,13 @@ function to_darkvalley(npc,actor)
 			vector():set(0.0, 0.0, 0.0),
 			"l04_darkvalley", --локация, куда телепортируемся--
 			1)
-	else
-		no_money_message()
 	end
 end
 
 -- 05. Телепорт ГГ в Бар
 function to_bar(npc,actor)
-	if player_has_need_money() then
-		on_teleport(npc,actor)
+	if try_pay() then
+		before_fast_travel(npc,actor)
 
 		-- Точка спавна: all.spawn/[bar_visitors_walker_walk]/p0
 		level_changer_manager.create(
@@ -125,15 +122,13 @@ function to_bar(npc,actor)
 			vector():set(0.0, 0.0, 0.0),
 			"l05_bar", --локация, куда телепортируемся--
 			1)
-	else
-		no_money_message()
 	end
 end
 
 -- 06. Телепорт ГГ на Дикую территорию
 function to_rostok(npc,actor)
-	if player_has_need_money() then
-		on_teleport(npc,actor)
+	if try_pay() then
+		before_fast_travel(npc,actor)
 
 		-- Точка спавна: all.spawn/[bar_ambush_killer_1_walk]
 		level_changer_manager.create(
@@ -147,16 +142,14 @@ function to_rostok(npc,actor)
 			vector():set(0.0, 0.0, 0.0),
 			"l06_rostok", --локация, куда телепортируемся--
 			1)
-	else
-		no_money_message()
 	end
 		
 end
 
 -- 07. Телепорт ГГ на Арм. Склады
 function to_military(npc,actor)
-	if player_has_need_money() then
-		on_teleport(npc,actor)
+	if try_pay() then
+		before_fast_travel(npc,actor)
 
 		-- Точка спавна: all.spawn/[mil_lager_kamp_1]
 		level_changer_manager.create(
@@ -170,15 +163,13 @@ function to_military(npc,actor)
 			vector():set(0.0, 0.0, 0.0),
 			"l07_military", --локация, куда телепортируемся--
 			1)
-	else
-		no_money_message()
 	end
 end
 
 -- 08. Телепорт ГГ на Янтарь
 function to_yantar(npc,actor)
-	if player_has_need_money() then
-		on_teleport(npc,actor)
+	if try_pay() then
+		before_fast_travel(npc,actor)
 
 		-- Точка спавна: all.spawn/[yan_scientist_look_research]
 		level_changer_manager.create(
@@ -192,8 +183,6 @@ function to_yantar(npc,actor)
 			vector():set(0.0, 0.0, 0.0),
 			"l08_yantar", --локация, куда телепортируемся--
 			1)
-	else
-		no_money_message()
 	end
 end
 
@@ -202,18 +191,30 @@ end
 -----------------------------------------------------------------
 
 -- Функция, выполняеющая доп. действия перед телепортом ГГ
-function on_teleport(npc,actor)
+function before_fast_travel(npc,actor)
+	-- Закрываем окна диалога
 	npc:stop_talk()
 	actor:stop_talk()
-	remove_money(cost)
-	yes_money_message()
+	
+	-- Ускоряем ход времени
+	local random_time_factor = math.random(min_random_time_factor, max_random_time_factor)
+	level.set_time_factor(random_time_factor)
 end
 
 
--- Функция, выполняющая оплату за телепорт
-function remove_money(amount)
-	db.actor:give_money(amount * -1)
-	game_stats.money_quest_update(amount * -1)
+-- Функция оплаты за телепорт
+function try_pay()
+
+	if player_has_need_money() then
+		db.actor:give_money(cost * -1)
+		game_stats.money_quest_update(cost * -1)
+		yes_money_message()
+		return true
+	else
+		no_money_message()
+		return false
+	end
+	
 end
 
 -- Функция выводящая сообщение о нехватке средств
@@ -238,4 +239,9 @@ end
 -- Валидация нужной суммы денег
 function player_has_need_money()
 	return db.actor:money() >= cost
+end
+
+--' Функция, восстанавливающая ход времени после перехода
+function reset_time_factor()
+	level.set_time_factor(system_ini():r_float("alife","time_factor"))
 end
