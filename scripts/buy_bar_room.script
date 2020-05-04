@@ -3,7 +3,7 @@
 -- Автор: Dancher (Daniil Dubovik)
 --
 
-room_cost = 20000
+room_cost = 30000
 
 function check_player_money(actor, barman)
 	if actor:money() >= room_cost then
@@ -21,8 +21,36 @@ end
 	end
 end]]--
 
-function pay(actor, npc)
-	db.actor:give_money(room_cost * -1)
+function pay(actor)
+	actor:give_money(room_cost * -1)
 	game_stats.money_quest_update(room_cost * -1)
 	dialogs.relocate_money(actor, room_cost, "out")
+end
+
+function buy(actor, npc)
+	pay(actor)
+	spawn_presonal_box()
+	spawn_presonal_rukzak()
+end
+
+
+function spawn_presonal_box()     
+	local v = vector()
+    
+	v.x = 116.28103637695
+	v.y = -5.3041343688965
+	v.z = 16.828926086426
+	
+	alife():create("bar_room_box_fake",v,33908,1239)
+	alife():create("bar_room_box",v,33908,1239)
+end
+
+function spawn_presonal_rukzak()
+	local v = vector()
+    
+	v.x = 116.35326385498
+	v.y = -4.3978548049927
+	v.z = 19.139627456665
+	
+	alife():create("bar_room_rukzak",v,34184,1239)
 end

@@ -4091,7 +4091,7 @@
 				<!--<dont_has_info>buy_bar_room_player_cant_pay</dont_has_info>-->
 				<precondition>buy_bar_room.check_player_money</precondition>
                 <text>barman_sleep_dialog_buy_room_2</text>
-				<action>buy_bar_room.pay</action>
+				<action>buy_bar_room.buy</action>
 				<next>4</next>
             </phrase>
 			<phrase id="3">
