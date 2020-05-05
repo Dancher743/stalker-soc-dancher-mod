@@ -1,0 +1,168 @@
+local blood_jaws_count = 1
+local dog_tail_count = 1
+local pseudodog_tail_count = 1
+local flesh_oko_count = 1
+local boar_leg_count = 1
+local snork_leg_count = 1
+
+spawn_chance = 50
+
+function main_check(obj, amount, local_direction, who, bone_index)
+   local section = obj:section()
+--   local ph_shell = obj:get_physics_shell()
+--   local bone = ph_shell:get_element_by_bone_id(bone_index)
+  
+   if section=="m_bloodsucker_e" or section=="bloodsucker_weak" or section=="bloodsucker_normal" or section=="bloodsucker_strong" or section=="bloodsucker_mil" then
+      if bone_index==14
+         or bone_index==17
+         or bone_index==18
+         or bone_index==19
+         or bone_index==21
+         or bone_index==22
+         or bone_index==23
+         or bone_index==25
+         or bone_index==26
+         or bone_index==27
+         or bone_index==29
+         or bone_index==30
+         or bone_index==31 then
+         blood_jaws_count = 0
+      end
+   end
+   if section=="m_flesh_e" or section=="flesh_weak" or section=="flesh_normal" or section=="flesh_strong" then
+      if bone_index==13 then
+         flesh_oko_count = 0
+      end
+   end
+   if section=="m_dog_e" or section=="dog_weak" or section=="dog_normal" or section=="dog_strong" then
+      if bone_index==29 or bone_index==30 or bone_index==31 or bone_index==0 then
+         dog_tail_count = 0
+      end
+   end
+   if section=="m_boar_e" or section=="boar_weak" or section=="boar_normal" or section=="boar_strong" then
+      if bone_index==3
+         or bone_index==4
+         or bone_index==8
+         or bone_index==9
+         or bone_index==34
+         or bone_index==35
+         or bone_index==39
+         or bone_index==40 then
+         if boar_leg_count>0 then
+            boar_leg_count = boar_leg_count-1
+         end
+      end
+   end
+   if section=="m_pseudodog_e" or section=="pseudodog_weak" or section=="pseudodog_normal" or section=="pseudodog_strong" or section=="psy_dog" or section=="psy_dog_radar" then
+      if bone_index==32 or bone_index==33 or bone_index==0 then
+         pseudodog_tail_count = 0
+      end
+   end
+   if section=="m_snork_e" or section=="snork_weak" or section=="snork_normal" or section=="snork_strong" or section=="aes_snork" or section=="snork_indoor" or section=="snork_outdoor" or section=="snork_jumper" then
+      if bone_index==3
+         or bone_index==4
+         or bone_index==2
+         or bone_index==8
+         or bone_index==9
+         or bone_index==7 then
+         if snork_leg_count>0 then
+            snork_leg_count=snork_leg_count-1
+         end
+      end
+   end
+end
+
+function spawn_parts(obj)
+   local section = obj:section()
+
+-- Если убит кровосос, все известные типы кроме арены:
+
+   if section=="m_bloodsucker_e" or section=="bloodsucker_weak" or section=="bloodsucker_normal" or section=="bloodsucker_strong" or section=="bloodsucker_mil" then
+      if blood_jaws_count>0 and calculate_chance() then
+         amk.spawn_item_in_inv("mutant_krovosos_jaw",obj)
+      end
+      blood_jaws_count = 1
+   end
+
+-- Плоть, опять - кроме арены:
+
+   if section=="m_flesh_e" or section=="flesh_weak" or section=="flesh_normal" or section=="flesh_strong" then
+      if flesh_oko_count>0 and calculate_chance() then
+         amk.spawn_item_in_inv("mutant_flesh_eye",obj)
+      end
+      flesh_oko_count = 1
+   end
+
+-- Собака слепая:
+
+   if section=="m_dog_e" or section=="dog_weak" or section=="dog_normal" or section=="dog_strong" then
+      if dog_tail_count>0 and calculate_chance() then
+         amk.spawn_item_in_inv("mutant_dog_tail",obj)
+      end
+      dog_tail_count = 1
+   end
+
+-- Кабанчег:
+
+   if section=="m_boar_e" or section=="boar_weak" or section=="boar_normal" or section=="boar_strong" then
+      if boar_leg_count>0 and calculate_chance() then
+			amk.spawn_item_in_inv("mutant_boar_leg",obj)
+      end
+      
+      boar_leg_count = 1
+   end
+
+-- Псевдособака, вместе с пси-собакой и конкретно с пси-собакой на радаре (там особая вроде):
+
+   if section=="m_pseudodog_e" or section=="pseudodog_weak" or section=="pseudodog_normal" or section=="pseudodog_strong" or section=="psy_dog" or section=="psy_dog_radar" then
+      if pseudodog_tail_count>0 and calculate_chance() then
+         amk.spawn_item_in_inv("mutant_psevdodog_tail",obj)
+      end
+      pseudodog_tail_count = 1
+   end
+
+-- Снорки:
+
+   if section=="m_snork_e" or section=="snork_weak" or section=="snork_normal" or section=="snork_strong" or section=="aes_snork" or section=="snork_indoor" or section=="snork_outdoor" or section=="snork_jumper" then
+      if snork_leg_count>0 and calculate_chance() then
+         amk.spawn_item_in_inv("mutant_snork_leg",obj)
+      end
+	  
+      snork_leg_count = 1
+   end
+   
+--Итого, выше - 6 типов тварей, части которых есть в оригинальной игре. Ниже планируем все дополнительные части типо рук бюреров, рук контролёров, глазов полтергейста и так далее.
+   
+end
+
+function calculate_chance()
+	return math.random(0, 100) <= spawn_chance
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
