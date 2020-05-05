@@ -1,0 +1,354 @@
+--[[-----------------------------------------------------------------------------------------------
+ File         : sa_spawn.script
+ Description  : Скриптовый спавн
+ Copyright    : Shadows Addon
+ Author       : Ray Twitty aka Shadows
+ Date         : 26.07.2011
+ Last edit    : 20.10.2011
+--]]-----------------------------------------------------------------------------------------------
+function start_game()
+    -- спавн
+    generators_spawn()
+	warlab_spawn()
+	secretlab_spawn()
+	lab_x16_spawn()
+	--agro_underground_spawn()
+	game_spawn()
+	-- переходы
+	generators_to_aes2()
+	aes2_to_generators()
+	secretlab_to_x10()
+	x10_to_secretlab()
+	aes1_to_aes2()
+	aes2_to_aes1()
+	aes1_to_pripyat()
+	garbage_to_agroprom()
+	agroprom_to_garbage()
+	--escape_to_darkvalley()
+	sarcofag_to_aes1()
+	agroprom_to_yantar()
+	yantar_to_agroprom()
+	garbage_to_darkvalley()
+	darkvalley_to_garbage()
+	yantar_to_deadcity()
+	deadcity_to_radar()
+	radar_to_deadcity()
+	underground_to_agroprom_1()
+	agroprom_to_underground_1()
+	underground_to_agroprom_2()
+	agroprom_to_underground_2()
+	underground_to_agroprom_3()
+	agroprom_to_underground_3()
+end
+------------------------------------------------------------------------------------------------------------------------
+-- заселение Генераторов
+function generators_spawn()
+alife():create("gigant_strong",vector():set(25.2,34.8,-251.7),340721,3077)
+alife():create("bloodsucker_strong",vector():set(-53.6,29.0,-119.1),258365,3032)
+alife():create("boar_strong",vector():set(95.2,26.7,-74.4),420597,3152)
+alife():create("boar_strong",vector():set(95.2,26.7,-74.4),420597,3152)
+alife():create("chimera_strong",vector():set(169.5,25.4,-171.0),502236,3217)
+alife():create("chimera_strong",vector():set(169.5,25.4,-171.0),502236,3217)
+alife():create("zombie_1_ghost_strong",vector():set(140.7,28.8,-386.0),469721,3186)
+alife():create("zombie_1_ghost_strong",vector():set(140.7,28.8,-386.0),469721,3186)
+alife():create("zombie_1_ghost_strong",vector():set(111.1,32.8,-406.1),437546,3169)
+alife():create("zombie_1_ghost_strong",vector():set(111.1,32.8,-406.1),437546,3169)
+alife():create("zombie_1_ghost_strong",vector():set(89.7,29.1,-386.2),414341,3134)
+alife():create("zombie_1_ghost_strong",vector():set(89.7,29.1,-386.2),414341,3134)
+alife():create("zombie_1_ghost_strong",vector():set(45.0,27.7,-359.0),362213,3097)
+alife():create("zombie_1_ghost_strong",vector():set(45.0,27.7,-359.0),362213,3097)
+alife():create("zombie_1_ghost_strong",vector():set(8.0,26.2,-392.9),324425,3060)
+alife():create("zombie_1_ghost_strong",vector():set(8.0,26.2,-392.9),324425,3060)
+alife():create("m_controller_old_fat",vector():set(-58.4,32.4,-517.1),253698,3023)
+alife():create("zombie_1_ghost_strong",vector():set(-141.5,32.6,-460.5),165189,2952)
+alife():create("zombie_1_ghost_strong",vector():set(-150.6,25.4,-443.5),155873,2949)
+alife():create("chimera_strong",vector():set(-23.9,34.8,-199.2),290702,3048)
+alife():create("chimera_strong",vector():set(-34.6,34.7,-242.5),277864,3041)
+alife():create("chimera_strong",vector():set(-34.6,34.7,-242.5),277864,3041)
+alife():create("wpn_fn2000",vector():set(153.4,25.5,-502.3),483427,3198)
+alife():create("bloodsucker_strong",vector():set(138.5,26.5,-503.3),467256,3198)
+alife():create("vehicle_niva_02",vector():set(163.0,31.0,-450.1),494860,3215)
+end
+
+-- заселение Военной лаборатории
+function warlab_spawn()
+alife():create("zombie_1_ghost_strong",vector():set(5.8,0.9,1.4),5360,3326)
+alife():create("zombie_1_ghost_strong",vector():set(6.5,1.0,-6.6),5495,3326)
+alife():create("karlik_weak",vector():set(39.6,-3.5,-1.9),7761,3339)
+alife():create("snork_indoor",vector():set(-14.6,-3.1,5.4),1594,3279)
+alife():create("snork_indoor",vector():set(-14.6,-3.1,5.4),1594,3279)
+alife():create("burer_indoor",vector():set(-14.4,-1.4,-32.1),1516,3280)
+alife():create("burer_indoor",vector():set(-6.7,-11.6,-62.1),2868,3285)
+alife():create("snork_indoor",vector():set(7.0,-3.1,-14.1),5618,3303)
+alife():create("af_fuzz_kolobok",vector():set(6.7,-6.5,-15.9),5613,3316)
+alife():create("wpn_rpg7",vector():set(6.4,6.6,-17.2),5185,3308)
+alife():create("ammo_og-7b",vector():set(6.4,6.6,-17.2),5185,3308)
+alife():create("ammo_og-7b",vector():set(6.4,6.6,-17.2),5185,3308)
+alife():create("karlik_weak",vector():set(0.1,-11.6,-6.8),4419,3298)
+alife():create("burer_indoor",vector():set(-17.6,-15.3,11.6),1127,3276)
+alife():create("karlik_weak",vector():set(14.9,-11.3,-1.8),6801,3325)
+alife():create("exo_outfit",vector():set(-3.1,5.5,19.8),3897,3290)
+alife():create("wpn_gauss",vector():set(-3.1,5.5,19.8),3897,3290)
+end
+
+-- заселение Секретной лаборатории
+function secretlab_spawn()
+alife():create("tushkano_normal",vector():set(36.8,-34.4,-11.7),3446,2904)
+alife():create("tushkano_normal",vector():set(1.1,-34.4,-36.3),2102,2892)
+alife():create("tushkano_normal",vector():set(-41.0,-34.4,-36.6),68,2879)
+alife():create("vodka",vector():set(-8.3,-32.4,23.5),1550,2895)
+alife():create("ammo_5.45x39_fmj",vector():set(-7.6,-33.4,21.3),1550,2895)
+end
+
+-- заселение лаборатории Х-16
+function lab_x16_spawn()
+alife():create("zombie_1_ghost_strong",vector():set(-126.6,21.5,-37.4),55,1530)
+alife():create("zombie_1_ghost_strong",vector():set(-97.1,21.5,-21.4),560,1530)
+alife():create("zombie_1_ghost_strong",vector():set(-104.4,21.5,-30.4),393,1530)
+alife():create("zombie_1_ghost_strong",vector():set(-104.4,21.5,-30.4),393,1530)
+alife():create("zombie_1_ghost_strong",vector():set(-114.6,21.5,-30.2),227,1530)
+alife():create("zombie_1_ghost_strong",vector():set(-114.6,21.5,-30.2),227,1530)
+alife():create("burer_indoor",vector():set(105.9,5.5,-15.3),6887,1545)
+end
+
+-- заселение подземелий Агропрома
+function agro_underground_spawn()
+alife():create("zombie_1_strong",vector():set(-82.6,-16.4,-54.7),2631,744)
+alife():create("zombie_2_strong",vector():set(-108.2,-16.3,-63.0),656,751)
+alife():create("zombie_4_strong",vector():set(-110.9,-16.4,-21.5),524,710)
+alife():create("zombie_immortal_2_strong",vector():set(-88.0,-16.4,-44.3),2303,748)
+alife():create("bloodsucker_weak",vector():set(-46.4,-16.4,-40.6),4362,741)
+end
+
+-- спавн по локациям
+function game_spawn()
+alife():create("vehicle_raf",vector():set(79.2,-2.3,-56.9),190367,2224)
+alife():create("vehicle_btr",vector():set(931.2,-0.1,-210.9),412800,2372)
+alife():create("computer_stol",vector():set(-168.2,-25.4,-352.5),81741,31)
+alife():create("device_computer_01",vector():set(-167.8,-24.5,-352.5),81741,31)
+end
+------------------------------------------------------------------------------------------------------------------------
+-- переходы между локациями
+function create_level_changer(p_story_id, p_position, p_lvertex_id, p_gvertex_id, p_dest_lv, p_dest_gv, p_dest_pos, p_dest_dir, p_dest_level, p_name, p_silent)
+    local obj = alife():create("level_changer", p_position, p_lvertex_id, p_gvertex_id)
+    level.map_add_object_spot(obj.id, "level_changer", p_name)
+    local packet = net_packet()
+    obj:STATE_Write(packet)
+    local game_vertex_id = packet:r_u16()
+    local cse_alife_object__unk1_f32 = packet:r_float()
+    local cse_alife_object__unk2_u32 = packet:r_u32()
+    local level_vertex_id = packet:r_u32()
+    local object_flags = packet:r_u32()
+    local custom_data = packet:r_stringZ()
+    local story_id = packet:r_u32()
+    local spawn_story_id = packet:r_u32()
+    local shape_count = packet:r_u8()
+    for i=1,shape_count do
+    local shape_type = packet:r_u8()
+    if shape_type == 0 then
+    local center = packet:r_vec3()
+    local radius = packet:r_float()
+    else
+    local axis_x_x = packet:r_float()
+    local axis_x_y = packet:r_float()
+    local axis_x_z = packet:r_float()
+    local axis_y_x = packet:r_float()
+    local axis_y_y = packet:r_float()
+    local axis_y_z = packet:r_float()
+    local axis_z_x = packet:r_float()
+    local axis_z_y = packet:r_float()
+    local axis_z_z = packet:r_float()
+    local offset_x = packet:r_float()
+    local offset_y = packet:r_float()
+    local offset_z = packet:r_float()
+    end
+    end
+    local restrictor_type = packet:r_u8()
+    local dest_game_vertex_id = packet:r_u16() 
+    local dest_level_vertex_id = packet:r_u32() 
+    local dest_position = packet:r_vec3()
+    local dest_direction = packet:r_vec3()
+    local dest_level_name = packet:r_stringZ()
+    local dest_graph_point = packet:r_stringZ()
+    local silent_mode = packet:r_u8()
+    packet:w_begin(game_vertex_id)
+    packet:w_float(cse_alife_object__unk1_f32)
+    packet:w_u32(cse_alife_object__unk2_u32) 
+    packet:w_u32(level_vertex_id)
+    packet:w_u32(bit_not(193))
+    packet:w_stringZ(custom_data)
+    packet:w_u32(p_story_id)
+    packet:w_u32(spawn_story_id)
+    packet:w_u8(1)
+    packet:w_u8(1)
+    packet:w_float(2)
+    packet:w_float(0)
+    packet:w_float(0)
+    packet:w_float(0)
+    packet:w_float(4)
+    packet:w_float(0)
+    packet:w_float(0)
+    packet:w_float(0)
+    packet:w_float(4)
+    packet:w_float(0)
+    packet:w_float(0)
+    packet:w_float(0)
+    packet:w_u8(3)
+    packet:w_u16(p_dest_gv)
+    packet:w_u32(p_dest_lv)
+    packet:w_vec3(p_dest_pos)
+    packet:w_vec3(p_dest_dir)
+    packet:w_stringZ(p_dest_level)
+    packet:w_stringZ("start_actor_99")
+    packet:w_u8(p_silent)
+    packet:r_seek(0)
+    obj:STATE_Read(packet, packet:w_tell())
+end
+
+-- с Генераторов на ЧАЭС-2
+function generators_to_aes2()
+    create_level_changer(5481,vector():set(-65.209,33.407,-542.041),246422,3009,
+    214796,2741,vector():set(844.504,-0.098,449.944),vector():set(0.0,-3.15,-1.0),"l12_stancia_2", "", 0)
+end
+
+-- с ЧАЭС-2 на Генераторы
+function aes2_to_generators()
+    create_level_changer(5482,vector():set(844.377,-0.097,463.808),214796,2741,
+    250140,3009,vector():set(-61.513,32.912,-532.565),vector():set(0.0,0.0,-1.0),"l13_generators", "", 0)
+end
+
+-- с секретной лаборатории в Х-10
+function secretlab_to_x10()
+    create_level_changer(5483,vector():set(21.510,-34.233,13.236),2865,2898,
+    8433,2775,vector():set(17.427,-8.989,7.107),vector():set(0.0,1.56,-1.0),"l10u_bunker", "", 0)
+end
+
+-- из Х-10 в секретную лабораторию
+function x10_to_secretlab()
+    create_level_changer(5484,vector():set(22.277,-8.996,7.145),8794,2775,
+    2639,2898,vector():set(13.951,-34.484,13.207),vector():set(0.0,1.56,-1.0),"l10u_secret_lab", "", 0)
+end
+
+-- с ЧАЭС-1 на ЧАЭС-2
+function aes1_to_aes2()
+    create_level_changer(5485,vector():set(1062.044,-0.098,-1.535),472713,2367,
+    245052,2723,vector():set(1043.175,-0.099,140.014),vector():set(0.0,1.56,-1.0),"l12_stancia_2", "to_aes2", 0)
+end
+
+-- с ЧАЭС-2 на ЧАЭС-1
+function aes2_to_aes1()
+    create_level_changer(5486,vector():set(1054.050,-0.100,139.413),245052,2723,
+    472436,2367,vector():set(1061.019,-0.100,-14.554),vector():set(0.0,-3.15,-1.0),"l12_stancia", "to_aes", 0)
+end
+
+-- с ЧАЭС-1 в Припять
+function aes1_to_pripyat()
+    create_level_changer(5487,vector():set(918.1,-0.1,-401.96),405348,2400,
+    142116,2270,vector():set(31.28,1.135,420.61),vector():set(0.0,-3.15,-1.0),"l11_pripyat", "to_pripyat", 0)
+	
+	-- old:
+	--create_level_changer(5487,vector():set(918.040,-0.100,-406.662),405348,2487,
+    --142100,2357,vector():set(31.426,1.032,413.021),vector():set(0.0,-3.15,-1.0),"l11_pripyat", "to_pripyat", 0)
+end
+
+-- со Свалки на Агропром
+function garbage_to_agroprom()
+    create_level_changer(5488,vector():set(-162.082,1.022,-265.917),57249,275,
+    391773,692,vector():set(169.687,1.675,-233.633),vector():set(0.0,1.56,-1.0),"l03_agroprom", "to_agroprom", 0)
+end
+
+-- с Агропрома на Свалку
+function agroprom_to_garbage()
+    create_level_changer(5489,vector():set(184.876,0.274,-237.087),400221,692,
+    67319,275,vector():set(-150.639,0.988,-268.724),vector():set(0.0,-1.58,-1.0),"l02_garbage", "to_garbage", 0)
+end
+
+-- с Кордона в Темную долину
+function escape_to_darkvalley()
+    create_level_changer(5490,vector():set(370.139,15.235,-43.657),594395,0,
+    122620,815,vector():set(-44.292,0.434,-537.154),vector():set(0.0,0.0,-1.0),"l04_darkvalley", "to_darkvalley", 0)
+end
+
+-- из Саркофага на ЧАЭС-1
+function sarcofag_to_aes1()
+    create_level_changer(5491,vector():set(-25.679,0.309,43.011),105,2553,
+    165064,2471,vector():set(380.653,-0.002,26.499),vector():set(0.0,-3.15,-1.0),"l12_stancia", "to_aes", 0)
+end
+
+-- с Агропрома на Янтарь
+function agroprom_to_yantar()
+    create_level_changer(5492,vector():set(-217.234,22.090,190.070),20300,593,
+    16373,1488,vector():set(-63.348,-4.049,-343.500),vector():set(0.0,0.0,-1.0),"l08_yantar", "to_yantar", 0)
+end
+
+-- с Янтаря на Агропром
+function yantar_to_agroprom()
+    create_level_changer(5493,vector():set(-66.873,0.645,-356.059),15229,1488,
+    20976,593,vector():set(-216.354,19.744,179.506),vector():set(0.0,-3.15,-1.0),"l03_agroprom", "to_agroprom", 0)
+end
+
+-- со Свалки в Темную долину
+function garbage_to_darkvalley()
+    create_level_changer(5494,vector():set(279.805,-8.052,-133.157),379766,405,
+    4477,838,vector():set(-164.193,-0.144,-372.775),vector():set(0.0,-1.58,-1.0),"l04_darkvalley", "to_darkvalley", 0)
+end
+
+-- из Темной долины на Свалку
+function darkvalley_to_garbage()
+    create_level_changer(5495,vector():set(-170.481,0.675,-373.119),2203,838,
+    376923,405,vector():set(270.119,-8.975,-136.696),vector():set(0.0,1.56,-1.0),"l02_garbage", "to_garbage", 0)
+end
+
+-- с Янтаря в Мёртвый город
+function yantar_to_deadcity()
+    create_level_changer(5496,vector():set(-24.651,0.543,-2.322),29985,1501,
+    88324,1878,vector():set(-253.053,3.651,-134.923),vector():set(0.0,-0.8,-1.0),"l09_deadcity", "", 0)
+end
+
+-- с Мёртвого города на Радар
+function deadcity_to_radar()
+    create_level_changer(5497,vector():set(-243.018,-1.409,304.077),100363,1877,
+    2427,1951,vector():set(-25.066,-0.973,-82.044),vector():set(0.0,-1.58,-1.0),"l10_radar", "", 0)
+end
+
+-- с Радара на Мёртвый город
+function radar_to_deadcity()
+    create_level_changer(5498,vector():set(-31.348,-1.013,-81.476),644,1951,
+    103881,1877,vector():set(-235.736,-2.086,295.809),vector():set(0.0,-2.35,-1.0),"l09_deadcity", "", 0)
+end
+
+-- из катакомб на Агропром №1
+function underground_to_agroprom_1()
+    create_level_changer(5499,vector():set(-76.925,-0.832,12.608),3064,770,
+    207161,679,vector():set(-33.944,-0.001,39.736),vector():set(0.0,-1.58,-1.0),"l03_agroprom", "to_agroprom", 0)
+end
+
+-- с Агропрома в катакомбы №1
+function agroprom_to_underground_1()
+    create_level_changer(5500,vector():set(-39.033,0.773,39.957),203745,700,
+    3024,723,vector():set(-77.056,-6.446,13.275),vector():set(0.0,0.0,-1.0),"l03u_agr_underground", "to_agroprom_underground", 0)
+end
+
+-- из катакомб на Агропром №2
+function underground_to_agroprom_2()
+    create_level_changer(5501,vector():set(-45.602,-4.019,-30.101),4409,718,
+    194121,695,vector():set(-47.067,0.326,-39.800),vector():set(0.0,-3.15,-1.0),"l03_agroprom", "to_agroprom", 0)
+end
+
+-- с Агропрома в катакомбы №2
+function agroprom_to_underground_2()
+    create_level_changer(5502,vector():set(-47.117,-0.757,-35.315),194127,654,
+    4454,736,vector():set(-44.780,-6.454,-37.145),vector():set(0.0,-3.15,-1.0),"l03u_agr_underground", "to_agroprom_underground", 0)
+end
+
+-- из катакомб на Агропром №3
+function underground_to_agroprom_3()
+    create_level_changer(5503,vector():set(-79.716,5.267,-113.312),2851,797,
+    157321,698,vector():set(-83.345,10.031,-113.290),vector():set(0.0,1.56,-1.0),"l03_agroprom", "to_agroprom", 0)
+end
+
+-- с Агропрома в катакомбы №3
+function agroprom_to_underground_3()
+    create_level_changer(5504,vector():set(-79.478,12.043,-113.347),158767,698,
+    2996,797,vector():set(-76.896,2.510,-117.725),vector():set(0.0,-1.58,-1.0),"l03u_agr_underground", "to_agroprom_underground", 0)
+end
