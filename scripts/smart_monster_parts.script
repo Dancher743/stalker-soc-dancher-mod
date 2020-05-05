@@ -48,9 +48,10 @@ function main_check(obj, amount, local_direction, who, bone_index)
          or bone_index==35
          or bone_index==39
          or bone_index==40 then
-         if boar_leg_count>0 then
-            boar_leg_count = boar_leg_count-1
-         end
+			--if boar_leg_count>0 then
+			--   boar_leg_count = boar_leg_count-1
+			--end
+			boar_leg_count = 0
       end
    end
    if section=="m_pseudodog_e" or section=="pseudodog_weak" or section=="pseudodog_normal" or section=="pseudodog_strong" or section=="psy_dog" or section=="psy_dog_radar" then
@@ -65,9 +66,7 @@ function main_check(obj, amount, local_direction, who, bone_index)
          or bone_index==8
          or bone_index==9
          or bone_index==7 then
-         if snork_leg_count>0 then
-            snork_leg_count=snork_leg_count-1
-         end
+			snork_leg_count = 0
       end
    end
 end
@@ -81,6 +80,7 @@ function spawn_parts(obj)
       if blood_jaws_count>0 and calculate_chance() then
          amk.spawn_item_in_inv("mutant_krovosos_jaw",obj)
       end
+	  
       blood_jaws_count = 1
    end
 
@@ -90,6 +90,7 @@ function spawn_parts(obj)
       if flesh_oko_count>0 and calculate_chance() then
          amk.spawn_item_in_inv("mutant_flesh_eye",obj)
       end
+	  
       flesh_oko_count = 1
    end
 
@@ -99,6 +100,7 @@ function spawn_parts(obj)
       if dog_tail_count>0 and calculate_chance() then
          amk.spawn_item_in_inv("mutant_dog_tail",obj)
       end
+	  
       dog_tail_count = 1
    end
 
