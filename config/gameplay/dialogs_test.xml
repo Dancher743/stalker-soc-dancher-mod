@@ -102,7 +102,7 @@
         </phrase_list>
     </dialog>
     <dialog id="weapons_upgrade_mod">
-	<has_info>esc_serious_talk</has_info>
+	<has_info>tutorial_end</has_info>
         <phrase_list>
             <phrase id="0">
                 <text>Улучши оружие.</text>
@@ -112,7 +112,7 @@
 	</phrase_list>
     </dialog>
     <dialog id="outfits_upgrade_mod">
-	<has_info>esc_serious_talk</has_info>
+	<has_info>tutorial_end</has_info>
         <phrase_list>
             <phrase id="0">
                 <text>Улучши бронежилет.</text>

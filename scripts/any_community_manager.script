@@ -1,0 +1,94 @@
+-- Стоимость
+joining_cost = 10000
+
+-- Звуки нотификации
+pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+
+-- Массив с id'шками групировок
+communities = 
+{
+	'actor', -- Оказывается, у ГГ групировока не одиночки, а actor...
+	'bandit',
+	'military', 
+	'killer', 
+	'dolg', 
+	'freedom', 
+	'ecolog', 
+	'monolith' 
+}
+
+function join_lonely (actor, npc)
+	set_actor_community(communities[1])
+end
+
+function join_bandit (actor, npc)
+	set_actor_community(communities[2])
+end
+
+function join_army (actor, npc)
+	set_actor_community(communities[3])
+end
+
+function join_killer (actor, npc)
+	set_actor_community(communities[4])
+end
+
+function join_duty (actor, npc)
+	set_actor_community(communities[5])
+end
+
+function join_freedom (actor, npc)
+	set_actor_community(communities[6])
+end
+
+function join_ecolog (actor, npc)
+	set_actor_community(communities[7])
+end
+
+function join_monolith (actor, npc)
+	set_actor_community(communities[8])
+end
+
+function pay(actor)
+	actor:give_money(joining_cost * -1)
+	game_stats.money_quest_update(joining_cost * -1)
+	dialogs.relocate_money(actor, joining_cost, "out")
+end
+
+function check_player_money(actor, npc)
+	if actor:money() >= joining_cost then
+		return true
+	end
+	
+	return false
+end
+
+function set_actor_community(community_id)	
+	local actor = db.actor
+	
+	if actor:character_community() == community_id then
+		show_failed_message()
+	else
+		pay(actor)
+		actor:set_character_community (community_id, 0, 0)
+		show_success_message(community_id)
+	end
+end
+
+function show_failed_message()
+	local service_text = "Вы уже состоите в данной группировке."
+	local news_text = "\\n%c[default]"..game.translate_string(service_text)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
+	
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+end
+
+function show_success_message(new_community)
+	local service_text = "Группировка успешно изменена."
+	local news_text = "%c[default]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(new_community)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
+	
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+end

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+	<string id="escape_trader_join_dialog_0">
+		<text>Я хочу вступить в другую группировку. Не поможешь?</text>
+	</string>
+    <string id="escape_trader_join_dialog_1">
+		<text>Помогу, но не за просто так: плати 10000 рублей и я всё организую. К кому хочешь присоедиться?</text>
+	</string>
+	<string id="escape_trader_join_dialog_2">
+		<text>Я передумал.</text>
+	</string>	
+	<string id="escape_trader_join_dialog_3">
+		<text>Готово!</text>
+	</string>
+	
+	<string id="escape_trader_join_dialog_lonely">
+		<text>Одиночки.</text>
+	</string>
+	<string id="escape_trader_join_dialog_bandit">
+		<text>Бандиты.</text>
+	</string>
+	<string id="escape_trader_join_dialog_army">
+		<text>Армия.</text>
+	</string>
+    <string id="escape_trader_join_dialog_duty">
+		<text>Долг.</text>
+	</string>
+    <string id="escape_trader_join_dialog_freedom">
+		<text>Свобода.</text>
+	</string>
+    <string id="escape_trader_join_dialog_killer">
+		<text>Наемники.</text>
+	</string>
+    <string id="escape_trader_join_dialog_ecolog">
+		<text>Экологи.</text>
+	</string>
+    <string id="escape_trader_join_dialog_monolith">
+		<text>Монолит.</text>
+	</string>
+	
+	<string id="escape_trader_join_dialog_check">
+		<text>Хорошо. Ты уверен в своем решении?</text>
+	</string>
+    <string id="escape_trader_join_dialog_true">
+		<text>Да, я уверен.</text>
+	</string>
+    <string id="escape_trader_join_dialog_false">
+		<text>Извини. Я пока не готов.</text>
+	</string>
+</game_dialogs>

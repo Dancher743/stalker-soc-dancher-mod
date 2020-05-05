@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+	<dialog id="join_any_community_dialog">
+        <has_info>tutorial_end</has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>escape_trader_join_dialog_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>escape_trader_join_dialog_1</text>
+                <next>11</next>
+                <next>12</next>
+                <next>13</next>
+                <next>14</next>
+                <next>15</next>
+                <next>16</next>
+                <next>17</next>
+                <next>18</next>
+				<next>2</next>
+            </phrase>
+            <phrase id="11">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_lonely</text>
+				<action>any_community_manager.join_lonely</action>
+                <next>3</next>
+            </phrase>
+			<phrase id="12">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_bandit</text>
+				<action>any_community_manager.join_bandit</action>
+                <next>3</next>
+            </phrase>
+			<phrase id="13">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_army</text>
+				<action>any_community_manager.join_army</action>
+                <next>3</next>
+            </phrase>
+			<phrase id="14">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_duty</text>
+				<action>any_community_manager.join_duty</action>
+                <next>3</next>
+            </phrase>
+			<phrase id="15">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_freedom</text>
+				<action>any_community_manager.join_freedom</action>
+                <next>3</next>
+            </phrase>
+			<phrase id="16">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_killer</text>
+				<action>any_community_manager.join_killer</action>
+                <next>3</next>
+            </phrase>
+			<phrase id="17">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_ecolog</text>
+				<action>any_community_manager.join_ecolog</action>
+                <next>3</next>
+            </phrase>
+			<phrase id="18">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_monolith</text>
+				<action>any_community_manager.join_monolith</action>
+                <next>3</next>
+            </phrase>
+			<phrase id="2">
+                <text>escape_trader_join_dialog_2</text>
+            </phrase>
+			<phrase id="3">
+                <text>escape_trader_join_dialog_3</text>
+				<!--<action>dialogs.break_dialog</action>-->
+            </phrase>
+        </phrase_list>
+    </dialog>
+</game_dialogs>
