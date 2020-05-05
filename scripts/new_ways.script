@@ -17,8 +17,8 @@ function spawn_ways()
 	sa_spawn.agroprom_to_garbage()
 	--sa_spawn.escape_to_darkvalley()
 	sa_spawn.sarcofag_to_aes1()
-	sa_spawn.agroprom_to_yantar()
-	sa_spawn.yantar_to_agroprom()
+	--sa_spawn.agroprom_to_yantar()
+	--sa_spawn.yantar_to_agroprom()
 	sa_spawn.garbage_to_darkvalley()
 	sa_spawn.darkvalley_to_garbage()
 	--sa_spawn.underground_to_agroprom_1()
@@ -32,6 +32,14 @@ end
 function add_way_escape_to_darkvalley()
 	sa_spawn.escape_to_darkvalley()
 	notificate("l04_darkvalley", "l01_escape")
+end
+
+function add_ways_yantar_agroprom()
+	sa_spawn.yantar_to_agroprom()
+	notificate("l08_yantar", "l03_agroprom")
+	
+	sa_spawn.agroprom_to_yantar()
+	notificate("l03_agroprom", "l08_yantar")
 end
 
 function notificate(from, to)
