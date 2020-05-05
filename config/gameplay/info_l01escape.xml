@@ -143,7 +143,9 @@
 	<info_portion id="esc_trader_direct"></info_portion>
 
 	<!-- вспомогательные в лагере -->
-	<info_portion id="esc_return"></info_portion>
+	<info_portion id="esc_return">
+		<action>new_ways.add_way_escape_to_darkvalley</action>
+	</info_portion>
 	<info_portion id="esc_darklab_documents_read"></info_portion>
 	<info_portion id="esc_wolf_thanks_complete"></info_portion>
 	<info_portion id="esc_trader_speak"></info_portion>

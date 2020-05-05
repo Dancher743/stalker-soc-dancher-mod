@@ -1,11 +1,11 @@
 --
--- РЎРєСЂРёРїС‚ РґРѕР±Р°РІР»СЏСЋС‰РёР№ РЅРѕРІС‹Рµ-СЃС‚Р°СЂС‹Рµ С‚РѕС‡РєРё РїРµСЂРµС…РѕРґРѕРІ РјРµР¶РґСѓ Р»РѕРєР°С†РёСЏРјРё
--- РђРІС‚РѕСЂ: Dancher (Daniil Dubovik)
+-- Скрипт добавляющий новые-старые точки переходов между локациями
+-- Автор: Dancher (Daniil Dubovik)
 --
 
--- Р¤СѓРЅРєС†РёСЏ СЃРѕР·РґР°СЋС‰Р°СЏ С‚РѕС‡РєРё РїРµСЂРµС…РѕРґР° РјРµР¶РґСѓ Р»РѕРєР°РјРё
--- Р’Р·СЏС‚Рѕ РёР· RMA. Shadows Addon 0.8.5
-function spawn()
+-- Функция создающая точки перехода между локами
+-- Взято из RMA. Shadows Addon 0.8.5
+function spawn_ways()
 	--generators_to_aes2()
 	--aes2_to_generators()
 	--secretlab_to_x10()
@@ -15,7 +15,7 @@ function spawn()
 	sa_spawn.aes1_to_pripyat()
 	sa_spawn.garbage_to_agroprom()
 	sa_spawn.agroprom_to_garbage()
-	sa_spawn.escape_to_darkvalley()
+	--sa_spawn.escape_to_darkvalley()
 	sa_spawn.sarcofag_to_aes1()
 	sa_spawn.agroprom_to_yantar()
 	sa_spawn.yantar_to_agroprom()
@@ -28,4 +28,42 @@ function spawn()
 	--sa_spawn.underground_to_agroprom_3()
 	--sa_spawn.agroprom_to_underground_3()
 end
+
+function add_way_escape_to_darkvalley()
+	sa_spawn.escape_to_darkvalley()
+	notificate("l04_darkvalley", "l01_escape")
+end
+
+function notificate(from, to)
+	local service_text = "Обнаружен новый путь."
+	local news_text = "%c[default]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(from).."%c[default] - "..game.translate_string(to)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_rad_get_to_aes")
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+end
+
+function mark_ways_on_map()
+	mark_way_on_map(5485, "to_aes2")
+	mark_way_on_map(5486, "to_aes")
+	mark_way_on_map(5487, "to_pripyat")
+	mark_way_on_map(5488, "to_agroprom")
+	mark_way_on_map(5489, "to_garbage")
+	mark_way_on_map(5490, "to_darkvalley")
+	mark_way_on_map(5491, "to_aes")
+	mark_way_on_map(5492, "to_yantar")
+	mark_way_on_map(5493, "to_agroprom")
+	mark_way_on_map(5494, "to_darkvalley")
+	mark_way_on_map(5495, "to_garbage")
+	--mark_way_on_map(id, name)
+end
+
+function mark_way_on_map(id, name)
+	local obj = alife():story_object(id)
+	
+	if obj then
+		level.map_add_object_spot(obj.id, "level_changer", name)
+	end
+end
+
+
 
