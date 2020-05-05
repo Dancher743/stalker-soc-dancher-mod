@@ -120,6 +120,7 @@ function motivator_binder:net_spawn(sobject)
 end
 
 function motivator_binder:net_destroy()
+	if xrs_ai then xrs_ai.npc_net_destroy(self.object) end
 	--printf("motivator_binder:net_destroy(): self.object:name()='%s'", self.object:name())
 
 	local st = db.storage[self.object:id()]
@@ -167,6 +168,8 @@ end
 
 function motivator_binder:death_callback(victim, who)
 	add_functions.kill_npc(victim, who)
+	if xrs_ai then xrs_ai.npc_death_callback(self.object) end
+
 	if who:id() == db.actor:id() then
 		xr_statistic.addKillCount(self.object)
 	end
@@ -304,6 +307,7 @@ function motivator_binder:update(delta)
 			break
 		end
 	end]]
+	if xrs_ai then xrs_ai.npc_update(self) end
 end
 
 function motivator_binder:reload(section)
@@ -427,4 +431,5 @@ function addCommonPrecondition(action)
 	action:add_precondition (world_property(xr_evaluators_id.sidor_wounded_base + 0,  false))
 	action:add_precondition (world_property(xr_evaluators_id.chugai_heli_hunter_base, false))
 	action:add_precondition (world_property(xr_evaluators_id.abuse_base, false))
+	if xrs_ai then xrs_ai.addCommonPrecondition(action) end
 end

@@ -66,6 +66,7 @@ function actor_binder:net_spawn(data)
 	ogsm_funcs.on_game_load()
 	level_changer_manager.clear()
 	new_ways.mark_ways_on_map()
+	if xrs_ai then xrs_ai.actor_net_spawn(self) end
 	
 	return true
 end
@@ -198,6 +199,7 @@ end
 function actor_binder:on_item_take (obj)
     level_tasks.proceed(self.object)
 	vfix.visual_fix(obj)
+	if xrs_ai then xrs_ai.actor_item_take(obj) end
     --game_stats.update_take_item (obj, self.object)
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -370,6 +372,14 @@ function actor_binder:update(delta)
 	end		
 
 	ogsm_funcs.on_actor_update()
+	--if not self.particle then
+	--	self.particle = particles_object([[weather\water]])
+	--	self.particle:play_at_pos(self.object:position())
+	--else
+		--self.particle:move_to(self.object:position():add(vector():set(0,1,0)),vector():set(0,0,0))
+	--end
+	
+	if xrs_ai then xrs_ai.actor_update(delta) end
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)
