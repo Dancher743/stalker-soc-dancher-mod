@@ -1,0 +1,30 @@
+--
+-- Доп. функции для фичи "Лечим НПС". 
+-- Автор: Dancher (Daniil Dubovik)
+--
+
+-- Шансы:
+change_community_chance = 65 -- шанс, что перейдёт на сторону ГГ (будет нейтралом)
+friend_relation_chance = 15 -- шанс, что после перехода на сторону ГГ НПС станет другом
+
+-- Границы рандома:
+min_random_range = 0
+max_random_range = 100
+
+-- Случайное изменение отношений к ГГ после лечения НПС
+function change_relation(npc, actor)
+
+	if get_random_value() <= change_community_chance then
+		npc:set_character_community(actor:character_community(), 0, 0)
+		
+		if get_random_value() <= friend_relation_chance then
+			npc:set_relation(game_object.friend, actor)
+		else
+			npc:set_relation(game_object.neutral, actor)
+		end
+	end
+end
+
+function get_random_value()
+	return math.random(min_random_range, max_random_range)
+end
