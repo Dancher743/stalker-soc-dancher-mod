@@ -279,13 +279,13 @@ function on_game_load()
 		db.storage[db.actor:id()].pstor = {}
 	end
 
-	if load_variable("frn",true) then
+	--[[if load_variable("frn",true) then
 		g_start_timer("bl1", 0, vars.t_start, 0)
 		ogsm_hideout.first_run()
 		save_variable("frn",false)
 	end
 
-	ogsm_hideout.get_level_hides()
+	ogsm_hideout.get_level_hides()]]--
 
 	wthr = level.get_weather()
 	level.set_weather("ogsm",true)
