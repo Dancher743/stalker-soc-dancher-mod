@@ -3,6 +3,9 @@
 -- Автор: Dancher (Daniil Dubovik)
 --
 
+-- Звуки нотификации
+pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+
 -- Функция создающая точки перехода между локами
 -- Взято из RMA. Shadows Addon 0.8.5
 function spawn_ways()
@@ -31,23 +34,36 @@ end
 
 function add_way_escape_to_darkvalley()
 	sa_spawn.escape_to_darkvalley()
-	notificate("l04_darkvalley", "l01_escape")
+	xr_effects.start_timer(2000, notificate_escape_to_darkvalley)
 end
 
 function add_ways_yantar_agroprom()
 	sa_spawn.yantar_to_agroprom()
-	notificate("l08_yantar", "l03_agroprom")
+	xr_effects.start_timer(2000, notificate_ways_yantar_to_agroprom)
 	
 	sa_spawn.agroprom_to_yantar()
-	notificate("l03_agroprom", "l08_yantar")
+	xr_effects.start_timer(3000, notificate_ways_agroprom_to_yantar)	
 end
 
 function notificate(from, to)
-	local service_text = "Обнаружен новый путь."
-	local news_text = "%c[default]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(from).."%c[default] - "..game.translate_string(to)
+	local service_text = "Обнаружен новый путь:"
+	local news_text = "%c[255,160,160,160]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(from).." - "..game.translate_string(to)
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_rad_get_to_aes")
 	
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+end
+
+function notificate_escape_to_darkvalley()
+	notificate("l04_darkvalley", "l01_escape")
+end
+
+function notificate_ways_yantar_to_agroprom()
+	notificate("l08_yantar", "l03_agroprom")
+end
+
+function notificate_ways_agroprom_to_yantar()
+	notificate("l03_agroprom", "l08_yantar")
 end
 
 function mark_ways_on_map()

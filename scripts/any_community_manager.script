@@ -85,8 +85,8 @@ function show_failed_message()
 end
 
 function show_success_message(new_community)
-	local service_text = "Группировка успешно изменена."
-	local news_text = "%c[default]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(new_community)
+	local service_text = "Группировка успешно изменена:"
+	local news_text = "%c[255,160,160,160]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(new_community)
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
 	
 	pda_tips:play(db.actor, 0, sound_object.s2d)
