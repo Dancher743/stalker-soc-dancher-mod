@@ -1,8 +1,7 @@
 # stalker-soc-vanilla-improved-mod
 My mod for S.T.A.L.K.E.R.: Shadow of Chernobyl
 
-Game version: 1.0004
-Game localization: RUS
+Game version: 1.0004 (RUS)
 
 Install: Place all files to empty 'gamedata' folder.
 
