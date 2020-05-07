@@ -33,6 +33,7 @@
 		<actor_dialog>outfits_upgrade_mod</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
 		<actor_dialog>fast_travel_dialog_sakharov</actor_dialog>
+		<!--<actor_dialog>artefacts_exchange_dialog</actor_dialog>-->
 	</specific_character>
 
 <!---------------------------RESCUE_ECOLOG------------------------>

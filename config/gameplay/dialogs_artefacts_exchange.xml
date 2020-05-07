@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+	<dialog id="artefacts_exchange_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text>artefacts_exchange_dialog_0</text>
+                <next>1</next>
+            </phrase>
+			<phrase id="1">
+                <text>artefacts_exchange_dialog_1</text>
+                <next>2</next>
+				<!--<next>3</next>
+				<next>4</next>-->
+				<next>5</next>
+				<!--<next>6</next>-->
+				<!--<next>7</next>-->
+				<next>8</next>
+				<next>9</next>
+            </phrase>
+			<phrase id="2">
+				<precondition>artefacts_exchanger.check_items_for_moonlight</precondition>
+                <text>artefacts_exchange_dialog_2</text>
+				<action>artefacts_exchanger.exchange_moonlight</action>
+            </phrase>
+			<phrase id="3">
+                <text>artefacts_exchange_dialog_3</text>
+            </phrase>
+			<phrase id="4">
+                <text>artefacts_exchange_dialog_4</text>
+            </phrase>
+			<phrase id="5">
+				<precondition>artefacts_exchanger.check_items_for_goldfish</precondition>
+                <text>artefacts_exchange_dialog_5</text>
+				<action>artefacts_exchanger.exchange_goldfish</action>
+            </phrase>
+			<phrase id="6">
+                <text>artefacts_exchange_dialog_6</text>
+            </phrase>
+			<phrase id="7">
+                <text>artefacts_exchange_dialog_7</text>
+            </phrase>
+			<phrase id="8">
+				<precondition>artefacts_exchanger.check_items_for_crystal</precondition>
+                <text>artefacts_exchange_dialog_8</text>
+				<action>artefacts_exchanger.exchange_crystal</action>
+            </phrase>
+			<phrase id="9">
+                <text>artefacts_exchange_dialog_9</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+</game_dialogs>

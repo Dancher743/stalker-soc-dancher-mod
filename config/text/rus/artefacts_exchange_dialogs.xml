@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="artefacts_exchange_dialog_0">
+		<text>Профессор, Вы, случайно, редкие артефакты не продаёте?</text>
+	</string>
+	<string id="artefacts_exchange_dialog_1">
+		<text>К сожалению нет, молодой человек. Но могу обменять некоторые из них на менее редкие аналоги с предоплатой. Вот список:
+		\n 1. «Лунный свет» - за 2 «Вспышки», 4 «Бенгальского огня» и 10000 рублей.
+		\n 2. «Душа» - за 2 «Ломтя мяса», 4 «Крови камня» и 10000 рублей.
+		\n 3. «Слюда» - за 2 «Слизняка», 4 «Слизи», 10000 рублей.
+		\n 4. «Ночная звезда» - за 2 «Каменного цветка», 4 «Медузы» и 10000 рублей.
+		\n 5. «Золотая рыбка» - за 2 «Грави», 4 «Выверта» и 10000 рублей.
+		\n 6. «Морской ёж» - за 2 «Кристальных колючки», 4 «Колючки» и 10000 рублей.
+		\n 7. «Кристалл» - за 2 «Огненного шара», 4 «Капли» и 10000 рублей.
+		</text>
+	</string>
+	<string id="artefacts_exchange_dialog_2">
+		<text>Лунный свет.</text>
+	</string>
+	<string id="artefacts_exchange_dialog_3">
+		<text>Душа.</text>
+	</string>
+	<string id="artefacts_exchange_dialog_4">
+		<text>Слюда.</text>
+	</string>
+	<string id="artefacts_exchange_dialog_5">
+		<text>Ночная звезда.</text>
+	</string>
+	<string id="artefacts_exchange_dialog_6">
+		<text>Золотая рыбка.</text>
+	</string>
+	<string id="artefacts_exchange_dialog_7">
+		<text>Морской ёж.</text>
+	</string>
+	<string id="artefacts_exchange_dialog_8">
+		<text>Кристалл.</text>
+	</string>
+	<string id="artefacts_exchange_dialog_9">
+		<text>В другой раз.</text>
+	</string>
+</string_table>

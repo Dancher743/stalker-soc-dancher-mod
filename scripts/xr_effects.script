@@ -2112,9 +2112,10 @@ function actor_stop_sleeping()
 	sleep_manager.stopper()
 end
 
--- Разные вспомогательные функции.
--- Автор: Dancher (Daniil Dubovik)
+-- Разные вспомогательные функции 
+-- Добавил Dancher (Daniil Dubovik)
 
+-- Запускает таймер с калбэком
 function start_timer(time, callback)
       -- взводим таймер на 10 секунд
       local endTime = time_global() + time
@@ -2127,5 +2128,24 @@ function start_timer(time, callback)
       -- ставим её на апдейт
     level.add_call(check_timer, callback)
  end
+ 
+-- Проверяет если предметы в инвентаре
+function check_items_in_inventory(section)
+	local item_section = section
+ 
+	local function calc(temp, item)
+		local sect = item:section()
+		if item_section[sect] and item_section[sect]>0 then
+			if item_section[sect]==1 then
+				item_section[sect] = nil
+			else
+				item_section[sect] = item_section[sect] - 1
+			end
+		end
+	end
+ 
+	db.actor:iterate_inventory(calc, db.actor)
+	return next(item_section)==nil
+end
 
 -----------------------------------

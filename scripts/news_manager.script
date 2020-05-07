@@ -308,3 +308,27 @@ function relocate_money(actor, type, amount)
 	end
 	
 end
+
+-- Для диалогов с N предметов.
+function relocate_n_item(actor, type, item, amount)
+	if db.actor == nil then return false end
+	--' Играем дефолтный звук
+	if type == "in" then
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_thing")
+		local news_text = "%c[255,160,160,160]"..game.translate_string("general_in_item").."\\n".."%c[default]"..game.translate_string(get_inv_name(item)).."("..tostring(amount)..") шт."		
+		if db.actor:is_talking() then
+			db.actor:give_talk_message(news_text, task_texture, task_rect,"iconed_answer_item")
+		else
+			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
+		end		
+	elseif type == "out" then
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_thing")
+		local news_text = "%c[255,160,160,160]"..game.translate_string("general_out_item").."\\n".."%c[default]"..game.translate_string(get_inv_name(item)).." "..tostring(amount).." шт."		
+		if db.actor:is_talking() then
+			db.actor:give_talk_message(news_text, task_texture, task_rect,"iconed_answer_item")
+		else
+			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
+		end		
+	end
+	
+end
