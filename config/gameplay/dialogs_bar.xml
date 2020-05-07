@@ -4133,8 +4133,10 @@
 		<has_info>guard_said_can_go_2</has_info>
         <phrase_list>
             <phrase id="0">
+				<give_info>bar_barman_need_room</give_info>
                 <text>guard_sleep_dialog_2_1</text>
-				<next>1</next>
+				<!--<next>1</next>-->
+				<action>dialogs.break_dialog</action>
             </phrase>
             <phrase id="1">
                 <text>guard_sleep_dialog_2_2</text>

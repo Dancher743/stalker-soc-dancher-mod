@@ -25,7 +25,6 @@
 		</supplies>
 		<start_dialog>bar_bar_barmen_start</start_dialog>
 		<actor_dialog>bar_bar_barmen_talk_info</actor_dialog>
-		<actor_dialog>barman_sleep_dialog_start</actor_dialog>	
 		<!--actor_dialog>bar_bar_barmen_jobs</actor_dialog-->
 		<!--actor_dialog>bar_bar_barmen_jobs_room</actor_dialog-->
 		<actor_dialog>bar_bar_barman_ecolog_flash_done</actor_dialog>
@@ -39,6 +38,7 @@
 		<actor_dialog>outfits_upgrade_mod</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
 		<actor_dialog>fast_travel_dialog_barman</actor_dialog>
+		<actor_dialog>barman_sleep_dialog_start</actor_dialog>
 	</specific_character>
 
 	<specific_character id="bar_stalker_white_novice_1" team_default = "1">

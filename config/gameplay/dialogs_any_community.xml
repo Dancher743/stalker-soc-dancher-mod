@@ -64,7 +64,8 @@
 	
 	<!-- Проф. Сахаров  -->
 	<dialog id="sakharov_join_any_community_dialog">
-        <precondition>any_community_manager.check_player_community</precondition>
+        <has_info>yan_kill_brain_done</has_info>
+		<precondition>any_community_manager.check_player_community</precondition>
 		<phrase_list>
             <phrase id="0">
                 <text>sakharov_join_ecologs_dialog_0</text>
