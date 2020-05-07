@@ -63,7 +63,7 @@ function actor_binder:net_spawn(data)
 	ui_main_menu.start()
 -------------------------------------------
 
-	--ogsm_funcs.on_game_load()
+	ogsm_funcs.on_game_load()
 	level_changer_manager.clear()
 	new_ways.mark_ways_on_map()
 	se_zones.update_anoms(time_global())
