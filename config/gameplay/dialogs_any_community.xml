@@ -2,6 +2,7 @@
 <game_dialogs>
 	<!-- Сидорович  -->
 	<dialog id="escape_trader_join_any_community_dialog">
+		<has_info>tutorial_end</has_info>
 		<phrase_list>
             <phrase id="0">
                 <text>escape_trader_join_dialog_0</text>
