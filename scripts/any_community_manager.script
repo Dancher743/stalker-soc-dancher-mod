@@ -7,12 +7,12 @@ pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 -- Массив с id'шками групировок
 communities = 
 {
-	'actor', -- Оказывается, у ГГ групировока не одиночки, а actor...
+	'actor', -- Оказывается, у ГГ групировока не одиночки, а actor... Оригинальная - stalker
 	'bandit',
 	'military', 
 	'killer', 
-	'dolg', 
-	'freedom', 
+	'actor_dolg', -- Группировка Свобода именно актора. Оригинальная - dolg
+	'actor_freedom', -- Группировка Долг именно актора. Оригинальная - freedom
 	'ecolog', 
 	'monolith' 
 }
@@ -61,6 +61,14 @@ function check_player_money(actor, npc)
 	end
 	
 	return false
+end
+
+function check_player_community(actor, npc)
+	if actor:character_community() == npc:character_community() then
+		return false
+	end
+	
+	return true
 end
 
 function set_actor_community(community_id)	

@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
-	<dialog id="join_any_community_dialog">
-        <has_info>tutorial_end</has_info>
-        <phrase_list>
+	<!-- Сидорович  -->
+	<dialog id="escape_trader_join_any_community_dialog">
+		<phrase_list>
             <phrase id="0">
                 <text>escape_trader_join_dialog_0</text>
                 <next>1</next>
             </phrase>
             <phrase id="1">
                 <text>escape_trader_join_dialog_1</text>
+                <next>2</next>
+                <next>3</next>
+				<next>4</next>
+            </phrase>
+			<phrase id="2">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_2</text>
+				<action>any_community_manager.join_lonely</action>
+				<next>5</next>
+            </phrase>
+			<phrase id="3">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_3</text>
+				<action>any_community_manager.join_bandit</action>
+                <next>5</next>
+            </phrase>
+			<phrase id="4">
+                <text>escape_trader_join_dialog_4</text>
+            </phrase>
+			<phrase id="5">
+                <text>escape_trader_join_dialog_5</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+	
+	<!-- Кузнецов  -->
+	<dialog id="kuznecov_join_any_community_dialog">
+        <precondition>any_community_manager.check_player_community</precondition>
+		<phrase_list>
+            <phrase id="0">
+                <text>kuznecov_join_dialog_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>kuznecov_join_dialog_1</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+			<phrase id="2">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>kuznecov_join_dialog_2</text>
+				<action>any_community_manager.join_army</action>
+            </phrase>
+			<phrase id="3">
+                <text>kuznecov_join_dialog_3</text>
+                <next>4</next>
+            </phrase>
+			<phrase id="4">
+                <text>kuznecov_join_dialog_4</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+	
+	<!-- Проф. Сахаров  -->
+	<dialog id="sakharov_join_any_community_dialog">
+        <precondition>any_community_manager.check_player_community</precondition>
+		<phrase_list>
+            <phrase id="0">
+                <text>sakharov_join_ecologs_dialog_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>sakharov_join_ecologs_dialog_1</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+			<phrase id="2">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>sakharov_join_ecologs_dialog_2</text>
+				<action>any_community_manager.join_ecolog</action>
+            </phrase>
+			<phrase id="3">
+                <text>sakharov_join_ecologs_dialog_3</text>
+                <next>4</next>
+            </phrase>
+			<phrase id="4">
+                <text>sakharov_join_ecologs_dialog_4</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+	
+	<!-- Тестовый диалог -->
+	<dialog id="join_any_community_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text>join_dialog_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>join_dialog_1</text>
                 <next>11</next>
                 <next>12</next>
                 <next>13</next>
@@ -21,59 +111,49 @@
             </phrase>
             <phrase id="11">
 				<precondition>any_community_manager.check_player_money</precondition>
-                <text>escape_trader_join_dialog_lonely</text>
+                <text>join_dialog_lonely</text>
 				<action>any_community_manager.join_lonely</action>
-                <next>3</next>
             </phrase>
 			<phrase id="12">
 				<precondition>any_community_manager.check_player_money</precondition>
-                <text>escape_trader_join_dialog_bandit</text>
+                <text>join_dialog_bandit</text>
 				<action>any_community_manager.join_bandit</action>
-                <next>3</next>
             </phrase>
 			<phrase id="13">
 				<precondition>any_community_manager.check_player_money</precondition>
-                <text>escape_trader_join_dialog_army</text>
+                <text>join_dialog_army</text>
 				<action>any_community_manager.join_army</action>
-                <next>3</next>
             </phrase>
 			<phrase id="14">
 				<precondition>any_community_manager.check_player_money</precondition>
-                <text>escape_trader_join_dialog_duty</text>
+                <text>join_dialog_duty</text>
 				<action>any_community_manager.join_duty</action>
-                <next>3</next>
             </phrase>
 			<phrase id="15">
 				<precondition>any_community_manager.check_player_money</precondition>
-                <text>escape_trader_join_dialog_freedom</text>
+                <text>join_dialog_freedom</text>
 				<action>any_community_manager.join_freedom</action>
-                <next>3</next>
             </phrase>
 			<phrase id="16">
 				<precondition>any_community_manager.check_player_money</precondition>
-                <text>escape_trader_join_dialog_killer</text>
+                <text>join_dialog_killer</text>
 				<action>any_community_manager.join_killer</action>
-                <next>3</next>
             </phrase>
 			<phrase id="17">
 				<precondition>any_community_manager.check_player_money</precondition>
-                <text>escape_trader_join_dialog_ecolog</text>
+                <text>join_dialog_ecolog</text>
 				<action>any_community_manager.join_ecolog</action>
-                <next>3</next>
             </phrase>
 			<phrase id="18">
 				<precondition>any_community_manager.check_player_money</precondition>
-                <text>escape_trader_join_dialog_monolith</text>
+                <text>join_dialog_monolith</text>
 				<action>any_community_manager.join_monolith</action>
-                <next>3</next>
             </phrase>
 			<phrase id="2">
-                <text>escape_trader_join_dialog_2</text>
-            </phrase>
-			<phrase id="3">
-                <text>escape_trader_join_dialog_3</text>
-				<!--<action>dialogs.break_dialog</action>-->
+                <text>join_dialog_2</text>
             </phrase>
         </phrase_list>
     </dialog>
+	
+	
 </game_dialogs>

@@ -1,50 +1,91 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
+	<!-- Сидорович -->
 	<string id="escape_trader_join_dialog_0">
-		<text>Я хочу вступить в другую группировку. Не поможешь?</text>
+		<text>Сидорович, у тебя же есть связи с местными группировками... Не поможешь?</text>
 	</string>
     <string id="escape_trader_join_dialog_1">
-		<text>Помогу, но не за просто так: плати 10000 рублей и я всё организую. К кому хочешь присоедиться?</text>
+		<text>Хочешь сменить группировку? Не вопрос! Плати 10000 рублей и я всё организую. К кому хочешь присоедиться?</text>
 	</string>
 	<string id="escape_trader_join_dialog_2">
+		<text>Одиночки.</text>
+	</string>
+	<string id="escape_trader_join_dialog_3">
+		<text>Бандиты.</text>
+	</string>
+	<string id="escape_trader_join_dialog_4">
 		<text>Я передумал.</text>
 	</string>	
-	<string id="escape_trader_join_dialog_3">
+	<string id="escape_trader_join_dialog_5">
+		<text>Готово. И, кстати, никому об этом ни слова.</text>
+	</string>
+	
+	<!-- Майор Кузнецов -->
+	<string id="kuznecov_join_dialog_0">
+		<text>Товарищ майор, я бы хотел стать военным. Не поможите?</text>
+	</string>
+    <string id="kuznecov_join_dialog_1">
+		<text>Военным? Хех. А что, жизнь вольного сталкера не так уж и сладка, да? Ну хорошо. С тебя 10000 рублей за услугу.</text>
+	</string>
+	<string id="kuznecov_join_dialog_2">
+		<text>Вот деньги.</text>
+	</string>
+	<string id="kuznecov_join_dialog_3">
+		<text>Я передумал.</text>
+	</string>
+	<string id="kuznecov_join_dialog_4">
+		<text>Дело твоё, сталкер.</text>
+	</string>
+	
+	<!-- Проф. Сахаров -->
+	<string id="sakharov_join_ecologs_dialog_0">
+		<text>Профессор, я хочу присоединиться к вашей научной группе. Не поможите?</text>
+	</string>
+    <string id="sakharov_join_ecologs_dialog_1">
+		<text>Хотите стать экологом? Что же, я помогу вам. Разумеется, необходимо будет внести вступительный взнос в размере 10000 рублей.</text>
+	</string>
+	<string id="sakharov_join_ecologs_dialog_2">
+		<text>Я согласен.</text>
+	</string>
+	<string id="sakharov_join_ecologs_dialog_3">
+		<text>Я передумал.</text>
+	</string>	
+	<string id="sakharov_join_ecologs_dialog_4">
 		<text>Готово!</text>
 	</string>
 	
-	<string id="escape_trader_join_dialog_lonely">
+	<!-- Тестовый диалог -->
+	<string id="join_dialog_0">
+		<text>Сменить группировку.</text>
+	</string>
+	<string id="join_dialog_1">
+		<text>Выбирай:</text>
+	</string>
+	<string id="join_dialog_2">
+		<text>Отмена.</text>
+	</string>
+	<string id="join_dialog_lonely">
 		<text>Одиночки.</text>
 	</string>
-	<string id="escape_trader_join_dialog_bandit">
+	<string id="join_dialog_bandit">
 		<text>Бандиты.</text>
 	</string>
-	<string id="escape_trader_join_dialog_army">
+	<string id="join_dialog_army">
 		<text>Армия.</text>
 	</string>
-    <string id="escape_trader_join_dialog_duty">
+    <string id="join_dialog_duty">
 		<text>Долг.</text>
 	</string>
-    <string id="escape_trader_join_dialog_freedom">
+    <string id="join_dialog_freedom">
 		<text>Свобода.</text>
 	</string>
-    <string id="escape_trader_join_dialog_killer">
+    <string id="join_dialog_killer">
 		<text>Наемники.</text>
 	</string>
-    <string id="escape_trader_join_dialog_ecolog">
+    <string id="join_dialog_ecolog">
 		<text>Экологи.</text>
 	</string>
-    <string id="escape_trader_join_dialog_monolith">
+    <string id="join_dialog_monolith">
 		<text>Монолит.</text>
-	</string>
-	
-	<string id="escape_trader_join_dialog_check">
-		<text>Хорошо. Ты уверен в своем решении?</text>
-	</string>
-    <string id="escape_trader_join_dialog_true">
-		<text>Да, я уверен.</text>
-	</string>
-    <string id="escape_trader_join_dialog_false">
-		<text>Извини. Я пока не готов.</text>
 	</string>
 </game_dialogs>

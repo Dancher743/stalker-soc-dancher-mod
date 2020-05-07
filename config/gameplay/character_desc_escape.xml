@@ -28,7 +28,7 @@
 		<actor_dialog>outfits_upgrade_mod</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
 		<actor_dialog>fast_travel_dialog_sidorovich</actor_dialog>
-		<actor_dialog>join_any_community_dialog</actor_dialog>
+		<actor_dialog>escape_trader_join_any_community_dialog</actor_dialog>
 	</specific_character>
 <!---------------------------------------esc_wolf----------------------------------------------------->
 	<specific_character id="esc_wolf" team_default = "1">
@@ -637,6 +637,7 @@
 										
 		<start_dialog>esc_bridge_soldiers_start</start_dialog>
 		<start_dialog>dm_hello_dialog</start_dialog>
+		<actor_dialog>kuznecov_join_any_community_dialog</actor_dialog>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 	</specific_character>
 <!-------------------------------------soldier_regular----------------------------------------------------->	

@@ -2513,6 +2513,7 @@
     <dialog id="bar_dolg_base_guard_acces">
         <precondition>dialogs.dialog_allowed</precondition>
         <dont_has_info>bar_dolg_base_pass</dont_has_info>
+        <dont_has_info>bar_deactivate_radar_start</dont_has_info>
         <phrase_list>
             <phrase id="21">
                 <text>bar_dolg_base_guard_acces_21</text>
@@ -2574,6 +2575,7 @@
     <dialog id="bar_dolg_base_guard_rules">
         <has_info>bar_dolg_base_rules_start</has_info>
         <has_info>bar_deactivate_radar_start</has_info>
+		<dont_has_info>bar_dolg_base_pass</dont_has_info>
         <dont_has_info>bar_dolg_base_rules_finish</dont_has_info>
         <phrase_list>
             <phrase id="5">
