@@ -2,6 +2,9 @@
 
 surge_enabled = false
 
+-- ¬ключен ли спавн артефактов после выброса
+surge_spawn_arts_enabled = true
+
 -- „ерез сколько часов после начала игры начнетс€ выброс
 
 t_start = 2

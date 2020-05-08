@@ -213,7 +213,12 @@ function __do_timer_action(select_string,params_string)
 		level.set_weather(wthr)
 		del_variable("blt")
 		g_start_timer("bl1",0, vars.t_surge+math.random(-4,4), 0)
-		ogsm_surge.spawn_arts()
+		
+		-- Спавним артефакты после выброса
+		if vars.surge_spawn_arts_enabled == true then
+			ogsm_surge.spawn_arts()
+		end
+		
 		--db.actor:give_info_portion("surge_end")
 		db.actor:disable_info_portion("surge_start")
 		db.actor:disable_info_portion("surge_pda")

@@ -1,11 +1,11 @@
 
 --Взнос Долгу для прохода на территорию
 function has_dolg_deposite(actor, npc)
-	return actor:money() >= 10000
+	return actor:money() >= 5000
 end
 
 function give_dolg_deposite(actor, npc)	
-	dialogs.relocate_money(npc, 10000, "out")
+	dialogs.relocate_money(npc, 5000, "out")
 end
 
 --Бармен в комнате
