@@ -1,0 +1,74 @@
+--
+-- Обмен пушками у Шустрого.
+-- Автор: Dancher (Daniil Dubovik)
+--
+
+nible_weapons =
+{
+	"wpn_hpsa",
+	"wpn_sig_m1",
+	"wpn_svd_m1",
+	"wpn_rg6_m1"
+}
+
+actor_arts =
+{
+	"af_dummy_battery",
+	"af_dummy_pellicle",
+	"af_dummy_glassbeads",
+	"af_fuzz_kolobok"
+}
+
+function check_actor_art_battery(npc, actor)
+	if db.actor:object(actor_arts[1]) then
+		return true	
+	end
+	
+	return false
+end
+
+function check_actor_art_pellicle(npc, actor)
+	if db.actor:object(actor_arts[2]) then
+		return true	
+	end
+	
+	return false
+end
+
+function check_actor_art_glassbeads(npc, actor)
+	if db.actor:object(actor_arts[3]) then
+		return true	
+	end
+	
+	return false
+end
+
+function check_actor_art_kolobok(npc, actor)
+	if db.actor:object(actor_arts[4]) then
+		return true	
+	end
+	
+	return false
+end
+
+-- Функции обмена --
+
+function exchange_battery_on_hpsa(npc, actor)
+	dialogs.relocate_item_section(actor, actor_arts[1], "out")
+	dialogs.relocate_item_section(actor, nible_weapons[1], "in")	
+end
+
+function exchange_battery_on_sig(npc, actor)
+	dialogs.relocate_item_section(actor, actor_arts[2], "out")
+	dialogs.relocate_item_section(actor, nible_weapons[2], "in")	
+end
+
+function exchange_battery_on_svd(npc, actor)
+	dialogs.relocate_item_section(actor, actor_arts[3], "out")
+	dialogs.relocate_item_section(actor, nible_weapons[3], "in")	
+end
+
+function exchange_battery_on_rg6(npc, actor)
+	dialogs.relocate_item_section(actor, actor_arts[4], "out")
+	dialogs.relocate_item_section(actor, nible_weapons[4], "in")	
+end

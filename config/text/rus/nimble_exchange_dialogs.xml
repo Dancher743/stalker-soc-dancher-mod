@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="nimble_exchange_dialog_0">
+		<text>Тут местные поговаривают, что ты можешь редкие стволы подогнать.</text>
+	</string>
+	<string id="nimble_exchange_dialog_1">
+		<text>Да, это так, но сейчас я устал и хочу отдохнуть после случившегося... Поговорим об этом немного позже.</text>
+	</string>
+	<string id="nimble_exchange_dialog_2">
+		<text>Да, могу. У меня есть парочка стволов. Разумеется, все они существуют в единичном экземпляре, а значит, что ты ни у кого в Зоне таких не увидишь. Обменяю на редкие артефакты. Вот список:
+		\n 1. Пистолет ХПСС-1м. Надежный, мощный и кучный. Отдам за «Батарейку».
+		\n 2. Автомат СИП Штурмовой. Облегчённая версия оригинала... Отдам за «Плёнку».
+		\n 3. СВД м2 "Дальнобойщик". Винтовка СВД с увеличенной кратностю зума и уменьшенной отдачей. Отдам за «Мамины бусы».
+		\n 4. Гранатомёт Бульдог-6 под патрон м209. Не спрашивай где я его достал... Отдам за «Колобок».
+		\n И ешё раз повторюсь - в единичном экземпляре! После обмена ты не сможешь получить от меня такое же оружие ещё раз.
+		</text>
+	</string>
+	<string id="nimble_exchange_dialog_3">
+		<text>Пистолет ХПСС-1м.</text>
+	</string>
+	<string id="nimble_exchange_dialog_4">
+		<text>Автомат СИП Штурмовой.</text>
+	</string>
+	<string id="nimble_exchange_dialog_5">
+		<text>Винтовка СВД м2 "Дальнобойщик".</text>
+	</string>
+	<string id="nimble_exchange_dialog_6">
+		<text>Гранатомёт Бульдог-6 м209.</text>
+	</string>
+	<string id="nimble_exchange_dialog_7">
+		<text>Держи!</text>
+	</string>
+	<string id="nimble_exchange_dialog_8">
+		<text>В другой раз.</text>
+	</string>
+	<string id="nimble_exchange_dialog_9">
+		<text>Как знаешь.</text>
+	</string>
+	<string id="nimble_exchange_dialog_10">
+		<text>К сожалению, ничего не могу тебе предложить.</text>
+	</string>
+</string_table>

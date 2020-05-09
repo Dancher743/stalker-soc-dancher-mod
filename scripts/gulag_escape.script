@@ -355,7 +355,7 @@ function load_job(sj, gname, type, squad, groups)
             online = true,
 			in_rest = "", out_rest = "",
 			predicate = function(obj_info)
-        					return obj_info.profile_name == "esc_shustryi"
+        					return obj_info.profile_name == "esc_shustryi" and not has_alife_info("nimble_stay_newbie_camp")
 						end
 		}
 		table.insert(sj, t)
