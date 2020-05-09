@@ -43,7 +43,7 @@ function use_pda(obj)
 				"\\n%c[default]Обнаружено денег: %c[default]"..tostring(deadmoney).." руб."..
 				"\\n%c[255,255,96,96]Репутация понижена на "..tostring(math.abs(hack_pda_reputation)).." ед."]]--
 				
-	local news_text = "%c[255,160,160,160]КПК сталкера:\\n"..
+	local news_text = "%c[255,160,160,160]КПК сталкера\\n"..
 				"%c[default]"..name..
 				" ("..game.translate_string(community)..")"..
 				"\\n%c[default]Обнаружено денег: %c[default]"..tostring(deadmoney).." руб."..
