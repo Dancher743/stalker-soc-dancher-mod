@@ -4,6 +4,10 @@
 	Created           : 29.11.2014
 	Copyright         : naxac
 --]]---------------------------------------------------------------------------
+
+-- Снижение репутации за "хак" КПК
+hack_pda_reputation = -2
+
 function use_pda(obj)
 	-- Читаем данные из нет_пэкета
 	local sobj = alife():object(obj:id())
@@ -31,12 +35,23 @@ function use_pda(obj)
 	elseif rank<900 then deadmoney=math.random(100,220)		-- veteran
 	elseif rank>=900 then deadmoney=math.random(200,300) end	-- master
 	db.actor:give_money(deadmoney)
+	db.actor:change_character_reputation(hack_pda_reputation);
 	
-	local news_text = "%c[255,160,160,160]КПК:\\n"..
-				"%c[255,255,0,0]Сталкер: %c[default]"..name..
-				"\\n%c[255,255,0,0]Группировка: %c[default]"..game.translate_string(community)..
-				"\\n%c[255,255,0,0]Обнаружено денег: %c[default]"..tostring(deadmoney).."руб."
-	db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,0,83,47), 10, 5000)
+	--[[local news_text = "%c[255,160,160,160]КПК:\\n"..
+				"%c[default]Сталкер: %c[default]"..name..
+				"\\n%c[default]Группировка: %c[default]"..game.translate_string(community)..
+				"\\n%c[default]Обнаружено денег: %c[default]"..tostring(deadmoney).." руб."..
+				"\\n%c[255,255,96,96]Репутация понижена на "..tostring(math.abs(hack_pda_reputation)).." ед."]]--
+				
+	local news_text = "%c[255,160,160,160]КПК сталкера:\\n"..
+				"%c[default]"..name..
+				" ("..game.translate_string(community)..")"..
+				"\\n%c[default]Обнаружено денег: %c[default]"..tostring(deadmoney).." руб."..
+				"\\n%c[255,255,0,0]Репутация понижена на "..tostring(math.abs(hack_pda_reputation)).." ед."
+	
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_money")
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 10, 7000)
 end
 
 function create_pda_npc(npc, pda)
