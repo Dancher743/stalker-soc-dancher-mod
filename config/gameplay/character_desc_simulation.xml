@@ -1268,9 +1268,10 @@
 			[spawn] \n
 			wpn_walther \n
 			ammo_9x19_pbp = 1 \n
-			wpn_svd \n
-			ammo_7.62x54_7h1 = 1 \n
-			ammo_7.62x54_7h14 = 1 \n
+			wpn_groza \n
+			ammo_9x39_ap = 1 \n
+			ammo_9x39_sp5 = 1 \n
+			ammo_vog-25p = 2 \n
 #include "gameplay\character_items.xml"	\n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1299,9 +1300,8 @@
 			[spawn] \n
 			wpn_walther \n
 			ammo_9x19_fmj \n
-			wpn_svd \n
-			ammo_7.62x54_7h1 = 1 \n
-			ammo_7.62x54_7h14 = 1 \n	
+			wpn_groza \n
+			ammo_9x39_sp5 \n	
 #include "gameplay\character_items.xml" \n	
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
