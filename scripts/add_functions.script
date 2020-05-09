@@ -25,7 +25,8 @@ local level_name = {
   ["l12u_control_monolith"] = "¬ —аркофаге"
             }
  
-local community = {
+local community = 
+{
 	["stalker"] = "одиночка",
 	["monolith"] = "монолитовец",
 	["military"] = "военный",
@@ -36,8 +37,11 @@ local community = {
 	["freedom"] = "свободовец",
 	["zombied"] = "пропавший",
 	["trader"] = "торговец",
-	["arena_enemy"] = "сталкер"
-	        }
+	["arena_enemy"] = "сталкер",
+	["actor"] = "одиночка",
+	["actor_dolg"] = "долговец", 
+	["actor_freedom"] = "свободовец"
+}
  
 function kill_npc(victim, who)
   if victim and IsStalker(victim) then
