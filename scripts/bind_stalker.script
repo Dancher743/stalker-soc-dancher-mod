@@ -354,6 +354,7 @@ function actor_binder:update(delta)
 			self.object:give_info_portion("storyline_actor_start")
 			_G.g_start_avi = true
 			printf("*AVI* RUN START AVI")			
+			art_mgr.del_xlam()
 		end
 
 --		if not has_alife_info("encyclopedy") then
@@ -372,6 +373,7 @@ function actor_binder:update(delta)
 
 		self.bCheckStart = false		
 	end		
+	art_mgr.update()
 
 	ogsm_funcs.on_actor_update()
 	--if not self.particle then
@@ -418,6 +420,7 @@ function actor_binder:save(packet)
 
 	task_manager.save(packet)
 	self.actor_detector:save(packet)	
+	art_mgr.save(packet)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:load(reader)
@@ -458,6 +461,7 @@ function actor_binder:load(reader)
 	
 	task_manager.load(reader)
 	self.actor_detector:load(reader)	
+	art_mgr.load(reader)
 end
 ----------------------------------------------------------------------------------------------------------------------
 
