@@ -29,8 +29,6 @@
 		<start_dialog>yantar_general_ucheniy_talk_start</start_dialog>
 		<actor_dialog>tm_ecolog_dialog</actor_dialog>
 		<actor_dialog>tm_ecolog_reward</actor_dialog>
-		<actor_dialog>weapons_upgrade_mod</actor_dialog>
-		<actor_dialog>outfits_upgrade_mod</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
 		<actor_dialog>fast_travel_dialog_sakharov</actor_dialog>
 		<actor_dialog>sakharov_join_any_community_dialog</actor_dialog>

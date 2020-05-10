@@ -24,8 +24,6 @@
 		<actor_dialog>tm_trader_dialog</actor_dialog>
 		<actor_dialog>tm_trader_reward</actor_dialog>
 		<actor_dialog>escape_trader_done_blockpost_box</actor_dialog>
-		<actor_dialog>weapons_upgrade_mod</actor_dialog>
-		<actor_dialog>outfits_upgrade_mod</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
 		<actor_dialog>fast_travel_dialog_sidorovich</actor_dialog>
 		<actor_dialog>escape_trader_join_any_community_dialog</actor_dialog>
