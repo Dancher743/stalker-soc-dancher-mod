@@ -1,0 +1,65 @@
+--
+-- Апгрейд брони.
+-- Автор: Dancher (Daniil Dubovik)
+--
+
+exo_upgrade_cost = 40000
+
+exo_sprint_allowed =
+{
+	["exo_outfit"] = "exo_outfit_s",
+	["exo_outfit_m1"] = "exo_outfit_m1_s"
+}
+
+-- --
+
+function exchange_exo(npc, actor)
+	pay(actor)
+	dialogs.relocate_item_section(actor, "exo_outfit", "out")
+	dialogs.relocate_item_section(actor, "outfit_exo_s", "in")
+end
+
+function exchange_exo_m1(npc, actor)
+	pay(actor)
+	dialogs.relocate_item_section(actor, "outfit_exo_m1", "out")
+	dialogs.relocate_item_section(actor, "outfit_exo_m1_s", "in")	
+end
+
+function pay(actor)
+	actor:give_money(exo_upgrade_cost * -1)
+	game_stats.money_quest_update(exo_upgrade_cost * -1)
+	dialogs.relocate_money(actor, exo_upgrade_cost, "out")
+end
+
+
+-- Проверки --
+
+function check_player_exo(actor, npc)	
+	return check_player(actor, "exo_outfit")
+end
+
+function check_player_exo_m(actor, npc)
+	return check_player(actor, "outfit_exo_m1")
+end
+
+function check_player(actor, item)	
+	local sect = actor:object(item)
+	local good_item_condition = false
+	
+	if sect ~= nil then
+		if sect:condition() == 1 then
+			good_item_condition = true
+		end
+	end
+
+    return actor:money() >= exo_upgrade_cost and good_item_condition
+end
+
+function save_condition()
+	local sect = actor:object(item)
+	
+	if sect:condition() == 1 then
+		dialogs.relocate_money(actor, 1488, "out")
+	end
+end
+
