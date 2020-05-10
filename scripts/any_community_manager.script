@@ -79,8 +79,18 @@ function set_actor_community(community_id)
 	else
 		pay(actor)
 		actor:set_character_community (community_id, 0, 0)
+		change_actor_reputation(community_id)
 		show_success_message(community_id)
 	end
+end
+
+function change_actor_reputation(community_id)
+	local actor = db.actor
+
+	if community_id == communities[2] then
+		actor:change_character_reputation(db.actor:character_reputation() * -1)
+	end
+
 end
 
 function show_failed_message()
