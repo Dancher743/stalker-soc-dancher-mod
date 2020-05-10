@@ -1,17 +1,15 @@
 --
--- РђРїРіСЂРµР№Рґ Р±СЂРѕРЅРё.
--- РђРІС‚РѕСЂ: Dancher (Daniil Dubovik)
+-- Апгрейд брони.
+-- Автор: Dancher (Daniil Dubovik)
 --
 
+-- Стоимость апгрейда экзоскелета
 exo_upgrade_cost = 40000
 
-exo_sprint_allowed =
-{
-	["exo_outfit"] = "exo_outfit_s",
-	["exo_outfit_m1"] = "exo_outfit_m1_s"
-}
+-- Звуки нотификации
+pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
--- --
+-- Функции обмена --
 
 function exchange_exo(npc, actor)
 	pay(actor)
@@ -32,7 +30,7 @@ function pay(actor)
 end
 
 
--- РџСЂРѕРІРµСЂРєРё --
+-- Проверки --
 
 function check_player_exo(actor, npc)	
 	return check_player(actor, "exo_outfit")
@@ -55,11 +53,14 @@ function check_player(actor, item)
     return actor:money() >= exo_upgrade_cost and good_item_condition
 end
 
-function save_condition()
-	local sect = actor:object(item)
-	
-	if sect:condition() == 1 then
-		dialogs.relocate_money(actor, 1488, "out")
-	end
+function notificate_exo_upgrade()
+	xr_effects.start_timer(7000, show_exo_upgrade_message)
 end
 
+function show_exo_upgrade_message()
+	local service_text = "Сидорович"
+	local news_text = "%c[255,160,160,160]"..game.translate_string(service_text).."\\n%c[default]Внимание всем сталкерам, говорит торговец Сидорович. Доступно крутое улучшение для экзоскелета. Кому интересно, подходите ко мне в бункер на Кордоне."
+	local task_texture, task_rect = get_texture_info("ui_iconsNpc_trader")
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+end

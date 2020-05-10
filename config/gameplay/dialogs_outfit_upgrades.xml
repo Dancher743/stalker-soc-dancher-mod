@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
 	<dialog id="sidorovich_exo_upgrade_dialogs">
-        <phrase_list>
+        <has_info>bun_antenna_off</has_info>
+		<phrase_list>
             <phrase id="0">
                 <text>sidorovich_exo_sprint_allowed_dialog_0</text>
                 <next>1</next>
