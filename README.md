@@ -23,7 +23,7 @@ Using mods:
 15. Nimble's Unique Weapons Exchange (Dancher)
 16. Exoskeleton Upgrade (Dancher)
 17. Random Smart Monster Parts (based on Smart Monster Parts by Руся, Nekt, Anvil) (Dancher)
-18. Iwer's Unlife (IWER)
+18. A-Life Controller v1.1 (Engine)
 19. No Weapons In Friendly Zones
 20. AI pack RC (xStream)
 21. Stories Bonfire v1.1 (Shad0wC@ndy)
@@ -31,5 +31,6 @@ Using mods:
 23. Healing enemy NPC (AMK Mod/Механиk/Dancher)
 24. Added night skyboxes from build 1935
 25. Artefacts Respawn Mod (Bak)
+26. Corps Collector (Sak)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
