@@ -4074,7 +4074,7 @@
 
 <!--Диалоги покупки задней комнаты-->
 	<dialog id="barman_sleep_dialog_start">
-		<has_info>barman_sleep_dialog</has_info>
+		<!--<has_info>barman_sleep_dialog</has_info>-->
 		<dont_has_info>barman_said_can_go</dont_has_info>
         <phrase_list>
             <phrase id="0">
