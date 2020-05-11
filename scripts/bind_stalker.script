@@ -67,6 +67,7 @@ function actor_binder:net_spawn(data)
 	level_changer_manager.clear()
 	new_ways.mark_ways_on_map()
 	se_zones.update_anoms(time_global())
+	sak_off_corpses.off_corpses()
 	
 	if xrs_ai then xrs_ai.actor_net_spawn(self) end
 	
