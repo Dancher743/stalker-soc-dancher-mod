@@ -18,6 +18,10 @@ lasthealth  = 0
 lasttime	= 0
 post_process = 0
 local weapon_hide = false
+-->> Dynamic campfire mod
+local scan_flag
+local upd_time
+--<< Dynamic campfire mod
 ----------------------------------------------------------------------------------------------------------------------
 class "actor_binder" (object_binder)
 ----------------------------------------------------------------------------------------------------------------------
@@ -385,6 +389,57 @@ function actor_binder:update(delta)
 	--end
 	
 	if xrs_ai then xrs_ai.actor_update(delta) end
+	-->> Dynamic campfire mod
+	if scan_flag == nil then
+		scan_flag = 1
+		local lvl = level.name()
+		local exc_tbl = {
+			["zone_flame_small_0002"] = {"l05_bar"},
+			["zone_flame_small_0005"] = {"l06_rostok"},
+			["zone_flame_small_0006"] = {"l06_rostok"},
+			["zone_flame_small_0007"] = {"l06_rostok"},
+			["zone_flame_small_0008"] = {"l06_rostok"},
+			["zone_flame_small_0010"] = {"l06_rostok"},
+			["zone_flame_small_0012"] = {"l11_pripyat"},
+			["zone_flame_small_0013"] = {"l11_pripyat"},
+			["zone_flame_small_0024"] = {"l11_pripyat"},
+			["zone_flame_small_0025"] = {"l11_pripyat"},
+			["lights_camp_fire_omni_r1_r2_0002"] = {"l05_bar"},
+			["lights_camp_fire_omni_r1_r2_0011"] = {"l11_pripyat"},
+			["lights_camp_fire_omni_r1_r2_0012"] = {"l11_pripyat"},
+			["lights_camp_fire_omni_r1_r2_0031"] = {"l08_yantar"}
+--			МОЖЕТ БЫТЬ ТАК:	["zone_flame_small_9999"] = {"l01_escapel02_garbagel05_barl07_military"},
+--			МОЖЕТ БЫТЬ ТАК:	["lights_camp_fire_omni_r1_r2_9999"] = {"l01_escapel02_garbagel05_barl07_military"}
+		}
+		for id=1, 65535 do
+			local obj = level.object_by_id(id)
+			if obj then
+				local name = obj:name()
+				local exc_obj = exc_tbl[name]
+				if exc_obj and string.find(exc_obj[1], lvl) then
+--					printf("EXEPTIONS: OBJ:[%s] LEVELS:[%s]", name, exc_obj[1])
+				else
+					if obj:section() == "zone_flame_small" then
+						table.insert(xr_kamp.lvl_objs, obj)
+						obj:disable_anomaly()
+					elseif string.find(name, "r1_r2") then
+						table.insert(xr_kamp.lvl_objs, obj)
+						obj:get_hanging_lamp():turn_off()
+					-- Масляные горелки (требуется доп. правка particles.xr)
+--					elseif string.find(name, "light_gas") then
+--						obj:get_hanging_lamp():turn_off()
+					end
+				end
+			end
+		end
+	end
+	if upd_time == nil then
+		upd_time = time + 10000
+	elseif upd_time < time then
+		upd_time = time + 10000
+		xr_kamp.update(time)
+	end
+	--<< Dynamic campfire mod
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)
