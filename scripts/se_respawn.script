@@ -447,9 +447,9 @@ function se_respawn:create(prob)
 			or  spawn_section == "m_poltergeist_normal_tele"
                         or  spawn_section == "m_poltergeist_normal_flame"
                         or  spawn_section == "pseudodog_strong"
-                        or  spawn_section == "zombie_weak"
-                        or  spawn_section == "zombie_normal"
-                        or  spawn_section == "zombie_strong"
+                        --or  spawn_section == "zombie_weak"
+                        --or  spawn_section == "zombie_normal"
+                        --or  spawn_section == "zombie_strong"
                         or  spawn_section == "psy_dog_radar"
                         or  spawn_section == "yan_ecolog_respawn_1"
                         or  spawn_section == "stalker" ) then
