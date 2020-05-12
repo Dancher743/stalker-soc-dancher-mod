@@ -81,10 +81,10 @@
 				<precondition>any_community_manager.check_player_money</precondition>
                 <text>sakharov_join_ecologs_dialog_2</text>
 				<action>any_community_manager.join_ecolog</action>
+				<next>4</next>
             </phrase>
 			<phrase id="3">
                 <text>sakharov_join_ecologs_dialog_3</text>
-                <next>4</next>
             </phrase>
 			<phrase id="4">
                 <text>sakharov_join_ecologs_dialog_4</text>
