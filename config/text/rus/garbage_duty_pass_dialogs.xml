@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+	<string id="garbage_duty_commander_pass_0">
+		<text>Мне надо пройти, у меня дело к бармену.</text>
+	</string>
+	<string id="garbage_duty_commander_pass_1">
+		<text>Сталкер, я же тебя предупредил, что мы кого попало не пропускаем!</text>
+	</string>		
+	<string id="garbage_duty_commander_pass_2">
+		<text>Я заплачу за проход.</text>
+	</string>	
+	<string id="garbage_duty_commander_pass_3">
+		<text>Заплатишь? Ладно... Плати 5000 рублей и проходи.</text>
+	</string>
+	<string id="garbage_duty_commander_pass_4">
+		<text>Договорились.</text>
+	</string>
+	<string id="garbage_duty_commander_pass_5">
+		<text>У меня нет денег.</text>
+	</string>
+	<string id="garbage_duty_commander_pass_6">
+		<text>Отлично, теперь проходи, и лучше чтобы у тебя действительно было важное дело к бармену. Будь осторожнее, дальше по дороге много аномалий.</text>
+	</string>
+	<string id="garbage_duty_commander_pass_7">
+		<text>Тогда в бар тебе прохода нет.</text>
+	</string>
+</game_dialogs>
