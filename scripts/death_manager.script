@@ -158,16 +158,38 @@ function keep_item(npc, item)
     end
 
     local item_id = item:id()
+	local npc_rank = ranks.get_obj_rank_name(npc)
+	local condition = 0
+	
     local item_in_slot = npc:item_in_slot(1)
     if item_in_slot ~= nil and
        item_in_slot:id() == item_id
     then
         item:unload_magazine()
     --' Тут надо уменьшить кондишн оружия
+	
+		if npc_rank == "novice" then	
+			condition = (math.random(0, 40) + 60)/100
+		elseif npc_rank == "experienced" then
+			condition = (math.random(0, 30) + 70)/100
+		elseif npc_rank == "veteran" then
+			condition = (math.random(0, 20) + 80)/100
+		elseif npc_rank == "master" then
+			condition = (math.random(0, 10) + 90)/100
+		end	
 		
-		local npc_rank = ranks.get_obj_rank_name(npc)
-		local condition = 0
-		
+		item:set_condition(condition)
+        return true
+    end
+	
+	condition = 0
+	
+    item_in_slot = npc:item_in_slot(2)
+    if item_in_slot ~= nil and
+       item_in_slot:id() == item_id
+    then
+        item:unload_magazine()
+    --' Тут надо уменьшить кондишн оружия
 		if npc_rank == "novice" then	
 			condition = (math.random(0, 40) + math.random(30, 60))/100
 		elseif npc_rank == "experienced" then
@@ -177,17 +199,8 @@ function keep_item(npc, item)
 		elseif npc_rank == "master" then
 			condition = (math.random(0, 10) + 90)/100
 		end	
-		
+	
 		item:set_condition(condition)
-        return true
-    end
-    item_in_slot = npc:item_in_slot(2)
-    if item_in_slot ~= nil and
-       item_in_slot:id() == item_id
-    then
-        item:unload_magazine()
-    --' Тут надо уменьшить кондишн оружия
-		item:set_condition((math.random(15)+75)/100)
         return true
     end
     alife():release(alife():object(item:id()), true)
