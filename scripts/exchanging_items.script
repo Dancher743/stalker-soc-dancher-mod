@@ -57,42 +57,43 @@ local all_items =
 	[2.2] = "wpn_addon_scope",
 	[3.0] = "wpn_addon_scope_susat",
 	[3.6] = "wpn_addon_silencer",
+	[4.25] = "wpn_addon_grenade_launcher",
 	[4.71] = "wpn_addon_grenade_launcher_m203",
 	
 	
 	[4.11] = "af_cristall_flower",
 	[4.41] = "af_gravi",
-	[7.02] = "af_gold_fish",
-	[6.11] = "af_drops",
+	[4.11] = "af_drops",
 	[4.72] = "af_fireball",
-	[1.1] = "af_cristall",
 	[5.2] = "af_blood",
 	[5.4] = "af_mincer_meat",
-	[5.61] = "af_electra_sparkler",
+	[4.61] = "af_electra_sparkler",
 	[5.7] = "af_electra_flash",
 	[5.8] = "af_ameba_slime",
 	[5.3] = "af_ameba_slug",
 	[5.41] = "af_ameba_mica",
-	[6.01] = "af_dummy_dummy",
-	[6.12] = "af_dummy_battery",
-	[1.2] = "af_dummy_pellicle",
-	[6.76] = "af_dummy_glassbeads",
 	[5.51] = "af_rusty_thorn",
-	[5.9] = "af_fuzz_kolobok",
+	[7.01] = "af_dummy_dummy",
+	[7.12] = "af_dummy_battery",
+	[7.5] = "af_dummy_pellicle",
+	[7.7] = "af_gold_fish",
+	[8.0] = "af_dummy_glassbeads",
+	[8.0] = "af_cristall",
+	[9.2] = "af_fuzz_kolobok",
 	
 	
 	[4.91] = "bandit_outfit",
 	[5.3] = "killer_outfit",
 	[5.81] = "monolit_outfit",
 	[5.53] = "specops_outfit",		
-	[6.8] = "military_outfit",			
-	[6.4] = "stalker_outfit",			
-	[7.09] = "scientific_outfit",	
+	[8.0] = "military_outfit",			
+	[6.4] = "stalker_outfit",
 	[10.1] = "exo_outfit",
 	[6.7] = "svoboda_light_outfit",
 	[7.7] = "svoboda_heavy_outfit",
 	[6.84] = "dolg_outfit",
 	[8.0] = "dolg_scientific_outfit",
+	[8.0] = "scientific_outfit",
 	[7.2] = "ecolog_outfit",
 	[7.5] = "protection_outfit"	
 }
@@ -177,6 +178,7 @@ local weapons_table_veteran =
 	[2.2] = "wpn_addon_scope",
 	[7.0] = "wpn_l85",
 	[7.4] = "wpn_lr300",
+	[4.25] = "wpn_addon_grenade_launcher",
 	[4.7] = "wpn_addon_grenade_launcher_m203",
 	[3.0] = "wpn_addon_scope_susat",
 	[7.3] = "wpn_sig550",	
@@ -191,6 +193,7 @@ local weapons_table_master =
 	[3.6] = "wpn_addon_silencer",
 	[4.9] = "wpn_desert_eagle",	
 	[6.0] = "wpn_spas12",
+	[4.25] = "wpn_addon_grenade_launcher",
 	[4.7] = "wpn_addon_grenade_launcher_m203",
 	[3.0] = "wpn_addon_scope_susat",	
 	[9.0] = "wpn_val",
@@ -227,7 +230,7 @@ local arts_table_veteran =
 	[4.0] = "af_medusa",
 	[4.1] = "af_cristall_flower",
 	[4.4] = "af_gravi",
-	[6.1] = "af_drops",
+	[4.1] = "af_drops",
 	[4.7] = "af_fireball",
 	[5.2] = "af_blood",
 	[5.4] = "af_mincer_meat",
@@ -235,7 +238,6 @@ local arts_table_veteran =
 	[5.3] = "af_ameba_slug",
 	[5.6] = "af_ameba_mica",
 	[5.5] = "af_rusty_thorn",
-	[5.9] = "af_fuzz_kolobok"
 }
 
 local arts_table_master = 
@@ -243,21 +245,18 @@ local arts_table_master =
 	[4.0] = "af_medusa",
 	[4.1] = "af_cristall_flower",
 	[4.4] = "af_gravi",
-	[7.0] = "af_gold_fish",
-	[6.1] = "af_drops",
+	[7.7] = "af_gold_fish",
+	[4.1] = "af_drops",
 	[4.7] = "af_fireball",
 	[5.2] = "af_blood",
 	[5.4] = "af_mincer_meat",
-	[5.6] = "af_electra_sparkler",
+	[4.6] = "af_electra_sparkler",
 	[5.7] = "af_electra_flash",
 	[5.8] = "af_ameba_slime",
 	[5.3] = "af_ameba_slug",
-	[5.4] = "af_ameba_mica",
-	[6.0] = "af_dummy_dummy",
-	[6.1] = "af_dummy_battery",
-	[6.7] = "af_dummy_glassbeads",
 	[5.5] = "af_rusty_thorn",
-	[5.9] = "af_fuzz_kolobok"
+	[5.4] = "af_ameba_mica",
+	[7.0] = "af_dummy_dummy",
 }
 
 
@@ -271,8 +270,7 @@ local outfits_table_experienced =
 {
 	[5.0] = "novice_outfit",
 	[4.9] = "bandit_outfit",
-	[5.3] = "killer_outfit",		
-	[6.8] = "military_outfit",			
+	[5.3] = "killer_outfit",					
 	[6.4] = "stalker_outfit",			
 	[6.7] = "svoboda_light_outfit",
 	[6.8] = "dolg_outfit"
@@ -281,24 +279,18 @@ local outfits_table_experienced =
 local outfits_table_veteran = 
 {
 	[5.8] = "monolit_outfit",
-	[6.95] = "specops_outfit",		
-	[6.8] = "military_outfit",			
-	[6.4] = "stalker_outfit",			
-	[7.0] = "scientific_outfit",		
+	[6.95] = "specops_outfit",							
 	[7.7] = "svoboda_heavy_outfit",
-	[8.0] = "dolg_scientific_outfit",
 	[7.2] = "ecolog_outfit",
 	[7.5] = "protection_outfit"	
 }
 
 local outfits_table_master = 
 {
-	[5.5] = "specops_outfit",
-	[6.8] = "military_outfit",									
-	[10.0] = "exo_outfit",
-	[7.7] = "svoboda_heavy_outfit",
+	[8.0] = "scientific_outfit",
+	[8.0] = "military_outfit",
 	[8.0] = "dolg_scientific_outfit",
-	[7.5] = "protection_outfit"	
+	[10.0] = "exo_outfit",	
 }
 
 ---------------------------------------
@@ -312,13 +304,13 @@ local InArt, InOutf, InItm, InWpn, InItem, ProposedArtRank, ProposedOutfRank, Pr
 --------------------------- Dialog ---------------------------
 local exchanging_items_intro_phrase = 
 {
-    "Эй, Сталкер, поменяемся?",
-    "Меняться будем, Сталкер?",
+    "Эй, сталкер, поменяемся?",
+    "Меняться будем, сталкер?",
     "Есть чего на обмен выдвинуть?",
     "Махнемся не глядя?",
     "Меняться будешь?",
     "Не найдется желания обменяться?",
-    "Здраствуй, Сталкер! Махнемся не глядя?",
+    "Здраствуй, сталкер! Махнемся не глядя?",
     "Приветствую! Обменяться не хочешь?",
     "Эй, брат, привет! Может махнемся?"
 }
