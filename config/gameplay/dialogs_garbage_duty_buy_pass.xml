@@ -40,4 +40,25 @@
             </phrase>
         </phrase_list>
     </dialog>
+	
+	<dialog id="gar_dolg_blokpost_killboards_dialog">
+		<has_info>gar_free_pass</has_info>
+        <has_info>gar_kill_boars_request</has_info>
+		<dont_has_info>gar_kill_boars_with_bought_pass_done</dont_has_info>
+		<phrase_list>
+            <phrase id="0">
+				<text>garbage_duty_commander_pass_kill_boards_0</text>
+				<next>1</next>
+            </phrase>
+			<phrase id="1">
+				<text>gar_dolg_blokpost_1231</text>
+				<action>garbage_dialogs.blokpost_commander_payment</action>
+				<next>2</next>
+            </phrase>
+			<phrase id="2">
+				<text>gar_dolg_blokpost_12311</text>
+				<give_info>gar_kill_boars_with_bought_pass_done</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>	
 </game_dialogs>

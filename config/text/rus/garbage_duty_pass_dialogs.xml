@@ -24,4 +24,7 @@
 	<string id="garbage_duty_commander_pass_7">
 		<text>Тогда в бар тебе прохода нет.</text>
 	</string>
+	<string id="garbage_duty_commander_pass_kill_boards_0">
+		<text>Перебил я кабанов.</text>
+	</string>
 </game_dialogs>

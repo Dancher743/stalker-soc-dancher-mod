@@ -494,6 +494,7 @@
             <phrase id="1231">
                 <text>gar_dolg_blokpost_1231</text>
 				<action>garbage_dialogs.blokpost_commander_payment</action>
+				<give_info>gar_kill_boars_with_bought_pass_done</give_info>
                 <next>12311</next>
             </phrase>
             <phrase id="1">
