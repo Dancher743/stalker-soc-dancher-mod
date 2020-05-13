@@ -16,14 +16,14 @@ local all_items =
 	[1.3] = "kolbasa", 
 	[1.5] = "conserva", 
 	[2.7] = "vodka", 
-	[2.1] = "guitar_a", 
-	[2.0] = "harmonica_a", 
+	[3.0] = "guitar_a", 
+	[2.3] = "harmonica_a", 
 	[3.3] = "antirad", 
 	[2.9] = "medkit", 
 	[3.4] = "medkit_army", 
 	[3.9] = "medkit_scientic", 
 	[2.5] = "energy_drink", 
-	[2.6] = "bandage",
+	--[0.5] = "bandage",
 
 	[4.3] = "wpn_pb",
 	[4.2] = "wpn_fort",
@@ -104,11 +104,11 @@ local items_table_novice =
 	[1.0] = "bread", 
 	[1.3] = "kolbasa", 
 	[1.5] = "conserva", 
-	[2.1] = "guitar_a", 
-	[2.0] = "harmonica_a", 
+	--[2.1] = "guitar_a", 
+	--[2.0] = "harmonica_a", 
 	[2.9] = "medkit", 
 	[2.5] = "energy_drink", 
-	[2.7] = "bandage"
+	--[0.5] = "bandage"
 }
 	
 local items_table_experienced = 
@@ -117,12 +117,12 @@ local items_table_experienced =
 	[1.3] = "kolbasa", 
 	[1.5] = "conserva", 
 	[2.7] = "vodka", 
-	[2.1] = "guitar_a", 
-	[2.0] = "harmonica_a", 
+	--[2.1] = "guitar_a", 
+	--[2.0] = "harmonica_a", 
 	[3.3] = "antirad", 
 	[2.9] = "medkit", 
 	[2.5] = "energy_drink", 
-	[2.6] = "bandage"
+	--[0.5] = "bandage"
 }
 
 local items_table_veteran = 
@@ -131,14 +131,14 @@ local items_table_veteran =
 	[1.3] = "kolbasa", 
 	[1.5] = "conserva", 
 	[2.7] = "vodka", 
-	[2.1] = "guitar_a", 
-	[2.0] = "harmonica_a", 
+	--[2.1] = "guitar_a", 
+	--[2.0] = "harmonica_a", 
 	[3.3] = "antirad", 
 	[2.9] = "medkit", 
 	[3.4] = "medkit_army", 
 	[3.9] = "medkit_scientic", 
 	[2.5] = "energy_drink", 
-	[2.7] = "bandage"
+	--[0.5] = "bandage"
 }
 
 local items_table_master = items_table_veteran
@@ -319,16 +319,16 @@ local exchanging_items_phr_1 = "А чтож не поменяться? Давай поменяемся. Смотри, 
 local exchanging_items_phr_2 = "Не-не, не буду я с тобой меняться."
 
 local exchanging_items_phr_3 = "Я бы артефакт взял."
-local exchanging_items_phr_4 = "Я бы костюм взял."
-local exchanging_items_phr_5 = "Я бы предмет взял."
+local exchanging_items_phr_4 = "Я бы медикамент взял."
+local exchanging_items_phr_5 = "Я бы костюм взял."
 local exchanging_items_phr_6 = "Я бы оружие взял."
 
 
-local exchanging_items_phr_7 = "Хорошо. А в замен я у тебя возьму во это: "
+local exchanging_items_phr_7 = "Хорошо. А в замен я у тебя возьму вот это."
 local exchanging_items_phr_8 = "К сожалению, я не нашёл у тебя ценного предмета для обмена. Подваливай, когда разбогатеешь."
 
 local exchanging_items_phr_9 = "Хорошо, я согласен, меняемся. Держи, это тебе."
-local exchanging_items_phr_10 = "Вот и славненько. Заберай свое. "
+local exchanging_items_phr_10 = "Вот и славненько. Заберай свое."
 
 local exchanging_items_phr_11 = "Я передумал меняться."
 local exchanging_items_phr_12 = "Дело твое."
@@ -345,11 +345,11 @@ function init_exchanging_items_dialog(dlg)
 	phr3:GetPhraseScript():AddAction("exchanging_items.SelectArt")
 	
 	phr4 = dlg:AddPhrase(exchanging_items_phr_4, "4", "1", -10000)
-	phr4:GetPhraseScript():AddAction("exchanging_items.SelectOutf")
+	phr4:GetPhraseScript():AddAction("exchanging_items.SelectItm")
 	
 	phr5 = dlg:AddPhrase(exchanging_items_phr_5, "5", "1", -10000)
-	phr5:GetPhraseScript():AddAction("exchanging_items.SelectItm")
-
+	phr5:GetPhraseScript():AddAction("exchanging_items.SelectOutf")
+	
 	phr6 = dlg:AddPhrase(exchanging_items_phr_6, "6", "1", -10000)
 	phr6:GetPhraseScript():AddAction("exchanging_items.SelectWpn")
 	
@@ -435,8 +435,8 @@ function give_message_proposed_items(first_speaker, second_speaker)
 		InItm = Item
 		InWpn = Wpn
 	  db.actor:give_talk_message("%c[255,160,160,160]Артефакт\\n%c[default]"..TxtArt, "ui\\ui_iconstotal", Frect():set(0,282,83,47), "iconed_answer_item")
+	  db.actor:give_talk_message("%c[255,160,160,160]Медикамент\\n%c[default]"..TxtItm, "ui\\ui_iconstotal", Frect():set(0,188,83,47), "iconed_answer_item")
 	  db.actor:give_talk_message("%c[255,160,160,160]Костюм\\n%c[default]"..TxtOutfit, "ui\\ui_iconstotal", Frect():set(0,658,83,47), "iconed_answer_item")
-	  db.actor:give_talk_message("%c[255,160,160,160]Предмет\\n%c[default]"..TxtItm, "ui\\ui_iconstotal", Frect():set(0,94,83,47), "iconed_answer_item")
 	  db.actor:give_talk_message("%c[255,160,160,160]Оружие\\n%c[default]"..TxtWpn, "ui\\ui_iconstotal", Frect():set(0,517,83,47), "iconed_answer_item")
 end
 
