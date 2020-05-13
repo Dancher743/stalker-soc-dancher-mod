@@ -95,7 +95,35 @@ local all_items =
 	[8.0] = "dolg_scientific_outfit",
 	[8.0] = "scientific_outfit",
 	[7.2] = "ecolog_outfit",
-	[7.5] = "protection_outfit"	
+	[7.5] = "protection_outfit",
+
+
+	[1.0] = "ammo_9x18_fmj",
+	[1.5] = "ammo_9x18_pmm",
+	[1.5] = "ammo_9x19_pbp",
+	[2.0] = "ammo_9x19_fmj",
+	[1.5] = "ammo_12x70_buck",
+	[2.0] = "ammo_12x76_dart",
+	[1.5] = "ammo_12x76_zhekan",
+	[2.3] = "ammo_11.43x23_hydro",
+	[2.0] = "ammo_11.43x23_fmj",
+	[3.0] = "ammo_5.45x39_ap",
+	[2.0] = "ammo_5.45x39_fmj",
+	[3.0] = "ammo_9x39_sp5",
+	[4.0] = "ammo_9x39_ap",
+	[2.0] = "ammo_9x39_pab9",
+	[2.0] = "ammo_5.56x45_ss190",
+	[3.0] = "ammo_5.56x45_ap",
+	[5.0] = "ammo_7.62x54_7h14",
+	[3.0] = "ammo_7.62x54_7h1",
+	[6.0] = "ammo_7.62x54_ap",
+	[7.0] = "ammo_og-7b",
+	[3.0] = "ammo_vog-25p",
+	[3.0] = "ammo_vog-25",
+	[3.0] = "ammo_m209",
+    [2.2] = "grenade_rgd5",
+	[2.8] = "grenade_f1",
+	[8.0] = "ammo_gauss"	
 }
 
 
@@ -293,12 +321,60 @@ local outfits_table_master =
 	[10.0] = "exo_outfit",	
 }
 
+local ammo_table_novice = 
+{	
+	[1.0] = "ammo_9x18_fmj",
+	[1.5] = "ammo_9x18_pmm",
+	[1.5] = "ammo_12x70_buck"
+}
+
+local ammo_table_experienced = 
+{	
+	[1.5] = "ammo_9x19_pbp",
+	[2.0] = "ammo_9x19_fmj",
+	[1.5] = "ammo_12x70_buck",
+	[2.0] = "ammo_12x76_dart",
+	[1.5] = "ammo_12x76_zhekan",
+	[3.0] = "ammo_5.45x39_ap",
+	[2.0] = "ammo_5.45x39_fmj"
+}
+
+local ammo_table_veteran = 
+{	
+	[3.0] = "ammo_5.45x39_ap",
+	[2.0] = "ammo_5.45x39_fmj",
+	[2.0] = "ammo_5.56x45_ss190",
+	[3.0] = "ammo_5.56x45_ap",
+	[2.3] = "ammo_11.43x23_hydro",
+	[2.0] = "ammo_11.43x23_fmj",
+	[3.0] = "ammo_vog-25p",
+	[3.0] = "ammo_vog-25",
+	[3.0] = "ammo_m209"
+}
+
+local ammo_table_master = 
+{	
+	[2.3] = "ammo_11.43x23_hydro",
+	[2.0] = "ammo_11.43x23_fmj",
+	[3.0] = "ammo_9x39_sp5",
+	[4.0] = "ammo_9x39_ap",
+	[2.0] = "ammo_9x39_pab9",
+	[5.0] = "ammo_7.62x54_7h14",
+	[3.0] = "ammo_7.62x54_7h1",
+	[6.0] = "ammo_7.62x54_ap",
+	[7.0] = "ammo_og-7b",
+	[3.0] = "ammo_vog-25p",
+	[3.0] = "ammo_vog-25",
+	[3.0] = "ammo_m209",
+	[8.0] = "ammo_gauss"
+}
+
 ---------------------------------------
 
 tActorItems = {}
 local Pre = 0
 
-local InArt, InOutf, InItm, InWpn, InItem, ProposedArtRank, ProposedOutfRank, ProposedItmRank, ProposedWpnRank
+local InArt, InOutf, InItm, InWpn, InItem, ProposedArtRank, ProposedOutfRank, ProposedItmRank, ProposedWpnRank, ProposedAmmoRank
 
 	
 --------------------------- Dialog ---------------------------
@@ -322,19 +398,20 @@ local exchanging_items_phr_3 = "Я бы артефакт взял."
 local exchanging_items_phr_4 = "Я бы медикамент взял."
 local exchanging_items_phr_5 = "Я бы костюм взял."
 local exchanging_items_phr_6 = "Я бы оружие взял."
+local exchanging_items_phr_7 = "Я бы патроны взял."
 
 
-local exchanging_items_phr_7 = "Хорошо. А в замен я у тебя возьму вот это."
-local exchanging_items_phr_8 = "К сожалению, я не нашёл у тебя ценного предмета для обмена. Подваливай, когда разбогатеешь."
+local exchanging_items_phr_8 = "Хорошо. А в замен я у тебя возьму вот это."
+local exchanging_items_phr_9 = "К сожалению, я не нашёл у тебя ценного предмета для обмена. Подваливай, когда разбогатеешь."
 
-local exchanging_items_phr_9 = "Хорошо, я согласен, меняемся. Держи, это тебе."
-local exchanging_items_phr_10 = "Вот и славненько. Заберай свое."
+local exchanging_items_phr_10 = "Хорошо, я согласен, меняемся. Держи, это тебе."
+local exchanging_items_phr_11 = "Вот и славненько. Заберай свое."
 
-local exchanging_items_phr_11 = "Я передумал меняться."
-local exchanging_items_phr_12 = "Дело твое."
+local exchanging_items_phr_12 = "Я передумал меняться."
+local exchanging_items_phr_13 = "Дело твое."
 
 function init_exchanging_items_dialog(dlg)
-   local intro_phrase = exchanging_items_intro_phrase[math.random(1, table.getn(exchanging_items_intro_phrase))]
+	local intro_phrase = exchanging_items_intro_phrase[math.random(1, table.getn(exchanging_items_intro_phrase))]
     phr0 = dlg:AddPhrase(intro_phrase, "0", "-1", -10000)
 	phr1 = dlg:AddPhrase(exchanging_items_phr_1, "1", "0", -10000)
 --        phr1:GetPhraseScript():AddPrecondition("exchanging_items.exchange_enabled")
@@ -342,102 +419,119 @@ function init_exchanging_items_dialog(dlg)
 --	phr2 = dlg:AddPhrase(exchanging_items_phr_2, "2", "0", -10000)
 --        phr2:GetPhraseScript():AddPrecondition("exchanging_items.refusal_to_exchange")
 	phr3 = dlg:AddPhrase(exchanging_items_phr_3, "3", "1", -10000)
-	phr3:GetPhraseScript():AddAction("exchanging_items.SelectArt")
-	
+	    phr3:GetPhraseScript():AddAction("exchanging_items.SelectArt")
 	phr4 = dlg:AddPhrase(exchanging_items_phr_4, "4", "1", -10000)
-	phr4:GetPhraseScript():AddAction("exchanging_items.SelectItm")
-	
+	    phr4:GetPhraseScript():AddAction("exchanging_items.SelectWpn")
 	phr5 = dlg:AddPhrase(exchanging_items_phr_5, "5", "1", -10000)
-	phr5:GetPhraseScript():AddAction("exchanging_items.SelectOutf")
-	
+	    phr5:GetPhraseScript():AddAction("exchanging_items.SelectOutf")
 	phr6 = dlg:AddPhrase(exchanging_items_phr_6, "6", "1", -10000)
-	phr6:GetPhraseScript():AddAction("exchanging_items.SelectWpn")
+	    phr6:GetPhraseScript():AddAction("exchanging_items.SelectItm")
+	phr7 = dlg:AddPhrase(exchanging_items_phr_7, "7", "1", -10000)
+	    phr7:GetPhraseScript():AddAction("exchanging_items.SelectAmmo")	
 	
-	phr7 = dlg:AddPhrase(exchanging_items_phr_7, "7", "3", -10000)
-        phr7:GetPhraseScript():AddPrecondition("exchanging_items.PrecondActorItems")
-		phr7:GetPhraseScript():AddAction("exchanging_items.MssgAbstractedItem")
-	phr7Dublicate = dlg:AddPhrase(exchanging_items_phr_7, "7", "4", -10000)
-	phr7Dublicate = dlg:AddPhrase(exchanging_items_phr_7, "7", "5", -10000)
-	phr7Dublicate = dlg:AddPhrase(exchanging_items_phr_7, "7", "6", -10000)
 	
 	phr8 = dlg:AddPhrase(exchanging_items_phr_8, "8", "3", -10000)
-       phr8:GetPhraseScript():AddPrecondition("exchanging_items.PrecondActorItems__")
+    phr8:GetPhraseScript():AddPrecondition("exchanging_items.PrecondActorItems")
+	phr8:GetPhraseScript():AddAction("exchanging_items.MssgAbstractedItem")
 	phr8Dublicate = dlg:AddPhrase(exchanging_items_phr_8, "8", "4", -10000)
 	phr8Dublicate = dlg:AddPhrase(exchanging_items_phr_8, "8", "5", -10000)
 	phr8Dublicate = dlg:AddPhrase(exchanging_items_phr_8, "8", "6", -10000)
+	phr8Dublicate = dlg:AddPhrase(exchanging_items_phr_8, "8", "7", -10000)
 	
-	phr9 = dlg:AddPhrase(exchanging_items_phr_9, "9", "7", -10000)
-		phr9:GetPhraseScript():AddAction("exchanging_items.give_item_to_npc")
-	phr10 = dlg:AddPhrase(exchanging_items_phr_10, "10", "9", -10000)
-		phr10:GetPhraseScript():AddAction("exchanging_items.give_item_to_actor")
+	phr9 = dlg:AddPhrase(exchanging_items_phr_8, "9", "3", -10000)
+    phr9:GetPhraseScript():AddPrecondition("exchanging_items.PrecondActorItems__")
+	phr9Dublicate = dlg:AddPhrase(exchanging_items_phr_9, "9", "4", -10000)
+	phr9Dublicate = dlg:AddPhrase(exchanging_items_phr_9, "9", "5", -10000)
+	phr9Dublicate = dlg:AddPhrase(exchanging_items_phr_9, "9", "6", -10000)
+	phr9Dublicate = dlg:AddPhrase(exchanging_items_phr_9, "9", "7", -10000)
 	
-	phr11 = dlg:AddPhrase(exchanging_items_phr_11, "11", "1", -10000)
-	phr11Dublicate = dlg:AddPhrase(exchanging_items_phr_11, "11", "7", -10000)
-	phr12 = dlg:AddPhrase(exchanging_items_phr_12, "12", "11", -10000)
+	phr10 = dlg:AddPhrase(exchanging_items_phr_10, "10", "8", -10000)
+	phr10:GetPhraseScript():AddAction("exchanging_items.give_item_to_npc")
+	
+	
+	phr11 = dlg:AddPhrase(exchanging_items_phr_11, "11", "10", -10000)
+	phr11:GetPhraseScript():AddAction("exchanging_items.give_item_to_actor")
+	
+	phr12 = dlg:AddPhrase(exchanging_items_phr_12, "12", "1", -10000)
+	phr12Dublicate = dlg:AddPhrase(exchanging_items_phr_11, "11", "8", -10000)
+	
+	phr13 = dlg:AddPhrase(exchanging_items_phr_13, "13", "12", -10000)
 end
 
 -------------------------------------------------------------
 
 function give_message_proposed_items(first_speaker, second_speaker)	
- local Art, Item, Outfit, Wpn, TxtArt, TxtItm, TxtOutfit, TxtWpn
+ local Art, Item, Outfit, Wpn, Ammo, TxtArt, TxtItm, TxtOutfit, TxtWpn
  local npc_rank = ranks.get_obj_rank_name(first_speaker) 
     if npc_rank == "novice" then		
         Art = GetRndItemFromTable(arts_table_novice)
 		Outfit = GetRndItemFromTable(outfits_table_novice)
 		Item = GetRndItemFromTable(items_table_novice)
 		Wpn = GetRndItemFromTable(weapons_table_novice)
-
+		Ammo = GetRndItemFromTable(ammo_table_novice)
+	
 	    ProposedArtRank = Get_Number_Item(Art, arts_table_novice)
         ProposedOutfRank = Get_Number_Item(Outfit, outfits_table_novice)
         ProposedItmRank = Get_Number_Item(Item, items_table_novice)
         ProposedWpnRank = Get_Number_Item(Wpn, weapons_table_novice)
+		ProposedAmmoRank = Get_Number_Item(Ammo, ammo_table_novice)
 		
     elseif npc_rank == "experienced" then		
         Art = GetRndItemFromTable(arts_table_experienced)
 		Outfit = GetRndItemFromTable(outfits_table_experienced)
 		Item = GetRndItemFromTable(items_table_experienced)
 		Wpn = GetRndItemFromTable(weapons_table_experienced)
+		Ammo = GetRndItemFromTable(ammo_table_experienced)
 		
 	    ProposedArtRank = Get_Number_Item(Art, arts_table_experienced)
         ProposedOutfRank = Get_Number_Item(Outfit, outfits_table_experienced)
         ProposedItmRank = Get_Number_Item(Item, items_table_experienced)
         ProposedWpnRank = Get_Number_Item(Wpn, weapons_table_experienced)
+		ProposedAmmoRank = Get_Number_Item(Ammo, ammo_table_experienced)
 		
     elseif npc_rank == "veteran" then
         Art = GetRndItemFromTable(arts_table_veteran)
 		Outfit = GetRndItemFromTable(outfits_table_veteran)
 		Item = GetRndItemFromTable(items_table_veteran)
 		Wpn = GetRndItemFromTable(weapons_table_veteran)
-
+		Ammo = GetRndItemFromTable(ammo_table_veteran)
+		
 	    ProposedArtRank = Get_Number_Item(Art, arts_table_veteran)
         ProposedOutfRank = Get_Number_Item(Outfit, outfits_table_veteran)
         ProposedItmRank = Get_Number_Item(Item, items_table_veteran)
         ProposedWpnRank = Get_Number_Item(Wpn, weapons_table_veteran)
+		ProposedAmmoRank = Get_Number_Item(Ammo, ammo_table_veteran)
 		
     elseif npc_rank == "master" then
         Art = GetRndItemFromTable(arts_table_master)
 		Outfit = GetRndItemFromTable(outfits_table_master)
 		Item = GetRndItemFromTable(items_table_master)
 		Wpn = GetRndItemFromTable(weapons_table_master)
+		Ammo = GetRndItemFromTable(ammo_table_master)
 	
 	    ProposedArtRank = Get_Number_Item(Art, arts_table_master)
         ProposedOutfRank = Get_Number_Item(Outfit, outfits_table_master)
         ProposedItmRank = Get_Number_Item(Item, items_table_master)
         ProposedWpnRank = Get_Number_Item(Wpn, weapons_table_master)
+		ProposedWpnRank = Get_Number_Item(Ammo, ammo_table_master)
 	end
 	    TxtArt = game.translate_string(get_inv_name(Art))
 		TxtOutfit = game.translate_string(get_inv_name(Outfit))
 	    TxtItm = game.translate_string(get_inv_name(Item))
 		TxtWpn = game.translate_string(get_inv_name(Wpn))
+		TxtAmmo = game.translate_string(get_inv_name(Ammo))
 		
 		InArt = Art
 		InOutf = Outfit
 		InItm = Item
 		InWpn = Wpn
+		InAmmo = Ammo
+		
 	  db.actor:give_talk_message("%c[255,160,160,160]Артефакт\\n%c[default]"..TxtArt, "ui\\ui_iconstotal", Frect():set(0,282,83,47), "iconed_answer_item")
-	  db.actor:give_talk_message("%c[255,160,160,160]Медикамент\\n%c[default]"..TxtItm, "ui\\ui_iconstotal", Frect():set(0,188,83,47), "iconed_answer_item")
+	  db.actor:give_talk_message("%c[255,160,160,160]Медикамент\\n%c[default]"..TxtItm, "ui\\ui_iconstotal", Frect():set(83,893,83,47), "iconed_answer_item")
 	  db.actor:give_talk_message("%c[255,160,160,160]Костюм\\n%c[default]"..TxtOutfit, "ui\\ui_iconstotal", Frect():set(0,658,83,47), "iconed_answer_item")
 	  db.actor:give_talk_message("%c[255,160,160,160]Оружие\\n%c[default]"..TxtWpn, "ui\\ui_iconstotal", Frect():set(0,517,83,47), "iconed_answer_item")
+	  db.actor:give_talk_message("%c[255,160,160,160]Патроны\\n%c[default]"..TxtAmmo, "ui\\ui_iconstotal", Frect():set(0,188,83,47), "iconed_answer_item")
 end
 
 function MssgAbstractedItem()
@@ -487,6 +581,11 @@ end
 function SelectWpn()
 	StoreActorItemsInTable(ProposedWpnRank)
 	InItem = InWpn
+end
+
+function SelectAmmo()
+	StoreActorItemsInTable(ProposedAmmoRank)
+	InItem = InAmmo
 end
 
 function StoreActorItemsInTable(ItemRank)
