@@ -32,7 +32,8 @@ local all_items =
 	[4.1] = "wpn_colt1911",
 	[4.4] = "wpn_usp",
 	[4.8] = "wpn_desert_eagle",
-	[4.5] = "wpn_bm16",		
+	[4.5] = "wpn_bm16",
+	[5.0] = "wpn_toz34",		
 	[5.5] = "wpn_wincheaster1300",
 	[6.0] = "wpn_spas12",
 	[5.6] = "wpn_ak74u",
@@ -145,6 +146,7 @@ local items_table_master = items_table_veteran
 local weapons_table_novice = 
 {
 	[4.3] = "wpn_pb",
+	[5.0] = "wpn_toz34",
 	[3.6] = "wpn_addon_silencer",
 	[4.2] = "wpn_fort",
 	[4.7] = "wpn_walther",
@@ -324,10 +326,11 @@ local exchanging_items_intro_phrase =
 local exchanging_items_phr_1 = "А чтож не поменяться? Давай поменяемся. Смотри, что могу тебе предложить, выбирай: "
 local exchanging_items_phr_2 = "Не-не, не буду я с тобой меняться."
 
-local exchanging_items_phr_3 = "Я бы артефакт взял ..."
-local exchanging_items_phr_4 = "Я бы оружие взял ..."
-local exchanging_items_phr_5 = "Я бы костюм взял ..."
-local exchanging_items_phr_6 = "Я бы предмет взял ..."
+local exchanging_items_phr_3 = "Я бы артефакт взял."
+local exchanging_items_phr_4 = "Я бы костюм взял."
+local exchanging_items_phr_5 = "Я бы предмет взял."
+local exchanging_items_phr_6 = "Я бы оружие взял."
+
 
 local exchanging_items_phr_7 = "Хорошо. А в замен я у тебя возьму во это: "
 local exchanging_items_phr_8 = "Думаю, ни какого обмена у нас с тобой не будет и быть не может. Смотрю, у тебя нечего путного взять. Подваливай, когда разбогатеешь."
@@ -347,13 +350,16 @@ function init_exchanging_items_dialog(dlg)
 --	phr2 = dlg:AddPhrase(exchanging_items_phr_2, "2", "0", -10000)
 --        phr2:GetPhraseScript():AddPrecondition("exchanging_items.refusal_to_exchange")
 	phr3 = dlg:AddPhrase(exchanging_items_phr_3, "3", "1", -10000)
-	    phr3:GetPhraseScript():AddAction("exchanging_items.SelectArt")
+	phr3:GetPhraseScript():AddAction("exchanging_items.SelectArt")
+	
 	phr4 = dlg:AddPhrase(exchanging_items_phr_4, "4", "1", -10000)
-	    phr4:GetPhraseScript():AddAction("exchanging_items.SelectWpn")
+	phr4:GetPhraseScript():AddAction("exchanging_items.SelectOutf")
+	
 	phr5 = dlg:AddPhrase(exchanging_items_phr_5, "5", "1", -10000)
-	    phr5:GetPhraseScript():AddAction("exchanging_items.SelectOutf")
+	phr5:GetPhraseScript():AddAction("exchanging_items.SelectItm")
+
 	phr6 = dlg:AddPhrase(exchanging_items_phr_6, "6", "1", -10000)
-	    phr6:GetPhraseScript():AddAction("exchanging_items.SelectItm")
+	phr6:GetPhraseScript():AddAction("exchanging_items.SelectWpn")
 	
 	phr7 = dlg:AddPhrase(exchanging_items_phr_7, "7", "3", -10000)
         phr7:GetPhraseScript():AddPrecondition("exchanging_items.PrecondActorItems")
@@ -436,17 +442,17 @@ function give_message_proposed_items(first_speaker, second_speaker)
 		InOutf = Outfit
 		InItm = Item
 		InWpn = Wpn
-	  db.actor:give_talk_message("%c[255,250,194,87]Артефакт:%c[255,87,250,240] "..TxtArt, "ui\\ui_iconstotal", Frect():set(0,188,83,47), "iconed_answer_item")
-	  db.actor:give_talk_message("%c[255,250,194,87]Костюм:%c[255,87,250,240] "..TxtOutfit, "ui\\ui_iconstotal", Frect():set(0,329,83,47), "iconed_answer_item")
-	  db.actor:give_talk_message("%c[255,250,194,87]Предмет:%c[255,87,250,240] "..TxtItm, "ui\\ui_iconstotal", Frect():set(0,423,83,47), "iconed_answer_item")
-	  db.actor:give_talk_message("%c[255,250,194,87]Оружие:%c[255,87,250,240] "..TxtWpn, "ui\\ui_iconstotal", Frect():set(0,517,83,47), "iconed_answer_item")
+	  db.actor:give_talk_message("%c[255,160,160,160]Артефакт\\n%c[default]"..TxtArt, "ui\\ui_iconstotal", Frect():set(0,282,83,47), "iconed_answer_item")
+	  db.actor:give_talk_message("%c[255,160,160,160]Костюм\\n%c[default]"..TxtOutfit, "ui\\ui_iconstotal", Frect():set(0,658,83,47), "iconed_answer_item")
+	  db.actor:give_talk_message("%c[255,160,160,160]Предмет\\n%c[default]"..TxtItm, "ui\\ui_iconstotal", Frect():set(0,94,83,47), "iconed_answer_item")
+	  db.actor:give_talk_message("%c[255,160,160,160]Оружие\\n%c[default]"..TxtWpn, "ui\\ui_iconstotal", Frect():set(0,517,83,47), "iconed_answer_item")
 end
 
 function MssgAbstractedItem()
     local item = tActorItems[math.random(1, table.getn(tActorItems))]
     OutItem = item
-    local text = game.translate_string(get_inv_name(item))
-    db.actor:give_talk_message(text, "ui\\ui_iconstotal", Frect():set(0,282,83,47), "iconed_answer_item")
+    local text = "%c[255,160,160,160]Ваш предмет\\n%c[default]"..game.translate_string(get_inv_name(item))
+    db.actor:give_talk_message(text, "ui\\ui_iconstotal", Frect():set(83,470,83,47), "iconed_answer_item")
 end
 --[[
 function get_inv_name(section)
