@@ -325,10 +325,10 @@ local exchanging_items_phr_6 = "Я бы оружие взял."
 
 
 local exchanging_items_phr_7 = "Хорошо. А в замен я у тебя возьму во это: "
-local exchanging_items_phr_8 = "Думаю, ни какого обмена у нас с тобой не будет и быть не может. Смотрю, у тебя нечего путного взять. Подваливай, когда разбогатеешь."
+local exchanging_items_phr_8 = "К сожалению, я не нашёл у тебя ценного предмета для обмена. Подваливай, когда разбогатеешь."
 
 local exchanging_items_phr_9 = "Хорошо, я согласен, меняемся. Держи, это тебе."
-local exchanging_items_phr_10 = "Вот и славненько. Заберай свое: "
+local exchanging_items_phr_10 = "Вот и славненько. Заберай свое. "
 
 local exchanging_items_phr_11 = "Я передумал меняться."
 local exchanging_items_phr_12 = "Дело твое."
