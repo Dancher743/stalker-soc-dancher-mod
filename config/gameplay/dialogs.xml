@@ -238,4 +238,9 @@
             </phrase>
         </phrase_list>
     </dialog>
+	
+	<!-- Обмен предметами с НПС -->
+	<dialog id="dm_dialog_exchanging_items">
+		<init_func>exchanging_items.init_exchanging_items_dialog</init_func> 
+    </dialog>	
 </game_dialogs>
