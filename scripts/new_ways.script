@@ -13,17 +13,23 @@ function spawn_ways()
 	--aes2_to_generators()
 	--secretlab_to_x10()
 	--x10_to_secretlab()
+	
 	sa_spawn.aes1_to_aes2()
 	sa_spawn.aes2_to_aes1()
 	sa_spawn.aes1_to_pripyat()
-	sa_spawn.garbage_to_agroprom()
-	sa_spawn.agroprom_to_garbage()
-	--sa_spawn.escape_to_darkvalley()
 	sa_spawn.sarcofag_to_aes1()
+	
+	--sa_spawn.garbage_to_agroprom()
+	--sa_spawn.agroprom_to_garbage()
+	
+	--sa_spawn.escape_to_darkvalley()
+	
 	--sa_spawn.agroprom_to_yantar()
 	--sa_spawn.yantar_to_agroprom()
-	sa_spawn.garbage_to_darkvalley()
-	sa_spawn.darkvalley_to_garbage()
+	
+	--sa_spawn.garbage_to_darkvalley()
+	--sa_spawn.darkvalley_to_garbage()
+	
 	--sa_spawn.underground_to_agroprom_1()
 	--sa_spawn.agroprom_to_underground_1()
 	--sa_spawn.underground_to_agroprom_2()
@@ -32,18 +38,72 @@ function spawn_ways()
 	--sa_spawn.agroprom_to_underground_3()
 end
 
+-- ‘ункции, добавл€ющие новые пути --
+
 function add_way_escape_to_darkvalley()
 	sa_spawn.escape_to_darkvalley()
 	xr_effects.start_timer(2000, notificate_escape_to_darkvalley)
 end
 
-function add_ways_yantar_agroprom()
+function add_ways_yantar_agroprom_back()
 	sa_spawn.yantar_to_agroprom()
 	xr_effects.start_timer(2000, notificate_ways_yantar_to_agroprom)
 	
 	sa_spawn.agroprom_to_yantar()
 	xr_effects.start_timer(3000, notificate_ways_agroprom_to_yantar)	
 end
+
+function add_ways_garabge_agroprom_back()
+	sa_spawn.garbage_to_agroprom()
+	xr_effects.start_timer(2000, notificate_ways_garbage_to_agroprom)
+	
+	sa_spawn.agroprom_to_garbage()
+	xr_effects.start_timer(3000, notificate_ways_agroprom_to_garbage)	
+end
+
+function add_ways_garabge_darkvalley_back()
+	sa_spawn.garbage_to_darkvalley()
+	xr_effects.start_timer(2000, notificate_ways_garbage_to_darkvalley)
+	
+	sa_spawn.darkvalley_to_garbage()
+	xr_effects.start_timer(3000, notificate_ways_darkvalley_to_garbage)	
+end
+
+-------------------------------------
+
+-- ‘ункции, показывающие нотификации, когда новые пути получены --
+
+function notificate_escape_to_darkvalley()
+	notificate("l04_darkvalley", "l01_escape")
+end
+
+
+function notificate_ways_yantar_to_agroprom()
+	notificate("l08_yantar", "l03_agroprom")
+end
+
+function notificate_ways_agroprom_to_yantar()
+	notificate("l03_agroprom", "l08_yantar")
+end
+
+
+function notificate_ways_garbage_to_agroprom()
+	notificate("l02_garbage", "l03_agroprom")
+end
+
+function notificate_ways_agroprom_to_garbage()
+	notificate("l03_agroprom", "l02_garbage")
+end
+
+function notificate_ways_garbage_to_darkvalley()
+	notificate("l02_garbage", "l04_darkvalley")
+end
+
+function notificate_ways_darkvalley_to_garbage()
+	notificate("l04_darkvalley", "l02_garbage")
+end
+
+-------------------------------------
 
 function notificate(from, to)
 	local service_text = "ќбнаружен новый путь:"
@@ -52,18 +112,6 @@ function notificate(from, to)
 	
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
 	pda_tips:play(db.actor, 0, sound_object.s2d)
-end
-
-function notificate_escape_to_darkvalley()
-	notificate("l04_darkvalley", "l01_escape")
-end
-
-function notificate_ways_yantar_to_agroprom()
-	notificate("l08_yantar", "l03_agroprom")
-end
-
-function notificate_ways_agroprom_to_yantar()
-	notificate("l03_agroprom", "l08_yantar")
 end
 
 function mark_ways_on_map()

@@ -42,8 +42,8 @@ local all_items =
 	[6.5] = "wpn_abakan",
 	[7.0] = "wpn_l85",
 	[7.4] = "wpn_lr300",
-    [2.2] =  "grenade_rgd5",
-	[2.8] = "grenade_f1",
+    [1.2] =  "grenade_rgd5",
+	[1.8] = "grenade_f1",
 	[7.3] = "wpn_sig550",	
 	[8.5] = "wpn_groza",
 	[9.0] = "wpn_val",
@@ -114,16 +114,16 @@ local all_items =
 	[2.0] = "ammo_9x39_pab9",
 	[2.0] = "ammo_5.56x45_ss190",
 	[3.0] = "ammo_5.56x45_ap",
-	[5.0] = "ammo_7.62x54_7h14",
+	[4.0] = "ammo_7.62x54_7h14",
 	[3.0] = "ammo_7.62x54_7h1",
-	[6.0] = "ammo_7.62x54_ap",
-	[7.0] = "ammo_og-7b",
+	[5.0] = "ammo_7.62x54_ap",
+	[5.0] = "ammo_og-7b",
 	[3.0] = "ammo_vog-25p",
 	[3.0] = "ammo_vog-25",
 	[3.0] = "ammo_m209",
-    [2.2] = "grenade_rgd5",
-	[2.8] = "grenade_f1",
-	[8.0] = "ammo_gauss"	
+    [1.2] = "grenade_rgd5",
+	[1.8] = "grenade_f1",
+	[7.0] = "ammo_gauss"	
 }
 
 
@@ -194,7 +194,7 @@ local weapons_table_experienced =
 	[6.0] = "wpn_ak74",
 	[6.5] = "wpn_abakan",
 	[7.0] = "wpn_l85",
-    [2.2] = "grenade_rgd5"
+    [1.2] = "grenade_rgd5"
 }
 
 local weapons_table_veteran = 
@@ -210,8 +210,8 @@ local weapons_table_veteran =
 	[4.7] = "wpn_addon_grenade_launcher_m203",
 	[3.0] = "wpn_addon_scope_susat",
 	[7.3] = "wpn_sig550",	
-    [2.2] =  "grenade_rgd5",
-	[2.8] = "grenade_f1",
+    [1.2] =  "grenade_rgd5",
+	[1.8] = "grenade_f1",
 	[8.3] = "wpn_svu",
 	[8.5] = "wpn_groza"
 }
@@ -229,8 +229,8 @@ local weapons_table_master =
 	[9.1] = "wpn_svd",
 	[9.99] = "wpn_rg-6",
 	[9.9] = "wpn_rpg7",
-    [2.2] =  "grenade_rgd5",
-	[2.8] = "grenade_f1",
+    [1.2] =  "grenade_rgd5",
+	[1.8] = "grenade_f1",
 	[9.7] = "wpn_fn2000",
 	[10.0] = "wpn_gauss"
 } 
@@ -345,7 +345,8 @@ local ammo_table_veteran =
 	[2.0] = "ammo_5.45x39_fmj",
 	[2.0] = "ammo_5.56x45_ss190",
 	[3.0] = "ammo_5.56x45_ap",
-	[2.3] = "ammo_11.43x23_hydro",
+	[2.0] = "ammo_9x39_pab9",
+	[3.0] = "ammo_9x39_sp5",
 	[2.0] = "ammo_11.43x23_fmj",
 	[3.0] = "ammo_vog-25p",
 	[3.0] = "ammo_vog-25",
@@ -359,14 +360,14 @@ local ammo_table_master =
 	[3.0] = "ammo_9x39_sp5",
 	[4.0] = "ammo_9x39_ap",
 	[2.0] = "ammo_9x39_pab9",
-	[5.0] = "ammo_7.62x54_7h14",
+	[4.0] = "ammo_7.62x54_7h14",
 	[3.0] = "ammo_7.62x54_7h1",
-	[6.0] = "ammo_7.62x54_ap",
-	[7.0] = "ammo_og-7b",
+	[5.0] = "ammo_7.62x54_ap",
+	[5.0] = "ammo_og-7b",
 	[3.0] = "ammo_vog-25p",
 	[3.0] = "ammo_vog-25",
 	[3.0] = "ammo_m209",
-	[8.0] = "ammo_gauss"
+	[7.0] = "ammo_gauss"
 }
 
 ---------------------------------------

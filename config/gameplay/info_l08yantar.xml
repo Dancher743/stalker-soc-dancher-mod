@@ -70,9 +70,7 @@
 	<info_portion id="yan_bunker_door_2_open"></info_portion>
 	<info_portion id="yan_actor_must_sleep"></info_portion>
 	<info_portion id="labx16_find"></info_portion>
-	<info_portion id="yan_kill_brain_done">
-		<action>new_ways.add_ways_yantar_agroprom</action>
-	</info_portion>
+	<info_portion id="yan_kill_brain_done"></info_portion>
 	<info_portion id="yan_kruglov_hello"></info_portion>
 	<info_portion id="yan_find_scientist_done"></info_portion>
 	<info_portion id="yan_scientist_researching"></info_portion>
