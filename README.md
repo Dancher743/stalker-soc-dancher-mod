@@ -36,5 +36,6 @@ Using mods:
 28. Night Ambient Sound from RMA Shadows Addon 0.8.5
 29. Exchanging Items Mod (v0.5) (Stalk15)
 30. Dinamic Trade Manager (v0.1) (singapur22)
+31. Anomaly Detectors (from AMK Mod)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
