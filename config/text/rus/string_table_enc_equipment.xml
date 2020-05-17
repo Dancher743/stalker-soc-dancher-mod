@@ -63,9 +63,6 @@
 	<string id="enc_equipment_devic_binocul1">
 		<text>Армейский портативный бинокль.</text>
 	</string>
-	<string id="enc_equipment_devic_detect1">
-		<text>Устройство, определяющее наличие аномальных полей и возмущений и сообщающее о них звуковым сигналом. Для работы необходимо активировать, разместив прибор на поясе.</text>
-	</string>
 	<string id="enc_equipment_devic_device-PDA1">
 		<text>Карманный персональный компьютер - незаменимое устройство в Зоне.</text>
 	</string>
@@ -137,12 +134,6 @@
 	</string>
 	<string id="Vodka">
 		<text>Водка "Казаки"</text>
-	</string>
-	<string id="st_detector">
-		<text>Детектор аномалий</text>
-	</string>
-	<string id="st_detector_descr">
-		<text>Предназначен для обнаружения аномальных зон, а также очагов радиоактивного загрязнения.</text>
 	</string>
 	<string id="st_grenade_gd5">
 		<text>Дымовая граната</text>
