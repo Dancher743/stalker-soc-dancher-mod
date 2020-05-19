@@ -17,6 +17,7 @@ local post_time = 0
 lasthealth  = 0
 lasttime	= 0
 post_process = 0
+local arts = false
 local weapon_hide = false
 -->> Dynamic campfire mod
 local scan_flag
@@ -182,6 +183,7 @@ function actor_binder:info_callback(npc, info_id)
 	level_tasks.proceed(self.object)
 	-- Отметки на карте
 	level_tasks.process_info_portion(info_id)
+	inventory.on_inventory_info(info_id)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_trade (item, sell_bye, money)
@@ -204,6 +206,7 @@ function actor_binder:article_callback(npc, group, name)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_take (obj)
+	inventory.on_item_take(obj)
     level_tasks.proceed(self.object)
 	vfix.visual_fix(obj)
 	if xrs_ai then xrs_ai.actor_item_take(obj) end
@@ -212,6 +215,7 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_drop (obj)
     level_tasks.proceed(self.object)
+	inventory.on_item_drop(obj)
     --game_stats.update_drop_item (obj, self.object)
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -440,6 +444,14 @@ function actor_binder:update(delta)
 		xr_kamp.update(time)
 	end
 	--<< Dynamic campfire mod
+	
+	inventory.update()
+	
+	--запуск скрипта детекторов артефактов
+	if not arts then
+	    bind_det_arts.start_update()
+		arts = true
+	end
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)

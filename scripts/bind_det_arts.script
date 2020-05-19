@@ -1,0 +1,248 @@
+--//----------------------------------------
+--//Скрипт детекторов артефактов
+--//Автор: Singapur22
+--//Сайт: Stalker-Portal.ru
+--//Дата выхода: 10.01.2010
+--//-----------------------------------------
+
+local list_arts =
+{
+    'af_medusa',   
+	'af_cristall_flower',   
+	'af_night_star',
+	'af_vyvert',   
+	'af_gravi',   
+	'af_gold_fish',
+	'af_blood',   
+	'af_mincer_meat',   
+	'af_soul',
+	'af_electra_sparkler',   
+	'af_electra_flash',   
+	'af_electra_moonlight',
+	'af_rusty_thorn',   
+	'af_rusty_kristall',   
+	'af_rusty_sea-urchin',
+	'af_ameba_slime',   
+	'af_ameba_slug',   
+	'af_ameba_mica',
+	'af_drops',   
+	'af_fireball',   
+	'af_cristall',
+	'af_dummy_glassbeads',   
+	'af_dummy_pellicle',   
+	'af_dummy_battery',
+	'af_dummy_dummy',   
+	'af_dummy_spring',   
+	'af_fuzz_kolobok'
+}
+
+local snd_obj = xr_sound.get_safe_sound_object("ambient\\art_beep1")
+
+function start_update()
+    for id = 1, 65535 do
+	    local sobj = alife():object( id )
+		if sobj then
+		    for _, v in ipairs(list_arts) do
+		        if sobj:section_name() == v then
+				    db.artefacts[id] = {}
+					db.artefacts[id].spot = false
+					db.artefacts[id].tim_beep = 0
+				end
+			end
+		end
+	end
+
+    db.actor:set_fastcall(update, db.actor)
+end
+
+function update()
+	set_detector_strategy()
+end
+
+function det_indy()
+    for k,v in pairs(db.artefacts) do
+	    local obj = level.object_by_id( k )
+		if obj then
+		    if not obj:parent() then
+			    local dist = db.actor:position():distance_to_sqr(obj:position())
+           		if dist <= 40^2 and dist < time_global() - v.tim_beep  then
+					if not snd_obj:playing() then
+					    db.artefacts[k].tim_beep = time_global()
+					    snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+					end
+				end
+			else
+			    this.del_spot(k, v)
+			end
+		end
+	end
+end
+
+function det_normal()
+    for k,v in pairs(db.artefacts) do
+	    local obj = level.object_by_id( k )
+		if obj then
+		    if not obj:parent() then
+			    local dist = db.actor:position():distance_to_sqr(obj:position())
+				if dist < 45^2 then
+					if not v.spot then
+					    local ini = system_ini()
+					    local section = obj:section()
+					    local name = ""
+					    if ini and section and ini:section_exist(section) then
+					        if ini:line_exist(section, "inv_name") then
+						        name = ini:r_string(section, "inv_name")
+						    end
+					    end
+			            level.map_add_object_spot(k, "artefact_location", "артефакт")
+				        db.artefacts[k].spot = true
+			        end
+					if v.tim_beep < time_global() and not snd_obj:playing() then
+						db.artefacts[k].tim_beep = time_global() + 2500
+					    snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+					end
+				else
+					this.del_spot(k, v)
+				end
+			else
+			    this.del_spot(k, v)
+			end
+		end
+	end
+end
+
+function det_super()
+    for k,v in pairs(db.artefacts) do
+	    local sobj = alife():object( k )
+		if sobj then
+			if game_graph():vertex(sobj.m_game_vertex_id):level_id() == alife():level_id() and sobj.parent_id == 65535 and not sobj.is_day_night then
+				if not v.spot then
+				    local ini = system_ini()
+					local section = sobj:section_name()
+					local name = ""
+					if ini and section and ini:section_exist(section) then
+					    if ini:line_exist(section, "inv_name") then
+						    name = ini:r_string(section, "inv_name")
+						end
+					end
+			        level.map_add_object_spot(k, "artefact_location", "артефакт: " .. game.translate_string(name))
+				    db.artefacts[k].spot = true
+			    end
+			else
+				this.del_spot(k, v)
+			end
+		end
+	end
+end
+
+function iteration_del_spot()
+    for k,v in pairs(db.artefacts) do
+	    local sobj = alife():object(k)
+		if sobj then
+		    this.del_spot(k, v)
+		end
+	end
+end
+
+function del_spot(k, v)
+    if v.spot then
+		level.map_remove_object_spot(k, "artefact_location")
+		db.artefacts[k].spot = false
+	end
+end
+
+
+function set_detector_strategy()
+	if inventory.belt["detector_elite"] then
+		detector_elite_strategy()
+	elseif inventory.belt["detector_advances"] then
+		detector_advances_strategy()		
+	end
+	
+	if not inventory.belt["detector_elite"] then
+		this.iteration_del_spot()
+	end
+end
+
+
+--
+-- Добавление детекторам поиск артефактов
+-- Автор: Dancher
+-- За основу взят оригинальный код автора Singapur22
+--
+
+beep_dist_limit = 15
+
+function detector_advances_strategy()
+    for k,v in pairs(db.artefacts) do
+	    local obj = level.object_by_id( k )
+		if obj then
+		    if not obj:parent() then
+			    local dist = db.actor:position():distance_to_sqr(obj:position())
+				local beep_dist = dist
+				
+				if dist <= beep_dist_limit then
+					beep_dist = beep_dist_limit
+				end
+				
+				--this.log_message(dist, time_global() - v.tim_beep)
+				
+           		if dist <= 300 and beep_dist < time_global() - v.tim_beep then
+					if not snd_obj:playing() then
+						db.artefacts[k].tim_beep = time_global()
+					    snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1)
+					end
+				end
+			else
+			    this.del_spot(k, v)
+			end
+		end
+	end
+end
+
+function detector_elite_strategy()
+    for k,v in pairs(db.artefacts) do
+	    local obj = level.object_by_id( k )
+		if obj then
+		    if not obj:parent() then
+			    local dist = db.actor:position():distance_to_sqr(obj:position())
+				local beep_dist = dist
+				
+				if dist <= beep_dist_limit then
+					beep_dist = beep_dist_limit
+				end
+				
+				if dist < 500 then
+					if not v.spot then
+					    local ini = system_ini()
+					    local section = obj:section()
+					    local name = ""
+					    if ini and section and ini:section_exist(section) then
+					        if ini:line_exist(section, "inv_name") then
+						        name = ini:r_string(section, "inv_name")
+						    end
+					    end
+			            level.map_add_object_spot(k, "artefact_location", game.translate_string(name))
+				        db.artefacts[k].spot = true
+			        end
+					if  beep_dist < time_global() - v.tim_beep and not snd_obj:playing() then
+						db.artefacts[k].tim_beep = time_global()
+					    snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1)
+					end
+				else
+					this.del_spot(k, v)
+				end
+			else
+			    this.del_spot(k, v)
+			end
+		end
+	end
+end
+
+function log_message(text1, text2)
+	local news_text = "%c[255,160,160,160]"..game.translate_string(text1).." , "..game.translate_string(text2)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 1000)
+end
+
+----------

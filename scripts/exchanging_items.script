@@ -24,9 +24,9 @@ local all_items =
 	[3.9] = "medkit_scientic", 
 	[2.5] = "energy_drink", 
 	--[0.5] = "bandage",
-	[3.0] = "detector_simple",	
-	[6.0] = "detector_advances",
-	[8.0] = "detector_elite",   
+	[4.0] = "detector_simple",	
+	[7.0] = "detector_advances",
+	[10.0] = "detector_elite",   
 	
 	[4.3] = "wpn_pb",
 	[4.2] = "wpn_fort",
@@ -138,8 +138,7 @@ local items_table_novice =
 	--[2.0] = "harmonica_a", 
 	[2.9] = "medkit", 
 	[2.5] = "energy_drink", 
-	--[0.5] = "bandage",
-	[3.0] = "detector_simple"  
+	--[0.5] = "bandage", 
 }
 	
 local items_table_experienced = 
@@ -154,8 +153,7 @@ local items_table_experienced =
 	[2.9] = "medkit", 
 	[2.5] = "energy_drink", 
 	--[0.5] = "bandage",
-	[3.0] = "detector_simple",	
-	[6.0] = "detector_advances"
+	[4.0] = "detector_simple",
 }
 
 local items_table_veteran = 
@@ -172,8 +170,7 @@ local items_table_veteran =
 	[3.9] = "medkit_scientic", 
 	[2.5] = "energy_drink", 
 	--[0.5] = "bandage",	
-	[6.0] = "detector_advances",
-	[8.0] = "detector_elite" 
+	[7.0] = "detector_advances",
 }
 
 local items_table_master = 
@@ -190,7 +187,7 @@ local items_table_master =
 	[3.9] = "medkit_scientic", 
 	[2.5] = "energy_drink", 
 	--[0.5] = "bandage",
-	[8.0] = "detector_elite" 
+	[10.0] = "detector_elite" 
 }
 	
 local weapons_table_novice = 

@@ -7,6 +7,7 @@ Flag2 = 0
 Dead2 = 0
 FlagEsc = 0
 
+artefacts           = {}
 zone_by_name        = {}
 sl_by_name          = {}
 storage             = {}
