@@ -36,7 +36,8 @@ local list_arts =
 	'af_fuzz_kolobok'
 }
 
-local snd_obj = xr_sound.get_safe_sound_object("ambient\\art_beep1")
+local beep_good = xr_sound.get_safe_sound_object("device\\detectors\\art_beep1")
+local beep_bad = xr_sound.get_safe_sound_object("device\\detectors\\da_beep")
 
 function start_update()
     for id = 1, 65535 do
@@ -57,82 +58,6 @@ end
 
 function update()
 	set_detector_strategy()
-end
-
-function det_indy()
-    for k,v in pairs(db.artefacts) do
-	    local obj = level.object_by_id( k )
-		if obj then
-		    if not obj:parent() then
-			    local dist = db.actor:position():distance_to_sqr(obj:position())
-           		if dist <= 40^2 and dist < time_global() - v.tim_beep  then
-					if not snd_obj:playing() then
-					    db.artefacts[k].tim_beep = time_global()
-					    snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
-					end
-				end
-			else
-			    this.del_spot(k, v)
-			end
-		end
-	end
-end
-
-function det_normal()
-    for k,v in pairs(db.artefacts) do
-	    local obj = level.object_by_id( k )
-		if obj then
-		    if not obj:parent() then
-			    local dist = db.actor:position():distance_to_sqr(obj:position())
-				if dist < 45^2 then
-					if not v.spot then
-					    local ini = system_ini()
-					    local section = obj:section()
-					    local name = ""
-					    if ini and section and ini:section_exist(section) then
-					        if ini:line_exist(section, "inv_name") then
-						        name = ini:r_string(section, "inv_name")
-						    end
-					    end
-			            level.map_add_object_spot(k, "artefact_location", "артефакт")
-				        db.artefacts[k].spot = true
-			        end
-					if v.tim_beep < time_global() and not snd_obj:playing() then
-						db.artefacts[k].tim_beep = time_global() + 2500
-					    snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
-					end
-				else
-					this.del_spot(k, v)
-				end
-			else
-			    this.del_spot(k, v)
-			end
-		end
-	end
-end
-
-function det_super()
-    for k,v in pairs(db.artefacts) do
-	    local sobj = alife():object( k )
-		if sobj then
-			if game_graph():vertex(sobj.m_game_vertex_id):level_id() == alife():level_id() and sobj.parent_id == 65535 and not sobj.is_day_night then
-				if not v.spot then
-				    local ini = system_ini()
-					local section = sobj:section_name()
-					local name = ""
-					if ini and section and ini:section_exist(section) then
-					    if ini:line_exist(section, "inv_name") then
-						    name = ini:r_string(section, "inv_name")
-						end
-					end
-			        level.map_add_object_spot(k, "artefact_location", "артефакт: " .. game.translate_string(name))
-				    db.artefacts[k].spot = true
-			    end
-			else
-				this.del_spot(k, v)
-			end
-		end
-	end
 end
 
 function iteration_del_spot()
@@ -187,10 +112,10 @@ function detector_advances_strategy()
 				
 				--this.log_message(dist, time_global() - v.tim_beep)
 				
-           		if dist <= 300 and beep_dist < time_global() - v.tim_beep then
-					if not snd_obj:playing() then
+           		if dist <= 20^2 and beep_dist < time_global() - v.tim_beep then
+					if not beep_bad:playing() then
 						db.artefacts[k].tim_beep = time_global()
-					    snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1)
+					    beep_bad:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 0.5)
 					end
 				end
 			else
@@ -212,7 +137,7 @@ function detector_elite_strategy()
 					beep_dist = beep_dist_limit
 				end
 				
-				if dist < 500 then
+				if dist < 30^2 then
 					if not v.spot then
 					    local ini = system_ini()
 					    local section = obj:section()
@@ -225,9 +150,9 @@ function detector_elite_strategy()
 			            level.map_add_object_spot(k, "artefact_location", game.translate_string(name))
 				        db.artefacts[k].spot = true
 			        end
-					if  beep_dist < time_global() - v.tim_beep and not snd_obj:playing() then
+					if  beep_dist < time_global() - v.tim_beep and not beep_good:playing() then
 						db.artefacts[k].tim_beep = time_global()
-					    snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1)
+					    beep_good:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1)
 					end
 				else
 					this.del_spot(k, v)
