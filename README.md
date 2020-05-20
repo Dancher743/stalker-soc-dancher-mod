@@ -37,5 +37,7 @@ Using mods:
 29. Exchanging Items Mod (v0.5) (Stalk15)
 30. Dinamic Trade Manager (v0.1) (singapur22)
 31. Anomaly Detectors (from AMK Mod)
+32. Artefact Detectors (singapur22/Dancher)
+33. Bloodsucker's kiss (Artos)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
