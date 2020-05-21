@@ -11,7 +11,7 @@
 #include "ui\map_spots_mp.xml"
 #include "ui\map_spots_relations.xml"
 #include "ui\map_spots_lchangers.xml"
-
+#include "ui\map_spots_anomaly.xml"
 
 	<ogsm_hide_spot_max>
 		<level_map spot="ogsm_crlc_small_max" pointer="quest_pointer"/>
@@ -144,10 +144,10 @@
 		<level_map spot="artefact_spot"		pointer="quest_pointer"/>
 		<mini_map spot="artefact_spot_mini"	pointer="quest_pointer"/>
 	</artefact_location>
-	<artefact_spot  x="0" y="0" width="32" height="32" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+	<artefact_spot  x="0" y="0" width="23" height="23" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
 		<texture>ui_mapQuest_artefact</texture>
 	</artefact_spot>
-	<artefact_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+	<artefact_spot_mini  x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
 		<texture>ui_sm_mapQuest_artefact</texture>
 		<texture_below r="0" g="255" b="0">ui_mini_sn_spot_below</texture_below>
 		<texture_above r="0" g="255" b="0">ui_mini_sn_spot_above</texture_above>

@@ -1,0 +1,66 @@
+	<!-- Описания меток для разных аномалий из Народной Солянки 2016 --> 
+	
+    <!-- Трамплин  -->
+	<anomaly_bald_location hint="anomaly_zone">
+		<mini_map spot="anomaly_bald_mini_spot"/>
+	</anomaly_bald_location>
+	<anomaly_bald_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
+		<texture x="0" y="0" width="30" height="30" r="255" g="100" b="100">ui\ui_zone_spots</texture>
+	</anomaly_bald_mini_spot>
+
+     <!-- Карусель -->
+	<anomaly_minc_location hint="anomaly_zone">
+		<mini_map spot="anomaly_minc_mini_spot"/>
+	</anomaly_minc_location>
+	<anomaly_minc_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
+		<texture x="30" y="0" width="30" height="30" r="255" g="100" b="100">ui\ui_zone_spots</texture>
+	</anomaly_minc_mini_spot>
+
+     <!-- Воронка  -->
+	<anomaly_grav_location hint="anomaly_zone">
+		<mini_map spot="anomaly_grav_mini_spot"/>
+	</anomaly_grav_location>
+	<anomaly_grav_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
+		<texture x="60" y="0" width="30" height="30" r="255" g="100" b="100">ui\ui_zone_spots</texture>
+	</anomaly_grav_mini_spot>
+	
+	<!-- Очаг радиоактивности  -->
+	<anomaly_rad_location hint="anomaly_zone">
+		<mini_map spot="anomaly_rad_mini_spot"/>
+	</anomaly_rad_location>
+	<anomaly_rad_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
+		<texture x="90" y="0" width="30" height="30" r="255" g="100" b="100">ui\ui_zone_spots</texture>
+	</anomaly_rad_mini_spot>
+	
+	<!-- Очаг радиоактивности из RMA Shadow Addons -->
+	<radioactive_zone_location hint="radioactive_zone">
+		<level_map spot="radioactive_zone_mini_spot"/>
+		<mini_map spot="radioactive_zone_mini_spot"/>
+	</radioactive_zone_location>
+	<radioactive_zone_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
+		<texture x="215" y="195" width="24" height="24" r="230" g="255" b="100">ui\ui_mp_icon_kill</texture>
+	</radioactive_zone_mini_spot>
+
+     <!-- Электра -->
+	<anomaly_elec_location hint="anomaly_zone">
+		<mini_map spot="anomaly_elec_mini_spot"/>
+	</anomaly_elec_location>
+	<anomaly_elec_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
+		<texture x="120" y="0" width="30" height="30" r="255" g="255" b="255">ui\ui_zone_spots</texture>
+	</anomaly_elec_mini_spot>
+	
+	<!-- Жарка -->
+	<anomaly_burn_location hint="anomaly_zone">
+		<mini_map spot="anomaly_burn_mini_spot"/>
+	</anomaly_burn_location>
+	<anomaly_burn_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
+		<texture x="180" y="0" width="30" height="30" r="200" g="200" b="200">ui\ui_zone_spots</texture>
+	</anomaly_burn_mini_spot>
+	
+	<!-- Кисель -->
+	<anomaly_buzz_location hint="anomaly_zone">
+		<mini_map spot="anomaly_buzz_mini_spot"/>
+	</anomaly_buzz_location>
+	<anomaly_buzz_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
+		<texture x="96" y="30" width="34" height="30" r="255" g="255" b="255">ui\ui_zone_spots</texture>
+	</anomaly_buzz_mini_spot>
