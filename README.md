@@ -38,6 +38,5 @@ Using mods:
 30. Dinamic Trade Manager (v0.1) (singapur22)
 31. Anomaly Detectors (from AMK Mod)
 32. Artefact Detectors (singapur22/Dancher/NS2016/RMA Shadows Addon)
-33. Bloodsucker's kiss (Artos)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
