@@ -1,0 +1,221 @@
+	<!-- Описания меток на карте для разных артефактов (Dancher) -->
+	
+	<!-- Медузка  -->
+	<artefact_location_af_medusa>
+		<!--<level_map spot="artefact_af_medusa_spot"/>-->
+		<mini_map spot="artefact_af_medusa_spot_mini"/>
+	</artefact_location_af_medusa>
+	<!--<artefact_af_medusa_spot  x="0" y="0" width="18" height="18" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="450" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_medusa_spot>-->
+	<artefact_af_medusa_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="450" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_medusa_spot_mini>
+	
+	<!-- Камменый цветок  -->
+	<artefact_location_af_cristall_flower>
+		<mini_map spot="artefact_af_cristall_flower_spot_mini"/>
+	</artefact_location_af_cristall_flower>
+	<artefact_af_cristall_flower_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="550" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_cristall_flower_spot_mini>
+	
+	<!-- Ночная звезда  -->
+	<artefact_location_af_night_star>
+		<mini_map spot="artefact_af_night_star_spot_mini"/>
+	</artefact_location_af_night_star>
+	<artefact_af_night_star_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="500" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_night_star_spot_mini>
+	
+	<!-- Выверт  -->
+	<artefact_location_af_vyvert>
+		<mini_map spot="artefact_af_vyvert_spot_mini"/>
+	</artefact_location_af_vyvert>
+	<artefact_af_vyvert_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="700" y="0" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_vyvert_spot_mini>
+	
+	<!-- Грави  -->
+	<artefact_location_af_gravi>
+		<mini_map spot="artefact_af_gravi_spot_mini"/>
+	</artefact_location_af_gravi>
+	<artefact_af_gravi_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="750" y="0" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_gravi_spot_mini>
+	
+	<!-- Золотая Рыбка  -->
+	<artefact_location_af_gold_fish>
+		<mini_map spot="artefact_af_gold_fish_spot_mini"/>
+	</artefact_location_af_gold_fish>
+	<artefact_af_gold_fish_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="800" y="0" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_gold_fish_spot_mini>
+	
+	<!-- Кровь камня -->
+	<artefact_location_af_blood>
+		<mini_map spot="artefact_af_blood_spot_mini"/>
+	</artefact_location_af_blood>
+	<artefact_af_blood_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="850" y="0" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_blood_spot_mini>
+	
+	<!-- Ломоть мяса -->
+	<artefact_location_af_mincer_meat>
+		<mini_map spot="artefact_af_mincer_meat_spot_mini"/>
+	</artefact_location_af_mincer_meat>
+	<artefact_af_mincer_meat_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="900" y="800" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_mincer_meat_spot_mini>
+	
+	<!-- Душа -->
+	<artefact_location_af_soul>
+		<mini_map spot="artefact_af_soul_spot_mini"/>
+	</artefact_location_af_soul>
+	<artefact_af_soul_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="950" y="800" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_soul_spot_mini>
+	
+	<!-- Бенгальский огонь -->
+	<artefact_location_af_electra_sparkler>
+		<mini_map spot="artefact_af_electra_sparkler_spot_mini"/>
+	</artefact_location_af_electra_sparkler>
+	<artefact_af_electra_sparkler_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="400" y="550" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_electra_sparkler_spot_mini>
+	
+	<!-- Вспышка -->
+	<artefact_location_af_electra_flash>
+		<mini_map spot="artefact_af_electra_flash_spot_mini"/>
+	</artefact_location_af_electra_flash>
+	<artefact_af_electra_flash_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="200" y="400" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_electra_flash_spot_mini>
+	
+	<!-- Лунный свет -->
+	<artefact_location_af_electra_moonlight>
+		<mini_map spot="artefact_af_electra_moonlight_spot_mini"/>
+	</artefact_location_af_electra_moonlight>
+	<artefact_af_electra_moonlight_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="500" y="500" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_electra_moonlight_spot_mini>	
+	
+	<!-- Колючка -->
+	<artefact_location_af_rusty_thorn>
+		<mini_map spot="artefact_af_rusty_thorn_spot_mini"/>
+	</artefact_location_af_rusty_thorn>
+	<artefact_af_rusty_thorn_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="450" y="550" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_rusty_thorn_spot_mini>
+	
+	<!-- Кристальная колючка -->
+	<artefact_location_af_rusty_kristall>
+		<mini_map spot="artefact_af_rusty_kristall_spot_mini"/>
+	</artefact_location_af_rusty_kristall>
+	<artefact_af_rusty_kristall_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="450" y="500" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_rusty_kristall_spot_mini>
+
+	<!-- Морской ёж -->
+	<artefact_location_af_rusty_sea-urchin>
+		<mini_map spot="artefact_af_rusty_sea-urchin_spot_mini"/>
+	</artefact_location_af_rusty_sea-urchin>
+	<artefact_af_rusty_sea-urchin_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="750" y="50" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_rusty_sea-urchin_spot_mini>	
+	
+	<!-- Слизь -->
+	<artefact_location_af_ameba_slime>
+		<mini_map spot="artefact_af_ameba_slime_spot_mini"/>
+	</artefact_location_af_ameba_slime>
+	<artefact_af_ameba_slime_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="350" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_ameba_slime_spot_mini>
+	
+	<!-- Слизняк -->
+	<artefact_location_af_ameba_slug>
+		<mini_map spot="artefact_af_ameba_slug_spot_mini"/>
+	</artefact_location_af_ameba_slug>
+	<artefact_af_ameba_slug_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="300" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_ameba_slug_spot_mini>
+	
+	<!-- Слюда -->
+	<artefact_location_af_ameba_mica>
+		<mini_map spot="artefact_af_ameba_mica_spot_mini"/>
+	</artefact_location_af_ameba_mica>
+	<artefact_af_ameba_mica_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="250" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_ameba_mica_spot_mini>
+		
+	<!-- Капли -->
+	<artefact_location_af_drops>
+		<mini_map spot="artefact_af_drops_spot_mini"/>
+	</artefact_location_af_drops>
+	<artefact_af_drops_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="600" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_drops_spot_mini>
+	
+	<!-- Огненный шар -->
+	<artefact_location_af_fireball>
+		<mini_map spot="artefact_af_fireball_spot_mini"/>
+	</artefact_location_af_fireball>
+	<artefact_af_fireball_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="650" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_fireball_spot_mini>
+	
+	<!-- Кристалл -->
+	<artefact_location_af_cristall>
+		<mini_map spot="artefact_af_cristall_spot_mini"/>
+	</artefact_location_af_cristall>
+	<artefact_af_cristall_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="700" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_cristall_spot_mini>
+	
+	<!-- Мамины бусы -->
+	<artefact_location_af_dummy_glassbeads>
+		<mini_map spot="artefact_af_dummy_glassbeads_spot_mini"/>
+	</artefact_location_af_dummy_glassbeads>
+	<artefact_af_dummy_glassbeads_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="800" y="50" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_dummy_glassbeads_spot_mini>
+	
+	<!-- Плёнка -->
+	<artefact_location_af_dummy_pellicle>
+		<mini_map spot="artefact_af_dummy_pellicle_spot_mini"/>
+	</artefact_location_af_dummy_pellicle>
+	<artefact_af_dummy_pellicle_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="200" y="450" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_dummy_pellicle_spot_mini>
+	
+	<!-- Батарейка (электрическая) -->
+	<artefact_location_af_dummy_battery>
+		<mini_map spot="artefact_af_dummy_battery_spot_mini"/>
+	</artefact_location_af_dummy_battery>
+	<artefact_af_dummy_battery_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="400" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_dummy_battery_spot_mini>
+	
+	<!-- Батарейка (огненная) -->
+	<artefact_location_af_dummy_dummy>
+		<mini_map spot="artefact_af_dummy_dummy_spot_mini"/>
+	</artefact_location_af_dummy_dummy>
+	<artefact_af_dummy_dummy_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="950" y="300" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_dummy_dummy_spot_mini>
+	
+	<!-- Пружина -->
+	<artefact_location_af_dummy_spring>
+		<mini_map spot="artefact_af_dummy_spring_spot_mini"/>
+	</artefact_location_af_dummy_spring>
+	<artefact_af_dummy_spring_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="700" y="50" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_dummy_spring_spot_mini>
+	
+	<!-- Колобок -->
+	<artefact_location_af_fuzz_kolobok>
+		<mini_map spot="artefact_af_fuzz_kolobok_spot_mini"/>
+	</artefact_location_af_fuzz_kolobok>
+	<artefact_af_fuzz_kolobok_spot_mini x="0" y="0" width="13" height="13" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture x="850" y="50" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
+	</artefact_af_fuzz_kolobok_spot_mini>

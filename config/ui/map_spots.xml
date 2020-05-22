@@ -12,6 +12,7 @@
 #include "ui\map_spots_relations.xml"
 #include "ui\map_spots_lchangers.xml"
 #include "ui\map_spots_anomaly.xml"
+#include "ui\map_spots_artefact.xml"
 
 	<ogsm_hide_spot_max>
 		<level_map spot="ogsm_crlc_small_max" pointer="quest_pointer"/>

@@ -47,6 +47,7 @@ function start_update()
 		        if sobj:section_name() == v then
 				    db.artefacts[id] = {}
 					db.artefacts[id].spot = false
+					db.artefacts[id].spotname = ""
 					db.artefacts[id].tim_beep = 0
 				end
 			end
@@ -71,7 +72,7 @@ end
 
 function del_spot(k, v)
     if v.spot then
-		level.map_remove_object_spot(k, "artefact_location")
+		level.map_remove_object_spot(k, v.spotname)
 		db.artefacts[k].spot = false
 	end
 end
@@ -91,7 +92,7 @@ end
 
 
 --
--- Добавление детекторам поиск артефактов
+-- Добавление вырезанным детекторам из ТЧ поиск артефактов
 -- Автор: Dancher
 -- За основу взят оригинальный код автора Singapur22
 --
@@ -147,8 +148,12 @@ function detector_elite_strategy()
 						        name = ini:r_string(section, "inv_name")
 						    end
 					    end
-			            level.map_add_object_spot(k, "artefact_location", game.translate_string(name))
+						
+						local artefact_map_spot_name = get_artefact_map_spot_name(section)
+
+						level.map_add_object_spot(k, artefact_map_spot_name, game.translate_string(name))
 				        db.artefacts[k].spot = true
+						db.artefacts[k].spotname = artefact_map_spot_name
 			        end
 					if  beep_dist < time_global() - v.tim_beep and not beep_good:playing() then
 						db.artefacts[k].tim_beep = time_global()
@@ -162,6 +167,19 @@ function detector_elite_strategy()
 			end
 		end
 	end
+end
+
+function get_artefact_map_spot_name(section)
+	local artefact_map_spot_name = "artefact_location"
+	local arts = list_arts
+
+	for i, art in ipairs(arts) do
+		if section == art then
+			artefact_map_spot_name = artefact_map_spot_name.."_"..game.translate_string(art)
+		end
+	end
+
+	return artefact_map_spot_name
 end
 
 function log_message(text1, text2)
