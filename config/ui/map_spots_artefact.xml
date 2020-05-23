@@ -196,7 +196,7 @@
 		<texture x="400" y="200" width="50" height="50" r="255" g="255" b="255">ui\ui_icon_equipment</texture>
 	</artefact_af_dummy_battery_spot_mini>
 	
-	<!-- Батарейка (огненная) -->
+	<!-- Пустышка (в ориг. Батарейка (огненная)) -->
 	<artefact_location_af_dummy_dummy>
 		<mini_map spot="artefact_af_dummy_dummy_spot_mini"/>
 	</artefact_location_af_dummy_dummy>
