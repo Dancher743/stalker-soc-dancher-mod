@@ -241,6 +241,7 @@
 	
 	<!-- Обмен предметами с НПС -->
 	<dialog id="dm_dialog_exchanging_items">
+		<precondition>exchanging_items.exchanging_condition</precondition>
 		<init_func>exchanging_items.init_exchanging_items_dialog</init_func> 
     </dialog>	
 </game_dialogs>
