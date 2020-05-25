@@ -269,10 +269,7 @@ function se_respawn:on_register()
 	self.item_spawn	= r_bool(ini, section_name, "item_spawn", false)
 	
 	-- производим первичную инициализацию
-	local respawn_time_offset = game.CTime()
-	respawn_time_offset:setHMSms(6, 0, 0, 0)
-	
-	self.respawn_time = game.get_game_time() + respawn_time_offset
+	self.respawn_time = game.CTime()
 	
 	-- Для сбора статистики сохраняем указатель на респавнер
 	respawners[self:name()] = self
@@ -532,7 +529,7 @@ end
 -- время начала игры 
 function time_get_start()
 	local t0 = game.CTime()
-	t0:set(2012,8,28, 5,0,0,0)
+	t0:set(2012,5,1, 5,30,0,0)
 	return t0
 end
 
@@ -571,7 +568,7 @@ function se_respawn:exec_npc()
 
 	if self.respawn_time < game.get_game_time() then
 		local idle_time = game.CTime()
-		idle_time:setHMSms(3, 0, 0, 0)
+		idle_time:setHMSms(1, 0, 0, 0)
 		self.respawn_time = game.get_game_time() + idle_time
 		self:spawn()
 		--printf("spawn_count = %s", table.getn(self.spawned_obj))
@@ -612,7 +609,7 @@ function se_respawn:exec_mob()
 	
 	if self.respawn_time < game.get_game_time() then
 		local idle_time = game.CTime()
-		idle_time:setHMSms(3, 0, 0, 0)
+		idle_time:setHMSms(1, 0, 0, 0)
 		self.respawn_time = game.get_game_time() + idle_time
 		self:spawn()
 		--printf("spawn_count = %s", table.getn(self.spawned_obj))
