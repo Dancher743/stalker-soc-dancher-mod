@@ -147,13 +147,11 @@ end
 function keep_item(npc, item)
 	if item==nil or alife():object(item:id())==nil then return end
     local section = item:section()
-
-    if section == "bolt" then
-        return
-    end
-
-    if always_keep_item[section] == true then
-        return
+	
+	if section == "bolt" then
+		return false
+    elseif always_keep_item[section] == true then
+        return true
     end
 
     local item_id = item:id()
