@@ -5,8 +5,26 @@
 	Copyright         : naxac
 --]]---------------------------------------------------------------------------
 
--- Снижение репутации за "хак" КПК
-hack_pda_reputation = -2
+-- Звуки нотификации
+pda_news = xr_sound.get_safe_sound_object([[device\pda\pda_news]])
+
+local npc_community = 
+{
+	["stalker"] = "одиночки",
+	["monolith"] = "монолитовца",
+	["military"] = "военного",
+	["bandit"] = "бандита",
+	["killer"] = "наемника",
+	["ecolog"] = "учёного",
+	["dolg"] = "долговца",
+	["freedom"] = "свободовца",
+	["zombied"] = "зомбированного",
+	["trader"] = "торговеца",
+	["arena_enemy"] = "сталкера",
+	["actor"] = "одиночки",
+	["actor_dolg"] = "долговца", 
+	["actor_freedom"] = "свободовца"
+}
 
 function use_pda(obj)
 	-- Читаем данные из нет_пэкета
@@ -29,29 +47,23 @@ function use_pda(obj)
 	local community = p[2]~=nil and tostring(p[2]) or "stalker"
 	local rank = tonumber(p[3]) or 0
 	
-	local deadmoney = 30
-	if rank<300 then deadmoney=math.random(25,70)	-- novice
-	elseif rank<600 then deadmoney=math.random(50,150)	-- experienced
-	elseif rank<900 then deadmoney=math.random(100,220)		-- veteran
-	elseif rank>=900 then deadmoney=math.random(200,300) end	-- master
+	local deadmoney = 0
+	
+    if rank<300 then deadmoney=math.random(125,250)    -- novice
+    elseif rank<600 then deadmoney=math.random(250,500)    -- experienced
+    elseif rank<900 then deadmoney=math.random(500,1000)        -- veteran
+    elseif rank>=900 then deadmoney=math.random(1000,2000) end    -- master
+		
 	db.actor:give_money(deadmoney)
-	db.actor:change_character_reputation(hack_pda_reputation);
-	
-	--[[local news_text = "%c[255,160,160,160]КПК:\\n"..
-				"%c[default]Сталкер: %c[default]"..name..
-				"\\n%c[default]Группировка: %c[default]"..game.translate_string(community)..
-				"\\n%c[default]Обнаружено денег: %c[default]"..tostring(deadmoney).." руб."..
-				"\\n%c[255,255,96,96]Репутация понижена на "..tostring(math.abs(hack_pda_reputation)).." ед."]]--
 				
-	local news_text = "%c[255,160,160,160]КПК сталкера\\n"..
-				"%c[default]"..name..
-				" ("..game.translate_string(community)..")"..
-				"\\n%c[default]Обнаружено денег: %c[default]"..tostring(deadmoney).." руб."..
-				"\\n%c[255,255,0,0]Репутация понижена на "..tostring(math.abs(hack_pda_reputation)).." ед."
-	
+	local title = "%c[255,160,160,160]КПК "..npc_community[community].." "..name..":"
+	local message = "%c[default]Обнаружено "..tostring(deadmoney).." руб."
+	local news_text = title.."\\n"..message
+
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_money")
 	
-	db.actor:give_game_news(news_text, task_texture, task_rect, 10, 7000)
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
+	pda_news:play(db.actor, 0, sound_object.s2d)
 end
 
 function create_pda_npc(npc, pda)
