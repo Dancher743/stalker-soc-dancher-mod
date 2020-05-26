@@ -1568,8 +1568,9 @@ if (fake_death ~= "") then
 		local sname = snames[math.random(table.getn(snames))]
 		local from = fname.." "..sname
 		local where = fake_levels[math.random(table.getn(fake_levels))]
-            local news_text = "\\n".. where .." погиб ".. fake_death .. from.."." 
-		db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,188,166,235), 0, 2000)
+		local title = "%c[255,160,160,160]Ќекролог:"
+        local news_text = title.."\\n%c[default]".. where .." погиб ".. fake_death .. from.."." 
+		db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,188,166,235), 0, 3000)
 	end
 end
 
@@ -1583,8 +1584,9 @@ if (fake_death_lon ~= "") then
 		local fname = fnames[math.random(table.getn(fnames))]
 		local sname = snames[math.random(table.getn(snames))]
 		local from = fname.." "..sname
-            local news_text = "\\n".. fake_death_lon .." погиб одиночка " .. from.."." 
-		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 2000)
+		local title = "%c[255,160,160,160]Ќекролог:"
+        local news_text = title.."\\n%c[default]".. fake_death_lon .." погиб одиночка " .. from.."." 
+		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 3000)
 	end
 end
 
@@ -1598,8 +1600,9 @@ if (fake_death_ban ~= "") then
 		local fname = fnames[math.random(table.getn(fnames))]
 		local sname = snames[math.random(table.getn(snames))]
 		local from = fname.." "..sname
-            local news_text = "\\n".. fake_death_ban .." погиб бандит " .. from.."." 
-		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 2000)
+		local title = "%c[255,160,160,160]Ќекролог:"
+        local news_text = title.."\\n%c[default]".. fake_death_ban .." погиб бандит " .. from.."." 
+		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 3000)
 	end
 end
 
@@ -1613,8 +1616,9 @@ if (fake_death_mon ~= "") then
 		local fname = fnames[math.random(table.getn(fnames))]
 		local sname = snames[math.random(table.getn(snames))]
 		local from = fname.." "..sname
-            local news_text = "\\n".. fake_death_mon .." погиб монолитовец " .. from.."." 
-		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 2000)
+        local title = "%c[255,160,160,160]Ќекролог:"
+        local news_text = title.."\\n%c[default]".. fake_death_mon .." погиб монолитовец " .. from.."." 
+		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 3000)
 	end
 end
 
@@ -1628,8 +1632,9 @@ if (fake_death_mil ~= "") then
 		local fname = fnames_mil[math.random(table.getn(fnames_mil))]
 		local sname = snames_mil[math.random(table.getn(snames_mil))]
 		local from = fname.." "..sname
-            local news_text = "\\n".. fake_death_mil .." погиб военный " .. from.."." 
-		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 2000)
+        local title = "%c[255,160,160,160]Ќекролог:"
+        local news_text = title.."\\n%c[default]".. fake_death_mil .." погиб военный " .. from.."." 
+		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 3000)
 	end
 end
 
@@ -1643,8 +1648,9 @@ if (fake_death_dut ~= "") then
 		local fname = fnames[math.random(table.getn(fnames))]
 		local sname = snames[math.random(table.getn(snames))]
 		local from = fname.." "..sname
-            local news_text = "\\n".. fake_death_dut .." погиб долговец " .. from.."." 
-		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 2000)
+        local title = "%c[255,160,160,160]Ќекролог:"
+        local news_text = title.."\\n%c[default]".. fake_death_dut .." погиб долговец " .. from.."." 
+		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 3000)
 	end
 end
 
@@ -1658,8 +1664,9 @@ if (fake_death_fre ~= "") then
 		local fname = fnames[math.random(table.getn(fnames))]
 		local sname = snames[math.random(table.getn(snames))]
 		local from = fname.." "..sname
-            local news_text = "\\n".. fake_death_fre .." погиб свободовец " .. from.."." 
-		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 2000)
+        local title = "%c[255,160,160,160]Ќекролог:"
+        local news_text = title.."\\n%c[default]".. fake_death_fre .." погиб свободовец " .. from.."." 
+		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 3000)
 	end
 end
 
@@ -1673,8 +1680,9 @@ if (fake_death_mer ~= "") then
 		local fname = fnames[math.random(table.getn(fnames))]
 		local sname = snames[math.random(table.getn(snames))]
 		local from = fname.." "..sname
-            local news_text = "\\n".. fake_death_mer .." погиб наемник " .. from.."." 
-		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 2000)
+        local title = "%c[255,160,160,160]Ќекролог:"
+        local news_text = title.."\\n%c[default]".. fake_death_mer .." погиб наемник " .. from.."." 
+		db.actor:give_game_news(news_text, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 10000, 3000)
 	end
 end
 
