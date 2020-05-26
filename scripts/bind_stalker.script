@@ -133,6 +133,12 @@ function actor_binder:reinit()
 	self.object:set_callback(callback.take_item_from_box, self.take_item_from_box, self)
 	self.object:set_callback(callback.use_object, self.use_inv_item, self)
 end
+
+function actor_binder:use_inv_item(obj, who)
+	if obj:section() == "pda_npc" then
+		pda_hack.use_pda(obj)
+	end
+end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:take_item_from_box(box, item)
 	local story_id = box:story_id()
