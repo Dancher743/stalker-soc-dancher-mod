@@ -7,7 +7,7 @@ Install: Place all files to empty 'gamedata' folder.
 
 Using mods:
 1. Blowout Mod + New Sleep Mod + Dynamic News (DEXXX)
-2. Deadmoney from PDA ShoC (naxac)
+2. Money from dead stalkers (from S.T.A.L.K.E.R. Inside Wiki)
 3. Pause CoP to ShoC (Charsi)
 4. Upgrade Weapon Mod (lez0)
 5. Repair from ITS mod 2.0 (femten, BotKILLer aka DiR.X)
