@@ -149,12 +149,11 @@ function keep_item(npc, item)
     local section = item:section()
 
     if section == "bolt" then
-		return false
-	elseif section == "device_pda" then
-		-- вместо стандартного КПК спавним наш
-		pda_hack.create_pda_npc(npc)
-    elseif always_keep_item[section] == true then
-        return true
+        return
+    end
+
+    if always_keep_item[section] == true then
+        return
     end
 
     local item_id = item:id()

@@ -1,0 +1,36 @@
+--
+-- Деньги с погибших сталкеров
+-- Интеграция: Dancher
+-- Взято с сайта S.T.A.L.K.E.R. Inside Wiki.
+--
+
+function add_money_to_actor(npc)
+	if npc ~= nil and 
+	not string.find(npc:section(),"arena") and 
+	npc:character_community()~="arena_enemy" then
+		local money = 0
+		local npc_rank = ranks.get_obj_rank_name(npc)
+	
+		if npc_rank == "novice" then 
+			money = math.random(50,250)    
+		elseif npc_rank == "experienced" then 
+			money = math.random(250,500)  
+		elseif npc_rank == "veteran" then 
+			money = math.random(500,1000)
+		elseif npc_rank == "master" then 
+			money = math.random(1000,2000)
+		end
+
+		db.actor:give_money(money)
+		game_stats.money_quest_update(money)
+		notificate(money)
+	end
+end
+
+
+function notificate(money_amount)
+	local news_text = "%c[255,160,160,160]Обнаружено денег:\\n".."%c[default]"..tostring(money_amount).." руб."	
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_money")
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 10, 3000)
+end
