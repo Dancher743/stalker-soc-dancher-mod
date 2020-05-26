@@ -147,9 +147,12 @@ end
 function keep_item(npc, item)
 	if item==nil or alife():object(item:id())==nil then return end
     local section = item:section()
-	
-	if section == "bolt" then
+
+    if section == "bolt" then
 		return false
+	elseif section == "device_pda" then
+		-- вместо стандартного КПК спавним наш
+		pda_hack.create_pda_npc(npc)
     elseif always_keep_item[section] == true then
         return true
     end

@@ -100,12 +100,6 @@ function CTreasure:use(npc)
 	if se_obj.treasure_processed == true then
 		return
 	end
-	
-	--' Генерируем деньги, которые может взять ГГ:
-	if (npc and db.actor) then
-		lootmoney.add_money_to_actor(npc)
-	end
-
 	se_obj.treasure_processed = true
 	
 	--' Нужно рандомно выбрать один из тайников.
