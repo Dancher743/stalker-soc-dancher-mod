@@ -1442,7 +1442,7 @@ if (trade_maseges ~= "") then
 		local trade_cost = cost[math.random(table.getn(cost))]
         local where_trade = where_trade[math.random(table.getn(where_trade))]
         local news_text = "%c[255,160,160,160]".. from .."\\n%c[default]".. trade_maseges .. trade_cost .. what_trade .. where_trade			.. trade_when.."."
-		db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,0,0,188), 3000, 20000)
+		db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,94,83,47), 3000, 20000)
 	end
 end
 
