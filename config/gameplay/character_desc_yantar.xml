@@ -32,6 +32,7 @@
 		<actor_dialog>repair</actor_dialog>
 		<actor_dialog>fast_travel_dialog_sakharov</actor_dialog>
 		<actor_dialog>sakharov_join_any_community_dialog</actor_dialog>
+		<actor_dialog>sakharov_pda_upgrade_dialog</actor_dialog>
 		<!--<actor_dialog>artefacts_exchange_dialog</actor_dialog>-->
 	</specific_character>
 

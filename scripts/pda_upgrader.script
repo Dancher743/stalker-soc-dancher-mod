@@ -1,0 +1,39 @@
+--
+-- Апгрейд КПК
+-- Автор: Dancher
+--
+
+-- Описание апргрейдов:
+--
+-- 1. "upgrade_one" - первый (и единственный) доступный апгрейд. Позволяет увеличить кол-во добываемых с трупов денег в два раза. 
+--
+
+-- Звук нотификации
+pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+
+local notification_delay_time = 2000
+
+function upgrade_one_pay_condition(npc, actor)
+	if db.actor:object("af_gold_fish") then
+        return true
+    end
+    return false
+end
+
+function upgrade_one_pay(npc, actor)
+	dialogs.relocate_item_section(actor, "af_gold_fish", "out")
+end
+
+function show_upgrade_one_notification_with_delay()
+	xr_effects.start_timer(notification_delay_time, show_upgrade_one_notification)
+end
+
+function show_upgrade_one_notification()
+	local title = "%c[255,160,160,160]КПК:"
+	local message = "%c[default]Программный модуль \"Передача денежных средств\" успешно пропатчен."
+	local news_text = title.."\\n"..message
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_deficit")
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 5000)
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+end

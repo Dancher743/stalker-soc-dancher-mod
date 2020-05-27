@@ -451,6 +451,8 @@ function actor_binder:update(delta)
 	if not arts then
 	    bind_det_arts.start_update()
 		arts = true
+		
+		alife():create('af_gold_fish', db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
 	end
 end
 ----------------------------------------------------------------------------------------------------------------------

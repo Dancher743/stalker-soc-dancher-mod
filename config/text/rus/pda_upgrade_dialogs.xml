@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<string_table>
+	<string id="sakharov_pda_upgrade_dialog_0">
+		<text>Профессор, вы мой КПК не сможете улучшить?</text>
+	</string>
+	<string id="sakharov_pda_upgrade_dialog_1">
+		<text>Я могу пропатчить программный модуль «Передача денежных средств» вашего КПК. Тем самым, вы сможете получать больше денег с найденых КПК где-то в два раза.</text>
+	</string>
+	<string id="sakharov_pda_upgrade_dialog_2">
+		<text>Было бы здорово! Что я должен взамен?</text>
+	</string>
+	<string id="sakharov_pda_upgrade_dialog_3">
+		<text>Принесите мне артефакт «Золотая рыбка» и я всё сделаю.</text>
+	</string>
+	<string id="sakharov_pda_upgrade_dialog_4">
+		<text>Вот артефакт.</text>
+	</string>
+	<string id="sakharov_pda_upgrade_dialog_5">
+		<text>Я передумал.</text>
+	</string>
+	<string id="sakharov_pda_upgrade_dialog_6">
+		<text>Отлично! Давайте КПК. Так.. ага.. нажимаем «принять»... Всё, обновление завершено! Забирайте свой КПК.</text>
+	</string>
+</string_table>

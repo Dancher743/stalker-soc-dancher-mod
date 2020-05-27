@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<game_dialogs>
+	<dialog id="sakharov_pda_upgrade_dialog">
+	<dont_has_info>pda_upgrade_one</dont_has_info>
+	<phrase_list>
+		<phrase id="0">
+			<text>sakharov_pda_upgrade_dialog_0</text>
+            <next>1</next>
+        </phrase>
+		<phrase id="1">
+			<text>sakharov_pda_upgrade_dialog_1</text>
+            <next>2</next>
+        </phrase>
+		<phrase id="2">
+			<text>sakharov_pda_upgrade_dialog_2</text>
+            <next>3</next>
+        </phrase>
+		<phrase id="3">
+			<text>sakharov_pda_upgrade_dialog_3</text>
+            <next>4</next>
+			<next>5</next>
+        </phrase>
+		<phrase id="4">
+			<precondition>pda_upgrader.upgrade_one_pay_condition</precondition>
+			<text>sakharov_pda_upgrade_dialog_4</text>
+			<action>pda_upgrader.upgrade_one_pay</action>
+			<next>6</next>
+        </phrase>
+		<phrase id="5">
+			<text>sakharov_pda_upgrade_dialog_5</text>
+        </phrase>
+		<phrase id="6">
+			<give_info>pda_upgrade_one</give_info>
+			<text>sakharov_pda_upgrade_dialog_6</text>
+			<action>pda_upgrader.show_upgrade_one_notification</action>
+        </phrase>
+	</phrase_list>
+	</dialog>
+</game_dialogs>
