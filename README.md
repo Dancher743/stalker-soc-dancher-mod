@@ -29,11 +29,11 @@ Using mods:
 21. Stories Bonfire v1.1 (Shad0wC@ndy)
 22. Harmonica Mod (gordon-x)
 23. Healing enemy NPC (AMK Mod/Механиk/Dancher)
-24. Added night skyboxes from build 1935
+24. Weather from Build 2571 (GSC Game World)
 25. Artefacts Respawn Mod (Bak)
 26. Corps Collector (Sak)
 27. Dynamic Campfire v1.32 (kstn)
-28. Night Ambient Sound from RMA Shadows Addon 0.8.5
+28. NPC's grenade sounds from Call of Pripyat (GSC Game World)
 29. Exchanging Items Mod (v0.5) (Stalk15)
 30. Dinamic Trade Manager (v0.1) (singapur22)
 31. Anomaly Detectors (from AMK Mod)
