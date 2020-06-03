@@ -32,13 +32,23 @@ snd_grenade_replics={
 		[[stalker\ready_4]],
 		[[stalker\ready_5]],
 		[[stalker\ready_6]],
-		[[stalker\ready_7]],
-		[[stalker\ready_8]]
+		--[[stalker\grenade_ready_1]],
+		--[[stalker\grenade_ready_2]],
+		[[stalker\grenade_ready_3]],
+		--[[stalker\grenade_ready_4]],
+		--[[stalker\grenade_ready_5]],
+		[[stalker\grenade_ready_6]],
+		[[stalker\grenade_ready_7]]
 	},
 	military = {
 		[[voyaki\ready_1]],
-		[[voyaki\ready_2]],
-		[[voyaki\ready_3]]
+		[[voyaki\grenade_ready_1]],
+		[[voyaki\grenade_ready_2]],
+		[[voyaki\grenade_ready_3]],
+		[[voyaki\grenade_ready_4]],
+		[[voyaki\grenade_ready_5]],
+		[[voyaki\grenade_ready_6]],
+		[[voyaki\grenade_ready_7]]
 	},
 	bandit = {
 		[[bandos\ready_1]],
@@ -50,30 +60,39 @@ snd_grenade_replics={
 		[[bandos\ready_7]],
 		[[bandos\ready_8]],
 		[[bandos\ready_9]],
-		[[bandos\ready_10]]
+		[[bandos\ready_10]],
+		[[bandos\ready_11]]
 	},
 	monolith = {
-		[[mono\ready_1]],
-		[[mono\ready_2]],
-		[[mono\ready_3]]
+		[[mono\grenade_ready_1]],
+		[[mono\grenade_ready_2]],
+		[[mono\grenade_ready_3]],
+		[[mono\grenade_ready_4]],
+		[[mono\grenade_ready_5]],
+		[[mono\grenade_ready_6]]
+		--[[mono\grenade_ready_7]]
 	},
 	killer = {
 		[[merc\ready_1]],
 		[[merc\ready_2]]
 	},
 	dolg = {
-		[[dolgos\abuse_3]],
-		[[dolgos\backup_3]],
-		[[dolgos\panic_monster_2]],
-		[[dolgos\panic_monster_4]],
-		[[dolgos\search_8]],
-		[[dolgos\threat_distant_2]],
-		[[dolgos\threat_distant_5]]
+		[[dolgos\grenade_ready_1]],
+		[[dolgos\grenade_ready_2]],
+		[[dolgos\grenade_ready_3]],
+		[[dolgos\grenade_ready_4]],
+		[[dolgos\grenade_ready_5]],
+		[[dolgos\grenade_ready_6]],
+		[[dolgos\grenade_ready_7]]
 	},
 	freedom = {
-		[[freedom\freedom1]],
-		[[freedom\freedom2]],
-		[[freedom\freedom3]]
+		[[freedom\grenade_ready_1]],
+		[[freedom\grenade_ready_2]],
+		[[freedom\grenade_ready_3]],
+		[[freedom\grenade_ready_4]],
+		[[freedom\grenade_ready_5]],
+		[[freedom\grenade_ready_6]],
+		[[freedom\grenade_ready_7]]
 	}
 }
 ----------------------------------------------------------------------------------------------------------------------
