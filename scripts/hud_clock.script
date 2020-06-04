@@ -1,11 +1,17 @@
 --
 -- Часы на HUD
 -- Авторство: статья "SoC. Выводим часы на HUD" с сайта S.T.A.L.K.E.R. Inside Wiki
+-- Показ даты взят из мода RMA. Shadow Addons 0.8.5.
 -- Интеграция в игру: Dancher
 --
 
 function update()
-    local hud = get_hud()
+	set_time()
+	set_date()
+end
+
+function set_time()
+	local hud = get_hud()
     local cs = hud:GetCustomStatic("hud_show_time")
     if cs == nil then
         hud:AddCustomStatic("hud_time_static", true)
@@ -23,4 +29,11 @@ function update()
     end
  
     if cs ~= nil then cs:wnd():SetText(msg) end
+end
+
+function set_date()
+	local hud = get_hud()
+	local game_time = game.get_game_time()
+	
+	hud:AddCustomStatic("hud_date", true):wnd():SetText(game_time:dateToString(game.CTime.DateToDay))
 end
