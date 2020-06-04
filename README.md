@@ -33,7 +33,7 @@ Using mods:
 25. Artefacts Respawn Mod (Bak)
 26. Corps Collector (Sak)
 27. Dynamic Campfire v1.32 (kstn)
-28. NPC's grenade sounds from Call of Pripyat (GSC Game World)
+28. NPC's grenade sounds from CS/CoP (GSC Game World)
 29. Exchanging Items Mod (v0.5) (Stalk15)
 30. Dinamic Trade Manager (v0.1) (singapur22)
 31. Anomaly Detectors (from AMK Mod)
