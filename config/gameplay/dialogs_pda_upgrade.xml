@@ -2,6 +2,7 @@
 
 <game_dialogs>
 	<dialog id="sakharov_pda_upgrade_dialog">
+	<has_info>yan_kill_brain_done</has_info>
 	<dont_has_info>pda_upgrade_one</dont_has_info>
 	<phrase_list>
 		<phrase id="0">

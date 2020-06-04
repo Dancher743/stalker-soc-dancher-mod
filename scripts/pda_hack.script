@@ -49,19 +49,18 @@ function use_pda(obj)
 	local rank = tonumber(p[3]) or 0
 	
 	local deadmoney = 0
-	
-    if rank<300 then deadmoney=math.random(75,150)    -- novice
-    elseif rank<600 then deadmoney=math.random(150,250)    -- experienced
-    elseif rank<900 then deadmoney=math.random(250,500)        -- veteran
-    elseif rank>=900 then deadmoney=math.random(500,1000) end    -- master
+	local deadmoney_amount_color = "%c[default]"
 	
 	if has_alife_info("pda_upgrade_one") then
-		deadmoney = deadmoney * 2
+		deadmoney = get_money_with_upgraded_pda(rank)
+		--deadmoney_amount_color = "%c[255,12,150,12]"
+	else
+		deadmoney = get_money_standart(rank)
 	end
 	
 	db.actor:give_money(deadmoney)
 	
-	show_notification(deadmoney, community, name)
+	show_notification(deadmoney, community, name, deadmoney_amount_color)
 end
 
 function create_pda_npc(npc, pda)
@@ -95,14 +94,10 @@ function convert_string(str, mode)
 	return ret
 end
 
-function show_notification(money_amount, community, name)
+
+function show_notification(money_amount, community, name, money_amount_color)
 	local title = "%c[255,160,160,160]КПК "..npc_community[community].." ("..name.."):"
-	local money_amount_color = "%c[default]"
-	
-	if has_alife_info("pda_upgrade_one") then
-		money_amount_color = "%c[255,12,150,12]"
-	end
-	
+
 	local message = "%c[default]Обнаружено "..money_amount_color..tostring(money_amount).."%c[default] руб."
 	local news_text = title.."\\n"..message
 
@@ -112,6 +107,38 @@ function show_notification(money_amount, community, name)
 	pda_news:play(db.actor, 0, sound_object.s2d)
 end
 
+
+function get_money_standart(rank)
+	local deadmoney = 0
+	
+    if rank<300 then 
+		deadmoney=math.random(36,75)    -- novice
+    elseif rank<600 then 
+		deadmoney=math.random(75,150)    -- experienced
+    elseif rank<900 then 
+		deadmoney=math.random(150,250)        -- veteran
+    elseif rank>=900 then 
+		deadmoney=math.random(250,500)		-- master
+	end    
+	
+	return deadmoney
+end
+
+function get_money_with_upgraded_pda(rank)
+	local deadmoney = 0
+	
+    if rank<300 then 
+		deadmoney=math.random(75,150)    -- novice
+    elseif rank<600 then 
+		deadmoney=math.random(150,250)    -- experienced
+    elseif rank<900 then 
+		deadmoney=math.random(250,500)        -- veteran
+    elseif rank>=900 then 
+		deadmoney=math.random(500,1000)		-- master
+	end
+	
+	return deadmoney
+end
 
 ----------------------------------------------------------------------------------
 -- Функции для работы с нет_пэкетами (АМК)
