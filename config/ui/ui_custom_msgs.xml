@@ -90,4 +90,11 @@
 	<hud_mattress x="5" y="250" width="64" height="64" light_anim="ui_slow_blinking_alpha">
 		<texture>ui_hud_icon_sleep</texture>
 	</hud_mattress>
+	
+	<hud_rad_back x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
+		<texture>ui\ui_hud_shkala_rad</texture>
+	</hud_rad_back>
+	<hud_rad_level x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
+		<texture>ui\ui_hud_progress_rad</texture>
+	</hud_rad_level>
 </header>

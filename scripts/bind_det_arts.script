@@ -87,6 +87,7 @@ function set_detector_strategy()
 	
 	if not inventory.belt["detector_elite"] then
 		this.iteration_del_spot()
+		ui_rad.remove_from_hud()
 	end
 end
 
@@ -167,6 +168,8 @@ function detector_elite_strategy()
 			end
 		end
 	end
+	
+	ui_rad.update(db.actor)
 end
 
 function get_artefact_map_spot_name(section)
