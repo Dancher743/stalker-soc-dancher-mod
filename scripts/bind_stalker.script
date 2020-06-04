@@ -253,6 +253,9 @@ function actor_binder:update(delta)
 	local time = time_global()
 	
 	game_stats.update (delta, self.object)
+	
+	--' апдейт часов на худе
+	hud_clock.update()
 
 	-- апдейт погоды
 	self.weather_manager:update()

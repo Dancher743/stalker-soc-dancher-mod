@@ -97,4 +97,12 @@
 	<hud_rad_level x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
 		<texture>ui\ui_hud_progress_rad</texture>
 	</hud_rad_level>
+	
+	<hud_time_static  x="852" y="17" width="156" height="52">
+        <text complex_mode="0" x="65" y="0" font="letterica16" r="255" g="255" b="255" a="130">Time</text>
+        <texture>ui_hud_frame_clock</texture>
+    </hud_time_static>
+    <hud_show_time x="862" y="38" width="156" height="52">
+        <text x="0" y="0" font="graffiti19" r="255" g="255" b="255" a="140" align="c"/>
+    </hud_show_time>
 </header>
