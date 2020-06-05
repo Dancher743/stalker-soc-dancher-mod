@@ -1,39 +1,34 @@
 --
 -- Часы на HUD
--- Авторство: статья "SoC. Выводим часы на HUD" с сайта S.T.A.L.K.E.R. Inside Wiki
--- Показ даты взят из мода RMA. Shadow Addons 0.8.5.
--- Интеграция в игру: Dancher
+-- Автор: Dancher
 --
 
-function update()
-	set_time()
-	set_date()
-end
+local hud = get_hud()
+local time_xml_node_name = "hud_time"
+local date_xml_node_name = "hud_date"
 
-function set_time()
-	local hud = get_hud()
-    local cs = hud:GetCustomStatic("hud_show_time")
-    if cs == nil then
-        hud:AddCustomStatic("hud_time_static", true)
-        hud:AddCustomStatic("hud_show_time", true)
-        cs = hud:GetCustomStatic("hud_show_time")
-    end
- 
-    local time_h = level.get_time_hours()
-    local time_m = level.get_time_minutes()
-    local msg
-    if time_m >= 10 then
-        msg = string.format(" %02d:%02d\n", time_h, time_m)
-    else
-        msg = string.format(" %02d:%02d\n", time_h, time_m)
-    end
- 
-    if cs ~= nil then cs:wnd():SetText(msg) end
-end
-
-function set_date()
-	local hud = get_hud()
-	local game_time = game.get_game_time()
+function create()	
+	hud:AddCustomStatic(time_xml_node_name, true)
+	hud:AddCustomStatic(date_xml_node_name, true)
 	
-	hud:AddCustomStatic("hud_date", true):wnd():SetText(game_time:dateToString(game.CTime.DateToDay))
+	return get_time_and_data()
+end
+
+function update()		
+	local game_time = game.get_game_time()
+	local hud_time, hud_date = get_time_and_data()
+	
+	if hud_time == nil and hud_date == nil then
+		hud_time, hud_date = create()
+	end
+	
+	hud_time:wnd():SetText(game_time:timeToString(game.CTime.TimeToMinutes))
+	hud_date:wnd():SetText(game_time:dateToString(game.CTime.DateToDay))
+end
+
+function get_time_and_data()
+    local hud_time = hud:GetCustomStatic(time_xml_node_name)
+    local hud_date = hud:GetCustomStatic(date_xml_node_name)
+
+    return hud_time, hud_date
 end

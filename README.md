@@ -39,6 +39,6 @@ Using mods:
 31. Anomaly Detectors (from AMK Mod)
 32. Artefact Detectors (singapur22/Dancher/NS2016/RMA Shadows Addon)
 33. UI Radiation Mod (sokol_jack)
-34. Clock on HUD (from S.T.A.L.K.E.R. Inside Wiki)
+34. Clock on HUD (Dancher/RMA Shadows Addon)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.

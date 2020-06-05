@@ -96,17 +96,15 @@
 	</hud_rad_back>
 	<hud_rad_level x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
 		<texture>ui\ui_hud_progress_rad</texture>
-	</hud_rad_level>
+	</hud_rad_level>	
 	
-	<hud_time_static  x="852" y="17" width="156" height="52">
-        <!--<text complex_mode="0" x="65" y="0" font="letterica16" r="255" g="255" b="255" a="130">Time</text>-->
-        <texture>ui_hud_frame_clock</texture>
-    </hud_time_static>
-    <hud_show_time x="862" y="45" width="156" height="52" stretch="1">
-        <text x="0" y="0" font="graffiti19" r="255" g="255" b="255" a="140" align="c"/>
-    </hud_show_time>
-	
-	<hud_date x="928" y="18.5" width="0" height="0">
+	<!-- Часы на худе. Взято из RMA. Shadow Addons 0.8.5 -->
+	<hud_time x="852" y="15" width="157" height="67">
+		<text x="73" y="23" font="graffiti32" r="238" g="155" b="23" a="255"/>
+		<texture>ui_hud_frame_clock</texture>
+	</hud_time>
+
+	<hud_date x="928" y="16.5" width="0" height="0">
 		<text font="medium" a="130"/>
 	</hud_date>
 </header>
