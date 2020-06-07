@@ -19,6 +19,18 @@
 	<string id="escape_trader_join_dialog_5">
 		<text>Готово. И, кстати, никому об этом ни слова.</text>
 	</string>
+	<string id="escape_trader_join_dialog_6">
+		<text>Я бы хотел присоединиться к более "диким" группировкам.</text>
+	</string>
+	<string id="escape_trader_join_dialog_7">
+		<text>Хм... ладно. Называй группировку.</text>
+	</string>
+	<string id="escape_trader_join_dialog_8">
+		<text>Наёмники.</text>
+	</string>
+	<string id="escape_trader_join_dialog_9">
+		<text>Монолит.</text>
+	</string>
 	
 	<!-- Майор Кузнецов -->
 	<string id="kuznecov_join_dialog_0">

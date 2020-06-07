@@ -87,7 +87,11 @@ end
 function change_actor_reputation(community_id)
 	local actor = db.actor
 
-	if community_id == communities[2] then
+	if 
+		community_id == communities[2] or
+		community_id == communities[4] or
+		community_id == communities[8]
+	then
 		if actor:character_reputation() > 0 then
 			actor:change_character_reputation(db.actor:character_reputation() * -1)
 		end

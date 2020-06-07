@@ -12,6 +12,7 @@
                 <text>escape_trader_join_dialog_1</text>
                 <next>2</next>
                 <next>3</next>
+				<next>6</next>
 				<next>4</next>
             </phrase>
 			<phrase id="2">
@@ -32,6 +33,32 @@
 			<phrase id="5">
                 <text>escape_trader_join_dialog_5</text>
             </phrase>
+			<phrase id="6">
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_6</text>
+				<next>7</next>
+            </phrase>
+			<phrase id="7">
+                <text>escape_trader_join_dialog_7</text>
+				<next>8</next>
+                <next>9</next>
+				<next>4</next>
+            </phrase>
+			<phrase id="8">
+				<has_info>bar_darklab_document_done</has_info>
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_8</text>
+				<action>any_community_manager.join_killer</action>
+				<next>5</next>
+            </phrase>
+			<phrase id="9">
+				<has_info>bar_x16_documents_done</has_info>
+				<precondition>any_community_manager.check_player_money</precondition>
+                <text>escape_trader_join_dialog_9</text>
+				<action>any_community_manager.join_monolith</action>
+				<next>5</next>
+            </phrase>
+			
         </phrase_list>
     </dialog>
 	
