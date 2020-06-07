@@ -14,6 +14,12 @@ sect_thunderbolt_01
 sect_thunderbolt_02
 sect_thunderbolt_03
 
+[thunderbolt_collection_indoor]
+sect_thunderbolt_00_nosound
+sect_thunderbolt_01_nosound
+sect_thunderbolt_02_nosound
+sect_thunderbolt_03_nosound
+
 [thunderbolt_collection_stancia]
 sect_thunderbolt_stancia_00
 sect_thunderbolt_stancia_01
@@ -115,6 +121,58 @@ gradient_center_shader 	= effects\sun
 lightning_model			= dm\dm_lightning-04.dm
 color_anim				= weathers\thunderbolt_00
 sound					= nature\thunder-3
+gradient_top_opacity   	= 0.6
+gradient_top_radius     = 0.500, 0.250
+gradient_top_texture    = fx\fx_gradient
+gradient_top_shader    	= effects\sun
+gradient_center_opacity = 0.6
+gradient_center_radius  = 2.000, 1.000
+gradient_center_texture = fx\fx_gradient
+gradient_center_shader 	= effects\sun
+
+[sect_thunderbolt_00_nosound]
+lightning_model			= dm\dm_lightning-01.dm
+color_anim				= weathers\thunderbolt_00	; отыгрывается вся последовательность, независимо от FPS and FrameCount 
+sound					= $no_sound
+gradient_top_opacity   	= 0.6
+gradient_top_radius     = 0.500, 0.250
+gradient_top_texture    = fx\fx_gradient
+gradient_top_shader    	= effects\sun
+gradient_center_opacity = 0.6
+gradient_center_radius  = 2.000, 1.000
+gradient_center_texture = fx\fx_gradient
+gradient_center_shader 	= effects\sun
+
+[sect_thunderbolt_01_nosound]
+lightning_model			= dm\dm_lightning-02.dm
+color_anim				= weathers\thunderbolt_00
+sound					= $no_sound
+gradient_top_opacity   	= 0.6
+gradient_top_radius     = 0.500, 0.250
+gradient_top_texture    = fx\fx_gradient
+gradient_top_shader    	= effects\sun
+gradient_center_opacity = 0.6
+gradient_center_radius  = 2.000, 1.000
+gradient_center_texture = fx\fx_gradient
+gradient_center_shader 	= effects\sun
+
+[sect_thunderbolt_02_nosound]
+lightning_model			= dm\dm_lightning-03.dm
+color_anim				= weathers\thunderbolt_00
+sound					= $no_sound
+gradient_top_opacity   	= 0.6
+gradient_top_radius     = 0.500, 0.250
+gradient_top_texture    = fx\fx_gradient
+gradient_top_shader    	= effects\sun
+gradient_center_opacity = 0.6
+gradient_center_radius  = 2.000, 1.000
+gradient_center_texture = fx\fx_gradient
+gradient_center_shader 	= effects\sun
+
+[sect_thunderbolt_03_nosound]
+lightning_model			= dm\dm_lightning-04.dm
+color_anim				= weathers\thunderbolt_00
+sound					= $no_sound
 gradient_top_opacity   	= 0.6
 gradient_top_radius     = 0.500, 0.250
 gradient_top_texture    = fx\fx_gradient
