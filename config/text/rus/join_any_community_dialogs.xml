@@ -54,6 +54,14 @@
 		<text>Добро пожаловать к нам!</text>
 	</string>
 	
+	<!-- Лукаш -->
+	<string id="lukash_join_freedom_dialog_0">
+		<text>Я хочу присоединиться к Свободе.</text>
+	</string>
+	<string id="lukash_join_freedom_dialog_1">
+		<text>Со всеми заданиями ты справился, поэтому я зачисляю тебя в нашу группировку.</text>
+	</string>
+	
 	<!-- Тестовый диалог -->
 	<string id="join_dialog_0">
 		<text>Сменить группировку.</text>

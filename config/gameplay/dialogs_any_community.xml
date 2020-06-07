@@ -92,6 +92,22 @@
         </phrase_list>
     </dialog>
 	
+	<!-- Лукаш -->
+	<dialog id="lukash_join_freedom_dialog">
+		<has_info>mil_freedom_quests_end</has_info>
+		<precondition>dialogs_military.actor_not_in_freedom</precondition>
+		<phrase_list>
+			<phrase id="0">
+                <text>lukash_join_freedom_dialog_0</text>
+                <next>1</next>
+            </phrase>
+			<phrase id="1">
+                <text>lukash_join_freedom_dialog_1</text>
+				<action>dialogs_military.actor_set_freedom</action>
+            </phrase>
+		</phrase_list>
+	</dialog>
+	
 	<!-- Тестовый диалог -->
 	<dialog id="join_any_community_dialog">
         <phrase_list>

@@ -154,6 +154,16 @@ function transfer_scope (npc, actor)
     dialogs.relocate_item_section(npc, "vodka", "out")
 end
 
+function actor_in_freedom(actor, npc)
+	if db.actor then
+		return db.actor:character_community() == "actor_freedom"
+	end
+	return false
+end
+
+function actor_not_in_freedom(actor, npc)
+	return not actor_in_freedom(actor, npc)
+end
 
 function actor_set_freedom (actor, npc)
     printf ("ACTOR NOW IN FREEDOM COMMUNITY")
