@@ -3896,7 +3896,6 @@
             </phrase>
             <phrase id="8">
                 <text>bar_dolg_leader_prisyaga_8</text>
-                <action>bar_dialogs.enter_to_dolg</action>
                 <action>dialogs.actor_set_dolg</action>
                 <give_info>bar_dolg_community_leader_done</give_info>
                 <next>9</next>
@@ -3987,7 +3986,7 @@
         <phrase_list>
             <phrase id="1">
                 <text>bar_dolg_leader_quest_rg6_finish_1</text>
-                <action>bar_dialogs.enter_to_dolg</action>
+                <action>bar_dialogs.reward_rg6</action>
             </phrase>
             <phrase id="0">
                 <text>bar_dolg_leader_quest_rg6_finish_0</text>
