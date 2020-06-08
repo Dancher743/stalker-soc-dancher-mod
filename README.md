@@ -40,6 +40,7 @@ Using mods:
 32. Artefact Detectors (singapur22/Dancher/NS2016/RMA Shadows Addon)
 33. UI Radiation Mod (sokol_jack)
 34. Clock on HUD (Dancher/RMA Shadows Addon)
-35. New bolt (from AMK MOD)
+35. New bolt (from AMK Mod)
+36. NPC can gather (from AMK Mod)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.

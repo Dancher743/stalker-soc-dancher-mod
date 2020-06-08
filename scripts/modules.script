@@ -16,6 +16,11 @@ stype_restrictor = 4
 if ogsm_hideout then
 	load_scheme("ogsm_hideout",    "ogsm_hideout",      stype_stalker)
 end
+
+if watcher_act then
+        load_scheme("watcher_act",    "watcher_act",      stype_stalker)
+end
+
 load_scheme("xr_danger",	  "danger",      stype_stalker)
 load_scheme("xr_abuse",		  "abuse",       stype_stalker)
 load_scheme("xr_walker",      "walker",      stype_stalker)

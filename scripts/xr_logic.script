@@ -278,6 +278,10 @@ function enable_generic_schemes(ini, npc, stype, section)
 		local meet_section = utils.cfg_get_string (ini, section, "meet", npc, false, "")
 		xr_meet.set_meet (npc, ini, "meet", meet_section)
 
+		if watcher_act then
+            watcher_act.set_scheme(npc,ini,"watcher_act","watcher_act")
+        end
+
 		local death_section = utils.cfg_get_string (ini, section, "on_death", npc, false, "")
 		xr_death.set_death (npc, ini, "death", death_section)
 
