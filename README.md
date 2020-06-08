@@ -42,5 +42,6 @@ Using mods:
 34. Clock on HUD (Dancher/RMA Shadows Addon)
 35. New bolt (from AMK Mod)
 36. NPC can gather (from AMK Mod)
+37. Stalkers are not blind mod (Red75)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.

@@ -125,6 +125,10 @@ end
 function se_zone_anom:STATE_Read( packet, size )
 	cse_anomalous_zone.STATE_Read( self, packet, size )
 
+	if self.id~=65535 then
+        anomaly_holder.add_anomaly(self.id,self:clsid())
+    end
+
 	if editor() then
 		return
 	end
@@ -154,6 +158,7 @@ function se_zone_visual:on_register()
 end
 function se_zone_visual:on_unregister()
 	cse_zone_visual.on_unregister(self)
+	anomaly_holder.remove_anomaly(self.id)
 	registered_anoms[self.ri] = nil
 end
 function se_zone_visual:update()
