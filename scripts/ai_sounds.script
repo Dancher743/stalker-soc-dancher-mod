@@ -1,0 +1,192 @@
+--
+-- Звуковая бибилиотека для AI
+-- Автор: Dancher
+--
+
+loot_begin_sounds =
+{
+	stalker = {
+		[[stalker\loot_begin_1]],
+		[[stalker\loot_begin_2]],
+		[[stalker\loot_begin_3]]
+	},
+	
+	military = 
+	{
+		[[military\loot_begin_1]],
+		[[military\loot_begin_2]],
+		[[military\loot_begin_3]]
+	},
+	
+	bandit = 
+	{
+		[[bandit\loot_begin_1]],
+		[[bandit\loot_begin_2]],
+		[[bandit\loot_begin_3]]
+	},
+	
+	monolith = 
+	{
+		[[monolith\loot_begin_1]],
+		[[monolith\loot_begin_2]],
+		[[monolith\loot_begin_3]]
+	},
+	
+	killer = 
+	{
+		[[killer\loot_begin_1]],
+		[[killer\loot_begin_2]],
+		[[killer\loot_begin_3]]
+	},
+	
+	dolg = 
+	{
+		[[dolg\loot_begin_1]],
+		[[dolg\loot_begin_2]],
+		[[dolg\loot_begin_3]]
+	},
+	
+	freedom = 
+	{
+		[[freedom\loot_begin_1]],
+		[[freedom\loot_begin_2]],
+		[[freedom\loot_begin_3]]
+	},
+	
+	default = 
+	{
+		[[default\loot_begin_1]]
+	}
+}
+
+
+loot_good_sounds =
+{
+	stalker = {
+		[[stalker\loot_good_1]],
+		[[stalker\loot_good_2]],
+		[[stalker\loot_good_3]]
+	},
+	
+	military = 
+	{
+		[[military\loot_good_1]],
+		[[military\loot_good_2]],
+		[[military\loot_good_3]]
+	},
+	
+	bandit = 
+	{
+		[[bandit\loot_good_1]],
+		[[bandit\loot_good_2]],
+		[[bandit\loot_good_3]]
+	},
+	
+	monolith = 
+	{
+		[[monolith\loot_good_1]],
+		[[monolith\loot_good_2]],
+		[[monolith\loot_good_3]]
+	},
+	
+	killer = 
+	{
+		[[killer\loot_good_1]],
+		[[killer\loot_good_2]],
+		[[killer\loot_good_3]]
+	},
+	
+	dolg = 
+	{
+		[[dolg\loot_good_1]],
+		[[dolg\loot_good_2]],
+		[[dolg\loot_good_3]]
+	},
+	
+	freedom = 
+	{
+		[[freedom\loot_good_1]],
+		[[freedom\loot_good_2]],
+		[[freedom\loot_good_3]]
+	},
+	
+	default = 
+	{
+		[[default\loot_good_1]]
+	}
+}
+
+loot_bad_sounds =
+{
+	stalker = {
+		[[stalker\loot_bad_1]],
+		[[stalker\loot_bad_2]],
+		[[stalker\loot_bad_3]]
+	},
+	
+	military = 
+	{
+		[[military\loot_bad_1]],
+		[[military\loot_bad_2]],
+		[[military\loot_bad_3]]
+	},
+	
+	bandit = 
+	{
+		[[bandit\loot_bad_1]],
+		[[bandit\loot_bad_2]],
+		[[bandit\loot_bad_3]]
+	},
+	
+	monolith = 
+	{
+		[[monolith\loot_bad_1]],
+		[[monolith\loot_bad_2]],
+		[[monolith\loot_bad_3]]
+	},
+	
+	killer = 
+	{
+		[[killer\loot_bad_1]],
+		[[killer\loot_bad_2]],
+		[[killer\loot_bad_3]]
+	},
+	
+	dolg = 
+	{
+		[[dolg\loot_bad_1]],
+		[[dolg\loot_bad_2]],
+		[[dolg\loot_bad_3]]
+	},
+	
+	freedom = 
+	{
+		[[freedom\loot_bad_1]],
+		[[freedom\loot_bad_2]],
+		[[freedom\loot_bad_3]]
+	},
+	
+	default = 
+	{
+		[[default\loot_bad_1]]
+	}
+}
+
+function play_sound(npc, type)
+	local path, pre_path = nil, nil
+	local npc_community = npc:character_community()
+
+	if type == "begin" then
+		pre_path = loot_begin_sounds[npc_community] or loot_begin_sounds.default
+	elseif type == "good" then
+		pre_path = loot_good_sounds[npc_community] or loot_good_sounds.default
+	elseif type == "bad" then
+		pre_path = loot_bad_sounds[npc_community] or loot_bad_sounds.default
+	end
+
+	path = [[looting\]]..pre_path[math.random(table.getn(pre_path))]
+
+	local sound = xr_sound.get_safe_sound_object(path)
+	
+	sound:play_no_feedback(npc, sound_object.s3d, 0, npc:position(), 1.0)
+end
