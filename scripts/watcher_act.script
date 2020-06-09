@@ -2,6 +2,11 @@
 -- Marauder scheme v 1.1
 -- Part of AMK MOD
 
+local excluded_npcs={
+	bar_ecolog_professor = true
+	yan_ecolog_help = true
+}
+
 evid_see_stuff=6931
 evid_near_stuff=evid_see_stuff+1
 evid_see_body=evid_see_stuff+2
@@ -200,6 +205,11 @@ end
 function ev_see_stuff:evaluate()
 	local res=getGObject(self.st)~=nil
 	local npc=self.object
+	
+	if npc ~= nil and excluded_npcs[npc:name()] then
+		return
+	end
+	
   local actsch=db.storage[npc:id()].active_scheme
   if actsch and db.actor then
     xr_logic.try_switch_to_another_section(npc, db.storage[npc:id()][actsch], db.actor)
@@ -283,6 +293,11 @@ end
 
 function ev_near_stuff:evaluate()
 	local npc=self.object
+	
+	if npc ~= nil and excluded_npcs[npc:name()] then
+		return
+	end
+	
 	local gi=getGObject(self.st)
   if gi then
     if self.st.dest_lvid then
@@ -301,6 +316,11 @@ end
 
 function ev_see_body:evaluate()
 	local npc=self.object
+	
+	if npc ~= nil and excluded_npcs[npc:name()] then
+		return
+	end
+	
 	local gi=getGObject(self.st)
 	if gi then
     return IsStalker(gi) or IsMonster(gi)
@@ -316,6 +336,11 @@ end
 
 function ev_position_corrected:evaluate()
 	local npc=self.object
+	
+	if npc ~= nil and excluded_npcs[npc:name()] then
+		return
+	end
+	
   return self.st.position_corrected==true
 end
 
@@ -353,8 +378,14 @@ function act_grab_item:initialize()
 end
 
 function act_grab_item:execute()
-	action_base.execute(self)
 	local npc=self.object
+	
+	if npc ~= nil and excluded_npcs[npc:name()] then
+		return
+	end
+	
+	action_base.execute(self)
+	
 	local gi=getGObject(self.st)
   if not gi then
     return
@@ -388,7 +419,7 @@ end
 
 function act_grab_body:initialize()
 	action_base.initialize(self)
-	local npc=self.object
+	local npc=self.object	
 	local gi=getGObject(self.st)
 	amk.mylog(self.object:name().." is going to grab body","stmt")
 	self.st.block_search=true
@@ -403,8 +434,13 @@ function act_grab_body:initialize()
 end
 
 function act_grab_body:execute()
-	action_base.execute(self)
 	local npc=self.object
+	
+	if npc ~= nil and excluded_npcs[npc:name()] then
+		return
+	end
+	
+	action_base.execute(self)
 	local gi=getGObject(self.st)
   if not gi then
     self.st.dest_lvid=nil
@@ -417,7 +453,7 @@ function act_grab_body:execute()
 			self.items_cost = 0
 			
 			gi:iterate_inventory(function (d,item)
-				if item:section()~="bolt" then
+				if item ~= nil and item:section() ~= "bolt" then
 					self.items_cost = self.items_cost + item:cost()
 					gi:transfer_item(item,npc)
 				end
@@ -438,6 +474,10 @@ function act_grab_body:finalize()
 	trigger_timed(self.st,"tm1")
   self.st.dest_lvid=nil -- Очищаем скорректированную точку назначения
 	action_base.finalize(self)
+	
+	if self.items_cost == nil then
+		return
+	end
 	
 	if self.items_cost >= 2500 then
 		ai_sounds.play_sound(npc, "good")
@@ -506,8 +546,14 @@ function act_reach_item:initialize()
 end
 
 function act_reach_item:execute()
-	action_base.execute(self)
 	local npc=self.object
+	
+	if npc ~= nil and excluded_npcs[npc:name()] then
+		return
+	end
+	
+	action_base.execute(self)
+	
 	local gi=getGObject(self.st)
 	if gi and gi:parent()~=nil then
 		-- ГГ забрал вкусность. Можно добавить наезд на ГГ.
