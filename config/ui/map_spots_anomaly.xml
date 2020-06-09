@@ -38,7 +38,7 @@
 		<mini_map spot="radioactive_zone_mini_spot"/>
 	</radioactive_zone_location>
 	<radioactive_zone_mini_spot x="0" y="0" width="16" height="16" alignment="c" stretch="1"> 
-		<texture x="215" y="195" width="24" height="24" r="230" g="255" b="100">ui\ui_mp_icon_kill</texture>
+		<texture x="215" y="195" width="30" height="30" r="230" g="255" b="100">ui\ui_mp_icon_kill</texture>
 	</radioactive_zone_mini_spot>
 
      <!-- Ёлектра -->
