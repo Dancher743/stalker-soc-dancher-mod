@@ -219,9 +219,10 @@ end
 
 -- Функция выводящая сообщение о нехватке средств
 function no_money_message()
+	local title = "Сообщение"
 	local service_text = "Недостаточно средств для использования проводника."
-	local news_text = "\\n%c[default]"..game.translate_string(service_text)
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_provodnik_task")
+	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]"..game.translate_string(service_text)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
 	
 	pda_tips:play(db.actor, 0, sound_object.s2d)
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
@@ -229,10 +230,11 @@ end
 
 -- Функция, выводящая сообщение о "хватке" средств
 function yes_money_message()
-	local service_text = "Потрачены деньги на проводника"
-	local news_text = "%c[255,160,160,160]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(cost).." руб."
+	local title = "Сообщение"
+	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]".."Потрачено "..cost.." руб.".." на проводника."
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
 	
+	pda_tips:play(db.actor, 0, sound_object.s2d)
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
 end
 
