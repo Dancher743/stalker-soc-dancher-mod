@@ -1,3 +1,7 @@
+local excluded_npcs={
+	bar_ecolog_professor=true
+}
+
 class "evaluator_anomaly" (property_evaluator)
 
 function evaluator_anomaly:__init(storage, npc, name) super(nil, name)
@@ -38,6 +42,11 @@ local error_prob={
 
 function evaluator_anomaly:evaluate()
   local nid=self.npc:id()
+  
+	if self.npc ~= nil and excluded_npcs[self.npc:name()] then
+		return
+	end
+  
   if laststate[nid]==nil then
     laststate[nid]=false
   end
