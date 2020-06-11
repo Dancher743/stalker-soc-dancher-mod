@@ -100,19 +100,23 @@ function change_actor_reputation(community_id)
 end
 
 function show_failed_message()
-	local service_text = "Вы уже состоите в данной группировке."
-	local news_text = "\\n%c[default]"..game.translate_string(service_text)
+	local title = "%c[255,160,160,160]Сообщение"
+	local service_text = "\\n%c[default]Вы уже состоите в данной группировке."
+	local news_text = title..service_text
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
 	
 	pda_tips:play(db.actor, 0, sound_object.s2d)
-	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 6000)
 end
 
 function show_success_message(new_community)
-	local service_text = "Группировка успешно изменена"
-	local news_text = "%c[255,160,160,160]"..game.translate_string(service_text).."\\n%c[default]"..game.translate_string(new_community)
+	local title_text = "%c[255,160,160,160]Сообщение"
+	local service_text = "\\n%c[default]Группировка успешно изменена - "
+	local changed_community_text = game.translate_string(new_community)
+	
+	local news_text = title_text..service_text..changed_community_text.."."
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
 	
 	pda_tips:play(db.actor, 0, sound_object.s2d)
-	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 6000)
 end
