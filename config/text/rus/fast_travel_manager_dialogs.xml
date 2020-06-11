@@ -6,6 +6,9 @@
 	<string id="fast_travel_dialog_01">
 		<text>У меня есть такой человек. Он отведёт тебя куда нужно за 4000 рублей.</text>
 	</string>
+	<string id="fast_travel_dialog_01_1">
+		<text>У меня есть такой человек. Он отведёт вас куда нужно за 4000 рублей.</text>
+	</string>
 	<string id="fast_travel_dialog_02">
 		<text>Я передумал.</text>
 	</string>
