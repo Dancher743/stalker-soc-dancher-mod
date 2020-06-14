@@ -75,4 +75,40 @@
 		<actor_dialog>guider_dialog</actor_dialog>
 	</specific_character>
 	
+	
+	<!-- Проводник на Янтаре -->
+	<specific_character id="yan_guider" team_default = "1">
+		<name>yan_guider_name</name>
+		<icon>ui_npc_u_stalker_neytral_nauchniy</icon>
+		<map_icon x="1" y="0"></map_icon>
+		<bio>yan_guider_bio</bio>
+
+		<class>guider</class>
+		<community>stalker</community>
+		<terrain_sect>stalker_terrain</terrain_sect>
+		<money min="2000" max="5000" infinitive="0"></money>
+	
+		<rank>750</rank>
+		<reputation>103</reputation>
+
+		<visual>actors\neytral\stalker_neytral_nauchniy</visual>
+		<snd_config>characters_voice\human_03\stalker\</snd_config>
+		<crouch_type>-1</crouch_type>
+		<supplies>
+			[spawn] \n
+			wpn_pb \n
+			ammo_9x18_fmj \n
+			wpn_svd \n
+			ammo_7.62x54_ap = 1 \n
+			device_torch \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+
+#include "gameplay\character_criticals_4.xml"
+
+		<start_dialog>guider_dialog_start</start_dialog>
+		<actor_dialog>guider_dialog</actor_dialog>
+	</specific_character>
 </xml>

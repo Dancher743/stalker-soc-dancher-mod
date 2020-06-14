@@ -1818,4 +1818,9 @@
         <class>guider</class>
         <specific_character>esc_guider</specific_character>
 	</character>
+	
+	<character id="yan_guider">
+        <class>guider</class>
+        <specific_character>yan_guider</specific_character>
+	</character>
 </xml>
