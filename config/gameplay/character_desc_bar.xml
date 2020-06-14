@@ -35,7 +35,6 @@
 		<actor_dialog>tm_barman_dialog</actor_dialog>
 		<actor_dialog>tm_barman_reward</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
-		<actor_dialog>fast_travel_dialog_barman</actor_dialog>
 		<actor_dialog>barman_sleep_dialog_start</actor_dialog>
 	</specific_character>
 

@@ -1,13 +1,13 @@
 --
--- Fast travel manager
--- Author: Daniil Dubovik (Dancher)
+-- Менеджер быстрого перемещения
+-- Автор: Dancher
 --
 -----------------------------------------------------------------
 -------------------- Конфигурационные значение ------------------
 -----------------------------------------------------------------
 
 -- Стоимость услуги проводника
-cost = 4000
+local cost = 4000
 
 -- Звук нотификации
 pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
@@ -24,6 +24,12 @@ max_random_time_factor = 1500
 -- 01. Телепорт ГГ на Кордон
 function to_escape(npc,actor)
 
+	local destination_level = "l01_escape"
+
+	if player_on_this_level(destination_level) then
+		return
+	end
+
 	if try_pay() then
 		before_fast_travel(npc,actor)
 		
@@ -37,13 +43,19 @@ function to_escape(npc,actor)
 			88,--г-вертекс на локации, куда телепортируемся------
 			vector():set(-11.4765520095825,2.48006772994995,56.7034339904785), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
-			"l01_escape", --локация, куда телепортируемся--
+			destination_level, --локация, куда телепортируемся--
 			1)
 	end
 end
 
 -- 02. Телепорт ГГ на Свалку
 function to_garbage(npc,actor)
+
+	local destination_level = "l02_garbage"
+
+	if player_on_this_level(destination_level) then
+		return
+	end
 
 	if try_pay() then
 		before_fast_travel(npc,actor)
@@ -58,13 +70,19 @@ function to_garbage(npc,actor)
 			330,--г-вертекс на локации, куда телепортируемся------
 			vector():set(-62.9394302368164,0.78938889503479,8.37425422668457), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
-			"l02_garbage", --локация, куда телепортируемся--
+			destination_level, --локация, куда телепортируемся--
 			1)
 	end
 end
 
 -- 03. Телепорт ГГ на Агропром
 function to_agroprom(npc,actor)
+
+	local destination_level = "l03_agroprom"
+
+	if player_on_this_level(destination_level) then
+		return
+	end
 
 	if try_pay() then
 		before_fast_travel(npc,actor)
@@ -79,13 +97,19 @@ function to_agroprom(npc,actor)
 			481,--г-вертекс на локации, куда телепортируемся------
 			vector():set(-3.77024435997009,2.5000114440918,15.2934789657593), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
-			"l03_agroprom", --локация, куда телепортируемся--
+			destination_level, --локация, куда телепортируемся--
 			1)
 	end
 end
 
 -- 04. Телепорт ГГ в Тёмную Долину
 function to_darkvalley(npc,actor)
+
+	local destination_level = "l04_darkvalley"
+
+	if player_on_this_level(destination_level) then
+		return
+	end
 
 	if try_pay() then
 		before_fast_travel(npc,actor)
@@ -100,13 +124,20 @@ function to_darkvalley(npc,actor)
 			855,--г-вертекс на локации, куда телепортируемся------
 			vector():set(59.4496078491211,0.047027587890625,-250.625793457031), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
-			"l04_darkvalley", --локация, куда телепортируемся--
+			destination_level, --локация, куда телепортируемся--
 			1)
 	end
 end
 
 -- 05. Телепорт ГГ в Бар
 function to_bar(npc,actor)
+
+	local destination_level = "l05_bar"
+
+	if player_on_this_level(destination_level) then
+		return
+	end
+
 	if try_pay() then
 		before_fast_travel(npc,actor)
 
@@ -120,13 +151,20 @@ function to_bar(npc,actor)
 			1228,--г-вертекс на локации, куда телепортируемся------
 			vector():set(145.646743774414,-0.0400199890136719,60.8574523925781), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
-			"l05_bar", --локация, куда телепортируемся--
+			destination_level, --локация, куда телепортируемся--
 			1)
 	end
 end
 
 -- 06. Телепорт ГГ на Дикую территорию
 function to_rostok(npc,actor)
+
+	local destination_level = "l06_rostok"
+
+	if player_on_this_level(destination_level) then
+		return
+	end
+
 	if try_pay() then
 		before_fast_travel(npc,actor)
 
@@ -140,7 +178,7 @@ function to_rostok(npc,actor)
 			1313,--г-вертекс на локации, куда телепортируемся------
 			vector():set(-146.714569091797,-0.00471210479736328,141.635528564453), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
-			"l06_rostok", --локация, куда телепортируемся--
+			destination_level, --локация, куда телепортируемся--
 			1)
 	end
 		
@@ -148,6 +186,13 @@ end
 
 -- 07. Телепорт ГГ на Арм. Склады
 function to_military(npc,actor)
+
+	local destination_level = "l07_military"
+
+	if player_on_this_level(destination_level) then
+		return
+	end
+
 	if try_pay() then
 		before_fast_travel(npc,actor)
 
@@ -161,13 +206,20 @@ function to_military(npc,actor)
 			1734,--г-вертекс на локации, куда телепортируемся------
 			vector():set(-93.8184814453125,-20.6965179443359,218.334915161133), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
-			"l07_military", --локация, куда телепортируемся--
+			destination_level, --локация, куда телепортируемся--
 			1)
 	end
 end
 
 -- 08. Телепорт ГГ на Янтарь
 function to_yantar(npc,actor)
+
+	local destination_level = "l08_yantar"
+
+	if player_on_this_level(destination_level) then
+		return
+	end
+
 	if try_pay() then
 		before_fast_travel(npc,actor)
 
@@ -181,7 +233,7 @@ function to_yantar(npc,actor)
 			1451,--г-вертекс на локации, куда телепортируемся------
 			vector():set(168.013442993164,-7.61951589584351,-93.6985244750977), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
-			"l08_yantar", --локация, куда телепортируемся--
+			destination_level, --локация, куда телепортируемся--
 			1)
 	end
 end
@@ -228,11 +280,21 @@ function no_money_message()
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
 end
 
--- Функция, выводящая сообщение о "хватке" средств
+-- Функция, выводящая сообщение об оплате
 function yes_money_message()
 	local title = "Сообщение"
 	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]".."Потрачено "..cost.." руб.".." на проводника."
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
+	
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+end
+
+-- Функция, выводящая сообщение о том, что мы уже находимся на данной локации
+function show_cant_transfer_message()
+	local title = "Сообщение"
+	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]".."Вы уже находитесь на данной локации."
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
 	
 	pda_tips:play(db.actor, 0, sound_object.s2d)
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
@@ -243,7 +305,30 @@ function player_has_need_money()
 	return db.actor:money() >= cost
 end
 
---' Функция, восстанавливающая ход времени после перехода
-function reset_time_factor()
+-- Валидация локации
+function player_on_this_level(destination_level)
+
+	local are_levels_equals = destination_level == level.name()
+
+	if are_levels_equals then
+		show_cant_transfer_message()
+	end
+
+	return are_levels_equals
+end
+
+-- Восстановления после перехода
+function reset()
+	--' Восстанавливаем ход времени после быстрого перемещения
 	level.set_time_factor(system_ini():r_float("alife","time_factor"))
+	
+	--' Удаляем лишнии точки
+	level_changer_manager.delete(74301)
+	level_changer_manager.delete(74302)
+	level_changer_manager.delete(74303)
+	level_changer_manager.delete(74304)
+	level_changer_manager.delete(74305)
+	level_changer_manager.delete(74306)
+	level_changer_manager.delete(74307)
+	level_changer_manager.delete(74308)
 end

@@ -130,14 +130,3 @@ function delete(p_story_id)
 		sim:release(se_obj, true)
 	end
 end
-
-function clear()
-	delete(74301)
-	delete(74302)
-	delete(74303)
-	delete(74304)
-	delete(74305)
-	delete(74306)
-	delete(74307)
-	delete(74308)
-end

@@ -30,7 +30,6 @@
 		<actor_dialog>tm_ecolog_dialog</actor_dialog>
 		<actor_dialog>tm_ecolog_reward</actor_dialog>
 		<actor_dialog>repair_prof</actor_dialog>
-		<actor_dialog>fast_travel_dialog_sakharov</actor_dialog>
 		<actor_dialog>sakharov_join_any_community_dialog</actor_dialog>
 		<actor_dialog>sakharov_pda_upgrade_dialog</actor_dialog>
 		<!--<actor_dialog>artefacts_exchange_dialog</actor_dialog>-->

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>	
+	<string id="guider_dialog_start_0">
+		<text>Привет! Если тебе нужен проводник, то я тебя слушаю.</text>
+	</string>
+	
+	<string id="guider_dialog_0">
+		<text>Куда ты можешь меня провести?</text>
+	</string>
+	<string id="guider_dialog_1">
+		<text>Список доступных локаций следующий: Кордон, Свалка, Агропром, Тёмная долина, Бар, Дикая территория, Янтарь, Армейские Склады. Стоимость - 4000 рублей. Плати, и я проведу тебя куда нужно.</text>
+	</string>
+	<string id="guider_dialog_2">
+		<text>Кордон.</text>
+	</string>
+	<string id="guider_dialog_3">
+		<text>Свалка.</text>
+	</string>
+	<string id="guider_dialog_4">
+		<text>Агропром.</text>
+	</string>
+	<string id="guider_dialog_5">
+		<text>Тёмная Долина.</text>
+	</string>
+	<string id="guider_dialog_6">
+		<text>Бар.</text>
+	</string>
+	<string id="guider_dialog_7">
+		<text>Дикая территория.</text>
+	</string>
+	<string id="guider_dialog_8">
+		<text>Янтарь.</text>
+	</string>
+	<string id="guider_dialog_9">
+		<text>Армейские Склады.</text>
+	</string>
+	<string id="guider_dialog_10">
+		<text>Я передумал.</text>
+	</string>
+</string_table>

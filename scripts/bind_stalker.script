@@ -61,15 +61,12 @@ function actor_binder:net_spawn(data)
 	--' Загружаем настройки дропа
 	death_manager.init_drop_settings()
 	
-	--' Восстанавливаем ход времени после быстрого перемещения
-	ft_manager.reset_time_factor()
-	
 -------- пауза при загрузке ---------------
 	ui_main_menu.start()
 -------------------------------------------
 
 	ogsm_funcs.on_game_load()
-	level_changer_manager.clear()
+	fast_travel_manager.reset()
 	new_ways.mark_ways_on_map()
 	se_zones.update_anoms(time_global())
 	sak_off_corpses.off_corpses()
