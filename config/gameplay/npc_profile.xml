@@ -1813,4 +1813,9 @@
         <class>guider</class>
         <specific_character>bar_guider</specific_character>
 	</character>
+	
+	<character id="esc_guider">
+        <class>guider</class>
+        <specific_character>esc_guider</specific_character>
+	</character>
 </xml>
