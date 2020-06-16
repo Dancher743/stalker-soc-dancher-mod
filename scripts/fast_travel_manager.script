@@ -2,15 +2,21 @@
 -- Менеджер быстрого перемещения
 -- Автор: Dancher
 --
------------------------------------------------------------------
--------------------- Конфигурационные значение ------------------
------------------------------------------------------------------
 
--- Стоимость услуги проводника
-local cost = 4000
+--	Уровни и их id'шники точек перехода:
+--	l01_escape 		- 74301
+--	l02_garbage 	- 74302
+--	l03_agroprom 	- 74303
+--	l04_darkvalley 	- 74304
+--	l05_bar 		- 74305
+--	l06_rostok		- 74306
+--	l07_military 	- 74307
+--	l08_yantar		- 74308
+--
 
--- Звук нотификации
-pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+-----------------------------------------------------------------
+-------------------- Конфигурационные значения ------------------
+-----------------------------------------------------------------
 
 -- Границы значений для рандомизации ускорения времени во время быстрого перемещения
 -- Значение '1000' - это час игрового времени
@@ -25,152 +31,123 @@ max_random_time_factor = 1500
 function to_escape(npc,actor)
 
 	local destination_level = "l01_escape"
+	local transition_point_id = 74301
 
-	if player_on_this_level(destination_level) then
-		return
-	end
-
-	if try_pay() then
-		before_fast_travel(npc,actor)
-		
-		-- Точка спавна: all.spawn/[esc2_bloodsucker1_home_1]
-		level_changer_manager.create(
-			74301, 
-			db.actor:position(), 
-			db.actor:level_vertex_id(), 
-			db.actor:game_vertex_id(),
-			46568,--л-вертекс на локации, куда телепортируемся------
-			61,--г-вертекс на локации, куда телепортируемся------
-			vector():set(-206.44,-20.163,-143.99), ---координаты на локации, куда телепортируемся----
-			vector():set(0.0, 0.0, 0.0),
-			destination_level, --локация, куда телепортируемся--
-			1)
-	end
+	prepare_to_fast_travel(transition_point_id)
+	
+	-- Лагерь новичков
+	level_changer_manager.create(
+		transition_point_id, 
+		db.actor:position(), 
+		db.actor:level_vertex_id(), 
+		db.actor:game_vertex_id(),
+		46568,--л-вертекс на локации, куда телепортируемся------
+		61,--г-вертекс на локации, куда телепортируемся------
+		vector():set(-206.44,-20.163,-143.99), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
 end
 
 -- 02. Телепорт ГГ на Свалку
 function to_garbage(npc,actor)
 
 	local destination_level = "l02_garbage"
+	local transition_point_id = 74302
 
-	if player_on_this_level(destination_level) then
-		return
-	end
-
-	if try_pay() then
-		before_fast_travel(npc,actor)
-		
-		-- Точка спавна: all.spawn/[gar_angar_seryi_walk]
-		level_changer_manager.create(
-			74302, 
-			db.actor:position(), 
-			db.actor:level_vertex_id(), 
-			db.actor:game_vertex_id(),
-			134754,--л-вертекс на локации, куда телепортируемся------
-			330,--г-вертекс на локации, куда телепортируемся------
-			vector():set(-62.9394302368164,0.78938889503479,8.37425422668457), ---координаты на локации, куда телепортируемся----
-			vector():set(0.0, 0.0, 0.0),
-			destination_level, --локация, куда телепортируемся--
-			1)
-	end
+	prepare_to_fast_travel(transition_point_id)
+	
+	-- Точка спавна: all.spawn/[gar_angar_seryi_walk]
+	level_changer_manager.create(
+		transition_point_id, 
+		db.actor:position(), 
+		db.actor:level_vertex_id(), 
+		db.actor:game_vertex_id(),
+		134754,--л-вертекс на локации, куда телепортируемся------
+		330,--г-вертекс на локации, куда телепортируемся------
+		vector():set(-62.9394302368164,0.78938889503479,8.37425422668457), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
 end
 
 -- 03. Телепорт ГГ на Агропром
 function to_agroprom(npc,actor)
-
+	
 	local destination_level = "l03_agroprom"
+	local transition_point_id = 74303
 
-	if player_on_this_level(destination_level) then
-		return
-	end
+	prepare_to_fast_travel(transition_point_id)
 
-	if try_pay() then
-		before_fast_travel(npc,actor)
-
-		-- Точка спавна: all.spawn/[agr2_st_factory_kamp_1]
-		level_changer_manager.create(
-			74303, 
-			db.actor:position(), 
-			db.actor:level_vertex_id(), 
-			db.actor:game_vertex_id(),
-			236732,--л-вертекс на локации, куда телепортируемся------
-			481,--г-вертекс на локации, куда телепортируемся------
-			vector():set(-3.77024435997009,2.5000114440918,15.2934789657593), ---координаты на локации, куда телепортируемся----
-			vector():set(0.0, 0.0, 0.0),
-			destination_level, --локация, куда телепортируемся--
-			1)
-	end
+	-- Точка спавна: all.spawn/[agr2_st_factory_kamp_1]
+	level_changer_manager.create(
+		transition_point_id, 
+		db.actor:position(), 
+		db.actor:level_vertex_id(), 
+		db.actor:game_vertex_id(),
+		236732,--л-вертекс на локации, куда телепортируемся------
+		481,--г-вертекс на локации, куда телепортируемся------
+		vector():set(-3.77024435997009,2.5000114440918,15.2934789657593), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
 end
 
 -- 04. Телепорт ГГ в Тёмную Долину
 function to_darkvalley(npc,actor)
-
+	
 	local destination_level = "l04_darkvalley"
+	local transition_point_id = 74304
 
-	if player_on_this_level(destination_level) then
-		return
-	end
-
-	if try_pay() then
-		before_fast_travel(npc,actor)
-
-		-- Точка спавна: all.spawn/[val_escort_guards_leave_walk]/p0
-		level_changer_manager.create(
-			74304, 
-			db.actor:position(), 
-			db.actor:level_vertex_id(), 
-			db.actor:game_vertex_id(),
-			248261,--л-вертекс на локации, куда телепортируемся------
-			855,--г-вертекс на локации, куда телепортируемся------
-			vector():set(59.4496078491211,0.047027587890625,-250.625793457031), ---координаты на локации, куда телепортируемся----
-			vector():set(0.0, 0.0, 0.0),
-			destination_level, --локация, куда телепортируемся--
-			1)
-	end
+	prepare_to_fast_travel(transition_point_id)
+	
+	-- Точка спавна: all.spawn/[val_escort_guards_leave_walk]/p0
+	level_changer_manager.create(
+		transition_point_id, 
+		db.actor:position(), 
+		db.actor:level_vertex_id(), 
+		db.actor:game_vertex_id(),
+		248261,--л-вертекс на локации, куда телепортируемся------
+		855,--г-вертекс на локации, куда телепортируемся------
+		vector():set(59.4496078491211,0.047027587890625,-250.625793457031), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
 end
 
 -- 05. Телепорт ГГ в Бар
 function to_bar(npc,actor)
 
+	local transition_point_id  = 74305
 	local destination_level = "l05_bar"
 
-	if player_on_this_level(destination_level) then
-		return
-	end
-
-	if try_pay() then
-		before_fast_travel(npc,actor)
-
-		-- Точка спавна: all.spawn/[bar_visitors_walker_walk]/p0
-		level_changer_manager.create(
-			74305, 
-			db.actor:position(), 
-			db.actor:level_vertex_id(), 
-			db.actor:game_vertex_id(),
-			39145,--л-вертекс на локации, куда телепортируемся------
-			1228,--г-вертекс на локации, куда телепортируемся------
-			vector():set(145.646743774414,-0.0400199890136719,60.8574523925781), ---координаты на локации, куда телепортируемся----
-			vector():set(0.0, 0.0, 0.0),
-			destination_level, --локация, куда телепортируемся--
-			1)
-	end
+	prepare_to_fast_travel(transition_point_id)
+	
+	-- Точка спавна: all.spawn/[bar_visitors_walker_walk]/p0
+	level_changer_manager.create(
+		transition_point_id, 
+		db.actor:position(), 
+		db.actor:level_vertex_id(), 
+		db.actor:game_vertex_id(),
+		39145,--л-вертекс на локации, куда телепортируемся------
+		1228,--г-вертекс на локации, куда телепортируемся------
+		vector():set(145.646743774414,-0.0400199890136719,60.8574523925781), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
 end
 
 -- 06. Телепорт ГГ на Дикую территорию
 function to_rostok(npc,actor)
 
-	local destination_level = "l06_rostok"
+		local transition_point_id  = 74306
+		local destination_level = "l06_rostok"
 
-	if player_on_this_level(destination_level) then
-		return
-	end
-
-	if try_pay() then
-		before_fast_travel(npc,actor)
+		prepare_to_fast_travel(transition_point_id)
 
 		-- Точка спавна: all.spawn/[bar_ambush_killer_1_walk]
 		level_changer_manager.create(
-			74306, 
+			transition_point_id, 
 			db.actor:position(), 
 			db.actor:level_vertex_id(), 
 			db.actor:game_vertex_id(),
@@ -179,156 +156,84 @@ function to_rostok(npc,actor)
 			vector():set(-146.714569091797,-0.00471210479736328,141.635528564453), ---координаты на локации, куда телепортируемся----
 			vector():set(0.0, 0.0, 0.0),
 			destination_level, --локация, куда телепортируемся--
-			1)
-	end
-		
+			1)		
 end
 
 -- 07. Телепорт ГГ на Арм. Склады
 function to_military(npc,actor)
-
+	
+	local transition_point_id  = 74307
 	local destination_level = "l07_military"
+	
+	prepare_to_fast_travel(transition_point_id)
 
-	if player_on_this_level(destination_level) then
-		return
-	end
-
-	if try_pay() then
-		before_fast_travel(npc,actor)
-
-		-- Точка спавна: all.spawn/[mil_lager_kamp_1]
-		level_changer_manager.create(
-			74306, 
-			db.actor:position(), 
-			db.actor:level_vertex_id(), 
-			db.actor:game_vertex_id(),
-			222641,--л-вертекс на локации, куда телепортируемся------
-			1734,--г-вертекс на локации, куда телепортируемся------
-			vector():set(-93.8184814453125,-20.6965179443359,218.334915161133), ---координаты на локации, куда телепортируемся----
-			vector():set(0.0, 0.0, 0.0),
-			destination_level, --локация, куда телепортируемся--
-			1)
-	end
+	-- Точка спавна: all.spawn/[mil_lager_kamp_1]
+	level_changer_manager.create(
+		transition_point_id, 
+		db.actor:position(), 
+		db.actor:level_vertex_id(), 
+		db.actor:game_vertex_id(),
+		222641,--л-вертекс на локации, куда телепортируемся------
+		1734,--г-вертекс на локации, куда телепортируемся------
+		vector():set(-93.8184814453125,-20.6965179443359,218.334915161133), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
 end
 
 -- 08. Телепорт ГГ на Янтарь
 function to_yantar(npc,actor)
-
+	
+	local transition_point_id  = 74308
 	local destination_level = "l08_yantar"
+	
+	prepare_to_fast_travel(transition_point_id)
 
-	if player_on_this_level(destination_level) then
-		return
-	end
-
-	if try_pay() then
-		before_fast_travel(npc,actor)
-
-		-- Бункер учёных
-		level_changer_manager.create(
-			74306, 
-			db.actor:position(), 
-			db.actor:level_vertex_id(), 
-			db.actor:game_vertex_id(),
-			54979,--л-вертекс на локации, куда телепортируемся------
-			1480,--г-вертекс на локации, куда телепортируемся------
-			vector():set(29.18,-11.68,-277.92), ---координаты на локации, куда телепортируемся----
-			vector():set(0.0, 0.0, 0.0),
-			destination_level, --локация, куда телепортируемся--
-			1)
-	end
+	-- Бункер учёных
+	level_changer_manager.create(
+		transition_point_id, 
+		db.actor:position(), 
+		db.actor:level_vertex_id(), 
+		db.actor:game_vertex_id(),
+		54979,--л-вертекс на локации, куда телепортируемся------
+		1480,--г-вертекс на локации, куда телепортируемся------
+		vector():set(29.18,-11.68,-277.92), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
 end
 
 -----------------------------------------------------------------
 -------------------- Вспомогательные функции --------------------
 -----------------------------------------------------------------
 
--- Функция, выполняеющая доп. действия перед телепортом ГГ
-function before_fast_travel(npc,actor)
-	-- Закрываем окна диалога
-	npc:stop_talk()
-	actor:stop_talk()
+-- Функция подготовки к быстрому переходу
+function prepare_to_fast_travel(transition_point_id)
 	
 	-- Ускоряем ход времени
 	local random_time_factor = math.random(min_random_time_factor, max_random_time_factor)
 	level.set_time_factor(random_time_factor)
-end
-
-
--- Функция оплаты за телепорт
-function try_pay()
-
-	if player_has_need_money() then
-		db.actor:give_money(cost * -1)
-		game_stats.money_quest_update(cost * -1)
-		yes_money_message()
-		return true
-	else
-		no_money_message()
-		return false
-	end
 	
+	-- Сохрананяем id'шник точки перехода
+	xr_logic.pstor_store(db.actor, "ft_trans_id", transition_point_id)
 end
 
--- Функция выводящая сообщение о нехватке средств
-function no_money_message()
-	local title = "Сообщение"
-	local service_text = "Недостаточно средств для использования проводника."
-	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]"..game.translate_string(service_text)
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
-	
-	pda_tips:play(db.actor, 0, sound_object.s2d)
-	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
-end
-
--- Функция, выводящая сообщение об оплате
-function yes_money_message()
-	local title = "Сообщение"
-	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]".."Потрачено "..cost.." руб.".." на проводника."
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
-	
-	pda_tips:play(db.actor, 0, sound_object.s2d)
-	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
-end
-
--- Функция, выводящая сообщение о том, что мы уже находимся на данной локации
-function show_cant_transfer_message()
-	local title = "Сообщение"
-	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]".."Вы уже находитесь на данной локации."
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
-	
-	pda_tips:play(db.actor, 0, sound_object.s2d)
-	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
-end
-
--- Валидация нужной суммы денег
-function player_has_need_money()
-	return db.actor:money() >= cost
-end
-
--- Валидация локации
-function player_on_this_level(destination_level)
-
-	local are_levels_equals = destination_level == level.name()
-
-	if are_levels_equals then
-		show_cant_transfer_message()
-	end
-
-	return are_levels_equals
-end
-
--- Восстановления после перехода
+-- Функция восстановления после того, как мы сделали переход
 function reset()
-	--' Восстанавливаем ход времени после быстрого перемещения
+
+	-- Достаём сохранённый id'шник точки перехода
+	local transition_point_id = xr_logic.pstor_retrieve(db.actor, "ft_trans_id", nil)
+
+	if transition_point_id == nil then
+		return
+	end
+
+	--' Восстанавливаем ход времени
 	level.set_time_factor(system_ini():r_float("alife","time_factor"))
 	
-	--' Удаляем лишнии точки
-	level_changer_manager.delete(74301)
-	level_changer_manager.delete(74302)
-	level_changer_manager.delete(74303)
-	level_changer_manager.delete(74304)
-	level_changer_manager.delete(74305)
-	level_changer_manager.delete(74306)
-	level_changer_manager.delete(74307)
-	level_changer_manager.delete(74308)
+	--' Удаляем точку перехода
+	level_changer_manager.delete(transition_point_id)
+	
+	-- Удаляем сохранённый id'шник точки перехода
+	xr_logic.pstor_store(db.actor, "ft_trans_id", nil)
 end
