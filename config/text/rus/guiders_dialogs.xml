@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="windows-1251" ?>
+
 <string_table>	
 	<string id="guider_dialog_start_0">
 		<text>Привет! Если тебе нужен проводник, то я тебя слушаю.</text>
@@ -10,31 +11,43 @@
 	<string id="guider_dialog_1">
 		<text>Список доступных локаций следующий: Кордон, Свалка, Агропром, Тёмная долина, Бар, Дикая территория, Янтарь, Армейские Склады. Стоимость - 4000 рублей. Плати, и я проведу тебя куда нужно.</text>
 	</string>
+	<string id="guider_dialog_1_1">
+		<text>Вожу по "торговому" маршруту Кордон - Бар - Янтарь. Стоимость - 3000 рублей. Выдвигаемся сразу. Тебе куда?</text>
+	</string>
 	<string id="guider_dialog_2">
-		<text>Кордон.</text>
+		<text>Кордон. Лагерь новичков.</text>
 	</string>
 	<string id="guider_dialog_3">
-		<text>Свалка.</text>
+		<text>Свалка. Ангар.</text>
 	</string>
 	<string id="guider_dialog_4">
-		<text>Агропром.</text>
+		<text>Агропром. Фабрика.</text>
 	</string>
 	<string id="guider_dialog_5">
-		<text>Тёмная Долина.</text>
+		<text>Тёмная Долина. Остановка.</text>
 	</string>
 	<string id="guider_dialog_6">
-		<text>Бар.</text>
+		<text>Бар. Вход в бар.</text>
 	</string>
 	<string id="guider_dialog_7">
-		<text>Дикая территория.</text>
+		<text>Дикая территория. Камаз.</text>
 	</string>
 	<string id="guider_dialog_8">
-		<text>Янтарь.</text>
+		<text>Янтарь. Бункер учёных.</text>
 	</string>
 	<string id="guider_dialog_9">
-		<text>Армейские Склады.</text>
+		<text>Армейские Склады. Кривая балка.</text>
 	</string>
 	<string id="guider_dialog_10">
-		<text>Я передумал.</text>
+		<text>Никуда. Я передумал.</text>
 	</string>
+	
+	<string id="escape_guider_cant_dialog_0">
+		<text>О! Ты тот сталкер с труповозки. Не брат, извиняй, конечно, но мне стрёмно с тобой идти. Поработай немного на торговца, а там будет видно...</text>
+	</string>
+	
+	<string id="guider_cant_yantar_dialog_0">
+		<text>К сожалению, я не могу тебя туда провести из-за высокого уровня пси-излучания. Стать зомби я не хочу...</text>
+	</string>
+	
 </string_table>

@@ -28,8 +28,8 @@ max_random_time_factor = 1500
 -----------------------------------------------------------------
 
 -- 01. Телепорт ГГ на Кордон
-function to_escape(npc,actor)
-
+function to_escape()
+	local actor = db.actor
 	local destination_level = "l01_escape"
 	local transition_point_id = 74301
 
@@ -38,9 +38,9 @@ function to_escape(npc,actor)
 	-- Лагерь новичков
 	level_changer_manager.create(
 		transition_point_id, 
-		db.actor:position(), 
-		db.actor:level_vertex_id(), 
-		db.actor:game_vertex_id(),
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
 		46568,--л-вертекс на локации, куда телепортируемся------
 		61,--г-вертекс на локации, куда телепортируемся------
 		vector():set(-206.44,-20.163,-143.99), ---координаты на локации, куда телепортируемся----
@@ -50,8 +50,8 @@ function to_escape(npc,actor)
 end
 
 -- 02. Телепорт ГГ на Свалку
-function to_garbage(npc,actor)
-
+function to_garbage()
+	local actor = db.actor
 	local destination_level = "l02_garbage"
 	local transition_point_id = 74302
 
@@ -60,9 +60,9 @@ function to_garbage(npc,actor)
 	-- Точка спавна: all.spawn/[gar_angar_seryi_walk]
 	level_changer_manager.create(
 		transition_point_id, 
-		db.actor:position(), 
-		db.actor:level_vertex_id(), 
-		db.actor:game_vertex_id(),
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
 		134754,--л-вертекс на локации, куда телепортируемся------
 		330,--г-вертекс на локации, куда телепортируемся------
 		vector():set(-62.9394302368164,0.78938889503479,8.37425422668457), ---координаты на локации, куда телепортируемся----
@@ -72,8 +72,8 @@ function to_garbage(npc,actor)
 end
 
 -- 03. Телепорт ГГ на Агропром
-function to_agroprom(npc,actor)
-	
+function to_agroprom()
+	local actor = db.actor
 	local destination_level = "l03_agroprom"
 	local transition_point_id = 74303
 
@@ -82,9 +82,9 @@ function to_agroprom(npc,actor)
 	-- Точка спавна: all.spawn/[agr2_st_factory_kamp_1]
 	level_changer_manager.create(
 		transition_point_id, 
-		db.actor:position(), 
-		db.actor:level_vertex_id(), 
-		db.actor:game_vertex_id(),
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
 		236732,--л-вертекс на локации, куда телепортируемся------
 		481,--г-вертекс на локации, куда телепортируемся------
 		vector():set(-3.77024435997009,2.5000114440918,15.2934789657593), ---координаты на локации, куда телепортируемся----
@@ -94,8 +94,8 @@ function to_agroprom(npc,actor)
 end
 
 -- 04. Телепорт ГГ в Тёмную Долину
-function to_darkvalley(npc,actor)
-	
+function to_darkvalley()
+	local actor = db.actor
 	local destination_level = "l04_darkvalley"
 	local transition_point_id = 74304
 
@@ -104,9 +104,9 @@ function to_darkvalley(npc,actor)
 	-- Точка спавна: all.spawn/[val_escort_guards_leave_walk]/p0
 	level_changer_manager.create(
 		transition_point_id, 
-		db.actor:position(), 
-		db.actor:level_vertex_id(), 
-		db.actor:game_vertex_id(),
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
 		248261,--л-вертекс на локации, куда телепортируемся------
 		855,--г-вертекс на локации, куда телепортируемся------
 		vector():set(59.4496078491211,0.047027587890625,-250.625793457031), ---координаты на локации, куда телепортируемся----
@@ -116,8 +116,8 @@ function to_darkvalley(npc,actor)
 end
 
 -- 05. Телепорт ГГ в Бар
-function to_bar(npc,actor)
-
+function to_bar()
+	local actor = db.actor
 	local transition_point_id  = 74305
 	local destination_level = "l05_bar"
 
@@ -126,9 +126,9 @@ function to_bar(npc,actor)
 	-- Точка спавна: all.spawn/[bar_visitors_walker_walk]/p0
 	level_changer_manager.create(
 		transition_point_id, 
-		db.actor:position(), 
-		db.actor:level_vertex_id(), 
-		db.actor:game_vertex_id(),
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
 		39145,--л-вертекс на локации, куда телепортируемся------
 		1228,--г-вертекс на локации, куда телепортируемся------
 		vector():set(145.646743774414,-0.0400199890136719,60.8574523925781), ---координаты на локации, куда телепортируемся----
@@ -138,30 +138,30 @@ function to_bar(npc,actor)
 end
 
 -- 06. Телепорт ГГ на Дикую территорию
-function to_rostok(npc,actor)
+function to_rostok()
+	local actor = db.actor
+	local transition_point_id  = 74306
+	local destination_level = "l06_rostok"
 
-		local transition_point_id  = 74306
-		local destination_level = "l06_rostok"
+	prepare_to_fast_travel(transition_point_id)
 
-		prepare_to_fast_travel(transition_point_id)
-
-		-- Точка спавна: all.spawn/[bar_ambush_killer_1_walk]
-		level_changer_manager.create(
-			transition_point_id, 
-			db.actor:position(), 
-			db.actor:level_vertex_id(), 
-			db.actor:game_vertex_id(),
-			39377,--л-вертекс на локации, куда телепортируемся------
-			1313,--г-вертекс на локации, куда телепортируемся------
-			vector():set(-146.714569091797,-0.00471210479736328,141.635528564453), ---координаты на локации, куда телепортируемся----
-			vector():set(0.0, 0.0, 0.0),
-			destination_level, --локация, куда телепортируемся--
-			1)		
+	-- Точка спавна: all.spawn/[bar_ambush_killer_1_walk]
+	level_changer_manager.create(
+		transition_point_id, 
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
+		39377,--л-вертекс на локации, куда телепортируемся------
+		1313,--г-вертекс на локации, куда телепортируемся------
+		vector():set(-146.714569091797,-0.00471210479736328,141.635528564453), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)		
 end
 
 -- 07. Телепорт ГГ на Арм. Склады
-function to_military(npc,actor)
-	
+function to_military()
+	local actor = db.actor
 	local transition_point_id  = 74307
 	local destination_level = "l07_military"
 	
@@ -170,9 +170,9 @@ function to_military(npc,actor)
 	-- Точка спавна: all.spawn/[mil_lager_kamp_1]
 	level_changer_manager.create(
 		transition_point_id, 
-		db.actor:position(), 
-		db.actor:level_vertex_id(), 
-		db.actor:game_vertex_id(),
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
 		222641,--л-вертекс на локации, куда телепортируемся------
 		1734,--г-вертекс на локации, куда телепортируемся------
 		vector():set(-93.8184814453125,-20.6965179443359,218.334915161133), ---координаты на локации, куда телепортируемся----
@@ -182,8 +182,8 @@ function to_military(npc,actor)
 end
 
 -- 08. Телепорт ГГ на Янтарь
-function to_yantar(npc,actor)
-	
+function to_yantar()
+	local actor = db.actor
 	local transition_point_id  = 74308
 	local destination_level = "l08_yantar"
 	
@@ -192,9 +192,9 @@ function to_yantar(npc,actor)
 	-- Бункер учёных
 	level_changer_manager.create(
 		transition_point_id, 
-		db.actor:position(), 
-		db.actor:level_vertex_id(), 
-		db.actor:game_vertex_id(),
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
 		54979,--л-вертекс на локации, куда телепортируемся------
 		1480,--г-вертекс на локации, куда телепортируемся------
 		vector():set(29.18,-11.68,-277.92), ---координаты на локации, куда телепортируемся----
@@ -220,9 +220,8 @@ end
 
 -- Функция восстановления после того, как мы сделали переход
 function reset()
-
-	-- Достаём сохранённый id'шник точки перехода
-	local transition_point_id = xr_logic.pstor_retrieve(db.actor, "ft_trans_id", nil)
+	local actor = db.actor
+	local transition_point_id = xr_logic.pstor_retrieve(actor, "ft_trans_id", nil)
 
 	if transition_point_id == nil then
 		return
@@ -235,5 +234,5 @@ function reset()
 	level_changer_manager.delete(transition_point_id)
 	
 	-- Удаляем сохранённый id'шник точки перехода
-	xr_logic.pstor_store(db.actor, "ft_trans_id", nil)
+	xr_logic.pstor_store(actor, "ft_trans_id", nil)
 end
