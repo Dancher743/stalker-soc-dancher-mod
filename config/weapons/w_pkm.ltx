@@ -1,0 +1,146 @@
+[wpn_pkm]:identity_immunities
+GroupControlSection		= spawn_group
+discovery_dependency	= 
+$spawn              	= "weapons\pkm"	
+$npc					= on				
+$prefetch 				= 8
+scheduled				= off               
+cform               	= skeleton
+class               	= WP_LR300			
+min_radius          	= 0				
+max_radius          	= 250				
+description				= enc_weapons1_wpn-pkm
+	
+ef_main_weapon_type		= 2
+ef_weapon_type			= 6
+sprint_allowed			= false
+
+holder_range_modifier	= 1.0		       
+holder_fov_modifier		= 0.7           
+
+cost					= 19000			
+weapon_class			= assault_rifle
+ammo_limit				= 100				
+ammo_elapsed			= 100				
+	
+ammo_mag_size			= 100				
+fire_modes				= -1
+ammo_class				= ammo_7.62x54_7h1
+
+hand_dependence			= 1									
+single_handed			= 0
+slot 					= 2									
+animation_slot			= 2									
+
+inv_name	        = wpn-pkm_name									
+inv_name_short		= wpn-pkm_name	
+inv_weight			= 7.5							
+
+inv_grid_width		= 6	 
+inv_grid_height		= 2	    
+inv_grid_x			= 5	 
+inv_grid_y			= 34
+
+kill_msg_x			= 0
+kill_msg_y			= 123
+kill_msg_width		= 69
+kill_msg_height		= 30
+
+fire_dispersion_base = 0.85
+control_inertion_factor = 3.0f
+cam_relax_speed          = 15
+cam_dispersion           = 1.0
+cam_dispersion_inc = 1.3
+cam_dispertion_frac = 1.0
+cam_max_angle = 5.0
+cam_max_angle_horz = 15.0
+cam_step_angle_horz = 1.8
+
+fire_dispersion_condition_factor = 5
+misfire_probability         = 0.0125
+misfire_condition_k         = 0.01
+condition_shot_dec 			= 0.0003
+
+fire_point             		= 0.0, 0.27109, 0.87317				
+flame_particles		    	= weapons\generic_weapon06
+smoke_particles		   		= weapons\generic_shoot_00
+grenade_flame_particles		= weapons\generic_weapon01
+	
+shell_point		 			= 0.00, 0.262, 0.189			
+shell_particles	 			= weapons\generic_shells	
+
+PDM_disp_base = 1.5
+PDM_disp_vel_factor = 2.45
+PDM_disp_accel_factor = 2.45
+PDM_crouch = 0.2
+PDM_crouch_no_acc = 0.2
+
+hit_power               = 1.0
+hit_impulse		 		= 30			
+hit_type 				= fire_wound
+ 	
+fire_distance           = 150
+bullet_speed            = 825 
+rpm                     = 650 
+
+use_aim_bullet			= true		
+time_to_aim				= 1.0	
+
+;silencer_hit_power       		= 0.32
+;silencer_hit_impulse	 		= 120
+;silencer_fire_distance   		= 250
+;silencer_bullet_speed	 		= 600
+
+hud                      	= wpn_pkm_hud				
+position         	        = -0.026, -0.215, -0.03
+orientation      	        = 0,0,0						
+
+strap_position         		= -0.18,-0.45,0.2			
+strap_orientation      		= -10,-5,10					
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+visual         		        = weapons\pkm\wpn_pkm.ogf	
+light_color					= 0.6,0.5,0.3				
+light_range					= 5							
+light_var_color				= 0.05						
+light_var_range				= 0.5
+light_time 					= 0.2						
+
+ph_mass						= 8							
+scope_status				= 0							
+silencer_status				= 0							
+grenade_launcher_status		= 0							
+
+zoom_enabled				= true						
+scope_zoom_factor	    	= 50						
+
+snd_draw					= weapons\pkm_draw
+snd_holster					= weapons\generic_holster
+snd_shoot					= weapons\pkm_shot
+snd_empty					= weapons\generic_empty
+snd_reload					= weapons\pkm_reload
+ 
+[wpn_pkm_hud]
+shell_point          		= -0.015000,-0.080000,0.010000
+shell_dir		 	        = 0.0, 1.0, 0.0
+fire_point       	        = 0.320000,-0.085000,-0.000000
+fire_bone               	= wpn_body
+
+orientation             	= 0, 0, 0		
+position                	= 0, 0, 0
+visual                  	= weapons\pkm\wpn_pkm_hud.ogf
+
+anim_idle					= idle
+anim_idle_aim				= idle_aim
+anim_idle_moving				= idle_moving
+anim_reload					= reload
+anim_draw					= draw
+anim_holster				= holster
+anim_shoot					= shoot
+anim_idle_sprint			= idle_sprint
+
+zoom_offset         = -0.15490,0.0470,-0.1
+zoom_rotate_x		= 0.040
+zoom_rotate_y		= 0.035
+zoom_hide_crosshair	= true					 
