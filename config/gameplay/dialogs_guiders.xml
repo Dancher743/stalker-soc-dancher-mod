@@ -31,12 +31,14 @@
 			 <phrase id="2">
 				<precondition>dialogs_guider.can_go_to_escape</precondition>
                 <text>guider_dialog_2</text>
-				<action>fast_travel_manager.to_escape</action>
+				<action>dialogs_guider.transfer_to_escape</action>
+				<next>12</next>
              </phrase>
 			<phrase id="6">
 				<precondition>dialogs_guider.can_go_to_bar</precondition>
                 <text>guider_dialog_6</text>
-				<action>fast_travel_manager.to_bar</action>
+				<action>dialogs_guider.transfer_to_bar</action>
+				<next>12</next>
              </phrase>
 			 <phrase id="8">
 				<precondition>dialogs_guider.can_go_to_yantar</precondition>
@@ -53,10 +55,13 @@
 				<precondition>dialogs_guider.is_esc_guider</precondition>
                 <text>escape_guider_cant_dialog_0</text>
              </phrase>
+			 <phrase id="12">
+                <text>guider_dialog_11</text>
+             </phrase>
 			 
 			<phrase id="81">
 				<has_info>yan_kill_brain_done</has_info>
-                <text/>
+				<text>guider_dialog_11</text>
 				<action>dialogs_guider.transfer_to_yantar</action>
              </phrase>
 			<phrase id="82">

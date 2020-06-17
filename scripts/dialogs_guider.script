@@ -51,19 +51,10 @@ end
 
 function transfer_to_yantar(actor, guider)
 	dialogs.relocate_money(actor, cost, "out")
-	fast_travel_manager.to_bar()
+	fast_travel_manager.to_yantar()
 end
 
 function transfer_to_bar(actor, guider)
 	dialogs.relocate_money(actor, cost, "out")
-	fast_travel_manager.to_yantar()
-end
-
-
-function log(message)
-	local title = "Сообщение"
-	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]"..tostring(message)
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
-	
-	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+	fast_travel_manager.to_bar()
 end
