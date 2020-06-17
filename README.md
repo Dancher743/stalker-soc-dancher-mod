@@ -17,7 +17,7 @@ Using mods:
 9. New-old ways from RMA Shadows Addon 0.8.5 (Ray Twitty aka Shadows)
 10. RevSound Mod (Череп Долговец)
 11. Visual fix from Final Upgrade v3 mod (buka)
-12. Fast Travel Mod (Dancher) 
+12. Guiders (Dancher) 
 13. Buy Barman's Room (Dancher)
 14. NPC Enter Any Community (based on PILOTELL's Enter Any Community 2.0 mod) (Dancher)
 15. Nimble's Unique Weapons Exchange (Dancher)
