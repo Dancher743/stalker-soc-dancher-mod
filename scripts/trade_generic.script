@@ -88,6 +88,7 @@ local af =
 	{---------------------------------------
 	    {'wpn_gauss',             sell = 10},
 		{'wpn_fn2000',            sell = 10},
+		{'wpn_pkm',            	  sell = 10},
 		{'wpn_g36',               sell = 10},
 		{'wpn_rpg7',              sell = 10},
 		{'wpn_rg6_m1',            sell = 10},
@@ -209,7 +210,7 @@ ammo_9x39_ap			= {3, 'wpn_groza', 'wpn_val', 'wpn_vintorez', 'wpn_eagle_m1', 'wp
 ['ammo_5.56x45_ss190']	= {4, 'wpn_fn2000', 'wpn_g36', 'wpn_l85', 'wpn_lr300', 'wpn_sig550', 'wpn_l85_m1', 'wpn_lr300_m1', 'wpn_sig_m1', 'wpn_sig_m2', 'wpn_l85_m2'},
 ['ammo_5.56x45_ap']		= {4, 'wpn_fn2000', 'wpn_g36', 'wpn_l85', 'wpn_lr300', 'wpn_sig550', 'wpn_l85_m1', 'wpn_lr300_m1', 'wpn_sig_m1', 'wpn_sig_m2', 'wpn_l85_m2'},
 ['ammo_7.62x54_7h14']	= {2, 'wpn_svd', 'wpn_svu', 'wpn_svd_m1'},
-['ammo_7.62x54_7h1']	= {2, 'wpn_svd', 'wpn_svu', 'wpn_svd_m1'},
+['ammo_7.62x54_7h1']	= {2, 'wpn_svd', 'wpn_svu', 'wpn_svd_m1', 'wpn_pkm'},
 ['ammo_7.62x54_ap']		= {2, 'wpn_svd', 'wpn_svu', 'wpn_svd_m1'},
 ['ammo_og-7b']			= {3, 'wpn_rpg7'},
 ['ammo_vog-25p']		= {5, 'wpn_addon_grenade_launcher', 'wpn_groza', 'wpn_rg-6', 'wpn_groza_m1', 'wpn_abakan_m2'},
