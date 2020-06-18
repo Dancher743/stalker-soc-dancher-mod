@@ -576,7 +576,7 @@ function se_respawn:exec_npc()
 	else
 		local t_s1 = xr_logic.pstor_retrieve(db.actor, "t_s1", 0)
 		local curr = time_get_curr()
-		local t_npc = math.random(6, 9)
+		local t_npc = 8
 		t_s1 = curr + t_npc
 		xr_logic.pstor_store(db.actor, "t_s1", t_s1)
 		--printf("%s HOURS BEFORE NEXT NPC RESPAWN", t_npc)
@@ -617,7 +617,7 @@ function se_respawn:exec_mob()
 	else
 		local t_s2 = xr_logic.pstor_retrieve(db.actor, "t_s2", 0)
 		local curr = time_get_curr()
-		local t_mob = math.random(6, 9)
+		local t_mob = 12
 		t_s2 = curr + t_mob
 		xr_logic.pstor_store(db.actor, "t_s2", t_s2)
 		--printf("%s HOURS BEFORE NEXT MOB RESPAWN", t_mob)
