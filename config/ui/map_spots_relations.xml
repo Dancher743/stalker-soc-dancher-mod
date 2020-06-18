@@ -1,137 +1,55 @@
 	<enemy_location hint="enemy" no_offline="1">
 		<mini_map  spot="enemy_mini_spot"/>
-        <level_map spot="enemy_pda_spot"/>
 	</enemy_location>
 
 	<neutral_location hint="neutral">
 		<mini_map  spot="neutral_mini_spot"/>
-		<level_map spot="neutral_pda_spot"/>
 	</neutral_location>
 
 	<friend_location hint="friend">
 		<mini_map  spot="friend_mini_spot"/>
-		<level_map spot="friend_pda_spot"/>
 	</friend_location>
 
 	<deadbody_location hint="deadbody">
 		<mini_map  spot="deadbody_mini_spot"/>
 	</deadbody_location>
 
-	<enemy_mini_spot width="0" height="0" stretch="1" alignment="c" xform_anim="map_spot_rel_xform" xform_anim_cyclic="0">
+	<enemy_mini_spot width="4" height="4" stretch="1" alignment="c" xform_anim="map_spot_rel_xform" xform_anim_cyclic="0">
 		<texture r="255" g="0" b="0">ui_minimap_point</texture>
 	</enemy_mini_spot>
 	
-	<neutral_mini_spot width="0" height="0" stretch="1" alignment="c"> 
-		<texture r="255" g="200" b="0">ui_minimap_point</texture>
+	<neutral_mini_spot width="4" height="4" stretch="1" alignment="c"> 
+		<texture r="255" g="255" b="0">ui_minimap_point</texture>
 	</neutral_mini_spot>
 
-	<friend_mini_spot width="0" height="0" stretch="1" alignment="c"> 
-		<texture r="50" g="255" b="0">ui_minimap_point</texture>
+	<friend_mini_spot width="4" height="4" stretch="1" alignment="c"> 
+		<texture r="0" g="255" b="0">ui_minimap_point</texture>
 	</friend_mini_spot>
 	
-	<deadbody_mini_spot width="0" height="0" stretch="1" alignment="c"> 
+	<deadbody_mini_spot width="4" height="4" stretch="1" alignment="c"> 
 		<texture r="168" g="168" b="168">ui_minimap_point</texture>
 	</deadbody_mini_spot>
 
-    <enemy_pda_spot width="0" height="0" stretch="1" alignment="c"> 
+
+<!-- map_spot_new_xform -->
+
+	<naxac_enemy_location>
+		<level_map spot="naxac_enemy_pda_spot"/>
+	</naxac_enemy_location>
+	<naxac_enemy_pda_spot width="4" height="4" stretch="1" alignment="c"> 
 		<texture r="255" g="0" b="0">ui_minimap_point</texture>
-	</enemy_pda_spot>
+	</naxac_enemy_pda_spot>
 	
-	<neutral_pda_spot width="0" height="0" stretch="1" alignment="c"> 
-		<texture r="255" g="200" b="0">ui_minimap_point</texture>
-	</neutral_pda_spot>
-
-	<friend_pda_spot width="0" height="0" stretch="1" alignment="c"> 
-		<texture r="50" g="255" b="0">ui_minimap_point</texture>
-	</friend_pda_spot>
-
-	<naxac_stalker>
-		<mini_map  spot="stalker_pda_spot"/>
-		<level_map spot="stalker_pda_spot"/>
-	</naxac_stalker>
-	<stalker_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="255" g="200" b="0">ui_minimap_point</texture>
-	</stalker_pda_spot>
-
-	<naxac_bandit>
-		<mini_map  spot="bandit_pda_spot"/>
-		<level_map spot="bandit_pda_spot"/>
-	</naxac_bandit>
-	<bandit_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="142" g="142" b="142">ui_minimap_point</texture>
-	</bandit_pda_spot>
-
-	<naxac_military>
-		<mini_map  spot="military_pda_spot"/>
-		<level_map spot="military_pda_spot"/>
-	</naxac_military>
-	<military_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="181" g="25" b="0">ui_minimap_point</texture>
-	</military_pda_spot>
-
-	<naxac_monolith>
-		<mini_map  spot="monolith_pda_spot"/>
-		<level_map spot="monolith_pda_spot"/>
-	</naxac_monolith>
-	<monolith_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="168" g="252" b="255">ui_minimap_point</texture>
-	</monolith_pda_spot>
-
-	<naxac_killer>
-		<mini_map  spot="killer_pda_spot"/>
-		<level_map spot="killer_pda_spot"/>
-	</naxac_killer>
-	<killer_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="42" g="42" b="211">ui_minimap_point</texture>
-	</killer_pda_spot>
-
-	<naxac_ecolog>
-		<mini_map  spot="ecolog_pda_spot"/>
-		<level_map spot="ecolog_pda_spot"/>
-	</naxac_ecolog>
-	<ecolog_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="250" g="250" b="38">ui_minimap_point</texture>
-	</ecolog_pda_spot>
-
-	<naxac_dolg>
-		<mini_map  spot="dolg_pda_spot"/>
-		<level_map spot="dolg_pda_spot"/>
-	</naxac_dolg>
-	<dolg_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="230" g="32" b="32">ui_minimap_point</texture>
-	</dolg_pda_spot>
-
-	<naxac_freedom>
-		<mini_map  spot="freedom_pda_spot"/>
-		<level_map spot="freedom_pda_spot"/>
-	</naxac_freedom>
-	<freedom_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="20" g="206" b="20">ui_minimap_point</texture>
-	</freedom_pda_spot>
-
-	<naxac_zombied>
-		<mini_map  spot="zombied_pda_spot"/>
-		<level_map spot="zombied_pda_spot"/>
-	</naxac_zombied>
-	<zombied_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="170" g="170" b="170">ui_minimap_point</texture>
-	</zombied_pda_spot>
-
-	<naxac_trader>
-		<mini_map  spot="trader_mini_spot"/>
-		<level_map spot="trader_pda_spot"/>
-	</naxac_trader>
-	<trader_mini_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="204" g="59" b="150">ui_minimap_point</texture>
-	</trader_mini_spot>
-	<trader_pda_spot width="8" height="8" stretch="1" alignment="c"> 
-		<texture r="204" g="59" b="150">ui_minimap_point</texture>
-	</trader_pda_spot>
-
-	<naxac_arena_enemy>
-		<mini_map  spot="arena_enemy_pda_spot"/>
-		<level_map spot="arena_enemy_pda_spot"/>
-	</naxac_arena_enemy>
-	<arena_enemy_pda_spot width="4" height="4" stretch="1" alignment="c"> 
-		<texture r="250" g="200" b="0">ui_minimap_point</texture>
-	</arena_enemy_pda_spot>
+	<naxac_neutral_location>
+		<level_map spot="naxac_neutral_pda_spot"/>
+	</naxac_neutral_location>
+	<naxac_neutral_pda_spot width="4" height="4" stretch="1" alignment="c"> 
+		<texture r="255" g="255" b="0">ui_minimap_point</texture>
+	</naxac_neutral_pda_spot>
+	
+	<naxac_friend_location>
+		<level_map spot="naxac_friend_pda_spot"/>
+	</naxac_friend_location>
+	<naxac_friend_pda_spot width="4" height="4" stretch="1" alignment="c"> 
+		<texture r="0" g="255" b="0">ui_minimap_point</texture>
+	</naxac_friend_pda_spot>

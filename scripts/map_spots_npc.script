@@ -1,34 +1,56 @@
-local step_time = 1500
-local nps_spots = {}
+--
+-- Подсвет НПС на карте
+-- Автор: naxac
+-- Настроил под свой мод: Dancher
+--
+
+local update_time_delta = 1000
+local elapsed_time = 0
+local added_spots = {}
 
 function update()
 	local time = time_global()
-	if time > step_time then
-		step_time = time + 1500
+	if time > elapsed_time then
+		elapsed_time = time + update_time_delta
 		for id,val in pairs(db.storage) do
 			local obj = level.object_by_id(id)
 			if obj and (IsStalker(obj) or obj:section() == "m_trader") and id~=0 then
-				show_spot(obj,id)
+				show_spots(obj, id)
 			end
 		end
 	end
 end
 
-function show_spot(npc,id)
-	local commun = npc:character_community()
-	local spot = "naxac_"..commun
-	if npc:best_enemy() then
-		if nps_spots[id] then
-			nps_spots[id] = nil
-			level.map_remove_object_spot(id,spot)
-		end
-		return
-	elseif npc.health > 0 and not nps_spots[id] then
-		nps_spots[id] = true
-		local hint = game.translate_string(commun)
-		level.map_add_object_spot(id,spot,hint)
-	elseif npc.health <= 0 and nps_spots[id] then
-		nps_spots[id] = nil
-		level.map_remove_object_spot(id,spot)
+function show_spots(npc, id)
+	local npc_relation = npc:relation(db.actor)
+	local spot_relation_type = "neutral"
+	
+	if npc_relation == game_object.friend then
+		spot_relation_type = "friend"
+	elseif npc_relation == game_object.enemy then
+		spot_relation_type = "enemy"
+	end
+
+	local spot = "naxac_"..spot_relation_type.."_location"
+	
+	if npc.health > 0 then
+		local hint = game.translate_string(npc:character_community())
+		remove_spot(id)
+		add_spot(id, spot, hint)
+	elseif npc.health <= 0 then
+		remove_spot(id)
+	end
+end
+
+function add_spot(id, spot, hint)
+	level.map_add_object_spot(id, spot, hint)
+	added_spots[id] = spot
+end
+
+function remove_spot(id)
+	if added_spots[id] then
+		local spot = added_spots[id]
+		level.map_remove_object_spot(id, spot)
+		added_spots[id] = nil
 	end
 end
