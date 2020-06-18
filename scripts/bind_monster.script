@@ -80,6 +80,24 @@ function generic_object_binder:update(delta)
 	if self.object:clsid() == clsid.script_trader then
 		trade_manager.update(self.object)
 	end
+	
+	-- Фантомы контролера
+	if self.object:clsid() == clsid.controller_s and self.object:alive() == true and time_global()>(self.upd_time or 0) then
+		self.upd_time = time_global() + 3000
+		local dist = self.object:position():distance_to(db.actor:position())
+		if dist < 50 then
+			if math.random()<(dist*0.1) then
+				if phantom_manager.phantom_count()<5 then
+					local yaw = math.pi*2.0*math.random()
+					local radius = 15*(math.random()/2.0+0.5)
+					local height = 2.5*math.random()
+					local a_pos = db.actor:position()
+					local pos = vector():set(math.sin(yaw)*radius+a_pos.x,a_pos.y+height,math.cos(yaw)*radius+a_pos.z)
+					phantom_manager.spawn_phantom(pos)
+				end
+			end
+		end
+	end
 
 	if self.object:alive() then
 		if self.object:is_talk_enabled() then
