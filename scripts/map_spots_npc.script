@@ -33,12 +33,12 @@ function show_spots(npc, id)
 
 	local spot = "naxac_"..spot_relation_type.."_location"
 	
-	if npc.health > 0 then
+	if npc:best_enemy() or npc.health <= 0 then
+		remove_spot(id)
+    else
 		local hint = game.translate_string(npc:character_community())
 		remove_spot(id)
 		add_spot(id, spot, hint)
-	elseif npc.health <= 0 then
-		remove_spot(id)
 	end
 end
 
@@ -48,9 +48,11 @@ function add_spot(id, spot, hint)
 end
 
 function remove_spot(id)
-	if added_spots[id] then
-		local spot = added_spots[id]
-		level.map_remove_object_spot(id, spot)
-		added_spots[id] = nil
+	if not added_spots[id] then
+		return
 	end
+	
+	local spot = added_spots[id]
+	level.map_remove_object_spot(id, spot)
+	added_spots[id] = nil
 end
