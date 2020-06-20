@@ -7,6 +7,7 @@
 local update_time_delta = 1000
 local elapsed_time = 0
 local added_spots = {}
+local detection_distance = 50
 
 function update()
 	local time = time_global()
@@ -14,7 +15,11 @@ function update()
 		elapsed_time = time + update_time_delta
 		for id,val in pairs(db.storage) do
 			local obj = level.object_by_id(id)
-			if obj and (IsStalker(obj) or obj:section() == "m_trader") and id~=0 then
+			if 
+				obj and 
+				(IsStalker(obj) or obj:section() == "m_trader") and
+				id~=0 
+			then
 				show_spots(obj, id)
 			end
 		end
@@ -22,7 +27,8 @@ function update()
 end
 
 function show_spots(npc, id)
-	local npc_relation = npc:relation(db.actor)
+	local actor = db.actor
+	local npc_relation = npc:relation(actor)
 	local spot_relation_type = "neutral"
 	
 	if npc_relation == game_object.friend then
@@ -32,13 +38,16 @@ function show_spots(npc, id)
 	end
 
 	local spot = "naxac_"..spot_relation_type.."_location"
-	
-	if npc:best_enemy() or npc.health <= 0 then
-		remove_spot(id)
-    else
+
+	if 
+		is_on_need_distance(actor, npc) and
+		not (npc:best_enemy() or npc.health <= 0)
+	then
 		local hint = game.translate_string(npc:character_community())
 		remove_spot(id)
 		add_spot(id, spot, hint)
+	else
+		remove_spot(id)
 	end
 end
 
@@ -55,4 +64,8 @@ function remove_spot(id)
 	local spot = added_spots[id]
 	level.map_remove_object_spot(id, spot)
 	added_spots[id] = nil
+end
+
+function is_on_need_distance(who_from, who_to)
+	return who_from:position():distance_to(who_to:position()) <= detection_distance
 end
