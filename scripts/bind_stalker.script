@@ -68,7 +68,6 @@ function actor_binder:net_spawn(data)
 	ogsm_funcs.on_game_load()
 	fast_travel_manager.reset()
 	new_ways.mark_ways_on_map()
-	se_zones.update_anoms(time_global())
 	sak_off_corpses.off_corpses()
 	
 	if xrs_ai then xrs_ai.actor_net_spawn(self) end
@@ -445,6 +444,10 @@ function actor_binder:update(delta)
 	end
 	--<< Dynamic campfire mod
 	
+	--' Обновление аномалий
+	se_zones.update_anoms(time)
+	
+	--' Обновление инвентаря
 	inventory.update()
 	
 	--запуск скрипта детекторов артефактов
@@ -453,6 +456,7 @@ function actor_binder:update(delta)
 		arts = true
 	end
 	
+	--' Обновление точек на карте
 	map_spots_npc.update()
 end
 ----------------------------------------------------------------------------------------------------------------------

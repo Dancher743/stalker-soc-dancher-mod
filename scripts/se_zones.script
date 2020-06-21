@@ -1,40 +1,43 @@
-local not_spawn_levels = {
+--
+-- Artefacts Respawn Mod
+-- Автор: Bak
+-- Изменил: Dancher
+--
+
+local excluded_levels = {
 	l05_bar = true
 }
 
---. Обновление аномалий для рождения артефактов
---. Перебираются все аномалии, по одной за апдейт (четыре раза в секунду)
---. По окончанию перебора пауза 300 секунд, после чего процедура повторяется
+--' Обновление аномалий для рождения артефактов.
+--' Перебираются все аномалии на всех уровнях, по одной за апдейт.
+--' Время между апдейтами устанавливается в next_update_time_delta.
 
-local update_time = time_global()+50000
-local upd_tick = 0
+local next_update_time = 0
+local next_update_time_delta = 5000 -- 5 секунд.
 local registered_anoms = {}
+local is_anom_gave_birth = false
 
-function update_anoms(tg)
-	if tg < update_time then
+function update_anoms(time)
+	if time <= next_update_time then
 		return
 	end
-	upd_tick = upd_tick+1
-	local anom = registered_anoms[upd_tick]
-	if not anom then
-		for i,a in pairs(registered_anoms) do
-			if i > upd_tick then
-				anom = a
-				upd_tick = i
-				break
+	
+	if not excluded_levels[level.name()] then
+		for i,anom in pairs(registered_anoms) do
+			if anom then
+				try_to_born(anom)
 			end
 		end
-		if not anom then
-			upd_tick = 0
-			update_time = tg+300000
-			return
-		end
 	end
---	if db.actor and anom.position:distance_to(db.actor:position()) > 200 then
-	if not anom.online then
-		try_to_born(anom)
+	
+	if is_anom_gave_birth and 
+		pda_upgrade_manager.has_upgrade(3)
+	then
+		pda_upgrade_manager.use_upgrade(3, nil)
 	end
-	update_time = tg+235
+	
+	next_update_time = time + next_update_time_delta
+	is_anom_gave_birth = false
 end
 
 function try_to_born(anom)
@@ -51,6 +54,7 @@ function try_to_born_immediately(anom)
 	anom.last_spawn_time = game.get_game_time()
 	if math.random(100) <= anom.artefact_spawn_rnd then
 		anom:spawn_artefacts()
+		is_anom_gave_birth = true
 	end
 end
 
