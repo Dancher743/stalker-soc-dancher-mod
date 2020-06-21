@@ -45,6 +45,7 @@ Using mods:
 37. Stalkers are not blind mod (Red75)
 38. PKM weapon (gosuke/oleg199966)
 39. Reworked mod "New Map Spots Nps ShoC" (naxac/Dancher) 
-40. Controller Show Phantoms (naxac) 
+40. Controller Show Phantoms (naxac)
+41. PDA upgrade (Dancher) 
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
