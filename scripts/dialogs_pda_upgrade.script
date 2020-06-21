@@ -8,26 +8,92 @@ pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
 local notification_delay_time = 2000
 
-function upgrade_one_pay_condition(npc, actor)
-	if db.actor:object("af_gold_fish") then
-        return true
-    end
-    return false
+function not_fully_upgraded()
+	return not (pda_upgrade_manager.has_upgrade(1) and 
+				pda_upgrade_manager.has_upgrade(2) and
+				pda_upgrade_manager.has_upgrade(3))
+end
+
+-----------------
+-- UPGRADE ONE --
+-----------------
+
+function upgrade_one_pay_condition(actor, npc)
+	return actor:object("af_gold_fish")
 end
 
 function upgrade_one_pay(npc, actor)
 	dialogs.relocate_item_section(actor, "af_gold_fish", "out")
 end
 
-function show_upgrade_one_notification_with_delay()
+function upgrade_one_install(npc, actor)
+	pda_upgrade_manager.set_upgrade(1)
 	xr_effects.start_timer(notification_delay_time, show_upgrade_one_notification)
 end
+
+-----------------
+-- UPGRADE TWO --
+-----------------
+
+function upgrade_two_pay_condition(actor, npc)
+	return actor:object("af_dummy_spring")
+end
+
+function upgrade_two_pay(npc, actor)
+	dialogs.relocate_item_section(actor, "af_dummy_spring", "out")
+end
+
+function upgrade_two_install(npc, actor)
+	pda_upgrade_manager.set_upgrade(2)
+	xr_effects.start_timer(notification_delay_time, show_upgrade_two_notification)
+end
+
+-------------------
+-- UPGRADE THREE --
+-------------------
+
+function upgrade_three_pay_condition(actor, npc)
+	return actor:object("af_dummy_dummy")
+end
+
+function upgrade_three_pay(npc, actor)
+	dialogs.relocate_item_section(actor, "af_dummy_dummy", "out")
+end
+
+function upgrade_three_install(npc, actor)
+	pda_upgrade_manager.set_upgrade(3)
+	xr_effects.start_timer(notification_delay_time, show_upgrade_three_notification)
+end
+
+----------------------------
+-- UPGRADES NOTIFICATIONS --
+----------------------------
 
 function show_upgrade_one_notification()
 	local title = "%c[255,160,160,160]КПК:"
 	local message = "%c[default]Программный модуль \"Передача денежных средств\" был успешно пропатчен."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_deficit")
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 9000)
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+end
+
+function show_upgrade_two_notification()
+	local title = "%c[255,160,160,160]КПК:"
+	local message = "%c[default]Программный модуль \"План\" был успешно пропатчен."
+	local news_text = title.."\\n"..message
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_locations")
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 9000)
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+end
+
+function show_upgrade_three_notification()
+	local title = "%c[255,160,160,160]КПК:"
+	local message = "%c[default]Произведена подписка на рассылку сообщений. Источник: научный лагерь на \"Янтаре\", тема: рождение артефактов в аномалиях."
+	local news_text = title.."\\n"..message
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_scientist_job")
 	
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 9000)
 	pda_tips:play(db.actor, 0, sound_object.s2d)
