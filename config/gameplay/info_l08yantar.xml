@@ -145,6 +145,4 @@
 		<task>yan_scientist_job</task>
     </info_portion>
 
-	<!-- Апгрейд КПК -->
-	<info_portion id="pda_upgrade_one"></info_portion>
 </game_information_portions>

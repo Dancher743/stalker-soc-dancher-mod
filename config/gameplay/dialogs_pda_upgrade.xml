@@ -23,9 +23,9 @@
 			<next>5</next>
         </phrase>
 		<phrase id="4">
-			<precondition>pda_upgrader.upgrade_one_pay_condition</precondition>
+			<precondition>dialogs_pda_upgrade.upgrade_one_pay_condition</precondition>
 			<text>sakharov_pda_upgrade_dialog_4</text>
-			<action>pda_upgrader.upgrade_one_pay</action>
+			<action>dialogs_pda_upgrade.upgrade_one_pay</action>
 			<next>6</next>
         </phrase>
 		<phrase id="5">
@@ -34,7 +34,7 @@
 		<phrase id="6">
 			<give_info>pda_upgrade_one</give_info>
 			<text>sakharov_pda_upgrade_dialog_6</text>
-			<action>pda_upgrader.show_upgrade_one_notification</action>
+			<action>dialogs_pda_upgrade.show_upgrade_one_notification</action>
         </phrase>
 	</phrase_list>
 	</dialog>

@@ -1,0 +1,74 @@
+--
+-- Менеджер апгрейда КПК
+-- Автор: Dancher
+--
+
+-- Описание апргрейдов:
+--
+-- 1. "upgrade_one"  - Позволяет увеличить кол-во добываемых с трупов денег в два раза. 
+--
+
+local pda_upgrades_id = 
+{
+	[1] = "pda_upgrade_one",
+	[2] = "pda_upgrade_two",
+	[3] = "pda_upgrade_three"
+}
+
+function has_upgrade(id)
+	return has_alife_info(pda_upgrades_id[id])
+end
+
+function use_upgrade(id, value)
+	local upgrade_result = nil
+		
+	if id == 1 then
+		upgrade_result = use_upgrade_one(value)
+	elseif id == 2 then
+		upgrade_result = use_upgrade_two(value)
+	else
+		upgrade_result = use_upgrade_three()
+	end
+	
+	return upgrade_result
+end
+
+function use_upgrade_one(rank)	
+	local deadmoney = 0
+	
+    if rank<300 then 
+		deadmoney=math.random(75,150)    -- novice
+    elseif rank<600 then 
+		deadmoney=math.random(150,250)    -- experienced
+    elseif rank<900 then 
+		deadmoney=math.random(250,500)        -- veteran
+    elseif rank>=900 then 
+		deadmoney=math.random(500,1000)		-- master
+	end
+	
+	return deadmoney
+end
+
+function use_upgrade_two(distance)
+	return distance * 3
+end
+
+function use_upgrade_three()
+	local title = "%c[255,160,160,160]КПК:"
+	local message = "%c[default]Аномалии, возможно, родили артефакты."
+	local news_text = title.."\\n"..message
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_artefact")
+	local pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 6000)
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+	
+	return true
+end
+
+
+
+
+
+
+

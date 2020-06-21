@@ -67,5 +67,11 @@ function remove_spot(id)
 end
 
 function is_on_need_distance(who_from, who_to)
-	return who_from:position():distance_to(who_to:position()) <= detection_distance
+	local distance = detection_distance
+	
+	if pda_upgrade_manager.has_upgrade(2) then
+		distance = pda_upgrade_manager.use_upgrade(2, distance)
+	end
+	
+	return who_from:position():distance_to(who_to:position()) <= distance
 end

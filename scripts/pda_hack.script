@@ -50,9 +50,9 @@ function use_pda(obj)
 	
 	local deadmoney = 0
 	local deadmoney_amount_color = "%c[default]"
-	
-	if has_alife_info("pda_upgrade_one") then
-		deadmoney = get_money_with_upgraded_pda(rank)
+
+	if pda_upgrade_manager.has_upgrade(1) then
+		deadmoney = pda_upgrade_manager.use_upgrade(1, rank)
 		--deadmoney_amount_color = "%c[255,12,150,12]"
 	else
 		deadmoney = get_money_standart(rank)
@@ -107,7 +107,6 @@ function show_notification(money_amount, community, name, money_amount_color)
 	pda_news:play(db.actor, 0, sound_object.s2d)
 end
 
-
 function get_money_standart(rank)
 	local deadmoney = 0
 	
@@ -123,23 +122,6 @@ function get_money_standart(rank)
 	
 	return deadmoney
 end
-
-function get_money_with_upgraded_pda(rank)
-	local deadmoney = 0
-	
-    if rank<300 then 
-		deadmoney=math.random(75,150)    -- novice
-    elseif rank<600 then 
-		deadmoney=math.random(150,250)    -- experienced
-    elseif rank<900 then 
-		deadmoney=math.random(250,500)        -- veteran
-    elseif rank>=900 then 
-		deadmoney=math.random(500,1000)		-- master
-	end
-	
-	return deadmoney
-end
-
 ----------------------------------------------------------------------------------
 -- Функции для работы с нет_пэкетами (АМК)
 function get_item_data(sobj)
