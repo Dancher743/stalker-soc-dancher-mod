@@ -47,5 +47,6 @@ Using mods:
 39. Reworked mod "New Map Spots Nps ShoC" (naxac/Dancher) 
 40. Controller Show Phantoms (naxac)
 41. PDA upgrade (Dancher) 
+42. HD Textures (oleg199966)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
