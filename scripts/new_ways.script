@@ -14,7 +14,7 @@ function spawn_ways()
 	--secretlab_to_x10()
 	--x10_to_secretlab()
 	
-	sa_spawn.aes1_to_aes2()
+	--sa_spawn.aes1_to_aes2()
 	sa_spawn.aes2_to_aes1()
 	sa_spawn.aes1_to_pripyat()
 	sa_spawn.sarcofag_to_aes1()

@@ -203,6 +203,67 @@ function to_yantar()
 		1)
 end
 
+
+function to_pripyat()
+	local actor = db.actor
+	local transition_point_id  = 74309
+	local destination_level = "l11_pripyat"
+	
+	prepare_to_fast_travel(transition_point_id)
+
+	level_changer_manager.create(
+		transition_point_id, 
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
+		120108,--л-вертекс на локации, куда телепортируемся------
+		2161,--г-вертекс на локации, куда телепортируемся------
+		vector():set(15.333441734314,-2.58011913299561,-262.524505615234), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
+end
+
+function to_aes1()
+	local actor = db.actor
+	local transition_point_id  = 74310
+	local destination_level = "l12_stancia"
+	
+	prepare_to_fast_travel(transition_point_id)
+
+	level_changer_manager.create(
+		transition_point_id, 
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
+		161393,--л-вертекс на локации, куда телепортируемся------
+		2384,--г-вертекс на локации, куда телепортируемся------
+		vector():set(374.820800,-0.005146,33.345085), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
+end
+
+function to_aes2()
+	local actor = db.actor
+	local transition_point_id  = 74311
+	local destination_level = "l12_stancia_2"
+	
+	prepare_to_fast_travel(transition_point_id)
+
+	level_changer_manager.create(
+		transition_point_id, 
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
+		59400,--л-вертекс на локации, куда телепортируемся------
+		2566,--г-вертекс на локации, куда телепортируемся------
+		vector():set(97.1570053100586,50.3841934204102,124.712913513184), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
+end
+
 -----------------------------------------------------------------
 -------------------- Вспомогательные функции --------------------
 -----------------------------------------------------------------

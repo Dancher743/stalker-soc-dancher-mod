@@ -237,8 +237,8 @@ end
 
 -- с ЧАЭС-2 на ЧАЭС-1
 function aes2_to_aes1()
-    create_level_changer(5486,vector():set(1054.050,-0.100,139.413),245052,2723,
-    472436,2367,vector():set(1061.019,-0.100,-14.554),vector():set(0.0,-3.15,-1.0),"l12_stancia", "to_aes", 0)
+    create_level_changer(5486,vector():set(-42.264926,-0.026974,55.040580),9913,2517,
+    10125,2371,vector():set(-43.106922,-0.100517,-69.729530),vector():set(0.0,-3.15,-1.0),"l12_stancia", "to_aes", 0)
 end
 
 -- с ЧАЭС-1 в Припять
@@ -271,8 +271,8 @@ end
 
 -- из Саркофага на ЧАЭС-1
 function sarcofag_to_aes1()
-    create_level_changer(5491,vector():set(-25.679,0.309,43.011),105,2553,
-    165064,2471,vector():set(380.653,-0.002,26.499),vector():set(0.0,-3.15,-1.0),"l12_stancia", "to_aes", 0)
+    create_level_changer(5491,vector():set(-25.557994,0.231905,43.608425),106,2466,
+    161393,2384,vector():set(374.820800,-0.005146,33.345085),vector():set(0.0,-3.15,-1.0),"l12_stancia", "to_aes", 0)
 end
 
 -- с Агропрома на Янтарь
