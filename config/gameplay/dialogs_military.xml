@@ -1700,6 +1700,7 @@
             </phrase>
             <phrase id="2003">
                 <text>mil_guard_arsenal_dialog_2003</text>
+                <action>dialogs_military.allow_arsenal</action>
                 <action>dialogs.break_dialog</action>
             </phrase>
             <phrase id="0">
