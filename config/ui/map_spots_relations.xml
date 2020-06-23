@@ -35,6 +35,7 @@
 
 	<naxac_enemy_location>
 		<level_map spot="naxac_enemy_pda_spot"/>
+		<mini_map  spot="naxac_enemy_pda_spot"/>
 	</naxac_enemy_location>
 	<naxac_enemy_pda_spot width="4" height="4" stretch="1" alignment="c"> 
 		<texture r="255" g="0" b="0">ui_minimap_point</texture>
@@ -42,6 +43,7 @@
 	
 	<naxac_neutral_location>
 		<level_map spot="naxac_neutral_pda_spot"/>
+		<!--<mini_map  spot="naxac_neutral_pda_spot"/>-->
 	</naxac_neutral_location>
 	<naxac_neutral_pda_spot width="4" height="4" stretch="1" alignment="c"> 
 		<texture r="255" g="255" b="0">ui_minimap_point</texture>
@@ -49,6 +51,7 @@
 	
 	<naxac_friend_location>
 		<level_map spot="naxac_friend_pda_spot"/>
+		<!--<mini_map  spot="naxac_friend_pda_spot"/>-->
 	</naxac_friend_location>
 	<naxac_friend_pda_spot width="4" height="4" stretch="1" alignment="c"> 
 		<texture r="0" g="255" b="0">ui_minimap_point</texture>

@@ -61,9 +61,18 @@
 			 
 			<phrase id="81">
 				<has_info>yan_kill_brain_done</has_info>
-				<text>guider_dialog_11</text>
-				<action>dialogs_guider.transfer_to_yantar</action>
+				<text/>
+				<next>811</next>
              </phrase>
+			 <phrase id="811">
+				<text/>
+				<action>dialogs_guider.transfer_to_yantar</action>
+				<next>812</next>
+             </phrase>
+			<phrase id="812">
+				<text>guider_dialog_11</text>
+            </phrase>
+			 
 			<phrase id="82">
 				<dont_has_info>yan_kill_brain_done</dont_has_info>
                 <text>guider_cant_yantar_dialog_0</text>

@@ -81,7 +81,7 @@ end
 
 function show_upgrade_two_notification()
 	local title = "%c[255,160,160,160]КПК:"
-	local message = "%c[default]Программный модуль \"План\" был успешно пропатчен."
+	local message = "%c[default]Программный модуль \"Найти КПК\" был успешно пропатчен."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_locations")
 	
@@ -91,7 +91,7 @@ end
 
 function show_upgrade_three_notification()
 	local title = "%c[255,160,160,160]КПК:"
-	local message = "%c[default]Произведена подписка на рассылку сообщений. Источник: научный лагерь на \"Янтаре\", тема: рождение артефактов в аномалиях."
+	local message = "%c[default]Произведена подписка на рассылку сообщений от научного лагеря на \"Янтаре\"."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_scientist_job")
 	

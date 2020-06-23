@@ -29,19 +29,26 @@ end
 function show_spots(npc, id)
 	local actor = db.actor
 	local npc_relation = npc:relation(actor)
-	local spot_relation_type = "neutral"
-	
-	if npc_relation == game_object.friend then
+	local spot_relation_type = nil
+
+	if npc_relation == game_object.neutral then
+		spot_relation_type = "neutral"
+	elseif npc_relation == game_object.friend then
 		spot_relation_type = "friend"
-	elseif npc_relation == game_object.enemy then
+	elseif npc_relation == game_object.enemy and
+		pda_upgrade_manager.has_upgrade(2)
+	then
 		spot_relation_type = "enemy"
 	end
-
+	
+	if spot_relation_type == nil then
+		return
+	end
+	
 	local spot = "naxac_"..spot_relation_type.."_location"
 
-	if 
-		is_on_need_distance(actor, npc) and
-		not (npc:best_enemy() or npc.health <= 0)
+	if is_on_need_distance(actor, npc) and
+		not (npc.health <= 0)
 	then
 		local hint = game.translate_string(npc:character_community())
 		remove_spot(id)
@@ -67,11 +74,5 @@ function remove_spot(id)
 end
 
 function is_on_need_distance(who_from, who_to)
-	local distance = detection_distance
-	
-	if pda_upgrade_manager.has_upgrade(2) then
-		distance = pda_upgrade_manager.use_upgrade(2, distance)
-	end
-	
-	return who_from:position():distance_to(who_to:position()) <= distance
+	return who_from:position():distance_to(who_to:position()) <= detection_distance
 end
