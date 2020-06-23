@@ -211,6 +211,10 @@ function keep_item(npc, item)
 		end	
 	
 		item:set_condition(condition)
+		
+		--debuger.log(npc:name())
+		
+		new_stashes_manager.on_item_condition_changed(npc, item)
         return true
     end
 	

@@ -264,6 +264,26 @@ function to_aes2()
 		1)
 end
 
+function to_point()
+	local actor = db.actor
+	local transition_point_id  = 74300
+	local destination_level = "l02_garbage"
+	
+	prepare_to_fast_travel(transition_point_id)
+
+	level_changer_manager.create(
+		transition_point_id, 
+		actor:position(), 
+		actor:level_vertex_id(), 
+		actor:game_vertex_id(),
+		296770,--л-вертекс на локации, куда телепортируемся------
+		398,--г-вертекс на локации, куда телепортируемся------
+		vector():set(138.758483,-1.274205,-131.268905), ---координаты на локации, куда телепортируемся----
+		vector():set(0.0, 0.0, 0.0),
+		destination_level, --локация, куда телепортируемся--
+		1)
+end
+
 -----------------------------------------------------------------
 -------------------- Вспомогательные функции --------------------
 -----------------------------------------------------------------

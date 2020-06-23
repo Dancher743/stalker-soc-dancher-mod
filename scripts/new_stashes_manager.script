@@ -1,0 +1,30 @@
+local npc_list = 
+{
+	["gar_dolg_machine_gunner"] = true
+}
+
+local looted_npc_list = {}
+
+function on_item_condition_changed(npc, item)		
+	local character_id = npc:name()
+
+	if not npc or 
+		not item or 
+		looted_npc_list[character_id] 
+	then
+		return
+	end
+	
+	if npc_list[character_id] then
+		loot_gar_dolg_machine_gunner(item)
+	end
+end
+
+function loot_gar_dolg_machine_gunner(item)
+	if not item or item:section() ~= "wpn_pkm" then
+		return
+	end
+	
+	item:set_condition(0)
+	looted_npc_list["gar_dolg_machine_gunner"] = true
+end

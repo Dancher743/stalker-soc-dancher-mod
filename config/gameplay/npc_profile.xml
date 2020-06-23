@@ -1823,4 +1823,11 @@
         <class>guider</class>
         <specific_character>yan_guider</specific_character>
 	</character>
+	
+	<!---------------->
+	
+	<character id="gar_dolg_machine_gunner">
+        <class>bar_Dolg_master</class>
+        <specific_character>gar_dolg_machine_gunner</specific_character>
+	</character>
 </xml>
