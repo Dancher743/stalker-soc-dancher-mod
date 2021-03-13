@@ -3,7 +3,7 @@
 -- Part of AMK MOD
 
 local excluded_npcs={
-	bar_ecolog_professor = true
+	bar_ecolog_professor = true,
 	yan_ecolog_help = true
 }
 
