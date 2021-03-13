@@ -207,6 +207,8 @@
 	<info_portion id="esc_kill_bandits_quest_have">
 	<!--	<task>esc_dinamit_to_volk</task>
 		<article>kill_factory_bandits</article> -->
+		  <article>mutant_zombie_general</article>
+		  <article>mutant_zombieg_general</article>
 	</info_portion>
 	<info_portion id="esc_kill_bandits_quest_kill"></info_portion>
 	<info_portion id="esc_kill_bandits_noquest_kill"></info_portion>
@@ -225,6 +227,7 @@
 	<!-- труп у аномалии -->
 	<info_portion id="esc_tutorial_dead_novice">
 		<article>tutorial_moving_anomaly</article>
+		<article>mutant_cat_general</article>
 	</info_portion>
 	
 	

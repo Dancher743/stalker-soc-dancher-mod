@@ -136,6 +136,7 @@
 	</info_portion>
 	<info_portion id="mil_max_lukash_call"></info_portion>
 	<info_portion id="mil_max_flash_get">
+	  <article>mutant_chimera_general</article>
 		<article>mil_crazy_flash_info</article>
     </info_portion>
 	<info_portion id="mil_max_job_complete"></info_portion>

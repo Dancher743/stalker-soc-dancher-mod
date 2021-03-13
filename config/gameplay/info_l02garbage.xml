@@ -5,6 +5,7 @@
 	<!-- атака бандитов на Серого -->
 	<info_portion id="garbage_meetstalker_start">
 		<task>garbage_meet_stalker</task>
+		  <article>mutant_fracture_general</article>
 		<article>sl_fox_meet</article>
 	</info_portion>
 	<info_portion id="garbage_meetstalker_done"></info_portion>

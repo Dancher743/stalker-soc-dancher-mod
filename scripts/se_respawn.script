@@ -466,6 +466,95 @@ function se_respawn:create(prob)
 		return true
 	end
 end
+
+function spawns( namesp, posit, mon_c )
+
+	local ind
+	local new_position
+	for ind = 1, mon_c do
+		new_position = vector():set(
+                    posit.x + math.random(-(200/2),(200/2)),
+                    posit.y + 30,
+                    posit.z + math.random(-(220/2),(220/2))
+                )
+	
+	alife():create(namesp,new_position, 1, db.actor:game_vertex_id())
+ 	get_console():execute("Spawns_OK")
+
+	end
+
+end
+
+
+function Spawn_1()
+local level_name = level.name()
+get_console():execute(level_name)
+
+local pos = db.actor:position()
+
+if (level_name ~= "l08_yantar") and (level_name ~= "l04u_labx18") then
+
+if db.actor:character_rank() >= 1 and db.actor:character_rank() <= 69 then
+  spawns( "tushkano_normal", pos, 1 )
+  end
+
+if db.actor:character_rank() >= 70 and db.actor:character_rank() <= 75 then
+  spawns( "cat_weak", pos, 1 )
+  end
+
+if db.actor:character_rank() >= 81 and db.actor:character_rank() <= 91 then
+  spawns( "tushkano_normal", pos, 3 )
+  end
+
+if db.actor:character_rank() >= 120 and db.actor:character_rank() <= 131 then
+  spawns( "cat_weak", pos, 1 )
+  end
+
+if db.actor:character_rank() >= 180 and db.actor:character_rank() <= 186 then
+  spawns( "fracture_weak", pos, 1 )
+  end
+
+if db.actor:character_rank() >= 260 and db.actor:character_rank() <= 266 then
+  spawns( "fracture_weak", db.actor:position(), 1 )
+  spawns( "cat_weak", pos, 1 )
+  end
+
+if (level_name ~= "l01_escape") or (level_name ~= "l02_garbage") or (level_name ~= "l03_agroprom") or (level_name ~= "l06_rostok") then
+
+if db.actor:character_rank() >= 300 and db.actor:character_rank() <= 305 then
+  spawns( "burer_weak", pos, 1 )
+  end
+
+if db.actor:character_rank() >= 350 and db.actor:character_rank() <= 355 then
+  spawns( "burer_weak", pos, 1 )
+  end
+
+if db.actor:character_rank() >= 490 and db.actor:character_rank() <= 498 then
+  spawns( "chimera_weak", pos, 1 )
+  end
+
+if (level_name == "l11_pripyat") or (level_name == "l12_stancia") or (level_name == "l12_stancia_2") then
+
+if db.actor:character_rank() >= 550 and db.actor:character_rank() <= 560 then
+  spawns( "chimera_weak", pos, 1 )
+  end
+end
+
+end
+
+if db.actor:character_rank() >= 320 and db.actor:character_rank() <= 329 then
+  spawns( "zombie_normal", pos, 1 )
+  end
+
+
+if db.actor:character_rank() >= 401 and db.actor:character_rank() <= 410 then
+  spawns( "zombie_strong", pos, 1 )
+  end
+
+end
+
+end
+
 -- ѕопытка спаунить объекты. јнализируетс€ сколько уже заспавнено и выбираетс€ один из механизмов - либо 
 -- мы доспавниваем до минимального количества, либо спавним с заданной веро€тностью
 function se_respawn:spawn()
@@ -479,10 +568,19 @@ function se_respawn:spawn()
 		end
 		
 		if obj ~= nil then
+
+	if IsMonster(obj) and obj:alive() ~= true then
+	 	get_console():execute(tostring(self:name()))
+	        Spawn_1()
+		end
+
 			if (IsStalker(obj) or IsMonster(obj)) and obj:alive() ~= true then
 				table.remove(self.spawned_obj, k)
 			end
 		else
+	 	get_console():execute(tostring(self:name()))
+	        Spawn_1()
+
 			table.remove(self.spawned_obj, k)
 		end
 	end	

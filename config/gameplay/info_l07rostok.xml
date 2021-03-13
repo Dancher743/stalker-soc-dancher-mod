@@ -198,7 +198,14 @@
     
     <info_portion id="bar_rescue_research_corruped"></info_portion>
     <info_portion id="bar_ecolog_research_normal">
+	  <article>mutant_chimera_general</article>
 		<article>bar_ecolog_research_normal</article>
+	  <article>mutant_cat_general</article>
+	  <article>mutant_burer_general</article>
+	  <article>mutant_fracture_general</article>
+	  <article>mutant_chimera_general</article>
+	  <article>mutant_zombie_general</article>
+	  <article>mutant_zombieg_general</article>
     </info_portion>
     <info_portion id="bar_ecolog_research_corrupted">
 		<article>bar_ecolog_research_corrupted</article>
@@ -213,9 +220,22 @@
         <!-- FIND DOCUMENTS -->
     <info_portion id="bar_darklab_document_start">
 		<task>bar_darklab_documents</task>
+		  <article>mutant_chimera_general</article>
+	  <article>mutant_cat_general</article>
+	  <article>mutant_burer_general</article>
+	  <article>mutant_fracture_general</article>
+	  <article>mutant_chimera_general</article>
+	  <article>mutant_zombie_general</article>
+	  <article>mutant_zombieg_general</article>
 		<article>journal_before_darklab_documents</article>
     </info_portion>
 	<info_portion id="bar_darklab_document_gain">
+	  <article>mutant_cat_general</article>
+	  <article>mutant_burer_general</article>
+	  <article>mutant_fracture_general</article>
+	  <article>mutant_chimera_general</article>
+	  <article>mutant_zombie_general</article>
+	  <article>mutant_zombieg_general</article>
 		<article>journal_bar_darklab_documents</article>
 	</info_portion>
 	<info_portion id="bar_darklab_document_done"></info_portion>
@@ -223,6 +243,12 @@
 		 <!-- X16 DOCUMENTS -->
     <info_portion id="bar_x16_documents_start">
 		<task>bar_x16_documents</task>
+	  <article>mutant_cat_general</article>
+	  <article>mutant_burer_general</article>
+	  <article>mutant_fracture_general</article>
+	  <article>mutant_chimera_general</article>
+	  <article>mutant_zombie_general</article>
+	  <article>mutant_zombieg_general</article>
 		<article>journal_bar_x16_documents</article>
     </info_portion>
 	<info_portion id="yan_x16_documents_gain"></info_portion>
