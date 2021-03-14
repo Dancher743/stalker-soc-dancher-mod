@@ -470,6 +470,7 @@
 #include "gameplay\character_criticals_4.xml"
 		
 		<start_dialog>bar_bar_visitors_14_start</start_dialog>
+		<actor_dialog>bar_lost_machine_gunner_dialog</actor_dialog>
 		<actor_dialog>tm_lisiy_dialog</actor_dialog>
 		<actor_dialog>tm_lisiy_reward</actor_dialog>
 	</specific_character>	
