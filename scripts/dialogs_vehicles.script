@@ -1,0 +1,77 @@
+--
+-- Скриптовая часть для диалогов покупки машин.
+-- Автор: Dancher
+--
+
+local vehicles_cost = 
+{
+	["uazik"] = 30000,
+	["vaz"] = 45000,
+	["btr"] = 90000,
+	["zaz"] = 15000
+}
+
+local vehicles = 
+{
+	"ven_uaz_spawn",
+	"ven_niva_spawn",
+	"ven_btr_spawn",
+	"ven_zaz_spawn"
+}
+
+-- 
+-- Валидация нужных суммы денег
+--
+
+function have_money_uazik(actor, npc)
+	return have_money(actor, "uazik")
+end
+
+function have_money_vaz(actor, npc)
+	return have_money(actor, "vaz")
+end
+
+function have_money_btr(actor, npc)
+	return have_money(actor, "btr")
+end
+
+function have_money_zaz(actor, npc)
+	return have_money(actor, "zaz")
+end
+
+function have_money(who, vehicle_name)
+	return who:money() >= vehicles_cost[vehicle_name]
+end
+
+-- 
+-- Покупка машин
+--
+
+function buy_uazik(actor, npc)
+	dialogs.relocate_money(actor, vehicles_cost["uazik"], "out")
+	spawn_vehicle(vehicles[1], 0)
+end
+
+function buy_vaz(actor, npc)
+	dialogs.relocate_money(actor, vehicles_cost["vaz"], "out")
+	spawn_vehicle(vehicles[2], 2)
+end
+
+function buy_btr(actor, npc)
+	dialogs.relocate_money(actor, vehicles_cost["btr"], "out")
+	spawn_vehicle(vehicles[3], 5)
+end
+
+function buy_zaz(actor, npc)
+	dialogs.relocate_money(actor, vehicles_cost["zaz"], "out")
+	spawn_vehicle(vehicles[4], 8)
+end
+
+function spawn_vehicle(vehicle_name, offset)
+		local position = vector():set(-245.9349 + offset, -19.5085, -127.1703)
+		--local direction = vector():set(-0.5458, 0, -0.8378)
+		local level_vertex_id = 12084
+		local game_vertex_id = 8
+
+		alife():create(vehicle_name, position, level_vertex_id, game_vertex_id)
+end

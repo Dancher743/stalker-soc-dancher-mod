@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+	<string id="vehicles_dialog_0">
+		<text>Мне нужен транспорт. Поможешь?</text>
+	</string>
+	<string id="vehicles_dialog_1">
+		<text>Ну ничего себе! Хм... конечно, я смогу это организовать, но за большие деньги, так как мне придётся договариваться с военными. Так-с... вот что есть.
+		\n 1. УАЗ-469. Армейский "бобик" без крыши. Стоимость 30000 руб.
+		\n 2. ВАЗ-2121. Нива. Стоимость 45000 руб.
+		\n 3. БТР-70. БТР невосприимчив к оружейному огню. Стоимость 90000 руб.
+		\n И ещё я вспомнил про один бюджетный вариант - ЗАЗ-965. Выглядит не совсем презентабельно, но ездить можно: местные ребята похимичили над ним. Стоимость 15000.
+		</text>
+	</string>		
+	<string id="vehicles_dialog_1_1">
+		<text>УАЗ.</text>
+	</string>
+	<string id="vehicles_dialog_1_2">
+		<text>ВАЗ.</text>
+	</string>
+	<string id="vehicles_dialog_1_3">
+		<text>БТР.</text>
+	</string>
+	<string id="vehicles_dialog_1_4">
+		<text>ЗАЗ.</text>
+	</string>
+	<string id="vehicles_dialog_1_5">
+		<text>Я передумал.</text>
+	</string>	
+	<string id="vehicles_dialog_2">
+		<text>По рукам. Машину уже должны доставить ко входу в мой бункер.</text>
+	</string>
+	<string id="vehicles_dialog_2_1">
+		<text>Как-то быстро... Ну ладно, спасибо.</text>
+	</string>
+</game_dialogs>

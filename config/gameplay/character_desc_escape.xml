@@ -26,6 +26,7 @@
 		<actor_dialog>escape_trader_done_blockpost_box</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
 		<actor_dialog>sidorovich_exo_upgrade_dialogs</actor_dialog>
+		<actor_dialog>vehicles_dialogs</actor_dialog>
 		<actor_dialog>escape_trader_join_any_community_dialog</actor_dialog>
 	</specific_character>
 <!---------------------------------------esc_wolf----------------------------------------------------->
