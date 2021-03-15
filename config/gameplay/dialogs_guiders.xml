@@ -82,7 +82,6 @@
 		
 		<!-- Диалог для наводки на проводника на Кордоне -->
 		<dialog id="guider_dialog_share">
-		  <has_info>tutorial_end</has_info>
           <phrase_list>
              <phrase id="0">
                 <text>guider_dialog_share_0</text>

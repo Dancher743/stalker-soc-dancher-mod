@@ -218,10 +218,10 @@ function keep_item(npc, item)
         return true
     end
 	
-	-- удалять ПДА, гитару\гармошку, фонарики и приборы ночного видения, рацию, бинокль.
+	-- удалять ПДА, гитару\гармошку, фонарики и приборы ночного видения, рацию, бинокль... и сигареу :)
     if (section == "device_torch" or section == "device_pda" or section == "hand_radio" or
 		section == "guitar_a" or section == "harmonica_a" or section == "binocular_a" or
-        section =="wpn_knife" or section == "wpn_binoc" or section=="bolt") 
+        section == "wpn_knife" or section == "wpn_binoc" or section=="bolt" or section=="sigaret") 
 	then
 		alife():release(alife():object(item:id()), true)
 	end
