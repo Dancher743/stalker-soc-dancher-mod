@@ -277,10 +277,6 @@ function enable_generic_schemes(ini, npc, stype, section)
 
 		local meet_section = utils.cfg_get_string (ini, section, "meet", npc, false, "")
 		xr_meet.set_meet (npc, ini, "meet", meet_section)
-
-		if watcher_act then
-            watcher_act.set_scheme(npc,ini,"watcher_act","watcher_act")
-        end
 		
 		if anomaly_evader then
 			anomaly_evader.set_evade(npc,ini,"evader",section)
@@ -297,6 +293,10 @@ function enable_generic_schemes(ini, npc, stype, section)
 			printf("combat_ignore_section= '%s'", combat_ignore_section )
 			xr_combat_ignore.set_combat_ignore_checker(npc, ini, "combat_ignore", combat_ignore_section)
 		end
+		
+		if watcher_act then
+            watcher_act.set_scheme(npc,ini,"watcher_act","watcher_act")
+        end
 
 		if xrs_ai then xrs_ai.enable_schemes(ini, npc, stype, section) end
 
