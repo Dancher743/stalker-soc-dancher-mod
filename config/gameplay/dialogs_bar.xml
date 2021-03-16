@@ -3893,7 +3893,6 @@
             </phrase>
             <phrase id="9">
                 <text>bar_dolg_leader_prisyaga_9</text>
-				<action>bar_dialogs.enter_to_dolg</action>
             </phrase>
             <phrase id="8">
                 <text>bar_dolg_leader_prisyaga_8</text>
@@ -4153,6 +4152,26 @@
                 <text>guard_sleep_dialog_2_3</text>
 				<give_info>bar_barman_need_room</give_info>
 				<action>dialogs.break_dialog</action>
+			</phrase>
+        </phrase_list>
+    </dialog>
+	
+	<dialog id="petrenko_give_equipment_dialog">
+		<has_info>bar_dolg_community_leader_done</has_info>
+		<dont_has_info>petrenko_give_equipment</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>petrenko_give_equipment_dialog_0</text>
+				<next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>petrenko_give_equipment_dialog_1</text>
+				<give_info>petrenko_give_equipment</give_info>
+				<action>bar_dialogs.enter_to_dolg</action>
+				<next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>petrenko_give_equipment_dialog_2</text>
 			</phrase>
         </phrase_list>
     </dialog>

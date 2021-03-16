@@ -1030,7 +1030,7 @@
 		<text>И отдать жизнь, во имя справедливости и порядка на Земле!</text>
 	</string>
 	<string id="bar_dolg_leader_prisyaga_9">
-		<text>Поздравляю! Отныне ты являешься полноправным членом группировки Долг.</text>
+		<text>Поздравляю! Отныне ты являешься полноправным членом группировки Долг. Снаряжение можешь получить у Петренко.</text>
 	</string>
 	<string id="bar_dolg_leader_quest_rg6_finish_0">
 		<text>Я выполнил задание, принес Бульдог-6.</text>
@@ -1328,5 +1328,15 @@
 	</string>
 	<string id="bar_ecolog_dialog_21">
 		<text>Все пропало, Круглова убили!!!</text>
+	</string>
+	
+	<string id="petrenko_give_equipment_dialog_0">
+		<text>Я вступил в Долг и мне требуется выдать снаряжение.</text>
+	</string>
+	<string id="petrenko_give_equipment_dialog_1">
+		<text>Держи.</text>
+	</string>
+	<string id="petrenko_give_equipment_dialog_2">
+		<text>Спасибо.</text>
 	</string>
 </string_table>

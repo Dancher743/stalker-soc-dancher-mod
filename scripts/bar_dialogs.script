@@ -176,6 +176,7 @@ end
 function enter_to_dolg(first_speaker, second_speaker)
 	dialogs.relocate_item_section(second_speaker, "dolg_outfit", "in")
 	dialogs.relocate_item_section(second_speaker, "wpn_abakan", "in")
+	dialogs.relocate_item_section(second_speaker, "ammo_5.45x39_fmj", "in")
 end
 
 --Фамильное ружье охотника
