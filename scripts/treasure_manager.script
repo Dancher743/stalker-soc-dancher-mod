@@ -160,7 +160,9 @@ function CTreasure:give_treasure(k)
 	if obj ~= nil then
 		news_manager.send_treasure(v.name, sa_utils.level_name_by_game_vertex(obj.m_game_vertex_id))
 
-		--' Пометить на карте		
+		--' Пометить на карте
+		--' Но сперва удалим метку, если этот тайник уже есть на карте
+		CTreasure:remove_map_spots(obj.id)		
 		local text = "%c[255,238,155,23]"..game.translate_string(v.name).."\\n".."%c[default]"..game.translate_string(v.description)
 		level.map_add_object_spot_ser(obj.id, "treasure", text)
 		
