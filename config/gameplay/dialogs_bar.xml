@@ -3893,6 +3893,7 @@
             </phrase>
             <phrase id="9">
                 <text>bar_dolg_leader_prisyaga_9</text>
+				<action>bar_dialogs.enter_to_dolg</action>
             </phrase>
             <phrase id="8">
                 <text>bar_dolg_leader_prisyaga_8</text>
@@ -4044,7 +4045,7 @@
             </phrase>
             <phrase id="3111">
                 <text>bar_dolg_leader_start_3111</text>
-                <action>bar_dialogs.enter_to_dolg</action>
+				<action>bar_dialogs.reward_rg6</action>
             </phrase>
             <phrase id="0">
                 <text></text>
