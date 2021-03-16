@@ -4106,6 +4106,10 @@
 				<give_info>guard_can_be_used</give_info>
 				<give_info>guard_didnot_say_stop</give_info>
                 <text>barman_sleep_dialog_buy_room_4</text>
+				<next>5</next>
+            </phrase>
+			<phrase id="5">
+                <text>barman_sleep_dialog_buy_room_5</text>
             </phrase>
         </phrase_list>
     </dialog>

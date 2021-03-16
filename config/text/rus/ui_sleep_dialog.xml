@@ -33,6 +33,9 @@
 	<string id="barman_sleep_dialog_buy_room_4">
 		<text>Отлично. Проходи в заднюю комнату и располагайся там. Я скажу Гарику, чтобы он тебя пропускал. Можешь проходить когда захочешь.</text>
 	</string>
+	<string id="barman_sleep_dialog_buy_room_5">
+		<text>Здорово. Спасибо.</text>
+	</string>
 	<string id="guard_sleep_dialog_1_1">
 		<text>Привет. Бармен сказал, что мне можно войти.</text>
 	</string>
