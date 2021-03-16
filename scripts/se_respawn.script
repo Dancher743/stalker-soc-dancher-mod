@@ -490,6 +490,10 @@ function Spawn_1()
 local level_name = level.name()
 get_console():execute(level_name)
 
+if level_name == "l05_bar" then
+	return
+end
+
 local pos = db.actor:position()
 
 if (level_name ~= "l08_yantar") and (level_name ~= "l04u_labx18") then
