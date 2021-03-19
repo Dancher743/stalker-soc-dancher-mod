@@ -1120,11 +1120,6 @@ end
 function npc_shot_actor(obj) 
 end
 
-function on_game_load_soft()
-	npc_spawner=unpack_array_from_string(load_variable("x_npc_spawner","") )
-	amk_mod.spawn_unspawned_respawners()
-end
-
 --загружаем все переменные, которые нужно, вызывается загрузке игры, автоматически; вручную не вызывать
 function on_game_load()
 	amk.mylog("on_game_load begin")
