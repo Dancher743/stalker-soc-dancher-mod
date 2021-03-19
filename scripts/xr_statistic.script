@@ -49,7 +49,6 @@ local sect_alias = {
 
 monster_classes = {
 			[clsid.tushkano_s    ] = "tushkano",
-	--		[clsid.rat_s    ] = "rat",
 			[clsid.flesh_s       ] = "flesh",
 			[clsid.boar_s        ] = "boar",
 			[clsid.cat_s         ] = "cat",
@@ -60,13 +59,12 @@ monster_classes = {
 			[clsid.dog_s         ] = "dog",
 			[clsid.pseudodog_s   ] = "pseudodog",
 			[clsid.psy_dog_s     ] = "psy_dog",
-			[clsid.psy_dog_phantom_s] = "NIL",
+			[clsid.psy_dog_phantom_s] = "psy_dog_phantom",
 			[clsid.snork_s       ] = "snork",
 			[clsid.poltergeist_s ] = "poltergeist",
 			[clsid.gigant_s      ] = "pseudo_gigant",
 			[clsid.controller_s  ] = "controller",
-			[clsid.bloodsucker_s ] = "bloodsucker",
-			
+			[clsid.bloodsucker_s ] = "bloodsucker"
 		}		
 
 
