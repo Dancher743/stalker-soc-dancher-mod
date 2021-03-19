@@ -195,7 +195,8 @@
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 		<actor_dialog>tm_shustriy_dialog</actor_dialog>
 		<actor_dialog>tm_shustriy_reward</actor_dialog>	
-		<actor_dialog>nimble_exchange_dialog</actor_dialog>
+		<actor_dialog>nimble_exchange_dialog_before_sleep</actor_dialog>
+		<actor_dialog>nimble_exchange_dialog_after_sleep</actor_dialog>
 	</specific_character>
 <!---------------------------------------killer_specnaz----------------------------------------------------->		
 	<specific_character id="esc_killer_specnaz" team_default = "1">

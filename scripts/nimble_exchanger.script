@@ -19,6 +19,8 @@ actor_arts =
 	"af_fuzz_kolobok"
 }
 
+-- Валидации обмена --
+
 function check_actor_art_battery(npc, actor)
 	if db.actor:object(actor_arts[1]) then
 		return true	
@@ -49,6 +51,23 @@ function check_actor_art_kolobok(npc, actor)
 	end
 	
 	return false
+end
+
+function check_out_of_stock(npc, actor)
+	if 
+		has_alife_info("nimble_exchange_wpn_hpsa") and
+		has_alife_info("nimble_exchange_wpn_sig_m1") and
+		has_alife_info("nimble_exchange_wpn_svd_m1") and
+		has_alife_info("nimble_exchange_wpn_rg6_m1")
+	then
+		return true
+	end
+	
+	return false
+end
+
+function check_not_out_of_stock(npc, actor)	
+	return not check_out_of_stock(npc, actor)
 end
 
 -- Функции обмена --
