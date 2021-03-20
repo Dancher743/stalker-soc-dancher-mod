@@ -14,39 +14,41 @@ communities =
 	'actor_dolg', -- Группировка Свобода именно актора. Оригинальная - dolg
 	'actor_freedom', -- Группировка Долг именно актора. Оригинальная - freedom
 	'ecolog', 
-	'monolith' 
+	'monolith',
+	'dolg',		-- Оригинальная групировока Долга
+	'freedom'	-- Оригинальная групировока Свободы
 }
 
 function join_lonely (actor, npc)
-	set_actor_community(communities[1])
+	set_actor_community(communities[1], false)
 end
 
 function join_bandit (actor, npc)
-	set_actor_community(communities[2])
+	set_actor_community(communities[2], false)
 end
 
 function join_army (actor, npc)
-	set_actor_community(communities[3])
+	set_actor_community(communities[3], false)
 end
 
 function join_killer (actor, npc)
-	set_actor_community(communities[4])
+	set_actor_community(communities[4], false)
 end
 
 function join_duty (actor, npc)
-	set_actor_community(communities[5])
+	set_actor_community(communities[5], false)
 end
 
 function join_freedom (actor, npc)
-	set_actor_community(communities[6])
+	set_actor_community(communities[6], false)
 end
 
 function join_ecolog (actor, npc)
-	set_actor_community(communities[7])
+	set_actor_community(communities[7], true)
 end
 
 function join_monolith (actor, npc)
-	set_actor_community(communities[8])
+	set_actor_community(communities[8], false)
 end
 
 function pay(actor)
@@ -64,20 +66,36 @@ function check_player_money(actor, npc)
 end
 
 function check_player_community(actor, npc)
-	if actor:character_community() == npc:character_community() then
+	local npc_community = npc:character_community()
+	
+	if npc_community == communities[9] then
+		npc_community = communities[5]
+	elseif npc_community == communities[10] then
+		npc_community = communities[6]
+	end
+
+	if actor:character_community() == npc_community then
 		return false
 	end
 	
 	return true
 end
 
-function set_actor_community(community_id)	
+function check_player_is_in_community(actor, npc)	
+	return not check_player_community(actor, npc)
+end
+
+function set_actor_community(community_id, cost_free)	
 	local actor = db.actor
 	
 	if actor:character_community() == community_id then
 		show_failed_message()
 	else
-		pay(actor)
+		
+		if cost_free == false then
+			pay(actor)
+		end
+	
 		actor:set_character_community (community_id, 0, 0)
 		change_actor_reputation(community_id)
 		show_success_message(community_id)

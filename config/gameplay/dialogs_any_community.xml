@@ -11,8 +11,8 @@
             <phrase id="1">
                 <text>escape_trader_join_dialog_1</text>
                 <next>2</next>
-                <next>3</next>
-				<next>6</next>
+                <!--<next>3</next>-->
+				<!--<next>6</next>-->
 				<next>4</next>
             </phrase>
 			<phrase id="2">
@@ -92,7 +92,9 @@
 	
 	<!-- Проф. Сахаров  -->
 	<dialog id="sakharov_join_any_community_dialog">
-        <has_info>yan_kill_brain_done</has_info>
+        <has_info>bar_rescue_research_done</has_info>
+		<dont_has_info>yan_scientist_die</dont_has_info>
+		<has_info>yan_kill_brain_done</has_info>
 		<precondition>any_community_manager.check_player_community</precondition>
 		<phrase_list>
             <phrase id="0">
@@ -105,7 +107,7 @@
                 <next>3</next>
             </phrase>
 			<phrase id="2">
-				<precondition>any_community_manager.check_player_money</precondition>
+				<!--<precondition>any_community_manager.check_player_money</precondition>-->
                 <text>sakharov_join_ecologs_dialog_2</text>
 				<action>any_community_manager.join_ecolog</action>
 				<next>4</next>

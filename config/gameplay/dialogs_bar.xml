@@ -4159,6 +4159,7 @@
 	<dialog id="petrenko_give_equipment_dialog">
 		<has_info>bar_dolg_community_leader_done</has_info>
 		<dont_has_info>petrenko_give_equipment</dont_has_info>
+		<precondition>any_community_manager.check_player_is_in_community</precondition>
         <phrase_list>
             <phrase id="0">
                 <text>petrenko_give_equipment_dialog_0</text>
