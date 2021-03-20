@@ -119,6 +119,11 @@
             </phrase>
 			<phrase id="4">
                 <text>sakharov_join_ecologs_dialog_4</text>
+				<action>dialogs_yantar.sakharov_give_equipment</action>
+				<next>5</next>
+            </phrase>
+			<phrase id="5">
+                <text>sakharov_join_ecologs_dialog_5</text>
             </phrase>
         </phrase_list>
     </dialog>
