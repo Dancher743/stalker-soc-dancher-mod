@@ -146,5 +146,6 @@
     </info_portion>
 
 	<info_portion id="sakharov_give_equipment"></info_portion> 
+	<info_portion id="join_ecologs"></info_portion> 	
 	
 </game_information_portions>

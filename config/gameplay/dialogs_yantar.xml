@@ -691,6 +691,7 @@
     </dialog>
 	
 	<dialog id="sakharov_give_equipment_dialog">
+		<has_info>join_ecologs</has_info>
 		<dont_has_info>sakharov_give_equipment</dont_has_info>
 		<precondition>any_community_manager.check_player_is_in_community</precondition>
         <phrase_list>

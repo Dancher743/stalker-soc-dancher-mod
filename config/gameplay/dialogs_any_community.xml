@@ -93,8 +93,9 @@
 	<!-- Проф. Сахаров  -->
 	<dialog id="sakharov_join_any_community_dialog">
         <has_info>bar_rescue_research_done</has_info>
-		<dont_has_info>yan_scientist_die</dont_has_info>
 		<has_info>yan_kill_brain_done</has_info>
+		<dont_has_info>yan_scientist_die</dont_has_info>
+		<dont_has_info>join_ecologs</dont_has_info>
 		<precondition>any_community_manager.check_player_community</precondition>
 		<phrase_list>
             <phrase id="0">
@@ -110,6 +111,7 @@
 				<!--<precondition>any_community_manager.check_player_money</precondition>-->
                 <text>sakharov_join_ecologs_dialog_2</text>
 				<action>any_community_manager.join_ecolog</action>
+				<give_info>join_ecologs</give_info>
 				<next>4</next>
             </phrase>
 			<phrase id="3">
