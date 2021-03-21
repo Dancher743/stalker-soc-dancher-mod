@@ -533,7 +533,7 @@ end
 -- время начала игры 
 function time_get_start()
 	local t0 = game.CTime()
-	t0:set(2012,8,28, 5,0,0,0)
+	t0:set(2012,8,28, 7,0,0,0)
 	return t0
 end
 

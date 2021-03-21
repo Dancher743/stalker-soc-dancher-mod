@@ -294,8 +294,8 @@ function on_game_load()
 		ogsm_hideout.get_level_hides()
 	end
 
-	wthr = level.get_weather()
-	level.set_weather("ogsm",true)
+	--wthr = level.get_weather()
+	--level.set_weather("ogsm",true)
 	game.start_tutorial("restore_sun")
 
 end
