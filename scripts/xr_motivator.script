@@ -121,6 +121,7 @@ end
 
 function motivator_binder:net_destroy()
 	if xrs_ai then xrs_ai.npc_net_destroy(self.object) end
+  if rx_ai then rx_ai.npc_switch_offline(self.object) end
 	--printf("motivator_binder:net_destroy(): self.object:name()='%s'", self.object:name())
 
 	local st = db.storage[self.object:id()]
@@ -170,6 +171,7 @@ function motivator_binder:death_callback(victim, who)
 	add_functions.kill_npc(victim, who)
 	if xrs_ai then xrs_ai.npc_death_callback(self.object) end
 
+  if rx_ai then rx_ai.npc_death(self.object,who) end
 	if who:id() == db.actor:id() then
 		xr_statistic.addKillCount(self.object)
 	end
@@ -308,6 +310,7 @@ function motivator_binder:update(delta)
 		end
 	end]]
 	if xrs_ai then xrs_ai.npc_update(self) end
+  if rx_ai then rx_ai.npc_update(self.object,self.st) end
 end
 
 function motivator_binder:reload(section)
@@ -441,4 +444,5 @@ function addCommonPrecondition(action)
 	end
 	
 	if xrs_ai then xrs_ai.addCommonPrecondition(action) end
+  if rx_ai then rx_ai.addCommonPrecondition(action) end
 end

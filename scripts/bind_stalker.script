@@ -72,6 +72,9 @@ function actor_binder:net_spawn(data)
 	
 	if xrs_ai then xrs_ai.actor_net_spawn(self) end
 	
+  if rx_ai then 
+	rx_ai.actor_net_spawn()
+  end
 	return true
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -207,6 +210,10 @@ function actor_binder:on_item_take (obj)
 	vfix.visual_fix(obj)
 	if xrs_ai then xrs_ai.actor_item_take(obj) end
     --game_stats.update_take_item (obj, self.object)
+
+	if rx_ai then
+		rx_ai.actor_item_take(obj)
+	end 
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_drop (obj)
@@ -381,6 +388,7 @@ function actor_binder:update(delta)
 
 		self.bCheckStart = false		
 	end		
+	if rx_ai then rx_ai.actor_update() end
 	--art_mgr.update()
 
 	ogsm_funcs.on_actor_update()
@@ -461,7 +469,7 @@ function actor_binder:update(delta)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)
-	
+	if rx_ai then rx_ai.actor_save(packet) end
 	local save_treasure_manager = true
 	
 	printf("actor_binder:save(): self.object:name()='%s'", self.object:name())
