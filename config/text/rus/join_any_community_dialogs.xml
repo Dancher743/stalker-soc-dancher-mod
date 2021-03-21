@@ -32,6 +32,23 @@
 		<text>Монолит.</text>
 	</string>
 	
+	<!-- Сидорович (одиночки only) -->
+	<string id="escape_trader_join_lonely_dialog_0">
+		<text>У тебя же есть связи с местными группировками... Не поможешь?</text>
+	</string>
+	<string id="escape_trader_join_lonely_dialog_1">
+		<text>Я могу вернуть тебе изначальную группировку - "Одиночки". Плати 10000 рублей и я всё организую.</text>
+	</string>
+	<string id="escape_trader_join_lonely_dialog_2">
+		<text>Вот деньги.</text>
+	</string>
+	<string id="escape_trader_join_lonely_dialog_3">
+		<text>В другой раз.</text>
+	</string>
+	<string id="escape_trader_join_lonely_dialog_4">
+		<text>Конечно! Спасибо.</text>
+	</string>
+	
 	<!-- Майор Кузнецов -->
 	<string id="kuznecov_join_dialog_0">
 		<text>Товарищ майор, я бы хотел стать военным. Не поможите?</text>

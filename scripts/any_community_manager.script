@@ -16,7 +16,8 @@ communities =
 	'ecolog', 
 	'monolith',
 	'dolg',		-- Оригинальная групировока Долга
-	'freedom'	-- Оригинальная групировока Свободы
+	'freedom',	-- Оригинальная групировока Свободы
+	'stalker'	-- Оригинальная групировока Одиночек
 }
 
 function join_lonely (actor, npc)
@@ -63,6 +64,14 @@ function check_player_money(actor, npc)
 	end
 	
 	return false
+end
+
+--
+-- Community checks
+--
+
+function check_player_is_not_lonely(actor, npc)	
+	return actor:character_community() ~= communities[1]
 end
 
 function check_player_community(actor, npc)
