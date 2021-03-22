@@ -6,7 +6,7 @@
 -------------------------------------------------------------
 
 -- Множитель цены. Используется, чтобы повысить цену за ремонт. (Dancher)
-local cost_addition_multiplier = 2
+local repair_cost_multiplier = 1.5
 
 function main(npc,actor)
 	local hud = repair_ui(get_hud())
@@ -213,12 +213,12 @@ function repair_costs(slot)
 
   if item_in_slot then
     if item_in_slot:condition() <= 0.99 then
-      cost = math.floor((1-item_in_slot:condition()) * item_in_slot:cost() - ((1-item_in_slot:condition()) * item_in_slot:cost() / 3) + 100)
+      cost = math.floor((1-item_in_slot:condition()) * item_in_slot:cost() * repair_cost_multiplier)
     else
       cost = 0
     end
   end
-  return cost * cost_addition_multiplier
+  return cost
 end
 
 
