@@ -296,7 +296,7 @@ function on_game_load()
 
 	--wthr = level.get_weather()
 	--level.set_weather("ogsm",true)
-	game.start_tutorial("restore_sun")
+	--game.start_tutorial("restore_sun")
 
 end
 
