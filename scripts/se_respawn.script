@@ -14,15 +14,15 @@ local i,k,v = 0,0,0
 
 -- Таблица ограничений на спаун: всего в симуляции не должно быть больше, чем указано.
 local simMaxCount = {
-	stalker_novice 	= 250,	stalker_regular		= 250,	stalker_veteran 	= 250,	stalker_master 	= 250,
-	monolith_novice 	= 250,	monolith_regular	= 250,	monolith_veteran 	= 250,	monolith_master = 250,
-	military_novice 	= 250,	military_regular 	= 250,	military_veteran 	= 250,	military_master = 250,
-	killer_novice 	= 250,	killer_regular 		= 250,	killer_veteran 		= 250, 	killer_master 	= 250,
-	ecolog_novice 	= 250,	ecolog_regular 		= 250,	ecolog_veteran 		= 250, 	ecolog_master 	= 250,
-	dolg_novice 		= 250, 	dolg_regular 		= 250,	dolg_veteran 		= 250, 	dolg_master 	= 250,
-	freedom_novice 	= 250, 	freedom_regular 	= 250,	freedom_veteran 	= 250, 	freedom_master 	= 250,
-	bandit_novice 	= 250, 	bandit_regular 		= 250,	bandit_veteran 		= 250, 	bandit_master 	= 250,
-	zombied_novice 	= 250, 	zombied_regular 	= 250,	zombied_veteran 	= 250, 	zombied_master 	= 250,
+  stalker_novice     = 100,    stalker_regular        = 100,    stalker_veteran     = 100,    stalker_master     = 100,
+  monolith_novice     = 100,    monolith_regular    = 100,    monolith_veteran     = 100,    monolith_master = 100,
+  military_novice     = 100,    military_regular     = 100,    military_veteran     = 100,    military_master = 100,
+  killer_novice     = 100,    killer_regular         = 100,    killer_veteran         = 100,     killer_master     = 100,
+  ecolog_novice     = 100,    ecolog_regular         = 100,    ecolog_veteran         = 100,     ecolog_master     = 100,
+  dolg_novice         = 100,     dolg_regular         = 100,    dolg_veteran         = 100,     dolg_master     = 100,
+  freedom_novice     = 100,     freedom_regular     = 100,    freedom_veteran     = 100,     freedom_master     = 100,
+  bandit_novice     = 100,     bandit_regular         = 100,    bandit_veteran         = 100,     bandit_master     = 100,
+  zombied_novice     = 100,     zombied_regular     = 100,    zombied_veteran     = 100,     zombied_master     = 100,
 	
 	rat_weak = 0, 
 	tushkano_weak = 150,
