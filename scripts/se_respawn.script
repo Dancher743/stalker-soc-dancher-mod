@@ -14,30 +14,33 @@ local i,k,v = 0,0,0
 
 -- Таблица ограничений на спаун: всего в симуляции не должно быть больше, чем указано.
 local simMaxCount = {
-  stalker_novice 	= 250,	stalker_regular		= 250,	stalker_veteran 	= 250,	stalker_master 	= 250,
-  monolith_novice 	= 250,	monolith_regular	= 250,	monolith_veteran 	= 250,	monolith_master = 250,
-  military_novice 	= 250,	military_regular 	= 250,	military_veteran 	= 250,	military_master = 250,
-  killer_novice 	= 250,	killer_regular 		= 250,	killer_veteran 		= 250, 	killer_master 	= 250,
-  ecolog_novice 	= 250,	ecolog_regular 		= 250,	ecolog_veteran 		= 250, 	ecolog_master 	= 250,
-  dolg_novice 		= 250, 	dolg_regular 		= 250,	dolg_veteran 		= 250, 	dolg_master 	= 250,
-  freedom_novice 	= 250, 	freedom_regular 	= 250,	freedom_veteran 	= 250, 	freedom_master 	= 250,
-  bandit_novice 	= 250, 	bandit_regular 		= 250,	bandit_veteran 		= 250, 	bandit_master 	= 250,
-  zombied_novice 	= 250, 	zombied_regular 	= 250,	zombied_veteran 	= 250, 	zombied_master 	= 250,
-  
-  rat_weak = 0, 
-  tushkano_weak = 150,
-  flesh_weak = 14,		flesh_normal = 38,		flesh_strong = 22,
-  boar_weak = 52, 		boar_normal = 38,		boar_strong = 27,
-  dog_weak = 53, 		dog_normal = 126,		dog_strong = 130,
-  pseudodog_weak = 59, 	pseudodog_normal = 80, 	pseudodog_strong = 60,
-  psy_dog_weak = 15, 	psy_dog_normal = 15, 	psy_dog_strong = 15,
-  zombie_weak = 61, 	zombie_normal = 50, 	zombie_strong = 35,
-  snork_weak = 50, 		snork_normal = 61,		snork_strong = 15,
-  poltergeist_weak = 10,
-  pseudo_gigant_weak = 23,
-  controller_weak = 18,
-  burer_weak = 20,
-  bloodsucker_weak = 7, bloodsucker_normal = 40, bloodsucker_strong = 15  
+	stalker_novice 	= 250,	stalker_regular		= 250,	stalker_veteran 	= 250,	stalker_master 	= 250,
+	monolith_novice 	= 250,	monolith_regular	= 250,	monolith_veteran 	= 250,	monolith_master = 250,
+	military_novice 	= 250,	military_regular 	= 250,	military_veteran 	= 250,	military_master = 250,
+	killer_novice 	= 250,	killer_regular 		= 250,	killer_veteran 		= 250, 	killer_master 	= 250,
+	ecolog_novice 	= 250,	ecolog_regular 		= 250,	ecolog_veteran 		= 250, 	ecolog_master 	= 250,
+	dolg_novice 		= 250, 	dolg_regular 		= 250,	dolg_veteran 		= 250, 	dolg_master 	= 250,
+	freedom_novice 	= 250, 	freedom_regular 	= 250,	freedom_veteran 	= 250, 	freedom_master 	= 250,
+	bandit_novice 	= 250, 	bandit_regular 		= 250,	bandit_veteran 		= 250, 	bandit_master 	= 250,
+	zombied_novice 	= 250, 	zombied_regular 	= 250,	zombied_veteran 	= 250, 	zombied_master 	= 250,
+	
+	rat_weak = 0, 
+	tushkano_weak = 150,
+	flesh_weak = 14,		flesh_normal = 38,		flesh_strong = 22,
+	boar_weak = 52, 		boar_normal = 38,		boar_strong = 27,
+	dog_weak = 53, 		dog_normal = 126,		dog_strong = 130,
+	pseudodog_weak = 59, 	pseudodog_normal = 80, 	pseudodog_strong = 60,
+	psy_dog_weak = 15, 	psy_dog_normal = 15, 	psy_dog_strong = 15,
+	snork_weak = 50, 		snork_normal = 61,		snork_strong = 15,
+	poltergeist_weak = 10,
+	pseudo_gigant_weak = 23,
+	controller_weak = 18,
+	bloodsucker_weak = 7, bloodsucker_normal = 40, bloodsucker_strong = 15, 
+	cat_weak = 30,	cat_normal = 40,	cat_strong = 50,
+	burer_weak = 50,	burer_normal = 60,		burer_strong = 30,
+	zombie_weak = 61, 	zombie_normal = 50, 	zombie_strong = 35,
+	chimera_weak = 20,	chimera_normal = 20,	chimera_strong = 20,
+	fracture_weak = 45,	fracture_normal = 35,	fracture_strong = 25	
 }
 
 local idle_spawn_preset = {
@@ -269,6 +272,9 @@ function se_respawn:on_register()
 	-- производим первичную инициализацию
 	self.respawn_time = game.CTime()
 	
+	self.idle_time = game.CTime()
+	self.is_sleeping = false
+	
 	-- Для сбора статистики сохраняем указатель на респавнер
 	respawners[self:name()] = self
 	if self.parent ~= nil then
@@ -359,10 +365,10 @@ function se_respawn:create(prob)
 --		printf("SPAWN [%s] -> [%s]", tostring(self:name()), obj:name())
 
         --' DEBUG:
-        --[[if IsMonster(obj) or IsStalker(obj) then
+        if IsMonster(obj) or IsStalker(obj) then
             local text = "%c[255,240,155,25]SPAWN "..tostring(self:name()).." -> "..obj:name()
-            news_manager.send_tip(db.actor, text, nil, nil, 100)
-        end]]--
+            news_manager.send_tip(db.actor, text, nil, nil, 1000)
+        end
 
 		if self.item_spawn == false then				
 			if tt.check == true then
@@ -448,12 +454,28 @@ function se_respawn:create(prob)
                  	or  spawn_section == "flesh_strong"
                         or  spawn_section == "flesh_weak"
                         or  spawn_section == "flesh_normal"
-			or  spawn_section == "m_poltergeist_normal_tele"
+						or  spawn_section == "m_poltergeist_normal_tele"
                         or  spawn_section == "m_poltergeist_normal_flame"
                         or  spawn_section == "pseudodog_strong"
-                        --or  spawn_section == "zombie_weak"
-                        --or  spawn_section == "zombie_normal"
-                        --or  spawn_section == "zombie_strong"
+						--or  spawn_section == "zombie_weak"
+						--or  spawn_section == "zombie_normal"
+						--or  spawn_section == "zombie_strong"
+						or 	spawn_section == "burer_weak"
+						or 	spawn_section == "burer_normal"
+						or 	spawn_section == "burer_strong"
+						or 	spawn_section == "cat_weak"
+						or 	spawn_section == "cat_normal"
+						or 	spawn_section == "cat_strong"
+						or 	spawn_section == "chimera_weak"
+						or 	spawn_section == "chimera_normal"
+						or 	spawn_section == "chimera_strong"
+						or 	spawn_section == "fracture_weak"
+						or 	spawn_section == "fracture_normal"
+						or 	spawn_section == "fracture_strong"
+						or 	spawn_section == "tushkano_normal"
+						or 	spawn_section == "zombie_normal"
+						or 	spawn_section == "zombie_trup"
+						or 	spawn_section == "zombie_trup2"
                         or  spawn_section == "psy_dog_radar"
                         or  spawn_section == "yan_ecolog_respawn_1"
                         or  spawn_section == "stalker" ) then
@@ -545,6 +567,39 @@ function time_get_curr()
 	return math.floor(tdif/3600)
 end
 
+-- Обновление респавнера.
+function se_respawn:execute(current_time)	
+	-- выход, если установлен событийный спавн.
+	if self.idle_spawn_min == -1 then
+		return
+	end
+	
+	local idle_hours = 6
+	local counter_max_value = 2
+	
+	local delta_time = game.CTime()
+	delta_time:setHMS(idle_hours, 0, 0)
+	delta_time:add(current_time)
+	self.idle_time = delta_time
+	
+	local counter = xr_logic.pstor_retrieve(db.actor, "respawners_counter", 0)
+	
+	if counter > counter_max_value then
+		--news_manager.send_tip(db.actor, "RETURN :(", nil, nil, 1000)
+		return
+	end
+	
+	--news_manager.send_tip(db.actor, "COUNTER ->"..counter, nil, nil, 1000)
+	
+	self:spawn()
+
+	counter = counter + 1
+	xr_logic.pstor_store(db.actor, "respawners_counter", counter)
+	--printf("%s HOURS BEFORE NEXT MOB RESPAWN", t_delta)
+end
+
+-- OBSOLETE:
+--[[
 -- Обновление респавнера. В зависимости от настроек обновляется либо только в офлайне, либо и там и там.
 function se_respawn:exec_npc()
 	--printf("RESPAWN: [%s] se_respawn exec_npc", tostring(self:name()))
@@ -570,16 +625,21 @@ function se_respawn:exec_npc()
 		return
 	end
 	
-	for a=1,math.random(3),1 do
+	if self.respawn_time < game.get_game_time() then
+		local idle_time = game.CTime()
+		idle_time:setHMSms( 1, 0, 0, 0)
+		self.respawn_time = game.get_game_time() + idle_time
 		self:spawn()
+		--printf("spawn_count = %s", table.getn(self.spawned_obj))
+		--news_manager.send_tip(db.actor, "%c[255,240,155,25]Обновление NPC респавнера", nil, nil, 5000)
+	else
+		local t_s1 = xr_logic.pstor_retrieve(db.actor, "t_s1", 0)
+		local curr = time_get_curr()
+		local t_npc = 8
+		t_s1 = curr + t_npc
+		xr_logic.pstor_store(db.actor, "t_s1", t_s1)
+		--printf("%s HOURS BEFORE NEXT NPC RESPAWN", t_npc)
 	end
-	
-	local t_s1 = xr_logic.pstor_retrieve(db.actor, "t_s1", 0)
-	local curr = time_get_curr()
-	local t_npc = 4
-	t_s1 = curr + t_npc
-	xr_logic.pstor_store(db.actor, "t_s1", t_s1)
-	--printf("%s HOURS BEFORE NEXT NPC RESPAWN", t_npc)
 end
 
 function se_respawn:exec_mob()
@@ -606,30 +666,36 @@ function se_respawn:exec_mob()
 		return
 	end
 	
-	for a=1,math.random(3),1 do
+	if self.respawn_time < game.get_game_time() then
+		local idle_time = game.CTime()
+		idle_time:setHMSms( 1, 0, 0, 0)
+		self.respawn_time = game.get_game_time() + idle_time
 		self:spawn()
+		--printf("spawn_count = %s", table.getn(self.spawned_obj))
+		--news_manager.send_tip(db.actor, "%c[25,240,25,25]Обновление MOB респавнера", nil, nil, 5000)
+	else
+		local t_s2 = xr_logic.pstor_retrieve(db.actor, "t_s2", 0)
+		local curr = time_get_curr()
+		local t_mob = 12
+		t_s2 = curr + t_mob
+		xr_logic.pstor_store(db.actor, "t_s2", t_s2)
+		--printf("%s HOURS BEFORE NEXT MOB RESPAWN", t_mob)
 	end
-
-	local t_s2 = xr_logic.pstor_retrieve(db.actor, "t_s2", 0)
-	local curr = time_get_curr()
-	local t_mob = 4
-	t_s2 = curr + t_mob
-	xr_logic.pstor_store(db.actor, "t_s2", t_s2)
-	--printf("%s HOURS BEFORE NEXT MOB RESPAWN", t_mob)
 end
+]]--
 
 -- Обновление в офлайне
 function se_respawn:update()
-	local curr = time_get_curr()
-	local t_s1 = xr_logic.pstor_retrieve(db.actor, "t_s1", 0)
-	local t_s2 = xr_logic.pstor_retrieve(db.actor, "t_s2", 0)
+	local curr = game.get_game_time()
 	cse_alife_smart_zone.update(self)
-	--printf("RESPAWN: [%s] se_respawn update_offline", tostring(self:name()))
-	if curr >= t_s1 then
-		self:exec_npc()
-	end
-	if curr >= t_s2 then
-		self:exec_mob()
+		
+	if curr >= self.idle_time then
+		self.is_sleeping = false
+		self:execute(curr)
+	elseif self.is_sleeping == false then
+		xr_logic.pstor_store(db.actor, "respawners_counter", 0)
+		self.is_sleeping = true
+		--news_manager.send_tip(db.actor, "%c[255,240,155,25] SPAWNER IS DONE. SLEEPING NOW!", nil, nil, 5000)
 	end
 end
 
