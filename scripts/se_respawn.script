@@ -365,10 +365,12 @@ function se_respawn:create(prob)
 --		printf("SPAWN [%s] -> [%s]", tostring(self:name()), obj:name())
 
         --' DEBUG:
-        if IsMonster(obj) or IsStalker(obj) then
+        --[[
+		if IsMonster(obj) or IsStalker(obj) then
             local text = "%c[255,240,155,25]SPAWN "..tostring(self:name()).." -> "..obj:name()
             news_manager.send_tip(db.actor, text, nil, nil, 1000)
         end
+		]]--
 
 		if self.item_spawn == false then				
 			if tt.check == true then
