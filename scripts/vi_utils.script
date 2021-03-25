@@ -1,0 +1,20 @@
+--
+--	Vanilla Improved Mod
+--	Скрипт с утилитами функциями мода
+--	Автор: Dancher
+--
+
+function start_timer(seconds, action, ...)
+	local args = {...}
+	local time_delta = time_global() + seconds
+
+	local function on_progress()
+		return time_global() > time_delta
+	end
+	
+	local function on_end()
+		loadstring("return function(args) "..action.."(unpack(args)) end")()(args)
+	end
+
+   level.add_call(on_progress, on_end)
+end
