@@ -67,6 +67,18 @@ monster_classes = {
 			[clsid.bloodsucker_s ] = "bloodsucker"
 		}		
 
+local artefacts = {
+	af_medusa = 1, af_cristall_flower = 2, af_night_star = 3,
+	af_vyvert = 1, af_gravi = 2, af_gold_fish = 3,
+	af_drops = 1, af_fireball = 2, af_cristall = 3,
+	af_blood = 1, af_mincer_meat = 2, af_soul = 3,
+	af_electra_sparkler = 1, af_electra_flash = 2, af_electra_moonlight = 3,
+	af_ameba_slime = 1, af_ameba_slug = 2, af_ameba_mica = 3,
+	af_rusty_thorn = 1, af_rusty_kristall = 2, ["af_rusty_sea-urchin"] = 3,
+	af_dummy_spring = 4, af_dummy_dummy = 4, af_dummy_battery = 4,
+	af_dummy_pellicle = 4, af_dummy_glassbeads = 4, af_fuzz_kolobok = 4
+}
+local stat_arts_ids = {}
 
 function addKillCount(npc)
 	local props, sect = getNpcType(npc)
@@ -89,6 +101,24 @@ function addKillCount(npc)
 	db.actor:set_character_rank(db.actor:character_rank() + killCountProps[sect_name])
 end
 
+function addArtefact(art)
+	local art_cls = art:clsid()
+	if art_cls == clsid.artefact or art_cls == clsid.artefact_s then
+		if stat_arts_ids[art:id()] == true then
+			return
+		end
+		
+		local sect = art:section()
+		local name = game.translate_string(news_manager.get_inv_name(sect))
+		if artefacts[sect] then
+			actor_stats.add_points("artefacts", name, 1, artefacts[sect])
+			db.actor:set_character_rank(db.actor:character_rank() + artefacts[sect])
+			stat_arts_ids[art:id()] = true
+		else
+		--	abort("Statistic ERROR: artefact's section [%s] not found", tostring(sect))
+		end
+	end
+end
 
 function getNpcType(npc)
 	if IsStalker(npc) then
@@ -122,6 +152,27 @@ function getNpcType(npc)
 		end
 		
 		local rank = ranks.get_obj_rank_name(npc)
-		return "monsterkills", community.."_"..rank
+		local sect = community.."_"..rank
+		return "monsterkills", sect
 	end	
+end
+
+function save(packet)
+	local a = 0
+	for k,v in pairs(stat_arts_ids) do
+		a = a + 1
+	end
+	packet:w_u32(a)
+	for k,v in pairs(stat_arts_ids) do
+		packet:w_u32(k)
+	end
+end
+
+function load(reader)
+	local cnt = reader:r_u32()
+	if cnt == 0 then return end
+	for i = 1,cnt do
+		local id = reader:r_u32()
+		stat_arts_ids[id] = true
+	end
 end
