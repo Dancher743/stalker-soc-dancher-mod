@@ -63,21 +63,21 @@ local spot_monsters={
 
 	x18_1={
 		{burer_weak,60,4},
-		{zombie_normal,30,5},
-		{zombie_normal,20,5},
-		{zombie_normal,20,5},
+		{zombie_weak,30,5},
+		{zombie_weak,20,5},
+		{zombie_weak,20,5},
 	},
 	x18_2={
 		{burer_weak,60,4},
-		{zombie_normal,30,5},
-		{zombie_normal,20,5},
-		{zombie_normal,40,5},
+		{zombie_weak,30,5},
+		{zombie_weak,20,5},
+		{zombie_weak,40,5},
 	},
 	x18_3={
 		{burer_weak,60,4},
-		{zombie_normal,30,5},
-		{zombie_normal,40,5},
-		{zombie_normal,20,5}
+		{zombie_weak,30,5},
+		{zombie_weak,40,5},
+		{zombie_weak,20,5}
 	}
 
 }

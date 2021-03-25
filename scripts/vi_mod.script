@@ -1,0 +1,10 @@
+--
+--	Vanilla Improved Mod
+--	Скрипт с основными функциями мода
+--	Автор: Dancher
+--
+
+function on_game_start()
+	new_ways.spawn_ways()
+	settling.settle_labs()
+end
