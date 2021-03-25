@@ -379,6 +379,11 @@ function generic_object_binder:net_spawn(sobject)
 	end
 
 	db.add_obj(self.object)
+	
+	-- DMX Mod. Метки
+    local sid = alife():object(self.object:id()).m_story_id
+    if sid then dmx_mod.mapspot_npc(sid,self.object:id()) end
+	
 	xr_gulag.setup_gulag_and_logic_on_spawn( self.object, self.st, sobject, modules.stype_mobile, self.loaded )
 	amk.on_net_spawn(self.object)
 
@@ -417,6 +422,10 @@ function generic_object_binder:net_destroy()
 	
 	db.del_obj(self.object)
 	db.storage[self.object:id()] = nil
+
+	-- DMX Mod. Метки
+	local sid = alife():object(self.object:id()) and alife():object(self.object:id()).m_story_id
+    if sid then dmx_mod.remove_mapspot_npc(sid,self.object:id()) end
 
 	-- АМК. Очистка рестрикторов
 	local id=self.object:id()

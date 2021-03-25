@@ -54,5 +54,6 @@ Using mods:
 46. Build monsters (Монолитовец Харон, AMK Mod)
 47. AI Pack (Rulix aka Bak)
 48. Dynamic Weather (MikeRussia)   
+49. NPC mapspots from DMX Mod (Shadows & Co)    
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.

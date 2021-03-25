@@ -1,0 +1,50 @@
+	<!-- Метки на карте для разных объектов -->
+	<!-- Взято из DMX Mod 1.3.5. Интеграция - Dancher -->
+
+	<!--Техник-->
+	<repair_npc_mapspot>
+		<level_map spot="repair_npc_spot"	    pointer="quest_pointer"/>
+		<mini_map  spot="repair_npc_mini_spot"	pointer="quest_pointer"/>
+	</repair_npc_mapspot>
+	<repair_npc_spot x="0" y="0" width="4" height="4" alignment="c" scale="1" stretch="1">
+		<texture x="906" y="893" width="19" height="19">ui\ui_common_dmx</texture>
+	</repair_npc_spot>
+	<repair_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1">
+		<texture x="906" y="893" width="19" height="19">ui\ui_common_dmx</texture>
+	</repair_npc_mini_spot>
+	
+	<!--Главнокомандующий-->
+	<boss_npc_mapspot>
+		<level_map spot="boss_npc_spot"	        pointer="quest_pointer"/>
+		<mini_map  spot="boss_npc_mini_spot"	pointer="quest_pointer"/>
+	</boss_npc_mapspot>
+	<boss_npc_spot x="0" y="0" width="4" height="4" alignment="c" scale="1" stretch="1">
+		<texture x="883" y="872" width="19" height="19">ui\ui_common_dmx</texture>
+	</boss_npc_spot>
+	<boss_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1">
+		<texture x="883" y="872" width="19" height="19">ui\ui_common_dmx</texture>
+	</boss_npc_mini_spot>
+	
+	<!--Торговец-->
+	<trader_npc_mapspot>
+		<level_map spot="trader_npc_spot"	    pointer="quest_pointer"/>
+		<mini_map  spot="trader_npc_mini_spot"	pointer="quest_pointer"/>
+	</trader_npc_mapspot>
+	<trader_npc_spot x="0" y="0" width="4" height="4" alignment="c" scale="1" stretch="1">
+		<texture x="946" y="893" width="19" height="19">ui\ui_common_dmx</texture>
+	</trader_npc_spot>
+	<trader_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1">
+		<texture x="946" y="893" width="19" height="19">ui\ui_common_dmx</texture>
+	</trader_npc_mini_spot>
+	
+	<!-- Проводник -->
+	<guider_npc_mapspot>
+		<level_map spot="guider_npc_spot"	    pointer="quest_pointer"/>
+		<mini_map  spot="guider_npc_mini_spot"	pointer="quest_pointer"/>
+	</guider_npc_mapspot>
+	<guider_npc_spot x="0" y="0" width="4" height="4" alignment="c" scale="1" stretch="1">
+		<texture x="927" y="893" width="19" height="19">ui\ui_common_dmx</texture>
+	</guider_npc_spot>
+	<guider_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1">
+		<texture x="927" y="893" width="19" height="19">ui\ui_common_dmx</texture>
+	</guider_npc_mini_spot>
