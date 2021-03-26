@@ -12,9 +12,8 @@ local vehicles =
 local vehicles_spawnpoints =
 {
 	esc_northly_atp = { x = 341.95, y = 15.11, z = -23.32, level_vid = 585979, game_vid = 2 },
-	agr_complex_enter = { x = -114.59, y = -0.20, z = -199.08, level_vid = 125065, game_vid = 552 },
-	agr_complex_hangar = { x = -134.17, y = -0.20, z = -221.87, level_vid = 104688, game_vid = 553 },
-	aes_enter_sign = { x = -15.12, y = 2.47, z = 63.57, level_vid = 261712, game_vid = 88 }
+	agr_nii_hangar = { x = -134.17, y = -0.20, z = -221.87, level_vid = 104688, game_vid = 553 },
+	aes1_enter = { x = 923.72, y = -0.10, z = -383.72, level_vid = 407412, game_vid = 2400 }
 }
 
 function spawn_escape_niva()
@@ -22,11 +21,11 @@ function spawn_escape_niva()
 end
 
 function spawn_agroprom_uaz()
-	spawn_vehicle(vehicles[1], "agr_complex_hangar")
+	spawn_vehicle(vehicles[1], "agr_nii_hangar")
 end
 
 function spawn_aes_uaz()
-	spawn_vehicle(vehicles[1], "aes_enter_sign")
+	spawn_vehicle(vehicles[1], "aes1_enter")
 end
 
 function spawn_vehicles()
