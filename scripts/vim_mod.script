@@ -7,4 +7,5 @@
 function on_game_start()
 	vim_spawn.spawn_ways()
 	vim_spawn.spawn_labs()
+	vim_spawn.spawn_vehicles()
 end
