@@ -321,12 +321,161 @@ function main_menu:OnKeyboard(dik, keyboard_action)  --virtual function
 			end
 		end
 		
+--		if dik == DIK_keys.DIK_S then
+--			self:OnButton_load_spawn()
+--		else
+		
 		--[[if dik == DIK_keys.DIK_Q then
 			self:OnMessageQuitWin()
 			end]]--	
+
+--- DEBUG-функции: ---
+		
+		if debugger.is_debug_mode then
+		
+			if dik == DIK_keys.DIK_F11 then
+				self:OnButton_coordinats_clicked()
+			end
+		
+			if level.present() and (db.actor ~= nil) and db.actor:alive() then
+				if dik == DIK_keys.DIK_NUMPAD3 then
+					acc_time()
+				end
+			end
+		
+			if level.present() and (db.actor ~= nil) and db.actor:alive() then
+				if dik == DIK_keys.DIK_NUMPAD2 then
+					ret_time()
+				end
+			end
+		
+			if level.present() and (db.actor ~= nil) and db.actor:alive() then
+				if dik == DIK_keys.DIK_NUMPAD1 then
+					dec_time()
+				end
+			end
+
+			if dik == DIK_keys.DIK_NUMPAD4 then
+				debugger.spawn_creature2("chimera_strong")
+			end
+		
+			if dik == DIK_keys.DIK_NUMPAD5 then
+				give_starter_pack()
+			end
+			
+			if dik == DIK_keys.DIK_NUMPAD6 then
+				do_custom_action2()
+			end
+			
+			if dik == DIK_keys.DIK_NUMPAD8 then
+				fast_travel_manager.to_garbage()
+			end
+			
+			if dik == DIK_keys.DIK_NUMPAD7 then
+				add_money_to_actor()
+			end
+			
+			if dik == DIK_keys.DIK_NUMPAD9 then
+				do_custom_action()
+			end
+			
+		end
+------------------
 	end
    
 	return true
+end
+
+k = 1000
+
+function acc_time()
+	t = xr_logic.pstor_retrieve(db.actor, "t", 0)
+	t = t + k
+	level.set_time_factor(t)
+	xr_logic.pstor_store(db.actor, "t", t)
+	news_manager.send_tip(db.actor, "%c[25,240,25,25]Таймфактор увеличен до "..t.."", nil, nil, 20000)
+end
+
+function ret_time()
+	level.set_time_factor(10)
+	xr_logic.pstor_store(db.actor, "t", 0)
+	news_manager.send_tip(db.actor, "%c[0,0,255,25]Таймфактор стандартный", nil, nil, 20000)
+end
+
+function dec_time()
+	t = xr_logic.pstor_retrieve(db.actor, "t", 0)
+	t = t - k
+	if t <= 0 then
+		ret_time()
+	else
+		level.set_time_factor (t)
+		xr_logic.pstor_store(db.actor, "t", t)
+		news_manager.send_tip(db.actor, "%c[255,240,155,25]Таймфактор уменьшен до "..t.."", nil, nil, 20000)
+	end	
+end
+
+
+function nimble_exchange_debug()
+	local actor = db.actor
+	
+	debugger.spawn_item(actor, nimble_exchanger.actor_arts[1])
+	debugger.spawn_item(actor, nimble_exchanger.actor_arts[2])
+	debugger.spawn_item(actor, nimble_exchanger.actor_arts[3])
+	debugger.spawn_item(actor, nimble_exchanger.actor_arts[4])
+end
+
+function add_money_to_actor()
+	local actor = db.actor
+	
+	debugger.add_money(actor, 10000)
+end
+
+function give_all_outfits()
+	local actor = db.actor
+	
+	debugger.spawn_item(actor, "novice_outfit")
+	debugger.spawn_item(actor, "bandit_outfit")
+	debugger.spawn_item(actor, "monolit_outfit")
+	debugger.spawn_item(actor, "specops_outfit")
+	debugger.spawn_item(actor, "military_outfit")
+	debugger.spawn_item(actor, "stalker_outfit")
+	debugger.spawn_item(actor, "scientific_outfit")
+	debugger.spawn_item(actor, "exo_outfit")
+	debugger.spawn_item(actor, "svoboda_light_outfit")
+	debugger.spawn_item(actor, "svoboda_heavy_outfit")
+	debugger.spawn_item(actor, "dolg_outfit")
+	debugger.spawn_item(actor, "dolg_scientific_outfit")
+	debugger.spawn_item(actor, "ecolog_outfit")
+	debugger.spawn_item(actor, "protection_outfit")
+end
+
+
+function give_starter_pack()
+	local actor = db.actor
+	
+	debugger.spawn_item(actor, "dolg_scientific_outfit")
+	debugger.spawn_item(actor, "wpn_vintorez")
+	debugger.spawn_item(actor, "wpn_groza")
+	debugger.spawn_items(actor, "ammo_9x39_ap", 8)
+	debugger.spawn_items(actor, "ammo_vog-25", 5)
+	debugger.spawn_items(actor, "medkit_army", 5)
+	debugger.spawn_items(actor, "antirad", 5)
+	debugger.spawn_items(actor, "af_electra_moonlight", 5)
+end
+
+
+function do_custom_action()
+	local actor = db.actor
+	
+	--debugger.give_info("bar_svoboda_rg6_done")
+	--debugger.spawn_item(actor, "wpn_pkm")
+end
+
+function do_custom_action2()
+	local actor = db.actor
+	
+	--debugger.give_info("bar_svoboda_rg6_done")
+	--debugger.spawn_item(actor, "wpn_pkm")
 end
 
 -------------------->> CoP style load mod
@@ -359,3 +508,17 @@ function start()
 	end
 end
 --------------------<< CoP style load mod
+
+
+function main_menu:OnButton_coordinats_clicked() 
+	local text 
+	local vid 
+	local gvid 
+	local a = vector()  
+	local text 
+	a = db.actor:position()  
+	vid = db.actor:level_vertex_id()  
+	gvid = db.actor:game_vertex_id()  
+	text = "Позиция:\\nX= "..a.x.."\\nY= "..a.y.."\\nZ= "..a.z.."\\nlevel_vertex= "..vid.."\\ngame_vertex_id= "..gvid 
+	news_manager.send_tip(db.actor, text, nil, nil, 30000) 
+end

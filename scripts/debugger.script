@@ -1,0 +1,63 @@
+--
+-- Дебагер
+-- Автор: Dancher (Daniil Dubovik)
+--
+
+-- Отвечает за включение/выключение дебаг-режима
+is_debug_mode = false
+
+-- Звуки нотификации
+pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+
+-- Расстояние спавна существа от игрока
+creature_distance = 3
+
+-- Спавним одну вещь в рюкзаке
+function spawn_item(who, item)
+	alife():create(item, who:position(), who:level_vertex_id(), who:game_vertex_id(), who:id())
+	log("Был заспавнен предмет: "..item)
+end
+
+-- Спавним несколько вещей в рюкзаке
+function spawn_items(who, item, count)
+	for i=1,count do
+		spawn_item(who, item)
+	end
+end
+
+-- Спавним существо
+function spawn_creature(creature_name, distance)
+	local actor = db.actor
+	local pos = actor:position()
+	local dir = actor:direction()
+	pos = pos:add(dir:mul(distance))
+	alife():create(creature_name, pos, 1, db.actor:game_vertex_id())
+	log("Был заспавнено существо: "..creature_name)
+end
+
+-- Спавним существо с дефолтным расстоянием
+function spawn_creature2(creature_name)
+	spawn_creature(creature_name, creature_distance)
+end
+
+-- Спавним деньги
+function add_money(who, amount)
+	who:give_money(amount)
+	log("Был заспавнены деньги: "..amount)
+end
+
+-- Даём инфопоршень
+function give_info(info_name)
+	db.actor:give_info_portion(info_name)
+	log("Был дан инфопоршень: "..info_name)
+end
+
+-- Выводим дебаг-сообщения
+function log(message)
+	local title = "Дебаг-cообщение:"
+	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]"..tostring(message)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
+	
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+end
