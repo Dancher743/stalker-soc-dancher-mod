@@ -1,0 +1,63 @@
+--
+--	Ручное заселение (не через all.spawn) локаций разными объектами
+--	Автор: Dancher
+--
+
+local vehicle_spawnpoints =
+{
+	val_x18_complex_enter 	= { x_pos = -180.28, y_pos = -1.7, z_pos = -61.75, level_vid = 70914, game_vid = 68 },
+	agr_complex_enter		= { x_pos = -56.09, y_pos = -10.03, z_pos = -60.45, level_vid = 222520, game_vid = 77 },
+	aes_sign 				= { x_pos = -15.12, y_pos = 2.47, z_pos = 63.57, level_vid = 261712, game_vid = 88 }
+}
+
+function spawn_darkvalley_vaz()
+
+end
+
+function spawn_labs()
+	lab_x18()
+	lab_x16()
+end
+
+-- Заселение лаборатории Х-18
+-- Copyright    : AMK Mod
+-- Author       : AMK Team
+-- Переработана под нужды VP mod (Dancher)
+--
+function lab_x18()
+	amk_spawn.x_spawn("x18_1")
+	amk_spawn.x_spawn("x18_2")
+	amk_spawn.x_spawn("x18_3")
+end
+
+-- Заселение лаборатории Х-16
+-- Copyright    : Shadows Addon
+-- Author       : Ray Twitty aka Shadows
+-- Переработана под нужды VP mod (Dancher)
+--
+function lab_x16()
+	alife():create("zombie_strong",vector():set(-126.6,21.5,-37.4),55,1530)
+	alife():create("zombie_strong",vector():set(-97.1,21.5,-21.4),560,1530)
+	alife():create("zombie_strong",vector():set(-104.4,21.5,-30.4),393,1530)
+	alife():create("zombie_strong",vector():set(-104.4,21.5,-30.4),393,1530)
+	alife():create("zombie_strong",vector():set(-114.6,21.5,-30.2),227,1530)
+	alife():create("zombie_strong",vector():set(-114.6,21.5,-30.2),227,1530)
+end
+
+-- Функция создающая точки перехода между локами
+-- Copyright    : Shadows Addon
+-- Author       : Ray Twitty aka Shadows
+function spawn_ways()
+	sa_spawn.aes2_to_aes1()
+	sa_spawn.aes1_to_pripyat()
+	sa_spawn.sarcofag_to_aes1()
+end
+
+function spawn_vehicle(vehicle_name, position, level_vertex, game_vertex)
+	--local position = vector():set(-245.9349 + offset, -19.5085, -127.1703)
+	--local direction = vector():set(-0.5458, 0, -0.8378)
+	--local level_vertex_id = 12084
+	--local game_vertex_id = 8
+
+	alife():create(vehicle_name, position, level_vertex_id, game_vertex_id)
+end

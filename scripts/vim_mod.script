@@ -5,6 +5,6 @@
 --
 
 function on_game_start()
-	new_ways.spawn_ways()
-	settling.settle_labs()
+	vim_spawn.spawn_ways()
+	vim_spawn.spawn_labs()
 end

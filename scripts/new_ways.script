@@ -6,38 +6,6 @@
 -- Звуки нотификации
 pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
--- Функция создающая точки перехода между локами
--- Взято из RMA. Shadows Addon 0.8.5
-function spawn_ways()
-	--generators_to_aes2()
-	--aes2_to_generators()
-	--secretlab_to_x10()
-	--x10_to_secretlab()
-	
-	--sa_spawn.aes1_to_aes2()
-	sa_spawn.aes2_to_aes1()
-	sa_spawn.aes1_to_pripyat()
-	sa_spawn.sarcofag_to_aes1()
-	
-	--sa_spawn.garbage_to_agroprom()
-	--sa_spawn.agroprom_to_garbage()
-	
-	--sa_spawn.escape_to_darkvalley()
-	
-	--sa_spawn.agroprom_to_yantar()
-	--sa_spawn.yantar_to_agroprom()
-	
-	--sa_spawn.garbage_to_darkvalley()
-	--sa_spawn.darkvalley_to_garbage()
-	
-	--sa_spawn.underground_to_agroprom_1()
-	--sa_spawn.agroprom_to_underground_1()
-	--sa_spawn.underground_to_agroprom_2()
-	--sa_spawn.agroprom_to_underground_2()
-	--sa_spawn.underground_to_agroprom_3()
-	--sa_spawn.agroprom_to_underground_3()
-end
-
 -- Функции, добавляющие новые пути --
 
 function add_way_escape_to_darkvalley()
