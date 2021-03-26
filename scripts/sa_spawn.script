@@ -352,3 +352,15 @@ function agroprom_to_underground_3()
     create_level_changer(5504,vector():set(-79.478,12.043,-113.347),158767,698,
     2996,797,vector():set(-76.896,2.510,-117.725),vector():set(0.0,-1.58,-1.0),"l03u_agr_underground", "to_agroprom_underground", 0)
 end
+
+-- С Кордона на Свалку
+function escape_to_garbage()
+    create_level_changer(5505,vector():set(-139.919, 5.842, 235.807), 111103, 167,
+    113613,272,vector():set(-97.658,0.079,-264.291),vector():set(0.0,0,0),"l02_garbage", "to_garbage", 0)
+end
+
+-- Со Свалки на Кордон
+function garbage_to_escape()
+    create_level_changer(5506,vector():set(-97.550,-0.547,-268.569),114105,272,
+    121055,167,vector():set(-131.160,4.834,233.485),vector():set(0.0,-1.58,-1.0),"l01_escape", "to_escape", 0)
+end

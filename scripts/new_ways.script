@@ -37,6 +37,14 @@ function add_ways_garabge_darkvalley_back()
 	xr_effects.start_timer(3000, notificate_ways_darkvalley_to_garbage)	
 end
 
+function add_ways_escape_garbage_back()
+	sa_spawn.escape_to_garbage()
+	xr_effects.start_timer(2000, notificate_ways_escape_to_garbage)
+	
+	sa_spawn.garbage_to_escape()
+	xr_effects.start_timer(3000, notificate_ways_garbage_to_escape)	
+end
+
 -------------------------------------
 
 -- Функции, показывающие нотификации, когда новые пути получены --
@@ -71,6 +79,14 @@ function notificate_ways_darkvalley_to_garbage()
 	notificate("l04_darkvalley", "l02_garbage")
 end
 
+function notificate_ways_escape_to_garbage()
+	notificate("l01_escape", "l02_garbage")
+end
+
+function notificate_ways_garbage_to_escape()
+	notificate("l02_garbage", "l01_escape")
+end
+
 -------------------------------------
 
 function notificate(from, to)
@@ -94,6 +110,8 @@ function mark_ways_on_map()
 	mark_way_on_map(5493, "to_agroprom")
 	mark_way_on_map(5494, "to_darkvalley")
 	mark_way_on_map(5495, "to_garbage")
+	mark_way_on_map(5505, "to_garbage")
+	mark_way_on_map(5506, "to_escape")
 	--mark_way_on_map(id, name)
 end
 
