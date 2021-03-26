@@ -35,7 +35,8 @@ function show_spots(npc, id)
 		spot_relation_type = "neutral"
 	elseif npc_relation == game_object.friend then
 		spot_relation_type = "friend"
-	elseif npc_relation == game_object.enemy and
+	elseif 
+		npc_relation == game_object.enemy and
 		pda_upgrade_manager.has_upgrade(2)
 	then
 		spot_relation_type = "enemy"
@@ -47,13 +48,24 @@ function show_spots(npc, id)
 	
 	local spot = "naxac_"..spot_relation_type.."_location"
 
-	if is_on_need_distance(actor, npc) and
-		not (npc.health <= 0)
+	if
+		is_npc_detected(npc) and
+		is_npc_alive(npc)
 	then
+		if added_spots[id] ~= nil then
+			return
+		end
+		
+		-- DMX Mod
+		dmx_mod.add_mapspot(id)
+	
 		local hint = game.translate_string(npc:character_community())
-		remove_spot(id)
 		add_spot(id, spot, hint)
 	else
+		if added_spots[id] == nil then
+			return
+		end
+		
 		remove_spot(id)
 	end
 end
@@ -64,15 +76,24 @@ function add_spot(id, spot, hint)
 end
 
 function remove_spot(id)
-	if not added_spots[id] then
-		return
-	end
-	
+	-- DMX Mod
+	dmx_mod.remove_mapspot(id)
+		
 	local spot = added_spots[id]
 	level.map_remove_object_spot(id, spot)
+	
 	added_spots[id] = nil
 end
 
-function is_on_need_distance(who_from, who_to)
-	return who_from:position():distance_to(who_to:position()) <= detection_distance
+function is_npc_detected(npc)
+	return db.actor:position():distance_to(npc:position()) <= detection_distance
+end
+
+function is_npc_alive(npc)
+	return npc.health > 0
+end
+
+function is_already_on_map(sid, spot_name)
+    local obj = alife():story_object(sid)
+    return obj and level.map_has_object_spot(obj.id, spot_name)
 end

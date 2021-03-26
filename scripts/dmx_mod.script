@@ -5,20 +5,17 @@
 ------------------------------------------------------------------------------------------------------------------------
 
 -- Установка меток
-function mapspot_npc(sid,id)
-    --if sid==9504 then level.map_add_object_spot(id, "repair_npc_mapspot", "Техник")  -- Долговязый
-    --elseif level.object_by_id(id) and level.object_by_id(id):profile_name()=="marsh_remont" then --level.map_add_object_spot(id, "repair_npc_mapspot", "Техник") -- Василий 
-    --elseif sid==9501 then level.map_add_object_spot(id, "repair_npc_mapspot", "Техник") -- Сяк
+function add_mapspot(id)
+	local sid = alife():object(id).m_story_id
+	if sid == nil then return end
+	
     if sid==507 then level.map_add_object_spot(id, "boss_npc_mapspot", "Главнокомандующий «Долга»")
     elseif sid==707 then level.map_add_object_spot(id, "boss_npc_mapspot", "Главнокомандующий «Свободы»")
-    --elseif sid==14000 then level.map_add_object_spot(id, "boss_npc_mapspot", "Главнокомандующий «Чистого Неба»")
     elseif sid==003 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Сидорович
     elseif sid==500 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Бармен
 	elseif sid==506 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Петренко
-    --elseif sid==97120 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Суслов
     elseif sid==902 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Сахаров
     elseif sid==734 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Скряга
-    --elseif sid==9903 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Адреналин
 	elseif sid==5481 then level.map_add_object_spot(id, "guider_npc_mapspot", "Проводник") -- Проводник в Баре
 	elseif sid==5482 then level.map_add_object_spot(id, "guider_npc_mapspot", "Проводник") -- Проводник на Кордоне
 	elseif sid==5483 then level.map_add_object_spot(id, "guider_npc_mapspot", "Проводник") -- Проводник на Янтаре
@@ -26,20 +23,17 @@ function mapspot_npc(sid,id)
 end
 
 -- Удаление меток в оффлайне
-function remove_mapspot_npc(sid,id)
-    --if sid==9504 then level.map_remove_object_spot(id, "repair_npc_mapspot")  -- Долговязый
-    --elseif level.object_by_id(id) and level.object_by_id(id):profile_name()=="marsh_remont" then --level.map_remove_object_spot(id, "repair_npc_mapspot") -- Василий 
-    --elseif sid==9501 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Сяк
+function remove_mapspot(id)
+	local sid = alife():object(id).m_story_id
+	if sid == nil then return end
+	
     if sid==507 then level.map_remove_object_spot(id, "boss_npc_mapspot") -- Воронин
     elseif sid==707 then level.map_remove_object_spot(id, "boss_npc_mapspot") -- Лукаш
-    --elseif sid==14000 then level.map_remove_object_spot(id, "boss_npc_mapspot") -- Свиблов
     elseif sid==003 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Сидорович
     elseif sid==500 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Бармен
 	elseif sid==506 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Петренко
-    --elseif sid==97120 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Суслов
     elseif sid==902 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Сахаров
-    --elseif sid==734 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Скряга
-    --elseif sid==9903 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Адреналин
+	elseif sid==734 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Скряга
 	elseif sid==5481 then level.map_remove_object_spot(id, "guider_npc_mapspot") -- Проводник в Баре
 	elseif sid==5482 then level.map_remove_object_spot(id, "guider_npc_mapspot") -- Проводник на Кордоне
 	elseif sid==5483 then level.map_remove_object_spot(id, "guider_npc_mapspot") -- Проводник на Янтаре
