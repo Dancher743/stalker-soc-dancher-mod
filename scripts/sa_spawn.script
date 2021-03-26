@@ -265,7 +265,7 @@ end
 
 -- с Кордона в Темную долину
 function escape_to_darkvalley()
-    create_level_changer(5490,vector():set(370.139,15.235,-43.657),594395,0,
+    create_level_changer(5490,vector():set(347.870,14.896,-31.633),588456,140,
     122620,815,vector():set(-44.292,0.434,-537.154),vector():set(0.0,0.0,-1.0),"l04_darkvalley", "to_darkvalley", 0)
 end
 
