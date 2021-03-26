@@ -11,13 +11,13 @@ local vehicles =
 
 local vehicles_spawnpoints =
 {
-	esc_northly_atp = { x = 341.95, y = 15.11, z = -23.32, level_vid = 585979, game_vid = 2 },
+	dar_near_bridge = { x = 48.70, y = 0.046854943, z = -269.96, level_vid = 236205, game_vid = 855 },
 	agr_nii_hangar = { x = -134.17, y = -0.20, z = -221.87, level_vid = 104688, game_vid = 553 },
 	aes1_enter = { x = 923.72, y = -0.10, z = -383.72, level_vid = 407412, game_vid = 2400 }
 }
 
-function spawn_escape_niva()
-	spawn_vehicle(vehicles[2], "esc_northly_atp")
+function spawn_darkvalley_niva()
+	spawn_vehicle(vehicles[2], "dar_near_bridge")
 end
 
 function spawn_agroprom_uaz()

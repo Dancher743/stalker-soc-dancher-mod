@@ -106,7 +106,7 @@
 
     <!-- Рейд солдат -->
     <info_portion id="val_raid_start">
-		<action>vim_spawn.spawn_escape_niva</action>
+		<action>vim_spawn.spawn_darkvalley_niva</action>
 	</info_portion>
     <info_portion id="val_raid_go1"></info_portion>
     <info_portion id="val_raid_go2"></info_portion>
