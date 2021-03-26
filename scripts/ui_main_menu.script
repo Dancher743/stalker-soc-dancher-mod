@@ -329,8 +329,24 @@ function main_menu:OnKeyboard(dik, keyboard_action)  --virtual function
 			self:OnMessageQuitWin()
 			end]]--	
 
+----------------------
 --- DEBUG-функции: ---
-		
+----------------------
+
+-- Шорткаты для фаст тревела
+-- to_escape()
+-- to_garbage()
+-- to_agroprom()
+-- to_darkvalley()
+-- to_bar()
+-- to_rostok()
+-- to_military()
+-- to_yantar()
+-- to_pripyat()
+-- to_aes1()
+-- to_aes2()
+-- to_point()
+
 		if debugger.is_debug_mode then
 		
 			if dik == DIK_keys.DIK_F11 then
