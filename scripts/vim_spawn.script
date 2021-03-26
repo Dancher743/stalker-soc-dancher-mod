@@ -1,17 +1,36 @@
 --
---	Р СѓС‡РЅРѕРµ Р·Р°СЃРµР»РµРЅРёРµ (РЅРµ С‡РµСЂРµР· all.spawn) Р»РѕРєР°С†РёР№ СЂР°Р·РЅС‹РјРё РѕР±СЉРµРєС‚Р°РјРё
---	РђРІС‚РѕСЂ: Dancher
+--	Ручное заселение (не через all.spawn) локаций разными объектами
+--	Автор: Dancher
 --
 
-local vehicle_spawnpoints =
+local vehicles = 
 {
-	val_x18_complex_enter 	= { x_pos = -180.28, y_pos = -1.7, z_pos = -61.75, level_vid = 70914, game_vid = 68 },
-	agr_complex_enter		= { x_pos = -56.09, y_pos = -10.03, z_pos = -60.45, level_vid = 222520, game_vid = 77 },
-	aes_sign 				= { x_pos = -15.12, y_pos = 2.47, z_pos = 63.57, level_vid = 261712, game_vid = 88 }
+	"ven_uaz_spawn",
+	"ven_niva_spawn"
 }
 
-function spawn_darkvalley_vaz()
+local vehicles_spawnpoints =
+{
+	esc_northly_atp = { x = 341.95, y = 15.11, z = -23.32, level_vid = 585979, game_vid = 2 },
+	agr_complex_enter = { x = -56.09, y = -10.03, z = -60.45, level_vid = 222520, game_vid = 77 },
+	aes_enter_sign = { x = -15.12, y = 2.47, z = 63.57, level_vid = 261712, game_vid = 88 }
+}
 
+function spawn_escape_niva()
+	spawn_vehicle(vehicles[2], "esc_northly_atp")
+end
+
+function spawn_agroprom_uaz()
+	spawn_vehicle(vehicles[1], "agr_complex_enter")
+end
+
+function spawn_aes_uaz()
+	spawn_vehicle(vehicles[1], "aes_enter_sign")
+end
+
+function spawn_vehicles()
+	spawn_agroprom_uaz()
+	spawn_aes_uaz()
 end
 
 function spawn_labs()
@@ -19,10 +38,10 @@ function spawn_labs()
 	lab_x16()
 end
 
--- Р—Р°СЃРµР»РµРЅРёРµ Р»Р°Р±РѕСЂР°С‚РѕСЂРёРё РҐ-18
+-- Заселение лаборатории Х-18
 -- Copyright    : AMK Mod
 -- Author       : AMK Team
--- РџРµСЂРµСЂР°Р±РѕС‚Р°РЅР° РїРѕРґ РЅСѓР¶РґС‹ VP mod (Dancher)
+-- Переработана под нужды VP mod (Dancher)
 --
 function lab_x18()
 	amk_spawn.x_spawn("x18_1")
@@ -30,10 +49,10 @@ function lab_x18()
 	amk_spawn.x_spawn("x18_3")
 end
 
--- Р—Р°СЃРµР»РµРЅРёРµ Р»Р°Р±РѕСЂР°С‚РѕСЂРёРё РҐ-16
+-- Заселение лаборатории Х-16
 -- Copyright    : Shadows Addon
 -- Author       : Ray Twitty aka Shadows
--- РџРµСЂРµСЂР°Р±РѕС‚Р°РЅР° РїРѕРґ РЅСѓР¶РґС‹ VP mod (Dancher)
+-- Переработана под нужды VP mod (Dancher)
 --
 function lab_x16()
 	alife():create("zombie_strong",vector():set(-126.6,21.5,-37.4),55,1530)
@@ -44,7 +63,7 @@ function lab_x16()
 	alife():create("zombie_strong",vector():set(-114.6,21.5,-30.2),227,1530)
 end
 
--- Р¤СѓРЅРєС†РёСЏ СЃРѕР·РґР°СЋС‰Р°СЏ С‚РѕС‡РєРё РїРµСЂРµС…РѕРґР° РјРµР¶РґСѓ Р»РѕРєР°РјРё
+-- Функция создающая точки перехода между локами
 -- Copyright    : Shadows Addon
 -- Author       : Ray Twitty aka Shadows
 function spawn_ways()
@@ -53,11 +72,23 @@ function spawn_ways()
 	sa_spawn.sarcofag_to_aes1()
 end
 
-function spawn_vehicle(vehicle_name, position, level_vertex, game_vertex)
-	--local position = vector():set(-245.9349 + offset, -19.5085, -127.1703)
-	--local direction = vector():set(-0.5458, 0, -0.8378)
-	--local level_vertex_id = 12084
-	--local game_vertex_id = 8
-
+function spawn_vehicle(vehicle_name, spawnpoint_name)	
+	local spawnpoint = vehicles_spawnpoints[spawnpoint_name]
+	
+	if spawnpoint == nil then
+		if debugger.is_debug_mode then
+			debugger.log("Неудалось заспавнить машину:"..vehicle_name..". Точка спавна не найдена в таблице.")
+		end
+		return
+	end
+	
+	local position = vector():set(spawnpoint.x, spawnpoint.y, spawnpoint.z)
+	local level_vertex_id = spawnpoint.level_vid
+	local game_vertex_id = spawnpoint.game_vid
+	
 	alife():create(vehicle_name, position, level_vertex_id, game_vertex_id)
+	
+	if debugger.is_debug_mode then
+		debugger.log("Была заспавнена машина: "..vehicle_name)
+	end
 end
