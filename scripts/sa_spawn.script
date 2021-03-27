@@ -207,160 +207,160 @@ end
 
 -- с Генераторов на ЧАЭС-2
 function generators_to_aes2()
-    create_level_changer(5481,vector():set(-65.209,33.407,-542.041),246422,3009,
+    create_level_changer(5581,vector():set(-65.209,33.407,-542.041),246422,3009,
     214796,2741,vector():set(844.504,-0.098,449.944),vector():set(0.0,-3.15,-1.0),"l12_stancia_2", "", 0)
 end
 
 -- с ЧАЭС-2 на Генераторы
 function aes2_to_generators()
-    create_level_changer(5482,vector():set(844.377,-0.097,463.808),214796,2741,
+    create_level_changer(5582,vector():set(844.377,-0.097,463.808),214796,2741,
     250140,3009,vector():set(-61.513,32.912,-532.565),vector():set(0.0,0.0,-1.0),"l13_generators", "", 0)
 end
 
 -- с секретной лаборатории в Х-10
 function secretlab_to_x10()
-    create_level_changer(5483,vector():set(21.510,-34.233,13.236),2865,2898,
+    create_level_changer(5583,vector():set(21.510,-34.233,13.236),2865,2898,
     8433,2775,vector():set(17.427,-8.989,7.107),vector():set(0.0,1.56,-1.0),"l10u_bunker", "", 0)
 end
 
 -- из Х-10 в секретную лабораторию
 function x10_to_secretlab()
-    create_level_changer(5484,vector():set(22.277,-8.996,7.145),8794,2775,
+    create_level_changer(5584,vector():set(22.277,-8.996,7.145),8794,2775,
     2639,2898,vector():set(13.951,-34.484,13.207),vector():set(0.0,1.56,-1.0),"l10u_secret_lab", "", 0)
 end
 
 -- с ЧАЭС-1 на ЧАЭС-2
 function aes1_to_aes2()
-    create_level_changer(5485,vector():set(1062.044,-0.098,-1.535),472713,2367,
+    create_level_changer(5585,vector():set(1062.044,-0.098,-1.535),472713,2367,
     245052,2723,vector():set(1043.175,-0.099,140.014),vector():set(0.0,1.56,-1.0),"l12_stancia_2", "to_aes2", 0)
 end
 
 -- с ЧАЭС-2 на ЧАЭС-1
 function aes2_to_aes1()
-    create_level_changer(5486,vector():set(-42.264926,-0.026974,55.040580),9913,2517,
+    create_level_changer(5586,vector():set(-42.264926,-0.026974,55.040580),9913,2517,
     10125,2371,vector():set(-43.106922,-0.100517,-69.729530),vector():set(0.0,-3.15,-1.0),"l12_stancia", "to_aes", 0)
 end
 
 -- с ЧАЭС-1 в Припять
 function aes1_to_pripyat()
-    create_level_changer(5487,vector():set(918.1,-0.1,-401.96),405348,2400,
+    create_level_changer(5587,vector():set(918.1,-0.1,-401.96),405348,2400,
     142116,2270,vector():set(31.28,1.135,420.61),vector():set(0.0,-3.15,-1.0),"l11_pripyat", "to_pripyat", 0)
 	
 	-- old:
-	--create_level_changer(5487,vector():set(918.040,-0.100,-406.662),405348,2487,
+	--create_level_changer(5587,vector():set(918.040,-0.100,-406.662),405348,2487,
     --142100,2357,vector():set(31.426,1.032,413.021),vector():set(0.0,-3.15,-1.0),"l11_pripyat", "to_pripyat", 0)
 end
 
 -- со Свалки на Агропром
 function garbage_to_agroprom()
-    create_level_changer(5488,vector():set(-162.082,1.022,-265.917),57249,275,
+    create_level_changer(5588,vector():set(-162.082,1.022,-265.917),57249,275,
     391773,692,vector():set(169.687,1.675,-233.633),vector():set(0.0,1.56,-1.0),"l03_agroprom", "to_agroprom", 0)
 end
 
 -- с Агропрома на Свалку
 function agroprom_to_garbage()
-    create_level_changer(5489,vector():set(184.876,0.274,-237.087),400221,692,
+    create_level_changer(5589,vector():set(184.876,0.274,-237.087),400221,692,
     67319,275,vector():set(-150.639,0.988,-268.724),vector():set(0.0,-1.58,-1.0),"l02_garbage", "to_garbage", 0)
 end
 
 -- с Кордона в Темную долину
 function escape_to_darkvalley()
-    create_level_changer(5490,vector():set(347.870,14.896,-31.633),588456,140,
+    create_level_changer(5590,vector():set(347.870,14.896,-31.633),588456,140,
     122620,815,vector():set(-44.292,0.434,-537.154),vector():set(0.0,0.0,-1.0),"l04_darkvalley", "to_darkvalley", 0)
 end
 
 -- из Саркофага на ЧАЭС-1
 function sarcofag_to_aes1()
-    create_level_changer(5491,vector():set(-25.557994,0.231905,43.608425),106,2466,
+    create_level_changer(5591,vector():set(-25.557994,0.231905,43.608425),106,2466,
     161393,2384,vector():set(374.820800,-0.005146,33.345085),vector():set(0.0,-3.15,-1.0),"l12_stancia", "to_aes", 0)
 end
 
 -- с Агропрома на Янтарь
 function agroprom_to_yantar()
-    create_level_changer(5492,vector():set(-217.234,22.090,190.070),20300,593,
+    create_level_changer(5592,vector():set(-217.234,22.090,190.070),20300,593,
     16373,1488,vector():set(-63.348,-4.049,-343.500),vector():set(0.0,0.0,-1.0),"l08_yantar", "to_yantar", 0)
 end
 
 -- с Янтаря на Агропром
 function yantar_to_agroprom()
-    create_level_changer(5493,vector():set(-66.873,0.645,-356.059),15229,1488,
+    create_level_changer(5593,vector():set(-66.873,0.645,-356.059),15229,1488,
     20976,593,vector():set(-216.354,19.744,179.506),vector():set(0.0,-3.15,-1.0),"l03_agroprom", "to_agroprom", 0)
 end
 
 -- со Свалки в Темную долину
 function garbage_to_darkvalley()
-    create_level_changer(5494,vector():set(279.805,-8.052,-133.157),379766,405,
+    create_level_changer(5594,vector():set(279.805,-8.052,-133.157),379766,405,
     4477,838,vector():set(-164.193,-0.144,-372.775),vector():set(0.0,-1.58,-1.0),"l04_darkvalley", "to_darkvalley", 0)
 end
 
 -- из Темной долины на Свалку
 function darkvalley_to_garbage()
-    create_level_changer(5495,vector():set(-170.481,0.675,-373.119),2203,838,
+    create_level_changer(5595,vector():set(-170.481,0.675,-373.119),2203,838,
     376923,405,vector():set(270.119,-8.975,-136.696),vector():set(0.0,1.56,-1.0),"l02_garbage", "to_garbage", 0)
 end
 
 -- с Янтаря в Мёртвый город
 function yantar_to_deadcity()
-    create_level_changer(5496,vector():set(-24.651,0.543,-2.322),29985,1501,
+    create_level_changer(5596,vector():set(-24.651,0.543,-2.322),29985,1501,
     88324,1878,vector():set(-253.053,3.651,-134.923),vector():set(0.0,-0.8,-1.0),"l09_deadcity", "", 0)
 end
 
 -- с Мёртвого города на Радар
 function deadcity_to_radar()
-    create_level_changer(5497,vector():set(-243.018,-1.409,304.077),100363,1877,
+    create_level_changer(5597,vector():set(-243.018,-1.409,304.077),100363,1877,
     2427,1951,vector():set(-25.066,-0.973,-82.044),vector():set(0.0,-1.58,-1.0),"l10_radar", "", 0)
 end
 
 -- с Радара на Мёртвый город
 function radar_to_deadcity()
-    create_level_changer(5498,vector():set(-31.348,-1.013,-81.476),644,1951,
+    create_level_changer(5598,vector():set(-31.348,-1.013,-81.476),644,1951,
     103881,1877,vector():set(-235.736,-2.086,295.809),vector():set(0.0,-2.35,-1.0),"l09_deadcity", "", 0)
 end
 
 -- из катакомб на Агропром №1
 function underground_to_agroprom_1()
-    create_level_changer(5499,vector():set(-76.925,-0.832,12.608),3064,770,
+    create_level_changer(5599,vector():set(-76.925,-0.832,12.608),3064,770,
     207161,679,vector():set(-33.944,-0.001,39.736),vector():set(0.0,-1.58,-1.0),"l03_agroprom", "to_agroprom", 0)
 end
 
 -- с Агропрома в катакомбы №1
 function agroprom_to_underground_1()
-    create_level_changer(5500,vector():set(-39.033,0.773,39.957),203745,700,
+    create_level_changer(5600,vector():set(-39.033,0.773,39.957),203745,700,
     3024,723,vector():set(-77.056,-6.446,13.275),vector():set(0.0,0.0,-1.0),"l03u_agr_underground", "to_agroprom_underground", 0)
 end
 
 -- из катакомб на Агропром №2
 function underground_to_agroprom_2()
-    create_level_changer(5501,vector():set(-45.602,-4.019,-30.101),4409,718,
+    create_level_changer(5601,vector():set(-45.602,-4.019,-30.101),4409,718,
     194121,695,vector():set(-47.067,0.326,-39.800),vector():set(0.0,-3.15,-1.0),"l03_agroprom", "to_agroprom", 0)
 end
 
 -- с Агропрома в катакомбы №2
 function agroprom_to_underground_2()
-    create_level_changer(5502,vector():set(-47.117,-0.757,-35.315),194127,654,
+    create_level_changer(5602,vector():set(-47.117,-0.757,-35.315),194127,654,
     4454,736,vector():set(-44.780,-6.454,-37.145),vector():set(0.0,-3.15,-1.0),"l03u_agr_underground", "to_agroprom_underground", 0)
 end
 
 -- из катакомб на Агропром №3
 function underground_to_agroprom_3()
-    create_level_changer(5503,vector():set(-79.716,5.267,-113.312),2851,797,
+    create_level_changer(5603,vector():set(-79.716,5.267,-113.312),2851,797,
     157321,698,vector():set(-83.345,10.031,-113.290),vector():set(0.0,1.56,-1.0),"l03_agroprom", "to_agroprom", 0)
 end
 
 -- с Агропрома в катакомбы №3
 function agroprom_to_underground_3()
-    create_level_changer(5504,vector():set(-79.478,12.043,-113.347),158767,698,
+    create_level_changer(5604,vector():set(-79.478,12.043,-113.347),158767,698,
     2996,797,vector():set(-76.896,2.510,-117.725),vector():set(0.0,-1.58,-1.0),"l03u_agr_underground", "to_agroprom_underground", 0)
 end
 
 -- С Кордона на Свалку
 function escape_to_garbage()
-    create_level_changer(5505,vector():set(-139.919, 5.842, 235.807), 111103, 167,
+    create_level_changer(5605,vector():set(-139.919, 5.842, 235.807), 111103, 167,
     113613,272,vector():set(-97.658,0.079,-264.291),vector():set(0.0,0,0),"l02_garbage", "to_garbage", 0)
 end
 
 -- Со Свалки на Кордон
 function garbage_to_escape()
-    create_level_changer(5506,vector():set(-97.550,-0.547,-268.569),114105,272,
+    create_level_changer(5606,vector():set(-97.550,-0.547,-268.569),114105,272,
     121055,167,vector():set(-131.160,4.834,233.485),vector():set(0.0,-1.58,-1.0),"l01_escape", "to_escape", 0)
 end
