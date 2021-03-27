@@ -384,6 +384,7 @@ function main_menu:OnKeyboard(dik, keyboard_action)  --virtual function
 			end
 			
 			if dik == DIK_keys.DIK_NUMPAD8 then
+				-- teleportation
 				fast_travel_manager.to_garbage()
 			end
 			
@@ -525,16 +526,6 @@ function start()
 end
 --------------------<< CoP style load mod
 
-
 function main_menu:OnButton_coordinats_clicked() 
-	local text 
-	local vid 
-	local gvid 
-	local a = vector()  
-	local text 
-	a = db.actor:position()  
-	vid = db.actor:level_vertex_id()  
-	gvid = db.actor:game_vertex_id()  
-	text = "Позиция:\\nX= "..a.x.."\\nY= "..a.y.."\\nZ= "..a.z.."\\nlevel_vertex= "..vid.."\\ngame_vertex_id= "..gvid 
-	news_manager.send_tip(db.actor, text, nil, nil, 30000) 
+	debugger.show_coordinats()
 end

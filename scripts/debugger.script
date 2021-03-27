@@ -52,6 +52,22 @@ function give_info(info_name)
 	log("Был дан инфопоршень: "..info_name)
 end
 
+-- Выводим координаты
+function show_coordinats()
+	local actor = db.actor
+	local vid = actor:level_vertex_id() 
+	local gvid = actor:game_vertex_id()
+	local position = actor:position()
+	local direction = actor:direction()
+	local text
+	
+	text = "Позиция:\\nX= "..position.x.."\\nY= "..position.y.."\\nZ= "..position.z.."\\nlevel_vertex= "..vid.."\\ngame_vertex_id= "..gvid 
+	news_manager.send_tip(actor, text, nil, nil, 30000)
+	
+	text = "Направление:\\nX= "..direction.x.."\\nY= "..direction.y.."\\nZ= "..direction.z 
+	news_manager.send_tip(actor, text, nil, nil, 30000)
+end
+
 -- Выводим дебаг-сообщения
 function log(message)
 	local title = "Дебаг-cообщение:"
