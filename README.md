@@ -56,5 +56,6 @@ Using mods:
 48. Dynamic Weather (MikeRussia)   
 49. NPC mapspots from DMX Mod (Shadows & Co)    
 50. Artefacts Stataictic (Аскольд, naxac)    
+51. PDA off with whitenoises (naxac, Shadows & Co)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.

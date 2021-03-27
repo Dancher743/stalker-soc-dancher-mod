@@ -1,0 +1,53 @@
+-- Отключение КПК на ЧАЭС, ЧАЭС-2, в Саркофаге и в Бункере Управления Монолитом
+-- Автор:		точно не помню, но кто-то из авторов DMX-мода
+-- Платформа:	S.T.A.L.K.E.R. Тень Чернобыля 1.0004
+-- Адаптация:	naxac, Dancher (под свой мод)
+
+function on_info(info_id)
+	if pda_upgrade_manager.has_upgrade(3) then 
+		return 
+	end
+
+	if is_surge() then
+		if info_id == "ui_pda" then
+			level.start_stop_menu(level.main_input_receiver(), true)
+		elseif info_id == "ui_pda_hide" then
+			level.start_stop_menu(PdaNoiseWnd(), true)
+		end
+	end
+end
+
+function is_on_location()
+	local lname = level.name()
+	
+	return (lname == "l12_stancia") or 
+		(lname == "l12_stancia_2") or 
+		(lname == "l12u_control_monolith") or 
+		(lname == "l12u_sarcofag")
+end
+
+function is_surge()
+	return has_alife_info("surge_pda")
+end
+
+class "PdaNoiseWnd" (CUIScriptWnd)
+function PdaNoiseWnd:__init() super()
+	self:Init(0,0,1024,768)
+	self.ClickBtnExit = function() level.start_stop_menu(self, true) end
+	
+	self.noise = CUIStatic()
+	self.noise:InitTexture("ui\\ui_pda_noise")
+	self.noise:SetOriginalRect(0,0,1024,768)
+	self.noise:Init(3,20,891,643)
+	self:AttachChild(self.noise)
+end
+
+function PdaNoiseWnd:OnKeyboard(dik, keyboard_action)
+	CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_ESCAPE or dik == DIK_keys.DIK_P or dik == DIK_keys.DIK_H or dik == DIK_keys.DIK_M then
+			self:ClickBtnExit()
+		end
+	end
+	return true
+end

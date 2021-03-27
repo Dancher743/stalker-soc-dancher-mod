@@ -183,6 +183,8 @@ function actor_binder:info_callback(npc, info_id)
 	-- Отметки на карте
 	level_tasks.process_info_portion(info_id)
 	inventory.on_inventory_info(info_id)
+	-- naxac
+	pda_off.on_info(info_id)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_trade (item, sell_bye, money)
@@ -454,7 +456,7 @@ function actor_binder:update(delta)
 	--<< Dynamic campfire mod
 	
 	--' Обновление аномалий
-	se_zones.update_anoms(time)
+	--se_zones.update_anoms(time)
 	
 	--' Обновление инвентаря
 	inventory.update()

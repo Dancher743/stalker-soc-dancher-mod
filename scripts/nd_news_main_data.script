@@ -33,9 +33,9 @@ local time = time_global()
 function show_news_main()
 if (isIsolatedLevel(level.name()) == true) then return end
 if db.actor:has_info("surge_pda") then
-	get_console():execute("unbind active_jobs")
-	get_console():execute("unbind map")
-	get_console():execute("unbind contacts")
+	--get_console():execute("unbind active_jobs")
+	--get_console():execute("unbind map")
+	--get_console():execute("unbind contacts")
 	--news_manager.send_tip(db.actor, "Связь со спутником потеряна", nil, "default", 5000)
    return false 
  end	

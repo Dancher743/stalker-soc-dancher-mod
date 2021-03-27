@@ -40,6 +40,24 @@ function update_anoms(time)
 	is_anom_gave_birth = false
 end
 
+function update_anoms_after_surge()	
+	if not excluded_levels[level.name()] then
+		for i,anom in pairs(registered_anoms) do
+			if anom then
+				try_to_born_immediately(anom)
+			end
+		end
+	end
+	
+	--[[if is_anom_gave_birth and 
+		pda_upgrade_manager.has_upgrade(3)
+	then
+		pda_upgrade_manager.use_upgrade(3, nil)
+	end]]--
+	
+	is_anom_gave_birth = false
+end
+
 function try_to_born(anom)
 	if anom.last_spawn_time == nil then
 		anom.last_spawn_time = game.get_game_time()

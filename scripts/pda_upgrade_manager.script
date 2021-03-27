@@ -3,11 +3,22 @@
 -- Автор: Dancher
 --
 
+notification_time_before_surge = 2
+
 local pda_upgrades_id = 
 {
 	[1] = "pda_upgrade_one",
 	[2] = "pda_upgrade_two",
 	[3] = "pda_upgrade_three"
+}
+
+local notification_surge_text = 
+{
+	[1] = "час",
+	[2] = "часа",
+	[3] = "часа",
+	[4] = "часа",
+	["default"] = "часов"
 }
 
 function has_upgrade(id)
@@ -21,7 +32,11 @@ function set_upgrade(id)
 		return
 	end
 	
-	db.actor:give_info_portion(pda_upgrade)	
+	db.actor:give_info_portion(pda_upgrade)
+	
+	if debugger.is_debug_mode then
+		debugger.log("Был дан апгрейд КПК под номером "..id)
+	end
 end
 
 function use_upgrade(id, value)
@@ -54,11 +69,21 @@ function use_upgrade_one(rank)
 	return deadmoney
 end
 
-function use_upgrade_three()
-	local title = "%c[255,160,160,160]Cообщение:"
-	local message = "%c[default]Зарегистрировано рождение артефактов в аномалиях."
+function use_upgrade_three(hours)
+	if hours == nil then 
+		hours = notification_time_before_surge 
+	end
+	
+	local hours_text = notification_surge_text[hours]
+	
+	if hours_text == nil then 
+		hours_text = notification_surge_text["default"]
+	end
+	
+	local title = "%c[255,160,160,160]Научный лагерь экологов:"
+	local message = "%c[default]Следующий выброс ожидается через "..hours.." "..hours_text.."."
 	local news_text = title.."\\n"..message
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_artefact")
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_scientist_job")
 	local pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 	
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 9000)

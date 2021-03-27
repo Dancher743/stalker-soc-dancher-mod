@@ -115,7 +115,30 @@ function __do_timer_action(select_string,params_string)
 	if select_string=="bl1" then
 		if ogsm_surge then
 			if (level.name() ~= "l03u_agr_underground") and (level.name() ~= "l08u_brainlab") and (level.name() ~= "l10u_bunker") and (level.name() ~= "l04u_labx18") and (level.name() ~= "l12u_sarcofag") and (level.name() ~= "l12u_control_monolith") and (level.name() ~= "l12_stancia") and (level.name() ~= "l12_stancia_2") then
-				if sleep_manager and sleep_manager.is_sleep_active() then sleep_manager.stopper() end
+				if sleep_manager and sleep_manager.is_sleep_active() then
+					-- Проспали выброс :)
+					if vars.surge_skip_by_sleep then
+						level.set_weather("stormy")
+					
+						-- Устанавливаем таймер до следующего выбора
+						set_timer_of_next_surge()
+						
+						-- Спавним артефакты после выброса
+						spawn_arts_after_surge()
+						
+						-- Выодим сообщение об прошедшем выбросе
+						local title = "%c[255,160,160,160]Выброс"
+						local slept_surge = title.."\\n%c[default]Недавно в Зоне произошёл выброс."
+						db.actor:give_game_news(slept_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
+						
+						-- Используем апгрейд номер три
+						use_pda_upgrade_three()
+						
+						return
+					else
+						sleep_manager.stopper()
+					end
+				end
 				start_timer("bl2",1)
 			else
 				g_start_timer("bl1",0,1,0)
@@ -129,7 +152,7 @@ function __do_timer_action(select_string,params_string)
 	if select_string=="bl2" then
 		db.Flag2 = 1
 		save_variable("blt", 1)
-		level.set_weather("stancia")
+		level.set_weather("amk_for_blow")
 		wfx1 = "p_surge_day_"..tostring(level.get_time_hours())
 		level.set_weather_fx(wfx1)
 		level.add_pp_effector("vibros_p.ppe", 1974, false)	
@@ -138,15 +161,17 @@ function __do_timer_action(select_string,params_string)
 		db.actor:give_info_portion("surge_start")
 		local snd_obj = xr_sound.get_safe_sound_object([[surge\surge_phase_1]])
 		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
-		--news_manager.send_tip(db.actor, "Сталкеры, внимание! Идёт выброс! Повторяю - идёт выброс! Советую всем срочно подыскать укрытие!", nil, "default", 10000)
-		local st_surge = "Сталкеры, внимание! Идёт выброс! Повторяю - идёт выброс! Советую всем срочно подыскать укрытие!"
-		db.actor:give_game_news(st_surge, "ui\\ui_iconstotal", Frect():set(497,283,83,47), 0, 5000)
+		
+		local title = "%c[255,160,160,160]Выброс"
+		local st_surge = title.."\\n%c[default]Сталкеры, внимание! Идёт выброс! Повторяю - идёт выброс! Советую всем срочно подыскать укрытие!"
+		db.actor:give_game_news(st_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
+		
 		g_start_timer("bl3",0,0,8)
 	end
 
 -- 3. Проигрываем промежуточные эффекты
 	if select_string=="bl3" then
-		level.set_weather("stancia")
+		level.set_weather("amk_for_blow")
 		level.set_weather_fx(wfx1)
 		g_start_timer("bl4",0,0,5)
 	end
@@ -155,15 +180,13 @@ function __do_timer_action(select_string,params_string)
 	if select_string=="bl4" then
 		local snd_obj = xr_sound.get_safe_sound_object([[surge\surge_phase_2]])
 		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
-		--news_manager.send_tip(db.actor, "Сталкеры, внимание! Выброс начнётся с минуты на минуту! Ищите глубокую нору, если жить охото!", nil, "default", 5000)
-		local mid_surge = "Сталкеры, внимание! Выброс начнётся с минуты на минуту! Ищите глубокую нору, если жить охото!"
-		db.actor:give_game_news(mid_surge, "ui\\ui_iconstotal", Frect():set(497,283,83,47), 0, 5000)
-		db.actor:give_info_portion("surge_pda")
-		--news_manager.send_tip(db.actor, "%c[255,255,128,128]PDA\\n%c[default]Связь со спутником прервана.", nil, "default", 5000)
-		local no_connect = "%c[255,255,128,128]PDA\\n%c[default]Связь со спутником прервана."
-		db.actor:give_game_news(no_connect, "ui\\ui_iconstotal", Frect():set(497,235,83,47), 0, 5000)
+		
+		local title = "%c[255,160,160,160]Выброс"
+		local mid_surge = title.."\\n%c[default]Сталкеры, внимание! Выброс начнётся с минуты на минуту! Ищите глубокую нору, если жить охото!"
+		db.actor:give_game_news(mid_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
+		
 		xr_sound.set_actor_sound("")
-		level.set_weather("stancia")
+		level.set_weather("amk_for_blow")
 		local snd_obj = xr_sound.get_safe_sound_object([[ambient\earthquake]])
 		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
 		level.add_cam_effector("camera_effects\\earthquake.anm", 1974, true, "")
@@ -173,8 +196,8 @@ function __do_timer_action(select_string,params_string)
 		local snd_obj = xr_sound.get_safe_sound_object([[anomaly\blowout]])
 		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
 		ogsm_surge.play_sounds()
+		db.actor:give_info_portion("surge_pda")
 		g_start_timer("bl5",0,0,4)
-
 	end
 
 -- 5. Начинаем расколбас
@@ -188,6 +211,23 @@ function __do_timer_action(select_string,params_string)
 			level.add_cam_effector("camera_effects\\head_shot.anm", 1975, false, "")
 			ogsm_surge.g_R_Vibros:Run()
 		end
+
+		-- Бьём ворон (взято из AMK Мода)
+		local h = hit()
+		local cr
+		h.type = hit.strike
+		h.power = 1000
+		h.impulse = 1000
+		for a=1,65534,1 do
+			cr=level.object_by_id(a)
+			if cr~=nil and cr:section()=="m_crow" and math.random(0,100)<70 then
+				h.draftsman = cr
+				h.direction = cr:direction()
+				cr:hit(h)
+			end
+		end
+
+
 		g_start_timer("bl6",0,0,5)
 	end
 
@@ -210,35 +250,73 @@ function __do_timer_action(select_string,params_string)
 		level.add_pp_effector ("teleport.ppe", 2009, false)
 		local snd_obj2 = xr_sound.get_safe_sound_object([[ambient\earthquake]])
 		snd_obj2:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
-		level.set_weather(wthr)
+		level.set_weather("stormy")
 		del_variable("blt")
-		g_start_timer("bl1",0, vars.t_surge+math.random(-4,4), 0)
 		
+		-- Устанавливаем таймер до следующего выбора
+		set_timer_of_next_surge()
+				
 		-- Спавним артефакты после выброса
-		if vars.surge_spawn_arts_enabled == true then
-			ogsm_surge.spawn_arts()
-		end
+		spawn_arts_after_surge()
 		
-		--db.actor:give_info_portion("surge_end")
 		db.actor:disable_info_portion("surge_start")
 		db.actor:disable_info_portion("surge_pda")
-		local no_connect = "%c[255,255,128,128]PDA\\n%c[default]Сеть доступна."
-		db.actor:give_game_news(no_connect, "ui\\ui_iconstotal", Frect():set(497,235,83,47), 0, 5000)
-		--news_manager.send_tip(db.actor, "%c[255,255,128,128]PDA\\n%c[default]Сеть доступна.", nil, "default", 5000)
+				
 		local snd_obj = xr_sound.get_safe_sound_object([[surge\after_surge]])
 		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
-		local end_surge = "Всё, ребята, выброс, слава Богу, закончился! Надеюсь никто не пострадал?"
-		db.actor:give_game_news(end_surge, "ui\\ui_iconstotal", Frect():set(497,283,83,47), 0, 5000)
-		--news_manager.send_tip(db.actor, "Всё, ребята, выброс, слава Богу, закончился! Надеюсь никто не пострадал?", nil, "default", 5000)
-		--news_manager.send_tip(db.actor, "%c[255,255,128,128]PDA\\n%c[default]Сеть доступна.", nil, "default", 5000)
-		nd_keys.bind_keys()
+		
+		local title = "%c[255,160,160,160]Выброс"
+		local end_surge = title.."\\n%c[default]Всё, ребята, выброс, слава Богу, закончился! Надеюсь никто не пострадал?"
+		db.actor:give_game_news(end_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
+		
+		-- Используем апгрейд номер три
+		use_pda_upgrade_three()
+		
+		--nd_keys.bind_keys()
 		db.Dead2 = 0
 		db.Flag2 = 0
 	end
-
+	
+	-- 8. Используем третий апгрейд КПК - нотификацию за пару часов до выброса
+	if select_string=="bl_pda_upgrade_3" then	
+		pda_upgrade_manager.use_upgrade(3, nil)
+	end
 
 -- Конец алгоритма выброса --
 
+end
+
+function set_timer_of_next_surge()
+	local t_surge =  vars.t_surge
+	local t_surge_add_min = vars.t_surge_add_min
+	local t_surge_add_max = vars.t_surge_add_max
+	
+	local surge_next_time = t_surge+math.random(t_surge_add_min,t_surge_add_max)
+	save_variable("surge_next_time", surge_next_time)
+	g_start_timer("bl1",0, surge_next_time, 0)
+end
+
+function spawn_arts_after_surge()
+	if vars.surge_spawn_arts_enabled == true then
+		--ogsm_surge.spawn_arts()
+		se_zones.update_anoms_after_surge()
+	end
+end
+
+function use_pda_upgrade_three()
+	if pda_upgrade_manager.has_upgrade(3) then
+		local surge_next_time = load_variable("surge_next_time", 0)
+		
+		if surge_next_time == 0 then return end
+		
+		pda_upgrade_manager.use_upgrade(3, surge_next_time)
+		
+		local notification_time = surge_next_time - pda_upgrade_manager.notification_time_before_surge
+		-- Запускаем таймер для нотификации
+		if notification_time > 0 then
+			g_start_timer("bl_pda_upgrade_3",0, notification_time, 0)
+		end
+	end
 end
 
 function bind_keys()

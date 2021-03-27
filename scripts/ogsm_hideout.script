@@ -369,6 +369,8 @@ spawn_restrictor("l05_bar", vector():set(112.7,0.097,68.6), 33337, 1233, "stalke
 spawn_restrictor("l05_bar", vector():set(144.9,-0.012,40.6), 38939, 1233, "stalker_dolg", 6)
 -- Бар
 spawn_restrictor("l05_bar", vector():set(131.6,-4.83,23.8), 36240, 1233, "fake_", 10)
+-- Личная комната в Баре
+spawn_restrictor("l05_bar", vector():set(116.28,-5.30,16.82), 33908, 1239, "fake_", 10)
 
 ------------------
 -- Rostok Hides --
