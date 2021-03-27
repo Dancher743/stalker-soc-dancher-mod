@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
-	<dialog id="repair">
+
+	<dialog id="repair_sidr">
 	<has_info>tutorial_end</has_info>
           <phrase_list>
              <phrase id="0">
-                <text>Почини снаряжение.</text>
+                <text>Почини моё снаряжение.</text>
+                <action>its_repair.main</action>
+             </phrase>
+          </phrase_list>
+    </dialog>
+
+	<dialog id="repair">
+          <phrase_list>
+             <phrase id="0">
+                <text>Почини моё снаряжение.</text>
                 <action>its_repair.main</action>
              </phrase>
           </phrase_list>
     </dialog>
 	
 	<dialog id="repair_prof">
-	<has_info>tutorial_end</has_info>
           <phrase_list>
              <phrase id="0">
-                <text>Почините, пожалуйста, снаряжение.</text>
+                <text>Почините, пожалуйста, моё снаряжение.</text>
                 <action>its_repair.main</action>
              </phrase>
           </phrase_list>

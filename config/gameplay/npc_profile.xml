@@ -1824,8 +1824,13 @@
         <specific_character>yan_guider</specific_character>
 	</character>
 	
-	<!---------------->
+	<!-- Механики -->
+	<character id="bar_mechanic">
+        <class>mechanic</class>
+        <specific_character>bar_mechanic</specific_character>
+	</character>
 	
+	<!-- Разные НПС -->
 	<character id="gar_dolg_machine_gunner">
         <class>bar_Dolg_master</class>
         <specific_character>gar_dolg_machine_gunner</specific_character>

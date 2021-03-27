@@ -19,6 +19,7 @@ function add_mapspot(id)
 	elseif sid==5481 then level.map_add_object_spot(id, "guider_npc_mapspot", "Проводник") -- Проводник в Баре
 	elseif sid==5482 then level.map_add_object_spot(id, "guider_npc_mapspot", "Проводник") -- Проводник на Кордоне
 	elseif sid==5483 then level.map_add_object_spot(id, "guider_npc_mapspot", "Проводник") -- Проводник на Янтаре
+	elseif sid==5485 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Механик в Баре
 	end
 end
 
@@ -37,5 +38,6 @@ function remove_mapspot(id)
 	elseif sid==5481 then level.map_remove_object_spot(id, "guider_npc_mapspot") -- Проводник в Баре
 	elseif sid==5482 then level.map_remove_object_spot(id, "guider_npc_mapspot") -- Проводник на Кордоне
 	elseif sid==5483 then level.map_remove_object_spot(id, "guider_npc_mapspot") -- Проводник на Янтаре
+	elseif sid==5485 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Механик в Баре
     end
 end

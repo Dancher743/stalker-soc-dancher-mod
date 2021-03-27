@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding="windows-1251"?>
+
+<!-- Механики -->
+
+<xml>
+	<!-- Механик в баре -->
+	<specific_character id="bar_mechanic" team_default = "1">
+		<name>bar_mechanic_name</name>
+		<icon>ui_npc_u_green_stalker_antigas</icon>
+		<map_icon x="1" y="0"></map_icon>
+		<bio>bar_mechanic_bio</bio>
+
+		<class>mechanic</class>
+		<community>stalker</community>
+		<money min="2000" max="5000" infinitive="0"></money>
+	
+		<rank>300</rank>
+		<reputation>500</reputation>
+
+		<visual>actors\novice\green_stalker_antigas</visual>
+		<snd_config>characters_voice\human_01\</snd_config>
+		<crouch_type>-1</crouch_type>
+		<supplies>
+			[spawn] \n
+			wpn_fort = 1, silencer \n
+			ammo_9x18_fmj = 1 \n
+			device_torch \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+
+#include "gameplay\character_criticals_4.xml"
+
+		<start_dialog>bar_mechanic_dialog_start</start_dialog>
+		<actor_dialog>repair</actor_dialog>
+		<actor_dialog>bar_mechanic_dialog</actor_dialog>
+	</specific_character>
+	
+</xml>

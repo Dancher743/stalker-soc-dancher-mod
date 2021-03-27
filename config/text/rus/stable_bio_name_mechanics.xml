@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!-- Механики -->
+
+<string_table>
+
+	<!-- Механики в Баре -->
+	<string id="bar_mechanic_name">
+		<text>Яшка Тягач</text>
+	</string>
+	<string id="bar_mechanic_bio">
+		<text>Один из механиков в Зоне. В прошлом слесарь высокого разряда. Своё прозвище получил за то, что тягает и складирует всякий хлам.</text>
+	</string>
+	
+</string_table>

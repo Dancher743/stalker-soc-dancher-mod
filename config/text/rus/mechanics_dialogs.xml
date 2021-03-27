@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<string_table>	
+	<string id="bar_mechanic_dialog_start_0">
+		<text>Привет. Я здешний механик. Что интересует?</text>
+	</string>
+	
+	<string id="bar_mechanic_dialog_0">
+		<text>Улучши моё оружие.</text>
+	</string>
+	
+</string_table>
