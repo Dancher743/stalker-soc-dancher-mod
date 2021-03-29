@@ -342,6 +342,7 @@ if db.Dead2 == 1 and db.FlagEsc == 0 then
 	g_R_Vibros:Run()
 	hit_actor()
 	play_sounds()
+	play_phantoms()
 	level.add_pp_effector("dead_zone.ppe", 1001, false)
 	level.set_pp_effector_factor(1001, 0.2)
 end

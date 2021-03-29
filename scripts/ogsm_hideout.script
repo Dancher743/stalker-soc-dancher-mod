@@ -304,6 +304,8 @@ spawn_restrictor("l01_escape", vector():set(13.3,2.7,98.7), 290783, 92, "militar
 -- Garbage Hides --
 -------------------
 
+-- Будка на кладбище техники
+spawn_restrictor("l02_garbage", vector():set(-43.36,0.53,-205.31), 144362, 267, "stalker", 3)
 -- Ангар - восточная часть
 spawn_restrictor("l02_garbage", vector():set(-61.6,0.75,9.1), 135489, 330, "stalker", 6)
 -- Изгородь

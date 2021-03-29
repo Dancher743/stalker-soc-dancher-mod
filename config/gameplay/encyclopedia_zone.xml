@@ -23,7 +23,7 @@
 <!-------------------------------- Surge ----------------------------->
 
     <article id="zone_surge" name="Surge" group="Anomalies">
-	<texture x="500" y="150" width="100" height="100">ui\ui_icon_photo</texture>
+	<texture x="1500" y="450" width="200" height="147">ui\ui_icon_photo_shadows_rma</texture>
         <text>enc_zone_phenomena_surge_general</text>
     </article>
 

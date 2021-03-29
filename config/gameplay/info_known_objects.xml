@@ -449,4 +449,8 @@
 	</info_portion>
 
  
+	<info_portion id="surge_article">
+		<article>zone_surge</article>
+    </info_portion>
+	
 </game_information_portions>

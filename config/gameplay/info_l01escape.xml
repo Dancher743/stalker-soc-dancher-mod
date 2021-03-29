@@ -28,8 +28,7 @@
 	<!-- Tutorial wounded -->
 	<info_portion id="tutorial_wounded_start">
 	 	<task>esc_flash_task</task>
-		<article>sl_first_opinions</article>
-	        <article>zone_surge</article>
+		<article>sl_first_opinions</article> 
 	</info_portion>
 	<info_portion id="esc_first_novice_dead"></info_portion>
 	<info_portion id="esc_second_novice_dead"></info_portion>

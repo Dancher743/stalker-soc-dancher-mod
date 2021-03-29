@@ -2,8 +2,8 @@
 
 <game_dialogs>
 	<dialog id="sakharov_pda_upgrade_dialog">
-	<has_info>yan_kill_brain_done</has_info>
-	<precondition>dialogs_pda_upgrade.not_fully_upgraded</precondition>
+	<!--<has_info>yan_kill_brain_done</has_info>-->
+	<precondition>dialogs_pda_upgrade.dialog_condition</precondition>
 	<phrase_list>
 		<phrase id="0">
 			<text>sakharov_pda_upgrade_dialog_0</text>

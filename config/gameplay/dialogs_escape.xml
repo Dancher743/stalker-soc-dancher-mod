@@ -792,6 +792,27 @@
             </phrase>
             <phrase id="611111111">
                 <text>escape_trader_jobs_611111111</text>
+				<next>611111112</next>
+            </phrase>
+			<phrase id="611111112">
+                <text>escape_trader_jobs_611111112</text>
+				<next>611111113</next>
+            </phrase>
+			<phrase id="611111113">
+                <text>escape_trader_jobs_611111113</text>
+				<next>611111114</next>
+            </phrase>
+			<phrase id="611111114">
+                <text>escape_trader_jobs_611111114</text>
+				<next>611111115</next>
+            </phrase>
+			<phrase id="611111115">
+                <text>escape_trader_jobs_611111115</text>
+				<give_info>surge_article</give_info>
+				<next>611111116</next>
+            </phrase>
+			<phrase id="611111116">
+                <text>escape_trader_jobs_611111116</text>
             </phrase>
             <phrase id="521">
                 <text>escape_trader_jobs_521</text>

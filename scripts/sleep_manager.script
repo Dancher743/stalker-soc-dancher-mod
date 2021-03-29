@@ -13,7 +13,7 @@ local table_sleep_zone =
 
     -- ћатрасы в подвале в деревне новичков
     {"l01_escape", "m", "no_icon_1", -210.73, -22.9, -122.30, 42632, 59, nil},
-    {"l01_escape", "m", "icon_1", -210.34, -22.9, -125.75, 42632, 59, nil}, 
+    {"l01_escape", "m", "icon_1", -210.34, -22.9, -125.75, 42632, 59, nil, "spot_at_spawn"}, 
 
 	-- —валка:
 	
@@ -69,6 +69,7 @@ local table_sleep_zone =
 	4,5,6 - координаты x,y,z соответственно
 	7,8 - level_vertex и game_vertex соответственно
 	9 - если стоит "allways" значит можно спать независимо от наличи€ р€дом врагов (только дл€ невидимого объекта)
+	10 - если стоит "spot_at_spawn" значит помечаем место дл€ сна на карте сразу после спавна
 	]]
 	}
  
@@ -232,6 +233,12 @@ function spawn_mattress()
 			end
 			if vv[3] then
 				save_variable(vv[3], obj.id)
+			end
+			
+			if vv[10] == "spot_at_spawn" then
+				if not level.map_add_object_spot_ser(obj.id, "sleep_pointer", "ћесто дл€ сна") then
+					level.map_add_object_spot_ser(obj.id, "sleep_pointer", "ћесто дл€ сна")
+				end
 			end
 		end
 		if vv[2] == "b" then

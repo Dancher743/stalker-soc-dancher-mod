@@ -4076,7 +4076,7 @@
 
 <!--Диалоги покупки задней комнаты-->
 	<dialog id="barman_sleep_dialog_start">
-		<!--<has_info>barman_sleep_dialog</has_info>-->
+		<has_info>barman_sleep_dialog</has_info>
 		<dont_has_info>barman_said_can_go</dont_has_info>
         <phrase_list>
             <phrase id="0">
@@ -4177,6 +4177,21 @@
         </phrase_list>
     </dialog>
 	
+	<dialog id="bar_mechanic_about_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text>bar_mechanic_about_dialog_0</text>
+				<next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>bar_mechanic_about_dialog_1</text>
+				<next>2</next>
+            </phrase>
+			<phrase id="2">
+                <text>bar_mechanic_about_dialog_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
 	
 	
 </game_dialogs>

@@ -8,6 +8,12 @@ pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
 local notification_delay_time = 2000
 
+function dialog_condition()
+	return 
+	not_fully_upgraded() and 
+	(has_alife_info("bar_rescue_research_done") or has_alife_info("yan_kill_brain_done"))
+end
+
 function not_fully_upgraded()
 	return not (pda_upgrade_manager.has_upgrade(1) and 
 				pda_upgrade_manager.has_upgrade(2) and
@@ -90,8 +96,8 @@ function show_upgrade_two_notification()
 end
 
 function show_upgrade_three_notification()
-	local title = "%c[255,160,160,160]КПК:"
-	local message = "%c[default]Произведена подписка на рассылку сообщений. Источник рассылки: научный лагерь экологов."
+	local title = "%c[255,160,160,160]Научный лагерь экологов:"
+	local message = "%c[default]Произведена подписка на рассылку сообщений о предстоящих выбросах."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_scientist_job")
 	
