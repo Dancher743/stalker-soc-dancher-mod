@@ -113,35 +113,49 @@ function __do_timer_action(select_string,params_string)
 
 -- 1. Настало время выброса.
 	if select_string=="bl1" then
-		if ogsm_surge then
-			if (level.name() ~= "l03u_agr_underground") and (level.name() ~= "l08u_brainlab") and (level.name() ~= "l10u_bunker") and (level.name() ~= "l04u_labx18") and (level.name() ~= "l12u_sarcofag") and (level.name() ~= "l12u_control_monolith") and (level.name() ~= "l12_stancia") and (level.name() ~= "l12_stancia_2") then
-				if sleep_manager and sleep_manager.is_sleep_active() then
-					-- Проспали выброс :)
-					if vars.surge_skip_by_sleep then
-						level.set_weather("stormy")
-					
-						-- Устанавливаем таймер до следующего выбора
-						set_timer_of_next_surge()
-						
-						-- Спавним артефакты после выброса
-						spawn_arts_after_surge()
-						
-						-- Выодим сообщение об прошедшем выбросе
-						local title = "%c[255,160,160,160]Выброс"
-						local slept_surge = title.."\\n%c[default]Недавно в Зоне произошёл выброс."
-						db.actor:give_game_news(slept_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
-						
-						-- Используем апгрейд номер три
-						use_pda_upgrade_three()
-						
-						return
-					else
-						sleep_manager.stopper()
-					end
+		if  ogsm_surge and 
+			level.name() ~= "l12_stancia" or 
+            level.name() ~= "l12_stancia_2" 
+		then
+			local is_in_underground = 
+            level.name() == "l03u_agr_underground" or 
+            level.name() == "l08u_brainlab" or 
+            level.name() == "l10u_bunker" or 
+            level.name() == "l04u_labx18" or 
+            level.name() == "l12u_sarcofag" or 
+            level.name() == "l12u_control_monolith" 
+			
+			local is_sleep = sleep_manager and sleep_manager.is_sleep_active()
+			
+			if 
+				is_in_underground or
+				is_sleep and vars.surge_skip_by_sleep
+			then
+				if not is_in_underground then
+					level.set_weather("stormy")
 				end
-				start_timer("bl2",1)
+				
+				-- Устанавливаем таймер до следующего выбора
+				set_timer_of_next_surge()
+				
+				-- Спавним артефакты после выброса
+				spawn_arts_after_surge()
+				
+				-- Выодим сообщение об прошедшем выбросе
+				local title = "%c[255,160,160,160]Выброс"
+				local slept_surge = title.."\\n%c[default]Недавно в Зоне произошёл выброс."
+				db.actor:give_game_news(slept_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
+				
+				-- Используем апгрейд номер три
+				use_pda_upgrade_three()
+				
+				return
 			else
-				g_start_timer("bl1",0,1,0)
+				if is_sleep then
+					sleep_manager.stopper()
+				end
+				
+				start_timer("bl2",1)
 			end
 		else
 			g_start_timer("bl1",0,10,0)
