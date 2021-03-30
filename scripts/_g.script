@@ -1115,6 +1115,11 @@ function IsStalker (object, class_id)
     return false
 end
 -------------------------------------------------------------------------------------------
+function IsActor (object, class_id)
+    local id = class_id or get_clsid (object)
+    return id == clsid.actor
+end
+-------------------------------------------------------------------------------------------
 function level_object_by_sid( sid )
   local sim = alife()
 

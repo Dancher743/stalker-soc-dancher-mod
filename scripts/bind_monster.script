@@ -3,6 +3,12 @@
 -----------------------------------------------------------------------------------
 local particles={}
 
+local table_enemy_cont = {}
+local rand = math.random(1,100)
+local BurerNum
+local BurerTimer = 0
+local song_start_sucks = xr_sound.get_safe_sound_object("monsters\\bloodsucker\\vampire_sucking")
+
 function bind(obj)
 	printf("_bp: monster.bind: name='%s', id='%d'", obj:name(), obj:id())
 	local new_binder = generic_object_binder(obj)
@@ -17,6 +23,9 @@ function generic_object_binder:__init(obj) super(obj)
 	self.chtime = 0
 	self.last_update = 0
 	self.particles = {}
+	self.start_anim_hit_cont = false
+	self.start_anim_hit_blood = false
+	self.start_hit = false
 end 
 
 function generic_object_binder:reload(section)
@@ -104,6 +113,301 @@ function generic_object_binder:update(delta)
 			self.object:set_tip_text("character_use")
 		else
 			self.object:set_tip_text("")
+		end
+		
+		-- Удар контролёра руками из Зова Припяти (Автор: demover123)
+		if self.object:clsid() == clsid.controller_s then
+			local target = self.object:get_enemy()
+			if target and self.object:see(target) and IsStalker(target) then
+				local dist = self.object:position():distance_to(target:position())
+				if dist <= 1.7 then
+					if not self.get_hit then
+						self.get_hit = time_global() + 1000
+						self.start_anim_hit_cont = true
+					elseif self.get_hit <= time_global() then
+						if self.start_anim_hit_cont then
+							if self.object:animation_count() > 0 then
+								self.object:clear_animations()
+							end
+							self.object:play_cycle("stand_attack_1", true)
+							
+							local song_start = xr_sound.get_safe_sound_object("monsters\\controller\\controller_hit_2")
+							song_start:play_at_pos(self.object, self.object:position(), sound_object.s3d)
+							self.start_anim_hit_cont = false
+						end
+						if not self.hit_to_enemy then
+							self.hit_to_enemy = time_global() + 100
+						elseif self.hit_to_enemy <= time_global() then
+							
+							if IsActor(target) then
+								level.add_cam_effector("camera_effects\\hit_back_left.anm", 777, false, "")
+							end
+							
+							local h = hit()
+							h.draftsman = self.object
+							h.direction = vector():set(0,0,0)  
+							h:bone("bip01_spine")   
+							h.power     = 0.40     
+							h.impulse   = 1
+							h.type      = hit.wound
+							target:hit(h)
+							
+							self.hit_to_enemy = nil
+							self.get_hit = nil
+						end
+					end
+				else
+					self.hit_to_enemy = nil
+					self.get_hit = nil
+				end
+			end
+			if self.object:animation_count() < 1 then
+				local i = math.random(0,5)
+				self.object:add_animation("stand_walk_fwd_"..i, true)
+			end
+		end
+		
+		-- Новое повидение кровососа (Автор: demover123)
+		if self.object:clsid() == clsid.bloodsucker_s then
+			local target = self.object:get_enemy()
+			if target and self.object:see(target) and (IsStalker(target) or IsMonster(target)) then
+				local dist = self.object:position():distance_to(target:position())
+				if dist < 1.5 then
+					if not self.sucks and not self.steal then
+						rand = math.random(100)
+						if rand > 80 then
+							--if self.object.health < 1.0 then
+								self.sucks = true
+							--end
+						--[[elseif rand < 90 and rand > 70 then
+							local active_slot = db.actor:active_slot()
+							if active_slot==1 or active_slot==2 then
+								self.steal = true
+							end
+						]]--
+						end
+					end
+					
+					--[[if self.steal then
+						if not self.start_steal then
+							self.object:set_invisible(false)
+							self.object:play_cycle("!stand_attack_1", true)
+							local song_steal = xr_sound.get_safe_sound_object("monsters\\bloodsucker\\hit_"..math.random(0,3))
+							if not song_steal:playing() then
+								song_steal:play_at_pos(self.object, self.object:position(), sound_object.s3d)
+							end
+							self.start_steal = time_global() + 400
+						end
+						if self.start_steal <= time_global() then
+							db.actor:drop_item(db.actor:active_item())
+							local h = hit()
+							h.draftsman = self.object
+							h.direction = vector():set(0,0,0)  
+							h:bone("bip01_spine")   
+							h.power     = 0.10     
+							h.impulse   = 1
+							h.type      = hit.wound
+							target:hit(h)
+							self.start_steal = nil
+							self.steal = false
+							self.object:set_invisible(true)
+						end
+					end]]--
+					
+					if self.sucks then
+						if self.object:animation_count() > 0 then
+							self.object:clear_animations()
+						end
+						if not self.bool_vamp_0 then
+						
+							if IsActor(target) then
+								db.actor:hide_weapon()
+								level.disable_input()
+								level.hide_indicators()
+							end
+							
+							self.object:set_invisible(false)
+							target:set_actor_direction(-self.object:position():sub(target:position()):getH())
+							self.object:play_cycle("vampire_0", true)
+							self.bool_vamp_0 = true
+						end
+						if not self.first_step then
+							self.first_step = time_global() + 1000
+						elseif self.first_step and self.first_step <= time_global() then
+							if self.object:animation_count() > 0 then
+								self.object:clear_animations()
+							end
+							if not self.bool_vamp_1 then
+								self.object:set_invisible(false)
+								self.object:play_cycle("vampire_1", true)
+								
+								if IsActor(target) then
+									level.add_pp_effector("escape.ppe",778,true)
+									level.add_pp_effector("yantar_underground_psi.ppe", 999, true)
+									song_start_sucks:play_at_pos(self.object, self.object:position(), sound_object.s3d)
+								end
+
+								self.bool_vamp_1 = true
+							end
+							if not self.bool_next_step then
+								self.second_step = time_global() + 2000
+								self.bool_next_step = true
+							end
+							
+							if self.second_step <= time_global() then
+								self.object:position():sub(target:position()):normalize()
+								
+								if not self.ending_sucks then
+									self.ending_sucks = time_global() + 700
+									self.object:set_invisible(false)
+									local song_start = xr_sound.get_safe_sound_object("monsters\\bloodsucker\\vampire_hit")
+									song_start:play_at_pos(self.object, self.object:position(), sound_object.s3d)
+									self.object:play_cycle("vampire_2", true)
+								end
+								
+								if self.ending_sucks <= time_global() then
+									
+									if IsActor(target) then
+										level.add_cam_effector("camera_effects\\hit_back_right.anm", 779, false, "")
+									end
+									
+									local h = hit()
+									h.draftsman = self.object
+									h.direction = vector():set(0,0,0)  
+									h:bone("bip01_spine")   
+									h.power     = 0.40     
+									h.impulse   = 1
+									h.type      = hit.wound
+									target:hit(h)
+									
+									self.object.health = self.object.health + 0.1
+									
+									if IsActor(target) then
+										db.actor:restore_weapon()
+										level.remove_pp_effector(778)
+										level.remove_pp_effector(999)
+									end
+
+									self.sucks = false
+									self.first_step = nil
+									self.second_step = nil
+									self.bool_next_step = false
+									self.bool_vamp_0 = false
+									self.bool_vamp_1 = false
+									self.object:set_invisible(true)
+									rand = math.random(1,100)
+									
+									level.enable_input()
+									level.show_indicators()
+									
+									self.ending_sucks = nil
+								end
+							end
+						end
+					end
+				else 
+					if self.sucks then
+						
+						if IsActor(target) then
+							db.actor:restore_weapon()
+							level.remove_pp_effector(778)
+							level.remove_pp_effector(999)
+						end
+					
+						self.object:clear_animations()
+						
+						self.object:set_invisible(true)
+						self.object:set_invisible(false)
+									
+						if song_start_sucks:playing() then
+							song_start_sucks:stop()
+						end
+									
+						self.sucks = false
+						self.first_step = nil
+						self.second_step = nil
+						self.bool_next_step = false
+						self.bool_vamp_0 = false
+						self.bool_vamp_1 = false
+						level.enable_input()
+						level.show_indicators()
+					elseif self.steal then
+						self.steal = false
+					end
+				end
+			end	
+			if target and not self.object:see(target) then
+				local dist = self.object:position():distance_to(target:position())
+				if dist < 20 then
+					if not self.time_to_boogie then
+						self.time_to_boogie = time_global() + (math.random(5,10) * 1000)
+					end
+					if self.time_to_boogie <= time_global() then
+						self.object:set_invisible(false)
+						self.object:play_cycle("stand_threaten_0", true)
+						local song_boogie = xr_sound.get_safe_sound_object("monsters\\bloodsucker\\bloodsucker_script_attack_"..math.random(0,1))
+						if not song_boogie:playing() then
+							song_boogie:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+						end
+						if not self.gotoinvis then
+							self.gotoinvis = true
+						else
+							self.object:set_invisible(true)
+							self.time_to_boogie = nil
+							self.gotoinvis = false
+						end
+					end
+				end
+			end
+		end
+		
+		-- Атака бюрера из Зова Припяти (Авторы: Shadows and Charsi and demover123)
+		if self.object:clsid()==clsid.burer_s and BurerTimer < time_global() then
+			local target = self.object:get_enemy()
+			
+			if IsActor(target) then
+				local v1 = self.object:direction()
+				local v2 = db.actor:direction()
+				if target and (target:id()==0) and (v1.x*v2.x)+(v1.z*v2.z)<-0.6 and self.object:see(db.actor) and self.object:position():distance_to(db.actor:position())<6 then
+					BurerNum = 1
+					db.actor.power = -1.0
+					local active_slot = db.actor:active_slot()
+					if active_slot==1 or active_slot==2 then
+						db.actor:drop_item(db.actor:active_item())
+						self.object:play_cycle("stand_attack_0", false)
+					end
+					BurerTimer = time_global() + 6000*(1+math.random(-0.2,0.2))
+					self.object:add_animation("stand_idle_"..math.random(0,2), true)
+				elseif BurerNum and BurerTimer < time_global() + 6000 then
+					self.object:add_animation("stand_idle_"..math.random(0,2), true)
+					BurerNum = nil
+				end
+			end
+		end
+		
+		-- Химера ищет жертву стоя на задних лапах идея была взята из одного квеста в Зове Припяти (Автор: demover123)
+		if self.object:clsid()==clsid.chimera_s then
+			local target = self.object:get_enemy()
+			if target and not self.object:see(target) and IsStalker(target) then
+				local dist = self.object:position():distance_to(target:position())
+				if dist < 10 then
+					if not self.find then
+						if self.object:animation_count() > 0 then
+							self.object:clear_animations()
+						end
+						self.object:play_cycle("look_around_0", false)
+						if not self.time_to_next_find then
+							self.time_to_next_find = time_global() + 4000
+						end
+						self.find = true
+					else
+						if self.time_to_next_find <= time_global() then
+							self.find = false
+							self.time_to_next_find = nil
+						end
+					end
+				end
+			end
 		end
 	else
 		self.object:set_tip_text_default()
@@ -288,6 +592,9 @@ function generic_object_binder:death_callback(victim, who)
 	if self.st.mob_death then
 		xr_logic.issue_event(self.object, self.st.mob_death, "death_callback", victim, who)
 	end
+	
+	--victim:set_nonscript_usable(false)
+
 	if self.st.active_section then
 		xr_logic.issue_event(self.object, self.st[self.st.active_scheme], "death_callback", victim, who)
 	end
@@ -346,6 +653,25 @@ function generic_object_binder:hit_callback(obj, amount, local_direction, who, b
 		obj:hit(h)    
 	end
 	amk.on_monster_hit(obj, amount, local_direction, who, bone_index)
+	
+	-- Щит бюрера из Зова Припяти (Автор: demover123)
+	if self.object:clsid()==clsid.burer_s then
+		if not self.time_hit then
+			self.time_hit = time_global() + 4000
+		end
+		
+		self.object:play_cycle("stand_tele_1", false)
+		local particle_start = particles_object("anomaly2\\burer_shield_01")
+		particle_start:play_at_pos(self.object:bone_position("bip01_head"))
+		self.object.health = self.object.health + 0.1
+		
+		if self.time_hit <= time_global() then
+			if self.object:animation_count() > 0 then
+				self.object:clear_animations()
+				particle_start:stop()
+			end
+		end
+	end
 	
 	if obj:section()=="electro_chimera" and time_global()>(self.charge_time or 0)+3000 then
 		amk_particle.amk_particle({particle="anomaly2\\electra2_blast",pos=obj:bone_position("bip01_spine"),sound="anomaly\\electra_blast1"})

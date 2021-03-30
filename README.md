@@ -57,5 +57,6 @@ Using mods:
 49. NPC mapspots from DMX Mod (Shadows & Co)    
 50. Artefacts Stataictic (Аскольд, naxac)    
 51. PDA off with whitenoises (naxac, Shadows & Co)
+52. Improved monsters behavior (demover123/Shadows/Charsi)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
