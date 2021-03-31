@@ -18,7 +18,7 @@
 		<reputation>500</reputation>
 
 		<visual>actors\novice\green_stalker_antigas</visual>
-		<snd_config>characters_voice\human_01\</snd_config>
+		<snd_config>characters_voice\human_03\stalker\</snd_config>
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n

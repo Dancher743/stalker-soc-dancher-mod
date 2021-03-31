@@ -4,8 +4,10 @@ local pseudodog_tail_count = 1
 local flesh_oko_count = 1
 local boar_leg_count = 1
 local snork_leg_count = 1
+local burer_hand_count = 1
+local zombie_hand_count = 1
 
-spawn_chance = 50
+spawn_chance = 100
 
 function main_check(obj, amount, local_direction, who, bone_index)
    local section = obj:section()
@@ -69,6 +71,54 @@ function main_check(obj, amount, local_direction, who, bone_index)
 			snork_leg_count = 0
       end
    end
+   
+    if 
+		section=="burer_weak" or 
+		section=="burer_normal" or 
+		section=="burer_strong" 
+	then
+		if 
+			bone_index==18 or
+			bone_index==19 or
+			bone_index==20 or
+			bone_index==22 or
+			bone_index==24 or
+			bone_index==26 or
+			bone_index==31 or
+			bone_index==32 or
+			bone_index==33 or
+			bone_index==35 or
+			bone_index==37 or
+			bone_index==39
+		then
+			burer_hand_count = 0
+		end
+	end
+	
+	if 
+		section=="zombie_weak" or 
+		section=="zombie_normal" or 
+		section=="zombie_strong" or
+		section=="zombie_immortal" 		
+	then
+		if 
+			bone_index==19	or
+			bone_index==20	or
+			bone_index==21	or
+			bone_index==23	or
+			bone_index==25	or
+			bone_index==27	or
+			bone_index==31	or
+			bone_index==32	or
+			bone_index==33	or
+			bone_index==35	or
+			bone_index==37	or
+			bone_index==39	
+		then
+			zombie_hand_count = 0
+		end
+	end
+   
 end
 
 function spawn_parts(obj)
@@ -133,38 +183,40 @@ function spawn_parts(obj)
       snork_leg_count = 1
    end
    
+   -- Бюрер:
+
+	if 
+		section=="burer_weak" or 
+		section=="burer_normal" or 
+		section=="burer_strong"
+	then
+      if burer_hand_count>0 and calculate_chance() then
+         amk.spawn_item_in_inv("mutant_burer_hand",obj)
+      end
+	  
+      burer_hand_count = 1
+   end
+   
+	-- Зомби:
+
+	if 
+		section=="zombie_weak" or 
+		section=="zombie_normal" or 
+		section=="zombie_strong" or
+		section=="zombie_immortal" 
+	then
+		if zombie_hand_count>0 and calculate_chance() then
+			amk.spawn_item_in_inv("mutant_zombie_hand",obj)
+		end
+	  
+		zombie_hand_count = 1
+   end
+   
 --Итого, выше - 6 типов тварей, части которых есть в оригинальной игре. Ниже планируем все дополнительные части типо рук бюреров, рук контролёров, глазов полтергейста и так далее.
+--UPD: Добавлены зомби и бюреры.
    
 end
 
 function calculate_chance()
 	return math.random(0, 100) <= spawn_chance
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

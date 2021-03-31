@@ -180,6 +180,10 @@ function __do_timer_action(select_string,params_string)
 		local st_surge = title.."\\n%c[default]Сталкеры, внимание! Идёт выброс! Повторяю - идёт выброс! Советую всем срочно подыскать укрытие!"
 		db.actor:give_game_news(st_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
 		
+		local snd_wind = xr_sound.get_safe_sound_object([[ambient\whistling_wind1]])
+		snd_wind.volume = 0.5
+		snd_wind:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d + sound_object.looped)
+		
 		if not has_alife_info("surge_article") then
 			db.actor:give_info_portion("surge_article")
 		end
@@ -203,6 +207,12 @@ function __do_timer_action(select_string,params_string)
 		local mid_surge = title.."\\n%c[default]Сталкеры, внимание! Выброс начнётся с минуты на минуту! Ищите глубокую нору, если жить охото!"
 		db.actor:give_game_news(mid_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
 		
+		local snd_wind = xr_sound.get_safe_sound_object([[ambient\whistling_wind1]])
+		if snd_wind:playing() then
+			snd_wind:stop()
+			snd_wind.volume = 1
+		end
+
 		xr_sound.set_actor_sound("")
 		level.set_weather("amk_for_blow")
 		local snd_obj = xr_sound.get_safe_sound_object([[ambient\earthquake]])
