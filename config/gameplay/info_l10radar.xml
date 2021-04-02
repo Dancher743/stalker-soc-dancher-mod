@@ -171,6 +171,8 @@
 	<info_portion id="bun_blood_finish">
 	</info_portion>
 		
+	<info_portion id="rad_antenna_temp_stopping">
+	</info_portion>
 </game_information_portions>
 
 
