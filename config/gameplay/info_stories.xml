@@ -135,5 +135,13 @@
 	<info_portion id="stalker_story_92">
 		<article>stalker_story_92</article>
 	</info_portion>
+	
+	<info_portion id="stalker_story_21">
+		<article>stalker_story_21</article>
+	</info_portion>
+	
+	<info_portion id="stalker_story_22">
+		<article>stalker_story_22</article>
+	</info_portion>
 
 </game_information_portions>
