@@ -7,6 +7,11 @@ local gauss_ammo_cost = 5000
 local gauss_ammo_art = "af_electra_flash"
 local gauss_ammo_item = "ammo_gauss"
 
+local gauss_wpn_upgrad_cost = 10000
+local gauss_wpn_base = "wpn_gauss"
+local gauss_wpn_upgraded = "wpn_gauss_m1"
+local gauss_wpn_art = "af_dummy_battery"
+
 function have_gauss_ammo_fund(actor, mechanic)	
 	return actor:object(gauss_ammo_art) and actor:money() >= gauss_ammo_cost
 end
@@ -15,4 +20,15 @@ function buy_gauss_ammo(actor, mechanic)
 	dialogs.relocate_money(mechanic, gauss_ammo_cost, "out")
 	dialogs.relocate_item_section(mechanic, gauss_ammo_art, "out")
 	dialogs.relocate_item_section(actor, gauss_ammo_item, "in")
+end
+
+function have_gauss_wpn_fund(actor, mechanic)	
+	return actor:object(gauss_wpn_base) and actor:money() >= gauss_wpn_upgrad_cost
+end
+
+function upgrade_gauss_wpn(actor, mechanic)
+	dialogs.relocate_money(mechanic, gauss_wpn_upgrad_cost, "out")
+	dialogs.relocate_item_section(mechanic, gauss_wpn_art, "out")
+	dialogs.relocate_item_section(mechanic, gauss_wpn_base, "out")
+	dialogs.relocate_item_section(actor, gauss_wpn_upgraded, "in")
 end

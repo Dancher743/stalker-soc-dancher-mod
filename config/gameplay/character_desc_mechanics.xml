@@ -36,6 +36,7 @@
 		<actor_dialog>bar_mechanic_about_dialog</actor_dialog>
 		<actor_dialog>repair</actor_dialog>
 		<actor_dialog>bar_mechanic_gauss_ammo_dialog</actor_dialog>
+		<actor_dialog>bar_mechanic_gauss_wpn_dialog</actor_dialog>
 		<actor_dialog>bar_mechanic_exo_upgrade_dialogs</actor_dialog>
 	</specific_character>
 	
