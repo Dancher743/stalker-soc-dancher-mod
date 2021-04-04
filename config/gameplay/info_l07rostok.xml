@@ -439,19 +439,6 @@
 	<info_portion id="barman_job_3">
 		<task>bar_barman_job_3</task>
 	</info_portion>
-	
-	<!-- New ways -->
-	<info_portion id="new_ways_as_reward_garbage_agroprom">
-		<action>new_ways.add_ways_garabge_agroprom_back</action>
-	</info_portion>
-	
-	<info_portion id="new_ways_as_reward_garbage_darkvalley">
-		<action>new_ways.add_ways_garabge_darkvalley_back</action>
-	</info_portion>
-	
-	<info_portion id="new_ways_as_reward_yantar_agroprom">
-		<action>new_ways.add_ways_yantar_agroprom_back</action>
-	</info_portion>
 
 	<!-- Sleep -->
 	<info_portion id="barman_sleep_dialog"></info_portion> <!-- Доступен диалог с Барменом -->

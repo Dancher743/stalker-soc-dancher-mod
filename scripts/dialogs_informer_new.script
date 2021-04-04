@@ -1,0 +1,10 @@
+--
+--	Новые фичи инофрматора.
+--	Автор: Dancher
+--
+
+way_cost = 6000
+
+function actor_have_money(actor, informer)
+	return actor:money() >= way_cost
+end

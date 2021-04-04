@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding="windows-1251"?>
+
+<game_information_portions>
+	<info_portion id="new_way_escape_garbage">
+		<action>new_ways.add_ways_escape_garbage_back</action>
+	</info_portion>	
+	
+	<info_portion id="new_way_garbage_agroprom">
+		<action>new_ways.add_ways_garabge_agroprom_back</action>
+	</info_portion>
+	
+	<info_portion id="new_way_garbage_darkvalley">
+		<action>new_ways.add_ways_garabge_darkvalley_back</action>
+	</info_portion>
+	
+	<info_portion id="new_way_yantar_agroprom">
+		<action>new_ways.add_ways_yantar_agroprom_back</action>
+	</info_portion>
+</game_information_portions>

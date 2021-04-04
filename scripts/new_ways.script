@@ -10,39 +10,39 @@ pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
 function add_way_escape_to_darkvalley()
 	sa_spawn.escape_to_darkvalley()
-	xr_effects.start_timer(2000, notificate_escape_to_darkvalley)
+	xr_effects.start_timer(1000, notificate_escape_to_darkvalley)
 end
 
 function add_ways_yantar_agroprom_back()
 	sa_spawn.yantar_to_agroprom()
-	xr_effects.start_timer(2000, notificate_ways_yantar_to_agroprom)
+	xr_effects.start_timer(1000, notificate_ways_yantar_to_agroprom)
 	
 	sa_spawn.agroprom_to_yantar()
-	xr_effects.start_timer(3000, notificate_ways_agroprom_to_yantar)	
+	xr_effects.start_timer(2000, notificate_ways_agroprom_to_yantar)	
 end
 
 function add_ways_garabge_agroprom_back()
 	sa_spawn.garbage_to_agroprom()
-	xr_effects.start_timer(2000, notificate_ways_garbage_to_agroprom)
+	xr_effects.start_timer(1000, notificate_ways_garbage_to_agroprom)
 	
 	sa_spawn.agroprom_to_garbage()
-	xr_effects.start_timer(3000, notificate_ways_agroprom_to_garbage)	
+	xr_effects.start_timer(2000, notificate_ways_agroprom_to_garbage)	
 end
 
 function add_ways_garabge_darkvalley_back()
 	sa_spawn.garbage_to_darkvalley()
-	xr_effects.start_timer(2000, notificate_ways_garbage_to_darkvalley)
+	xr_effects.start_timer(1000, notificate_ways_garbage_to_darkvalley)
 	
 	sa_spawn.darkvalley_to_garbage()
-	xr_effects.start_timer(3000, notificate_ways_darkvalley_to_garbage)	
+	xr_effects.start_timer(2000, notificate_ways_darkvalley_to_garbage)	
 end
 
 function add_ways_escape_garbage_back()
 	sa_spawn.escape_to_garbage()
-	xr_effects.start_timer(2000, notificate_ways_escape_to_garbage)
+	xr_effects.start_timer(1000, notificate_ways_escape_to_garbage)
 	
 	sa_spawn.garbage_to_escape()
-	xr_effects.start_timer(3000, notificate_ways_garbage_to_escape)	
+	xr_effects.start_timer(2000, notificate_ways_garbage_to_escape)	
 end
 
 -------------------------------------

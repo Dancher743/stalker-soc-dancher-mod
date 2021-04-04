@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<string_table>	
+	<string id="bar_informer_ways_dialog_0">
+		<text>Я хочу купить новые пути.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_1">
+		<text>Загружу тебе в КПК местанахождения новых путей по 6000 рублей за каждый. Называй откуда и куда.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_2">
+		<text>Кордон - Свалка.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_3">
+		<text>Свалка - Агропром.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_4">
+		<text>Тёмная долина - Свалка.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_5">
+		<text>Янтарь - Агропром.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_5_1">
+		<text>Я пока не могу поделиться этим путём из-за сильного излучения на Янтаре.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_6">
+		<text>В другой раз.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_7">
+		<text>Готово.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_8">
+		<text>Дело твое. Как решишься приходи, я всегда в баре.</text>
+	</string>
+	<string id="bar_informer_ways_dialog_9">
+		<text>Спасибо за информацию.</text>
+	</string>		
+</string_table>
