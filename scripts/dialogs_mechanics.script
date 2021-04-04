@@ -12,6 +12,14 @@ local gauss_wpn_base = "wpn_gauss"
 local gauss_wpn_upgraded = "wpn_gauss_m1"
 local gauss_wpn_art = "af_dummy_battery"
 
+local exo_upgrade_cost = 40000
+
+------------------------
+-- Gauss gun and ammo --
+------------------------
+
+-- Ammo --
+
 function have_gauss_ammo_fund(actor, mechanic)	
 	return actor:object(gauss_ammo_art) and actor:money() >= gauss_ammo_cost
 end
@@ -22,6 +30,8 @@ function buy_gauss_ammo(actor, mechanic)
 	dialogs.relocate_item_section(actor, gauss_ammo_item, "in")
 end
 
+-- Gun --
+
 function have_gauss_wpn_fund(actor, mechanic)	
 	return actor:object(gauss_wpn_base) and actor:money() >= gauss_wpn_upgrad_cost
 end
@@ -31,4 +41,42 @@ function upgrade_gauss_wpn(actor, mechanic)
 	dialogs.relocate_item_section_with_removing(mechanic, gauss_wpn_art, "out")
 	dialogs.relocate_item_section_with_removing(mechanic, gauss_wpn_base, "out")
 	dialogs.relocate_item_section(actor, gauss_wpn_upgraded, "in")
+end
+
+------------------------
+-- Exo outfit upgrade --
+------------------------
+
+function exchange_exo(actor, npc)
+	dialogs.relocate_money(npc, exo_upgrade_cost, "out")
+	dialogs.relocate_item_section_with_removing(npc, "exo_outfit", "out")
+	dialogs.relocate_item_section(actor, "outfit_exo_s", "in")
+end
+
+function exchange_exo_m1(actor, npc)
+	dialogs.relocate_money(npc, exo_upgrade_cost, "out")
+	dialogs.relocate_item_section_with_removing(npc, "outfit_exo_m1", "out")
+	dialogs.relocate_item_section(actor, "outfit_exo_m1_s", "in")	
+end
+
+
+function check_player_exo(actor, npc)	
+	return check_player(actor, "exo_outfit")
+end
+
+function check_player_exo_m(actor, npc)
+	return check_player(actor, "outfit_exo_m1")
+end
+
+function check_player(actor, item)	
+	local sect = actor:object(item)
+	local good_item_condition = false
+	
+	if sect ~= nil then
+		if sect:condition() == 1 then
+			good_item_condition = true
+		end
+	end
+
+    return actor:money() >= exo_upgrade_cost and good_item_condition
 end

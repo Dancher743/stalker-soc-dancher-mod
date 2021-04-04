@@ -115,7 +115,6 @@
 	</info_portion>		
 
 	<info_portion id="rad_pre_start_monolith_vs_military">
-		<action>outfit_upgrader.notificate_exo_upgrade</action>
 	</info_portion>		
 	
 	<info_portion id="rad_start_monolith_vs_military">

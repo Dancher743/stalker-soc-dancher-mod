@@ -51,15 +51,15 @@
 				<next>5</next>
             </phrase>
 			<phrase id="41">
-				<precondition>outfit_upgrader.check_player_exo</precondition>
+				<precondition>dialogs_mechanics.check_player_exo</precondition>
                 <text>bar_mechanic_exo_sprint_allowed_dialog_4_1</text>
-				<action>outfit_upgrader.exchange_exo</action>
+				<action>dialogs_mechanics.exchange_exo</action>
                 <next>6</next>
             </phrase>
 			<phrase id="42">
-				<precondition>outfit_upgrader.check_player_exo_m</precondition>
+				<precondition>dialogs_mechanics.check_player_exo_m</precondition>
                 <text>bar_mechanic_exo_sprint_allowed_dialog_4_2</text>
-				<action>outfit_upgrader.exchange_exo_m1</action>
+				<action>dialogs_mechanics.exchange_exo_m1</action>
                 <next>6</next>
             </phrase>
 			<phrase id="5">
@@ -123,6 +123,26 @@
             </phrase>
 			<phrase id="4">
                 <text>bar_mechanic_gauss_wpn_dialog_4</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+	
+	<!-- Рассказ о себе механиком в баре -->
+	<dialog id="bar_mechanic_about_dialog">
+		<dont_has_info>bun_antenna_off</dont_has_info>
+		<dont_has_info>mechanic_bar_about_yourself</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>bar_mechanic_about_dialog_0</text>
+				<next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>bar_mechanic_about_dialog_1</text>
+				<give_info>mechanic_bar_about_yourself</give_info>
+				<next>2</next>
+            </phrase>
+			<phrase id="2">
+                <text>bar_mechanic_about_dialog_2</text>
             </phrase>
         </phrase_list>
     </dialog>
