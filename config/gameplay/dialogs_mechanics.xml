@@ -8,8 +8,22 @@
 	<!-- Старторвый диалог механика в баре -->
 		<dialog id="bar_mechanic_dialog_start">
           <phrase_list>
-             <phrase id="0">
+		  	<phrase id="0">
+                <text/>
+				<next>1</next>
+            </phrase>
+			<phrase id="1">
+                <text/>
+				<next>2</next>
+				<next>3</next>
+            </phrase>
+             <phrase id="2">
+				<dont_has_info>bun_antenna_off</dont_has_info>
                 <text>bar_mechanic_dialog_start_0</text>
+             </phrase>
+			 <phrase id="3">
+				<has_info>bun_antenna_off</has_info>
+                <text>bar_mechanic_dialog_start_1</text>
              </phrase>
           </phrase_list>
         </dialog>
@@ -58,7 +72,7 @@
     </dialog>
 	
 	<!-- Патроны к Гаусс-пушке -->
-		<dialog id="bar_mechanic_gauss_ammo_dialog">
+	<dialog id="bar_mechanic_gauss_ammo_dialog">
         <has_info>bun_antenna_off</has_info>
 		<phrase_list>
             <phrase id="0">
@@ -85,8 +99,8 @@
         </phrase_list>
     </dialog>
 	
-		<!-- Апгрейд Гаусс-пушки -->
-		<dialog id="bar_mechanic_gauss_wpn_dialog">
+	<!-- Апгрейд Гаусс-пушки -->
+	<dialog id="bar_mechanic_gauss_wpn_dialog">
         <has_info>bun_antenna_off</has_info>
 		<phrase_list>
             <phrase id="0">

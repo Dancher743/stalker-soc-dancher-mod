@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <string_table>
     <string id="bar_mechanic_exo_sprint_allowed_dialog_0">
-        <text>Cлышал, что ты можешь экзоскелет как-то улучшить.</text>
+        <text>Каким образом ты можешь улучшить экзоскелет?</text>
     </string>
     <string id="bar_mechanic_exo_sprint_allowed_dialog_1">
         <text>После многих попыток, наконец-то, я смогл оснастить экзоскелет гидравлическими усилителями, то есть, иными словами, теперь в экзоскелете можно будет бегать.</text>

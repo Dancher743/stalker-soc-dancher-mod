@@ -53,7 +53,7 @@ end
 
 function show_exo_upgrade_message()
 	local service_text = "Яшка Тягач"
-	local news_text = "%c[255,160,160,160]"..game.translate_string(service_text).."\\n%c[default]Внимание всем! Говорит механик из бара. Доступно крутое улучшение для экзоскелета. Кому интересно, подходите ко мне... с деньгами, естественно. Хех."
+	local news_text = "%c[255,160,160,160]"..game.translate_string(service_text).."\\n%c[default]Внимание всем! Говорит механик из бара. Напоминаю, что у меня есть новые крутые улучшения для вашего снаряжения. Кому интересно, подходите ко мне... с деньгами, естественно. Хех."
 	local task_texture, task_rect = "ui\\ui_iconsTotal", Frect():set(498,47,83,47)	
 	db.actor:give_game_news(news_text, task_texture, task_rect, 3000, 20000)
 	pda_tips:play(db.actor, 0, sound_object.s2d)
