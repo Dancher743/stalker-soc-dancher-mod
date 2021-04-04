@@ -13,7 +13,7 @@ nible_weapons =
 
 actor_arts =
 {
-	"af_dummy_battery",
+	"af_electra_moonlight",
 	"af_dummy_pellicle",
 	"af_dummy_glassbeads",
 	"af_fuzz_kolobok"
