@@ -48,3 +48,15 @@
 	<guider_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1">
 		<texture x="927" y="893" width="19" height="19">ui\ui_common_dmx</texture>
 	</guider_npc_mini_spot>
+	
+	<!-- Информатор -->
+	<informer_npc_mapspot>
+		<level_map spot="informer_npc_spot"	    pointer="quest_pointer"/>
+		<mini_map  spot="informer_npc_mini_spot"	pointer="quest_pointer"/>
+	</informer_npc_mapspot>
+	<informer_npc_spot x="0" y="0" width="4" height="4" alignment="c" scale="1" stretch="1">
+		<texture>ui_mapQuest_item</texture>
+	</informer_npc_spot>
+	<informer_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1">
+		<texture>ui_sm_mapQuest_item</texture>
+	</informer_npc_mini_spot>
