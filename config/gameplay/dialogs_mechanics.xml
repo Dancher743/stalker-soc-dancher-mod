@@ -3,7 +3,9 @@
 <!-- Диалоги механиков -->
 <game_dialogs>		
 	
-	<!-- Старторвый диалог проводника в баре -->
+	<!-- Диалоги механика в баре -->
+	
+	<!-- Старторвый диалог механика в баре -->
 		<dialog id="bar_mechanic_dialog_start">
           <phrase_list>
              <phrase id="0">
@@ -11,8 +13,7 @@
              </phrase>
           </phrase_list>
         </dialog>
-		
-	<!-- Диалог проводника в баре -->
+	
 	<!-- Апгрейд экзоскелета -->
 	<dialog id="bar_mechanic_exo_upgrade_dialogs">
         <has_info>bun_antenna_off</has_info>
@@ -52,6 +53,34 @@
             </phrase>
 			<phrase id="6">
                 <text>bar_mechanic_exo_sprint_allowed_dialog_6</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+	
+	<!-- Патроны к Гаусс-пушке -->
+		<dialog id="bar_mechanic_gauss_ammo_dialog">
+        <has_info>bun_antenna_off</has_info>
+		<phrase_list>
+            <phrase id="0">
+                <text>bar_mechanic_gauss_ammo_dialog_0</text>
+                <next>1</next>
+            </phrase>
+			<phrase id="1">
+                <text>bar_mechanic_gauss_ammo_dialog_1</text>
+                <next>2</next>
+				<next>3</next>
+            </phrase>
+			<phrase id="2">
+				<precondition>dialogs_mechanics.have_gauss_ammo_fund</precondition>
+                <text>bar_mechanic_gauss_ammo_dialog_2</text>
+				<action>dialogs_mechanics.buy_gauss_ammo</action>
+                <next>4</next>
+            </phrase>
+			<phrase id="3">
+                <text>bar_mechanic_gauss_ammo_dialog_3</text>
+            </phrase>
+			<phrase id="4">
+                <text>bar_mechanic_gauss_ammo_dialog_4</text>
             </phrase>
         </phrase_list>
     </dialog>

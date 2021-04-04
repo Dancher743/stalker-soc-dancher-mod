@@ -5,8 +5,19 @@
 		<text>Привет. Я здешний механик. Что интересует?</text>
 	</string>
 	
-	<string id="bar_mechanic_dialog_0">
-		<text>Улучши моё оружие.</text>
+	<string id="bar_mechanic_gauss_ammo_dialog_0">
+		<text>Боеприпасы можешь сделать?</text>
 	</string>
-	
+	<string id="bar_mechanic_gauss_ammo_dialog_1">
+		<text>Могу сварганить боеприпасов к Гаусс-пушке. Мне нужен один артефакт «Вспышка» и 5000 рублей за работу. В итоге выйдет одна кассета.</text>
+	</string>
+	<string id="bar_mechanic_gauss_ammo_dialog_2">
+		<text>Держи.</text>
+	</string>
+	<string id="bar_mechanic_gauss_ammo_dialog_3">
+		<text>В другой раз.</text>
+	</string>
+	<string id="bar_mechanic_gauss_ammo_dialog_4">
+		<text>Готово! Забирай.</text>
+	</string>
 </string_table>
