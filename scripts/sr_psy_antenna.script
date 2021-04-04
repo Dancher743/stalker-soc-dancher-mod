@@ -68,7 +68,7 @@ function PsyAntenna:update_psy_hit(dt)
 --		printf("HIT: power = %s", tostring(power))
 		if power > 0.01 then
 			local psy_hit 				= hit()
-			psy_hit.power 				= 3 * power
+			psy_hit.power 				= power
 			psy_hit.direction 			= vector():set( 0, 0, 0 )
 			psy_hit.impulse 			= 0
 			psy_hit.draftsman 			= db.actor
