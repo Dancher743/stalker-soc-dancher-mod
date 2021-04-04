@@ -18,7 +18,7 @@ end
 
 function buy_gauss_ammo(actor, mechanic)	
 	dialogs.relocate_money(mechanic, gauss_ammo_cost, "out")
-	dialogs.relocate_item_section(mechanic, gauss_ammo_art, "out")
+	dialogs.relocate_item_section_with_removing(mechanic, gauss_ammo_art, "out")
 	dialogs.relocate_item_section(actor, gauss_ammo_item, "in")
 end
 
@@ -28,7 +28,7 @@ end
 
 function upgrade_gauss_wpn(actor, mechanic)
 	dialogs.relocate_money(mechanic, gauss_wpn_upgrad_cost, "out")
-	dialogs.relocate_item_section(mechanic, gauss_wpn_art, "out")
-	dialogs.relocate_item_section(mechanic, gauss_wpn_base, "out")
+	dialogs.relocate_item_section_with_removing(mechanic, gauss_wpn_art, "out")
+	dialogs.relocate_item_section_with_removing(mechanic, gauss_wpn_base, "out")
 	dialogs.relocate_item_section(actor, gauss_wpn_upgraded, "in")
 end

@@ -123,6 +123,31 @@ function relocate_item_section(victim, section, type)
 	end
 end
 
+-- Перекинуть предмет с удалением, т.е. без спавна предмета в рюкзаке victim.
+function relocate_item_section_with_removing(victim, section, type)
+	if db.actor and victim then
+		if type == "in" then
+
+			--' Трансферить нужно только квестовые предметы.
+			if quest_section[section] == true and
+			   victim:object(section) ~= nil 
+			then
+				victim:transfer_item(victim:object(section), db.actor)
+			else
+				alife():create(section,	
+					    db.actor:position(),
+						db.actor:level_vertex_id(),	
+						db.actor:game_vertex_id(),
+						db.actor:id())
+			end
+		elseif type == "out" then
+			local item = db.actor:object(section)
+			alife():release(alife():object(item:id()), true)
+		end
+		news_manager.relocate_item(db.actor, type, section)
+	end
+end
+
 -- Перекинуть N предметов НПС
 -- Взято из AMK мода
 function relocate_n_items_section(victim, section, type, n)

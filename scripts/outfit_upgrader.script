@@ -11,22 +11,16 @@ pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
 -- Функции обмена --
 
-function exchange_exo(npc, actor)
-	pay(actor)
-	dialogs.relocate_item_section(actor, "exo_outfit", "out")
+function exchange_exo(actor, npc)
+	dialogs.relocate_money(npc, exo_upgrade_cost, "out")
+	dialogs.relocate_item_section_with_removing(npc, "exo_outfit", "out")
 	dialogs.relocate_item_section(actor, "outfit_exo_s", "in")
 end
 
-function exchange_exo_m1(npc, actor)
-	pay(actor)
-	dialogs.relocate_item_section(actor, "outfit_exo_m1", "out")
+function exchange_exo_m1(actor, npc)
+	dialogs.relocate_money(npc, exo_upgrade_cost, "out")
+	dialogs.relocate_item_section_with_removing(npc, "outfit_exo_m1", "out")
 	dialogs.relocate_item_section(actor, "outfit_exo_m1_s", "in")	
-end
-
-function pay(actor)
-	actor:give_money(exo_upgrade_cost * -1)
-	game_stats.money_quest_update(exo_upgrade_cost * -1)
-	dialogs.relocate_money(actor, exo_upgrade_cost, "out")
 end
 
 
