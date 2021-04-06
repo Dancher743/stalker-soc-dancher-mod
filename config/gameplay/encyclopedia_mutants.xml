@@ -133,5 +133,14 @@
 
 
 
+    <!-------------------------------- Rat ----------------------------->
+
+    <article id="mutant_rat_general" name="Rat" group="Mutants">
+        <texture>ui_npc_monster_rat</texture>
+        <text>enc_mutant_rat_general</text>
+    </article>
+	
+	
+	
 </encyclopedia>
 

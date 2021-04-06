@@ -24,7 +24,7 @@ local simMaxCount = {
   bandit_novice     = 100,     bandit_regular         = 100,    bandit_veteran         = 100,     bandit_master     = 100,
   zombied_novice     = 100,     zombied_regular     = 100,    zombied_veteran     = 100,     zombied_master     = 100,
 	
-	rat_weak = 0, 
+	rat_weak = 5, 
 	tushkano_weak = 150,
 	flesh_weak = 14,		flesh_normal = 38,		flesh_strong = 22,
 	boar_weak = 52, 		boar_normal = 38,		boar_strong = 27,
@@ -478,6 +478,10 @@ function se_respawn:create(prob)
 						or 	spawn_section == "zombie_normal"
 						or 	spawn_section == "zombie_trup"
 						or 	spawn_section == "zombie_trup2"
+						or 	spawn_section == "m_rat_e"
+						or 	spawn_section == "rat_1"
+						or 	spawn_section == "rat_2"
+						or 	spawn_section == "rat_3"
                         or  spawn_section == "psy_dog_radar"
                         or  spawn_section == "yan_ecolog_respawn_1"
                         or  spawn_section == "stalker" ) then

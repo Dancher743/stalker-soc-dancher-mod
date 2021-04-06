@@ -45,7 +45,7 @@ Using mods:
 37. HD Textures (oleg199966)
 38. Trees from Builds Graphics 3.0 (Валерий)
 39. Access to Freedom's arsenal (OGSM)   
-40. Build monsters (Монолитовец Харон, AMK Mod)
+40. Build monsters (Монолитовец Харон, AMK Mod, sinkent, Shadows & Co)
 41. AI Pack (Rulix aka Bak)
 42. Dynamic Weather (MikeRussia)   
 43. NPC mapspots from DMX Mod (Shadows & Co)    

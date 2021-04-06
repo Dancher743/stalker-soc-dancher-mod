@@ -188,3 +188,6 @@
 	<string id="zombied_veteran">
 		<text>зомбированный, ветеран</text>
 	</string>
+	<string id="rat_weak">
+		<text>крыса</text>
+	</string>
