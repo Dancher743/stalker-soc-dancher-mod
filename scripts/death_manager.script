@@ -125,7 +125,7 @@ function drop_manager:create_release_item()
 	--// xr_companion
 	if xr_companion.is_companion(self.npc:id()) then
 		self.npc:iterate_inventory(companion_item, self.npc)
-		return
+		--return
 	end	
 	--// xr_companion
 
@@ -241,6 +241,37 @@ function keep_item(npc, item)
 	then
 		alife():release(alife():object(item:id()), true)
 	end
+end
+
+--' Удаление предметов из мода "Компаньоны".
+--' Функция вызывается для каждого предмета, если вернет false то предмет удалится.
+function companion_item(npc, item)
+    local section = item:section()
+	
+	--[[
+    if section == "bolt" then
+        return false
+    end
+	]]--
+
+	if string.find(section,"gl_test_shell") 
+	or string.find(section,"gl_fake_missile") then
+		alife():release(alife():object(item:id()), true)
+		return false	
+	end	
+	
+	--[[
+	if string.find(section,"wpn_binoc") 
+	or string.find(section,"binocular") 
+	or string.find(section,"hand_radio") 
+	or string.find(section,"device_pda") 
+	or string.find(section,"guitar") 
+	or string.find(section,"yad") 
+	or string.find(section,"device_torch") then
+		alife():release(alife():object(item:id()), true)
+		return false	
+	end
+	]]--
 end
 
 --' Функция спавнит необходимое число предметов

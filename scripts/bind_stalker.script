@@ -263,20 +263,22 @@ function actor_binder:map_location_added_callback(spot_type_str, object_id)
 	--'news_manager.send_task(db.actor, "new")
 end
 ----------------------------------------------------------------------------------------------------------------------
-local update_cnt = 0
+--local update_cnt = 0
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:update(delta)
 	object_binder.update(self, delta)
 
 	-- рация для ГГ
+	--[[
 	if update_cnt <= 50 then
 		update_cnt = update_cnt + 1
 	end
 	if update_cnt == 50 then
-		if not db.actor:object("hand_radio_f") then
-			xr_companion.spawn_item_in_inv("hand_radio_f")
+		if not db.actor:object("hand_radio") then
+			xr_companion.spawn_item_in_inv("hand_radio")
 		end	
 	end
+	]]--
 	-- рация для ГГ	
 
 	-- DEBUG slowdown

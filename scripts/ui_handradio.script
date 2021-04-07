@@ -1,7 +1,7 @@
 --/ ui_handradio.script /--
 --/ Hand radio module /--
 --/ OGS Evolution Team 2009-2010 /--
---/ Модуль использования рации - hand_radio_f /--
+--/ Модуль использования рации - hand_radio /--
 
 -----------------------------------
 -- Кнопки
@@ -149,7 +149,7 @@ function handradio:listen()
 		snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
 	end
 
-	xr_companion.spawn_item_in_inv("hand_radio_f")
+	xr_companion.spawn_item_in_inv("hand_radio")
 	self:GetHolder():start_stop_menu (self,true)
 		
 end
@@ -164,7 +164,7 @@ function handradio:call_friend()
 		end
 	end
 	
-	xr_companion.spawn_item_in_inv("hand_radio_f")	
+	xr_companion.spawn_item_in_inv("hand_radio")	
 	self:GetHolder():start_stop_menu (self,true)
 		
 end
@@ -179,7 +179,7 @@ function handradio:stay_friend()
 		end
 	end
 	
-	xr_companion.spawn_item_in_inv("hand_radio_f")	
+	xr_companion.spawn_item_in_inv("hand_radio")	
 	self:GetHolder():start_stop_menu (self,true)
 	
 end
@@ -194,14 +194,14 @@ function handradio:hide_friend()
 		end
 	end
 	
-	xr_companion.spawn_item_in_inv("hand_radio_f")	
+	xr_companion.spawn_item_in_inv("hand_radio")	
 	self:GetHolder():start_stop_menu (self,true)
 	
 end
 
 function handradio:on_quit()
 
-	xr_companion.spawn_item_in_inv("hand_radio_f")
+	xr_companion.spawn_item_in_inv("hand_radio")
 	self:GetHolder():start_stop_menu (self,true)
 	
 end

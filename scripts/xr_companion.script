@@ -78,6 +78,9 @@ local assist_point = nil
 being_attacked = false
 actor_attacked = false
 
+-- Звуки нотификации
+pda_sos = xr_sound.get_safe_sound_object([[device\pda\pda_sos]])
+
 -----------------------------------------------------
 -- Функции сохранения и выгрузки из кастомдаты
 -----------------------------------------------------
@@ -94,7 +97,7 @@ actor_attacked = false
 
 -- Коллбэк на использование предмета в инвентаре актора
 function use_inventory_item(section)
-	if section == "hand_radio_f" then
+	if section == "hand_radio" then
 		ui_handradio.open_radio_dialog()
 	end
 end
@@ -433,11 +436,17 @@ function companion_death(npc)
 		dead_friends = dead_friends + 1
 		save_variable("dead_fr", dead_friends)		
 
+		local title = "%c[255,160,160,160]Сообщение:"
+		local text = ""
+
 		if dead_friends < 4 then
-			db.actor:give_game_news("Ваш напарник "..npc:character_name() .. " погиб!", "ui\\ui_iconsTotal", Frect():set(0,235,83,47), 0, 15000)
+			text = title.."\\n%c[default]Ваш напарник "..npc:character_name().." погиб."		
 		else
-			db.actor:give_game_news("Ваш напарник "..npc:character_name() .. " погиб в очередной раз! Вы приобрели дурную славу среди сталкеров!", "ui\\ui_iconsTotal", Frect():set(0,235,83,47), 0, 15000)
-		end	
+			text = title.."\\n%c[default]Ваш напарник "..npc:character_name().." погиб. Вы приобрели дурную славу среди сталкеров."
+		end
+
+		pda_sos:play(db.actor, 0, sound_object.s2d)
+		db.actor:give_game_news(text, "ui\\ui_iconsTotal", Frect():set(0,235,83,47), 0, 15000)
 	end
 end
 

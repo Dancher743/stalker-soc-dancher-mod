@@ -126,4 +126,10 @@
 	<string id="yan_good_psy_helmet_name">
 		<text>Настроенный пси-шлем</text>
 	</string>
+	<string id="hand_radio_desc">
+		<text>Позволяет общаться с другими сталкерами в пределах досягаемости.</text>
+	</string>
+	<string id="hand_radio_name">
+		<text>Рация</text>
+	</string>
 </string_table>

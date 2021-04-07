@@ -348,29 +348,17 @@ function check_following(npc, actor)
 ------------------------------------------
 	not_follow_type = 0
 	
-	local npc_rank_level = 0
-	local actor_rank_level = 0
+	local npc_rank_level = npc:character_rank()
+	local actor_rank_level = db.actor:character_rank()
 
 	local st = db.storage[npc:id()]
 	local actor_comm = db.actor:character_community()
 	actor_comm = xr_companion.community_by_actor(actor_comm)
 	
 	local npc_comm = npc:character_community()
-	local npc_rank = ranks.get_obj_rank_name(npc)
-	local actor_rank = db.actor:character_rank()
 	local name = npc:name()
 	local profile = npc:profile_name()
 	local dead_friends = load_variable("dead_fr", 0)
-	
-	if npc_rank == "novice" then npc_rank_level = 1
-	elseif npc_rank == "experienced" then npc_rank_level = 2
-	elseif npc_rank == "veteran" then npc_rank_level = 3
-	elseif npc_rank == "master" then npc_rank_level = 4 end
-
-	if actor_rank < 300 then actor_rank_level = 1
-	elseif actor_rank >= 300 and actor_rank < 600 then actor_rank_level = 2
-	elseif actor_rank >= 600 and actor_rank < 900 then actor_rank_level = 3
-	elseif actor_rank >= 900 then actor_rank_level = 4 end	
 	
 	if not st 
 	or (is_quest_npc(npc) and not (string.find(npc:name(), "esc_wolf") and level.name() == "l07_military"))
