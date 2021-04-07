@@ -169,7 +169,13 @@ function configure_schemes(npc, ini, ini_filename, stype, section_logic, gulag_n
 	   npc:clsid() == clsid.script_trader
 	then
 		local trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_generic.ltx")
-		trade_manager.trade_init(npc, trade_ini)
+		
+		if xr_companion.is_companion(npc_id) then
+			trade_manager.trade_init(npc, "misc\\trade_obmen.ltx")
+		else
+			trade_manager.trade_init(npc, trade_ini)
+		end		
+
 	end
 	
 	st.active_section = nil
@@ -226,6 +232,7 @@ function disable_generic_schemes(npc, stype)
 		xr_meet.disable_scheme(npc, "actor_dialogs")
 		xr_heli_hunter.disable_scheme(npc, "heli_hunter")
 		xr_combat_ignore.disable_scheme(npc, "combat_ignore")
+		xr_companion.disable_scheme(npc, "companion")
 	elseif stype == modules.stype_mobile then
 		mob_combat.disable_scheme(npc, "mob_combat")
 		mob_trade.disable_scheme(npc, "mob_trade")
@@ -248,6 +255,8 @@ function enable_generic_schemes(ini, npc, stype, section)
 
 		--xr_reactions.set_reactions(npc, ini, "reactions", section)
 		xr_danger.set_danger(npc, ini, "danger", "danger")
+
+		xr_companion.enable_scheme(npc, ini, "companion", section)
 
 		local combat_section = utils.cfg_get_string(ini, section, "on_combat", npc, false, "")
 		xr_combat.set_combat_checker(npc, ini, "combat", combat_section)
@@ -1187,6 +1196,7 @@ function pstor_is_registered_type(tv)
 end
 
 function pstor_store(obj, varname, val)
+	if not obj then return end
 	local npc_id = obj:id()
 	
 	if db.storage[npc_id].pstor == nil then
@@ -1194,12 +1204,14 @@ function pstor_store(obj, varname, val)
 	end
 	local tv = type(val)
 	if not pstor_is_registered_type(tv) then
-		abort("xr_logic: pstor_store: not registered type '%s' encountered", tv)
-	end
-	db.storage[npc_id].pstor[varname] = val
+		-- logf("xr_logic: pstor_store: not registered type encountered - write in pstor_store cancalled")
+	else
+		db.storage[npc_id].pstor[varname] = val
+	end	
 end
 
 function pstor_retrieve(obj, varname, defval)
+	if not obj then return defval end
 	local npc_id = obj:id()
 	
 	if db.storage[npc_id].pstor ~= nil then
@@ -1257,6 +1269,11 @@ function pstor_load_all(obj, reader)
 	end
 	local ctr = reader:r_u32()
 
+	if tonumber(ctr) > 20 and tostring(obj:name()) ~= "single_player" and npc_id ~= db.actor:id() then 
+		-- logf("намюпсфем назейр я онбпефдеммшл PSTOR: "..tostring(obj:name()).." асдер опнхгбедемю оношрйю бняярюмнбкемхъ")
+		ctr = 20 
+	end
+
 	for i = 1, ctr do
 		local varname = reader:r_stringZ()
 		local tn = reader:r_u8()
@@ -1267,7 +1284,7 @@ function pstor_load_all(obj, reader)
 		elseif tn == pstor_boolean then
 			pstor[varname] = reader:r_bool()
 		else
-			abort("xr_logic: pstor_load_all: not registered type N %d encountered", tn)
+			pstor[varname] = nil
 		end
 		printf("_bp: pstor_load_all: loaded [%s]='%s'", varname, utils.to_str(pstor[varname]))
 	end

@@ -84,7 +84,11 @@ function generic_object_binder:update(delta)
 				end
 			end
 		end
-
+	
+	--' Апдейт напарника - если у какого-то непися главный враг - главгерой,
+	--' то напарник воспринимает это как атаку на самого себя
+	xr_companion.process_enemy(self.object)
+	
 	-- Апдейт торговли
 	if self.object:clsid() == clsid.script_trader then
 		trade_manager.update(self.object)

@@ -108,6 +108,13 @@ function motivator_binder:net_spawn(sobject)
       manager:add_evaluator(ogsm_hideout.property_hideout_lost, property_evaluator_const(false))
       manager:add_evaluator(ogsm_hideout.property_inhide, property_evaluator_const(false))
   end
+  
+  	if xr_companion then
+		local manager = self.object:motivation_action_manager()
+		manager:add_evaluator(xr_companion.property_need_companion, property_evaluator_const(false))
+		manager:add_evaluator(xr_companion.property_need_run, property_evaluator_const(false))
+
+	end
 	
     --' загрузка озвучки
     --memusage.collect_info(self.object, "before_soundmgr")
@@ -115,7 +122,12 @@ function motivator_binder:net_spawn(sobject)
     --memusage.collect_info(self.object, "after_soundmgr_netspawn_end")
 
 	xr_gulag.setup_gulag_and_logic_on_spawn( self.object, self.st, sobject, modules.stype_stalker, self.loaded )
-
+	
+	--// xr_companion
+	if xr_companion.is_companion(self.object:id()) then
+		sobject:smart_terrain_task_deactivate()
+	end	
+	--// xr_companion
 	return true
 end
 
@@ -146,6 +158,12 @@ function motivator_binder:clear_callbacks()
 end
 
 function motivator_binder:hit_callback(obj, amount, local_direction, who, bone_index)
+	--// xr_companion
+	if xr_companion.is_companion(self.object:id()) and amount < 0.3 then
+		xr_sound.set_sound(self.object, nil)
+		stop_play_sound(self.object)
+	end
+
 	-- FIXME: коллбеки неплохо было бы регистрировать в общем storage, а не посхемно...
 	-- просто всегда ставить их при включении схемы и снимать при отключении.
 	if self.st.active_section then
@@ -164,6 +182,11 @@ function motivator_binder:hit_callback(obj, amount, local_direction, who, bone_i
 		printf("HIT_CALLBACK: %s amount=%s bone=%s", obj:name(), amount, tostring(bone_index))
 		sr_territory.issue_event(self.object, "hit_callback", obj, amount, local_direction, who, bone_index)
 		xr_wounded.hit_callback(self.object:id())
+	end
+	
+	--// xr_companion
+	if xr_companion.is_companion(self.object:id()) then
+		xr_companion.we_are_hit(self.object, who, true)
 	end
 end
 
@@ -213,6 +236,8 @@ function motivator_binder:death_callback(victim, who)
 		actor_stats.remove_from_ranking(self.object:id())
 	end
 
+	--// xr_companion
+	xr_companion.companion_death(self.object)
 end
 
 function motivator_binder:use_callback(obj, who)
@@ -258,6 +283,10 @@ function motivator_binder:update(delta)
 			self.st.state_mgr = nil
 		end
 	end
+	
+	--' Апдейт напарника - если у какого-то непися главный враг - главгерой,
+	--' то напарник воспринимает это как атаку на самого себя
+	xr_companion.process_enemy(self.object)
 	
 	--' Апдейт саундменеджера
 	if self.object:alive() then
@@ -434,6 +463,8 @@ function addCommonPrecondition(action)
 	action:add_precondition (world_property(xr_evaluators_id.sidor_wounded_base + 0,  false))
 	action:add_precondition (world_property(xr_evaluators_id.chugai_heli_hunter_base, false))
 	action:add_precondition (world_property(xr_evaluators_id.abuse_base, false))
+	action:add_precondition (world_property(xr_companion.property_need_companion, false))
+	action:add_precondition (world_property(xr_companion.property_need_run, false))
 	
 	if watcher_act then
 		action:add_precondition(world_property(watcher_act.evid_see_stuff, false))

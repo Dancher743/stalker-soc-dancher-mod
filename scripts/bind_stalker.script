@@ -61,6 +61,15 @@ function actor_binder:net_spawn(data)
 	--' Загружаем настройки дропа
 	death_manager.init_drop_settings()
 	
+	--// xr_companion
+	local actor_comm = db.actor:character_community()
+	for k, v in pairs(xr_companion.companions) do
+		if v == actor_comm then
+			xr_companion.companions[k] = "companion"
+		end
+	end
+	--// xr_companion
+	
 -------- пауза при загрузке ---------------
 	ui_main_menu.start()
 -------------------------------------------
@@ -137,6 +146,10 @@ function actor_binder:use_inv_item(obj, who)
 	if obj:section() == "pda_npc" then
 		pda_hack.use_pda(obj)
 	end
+	
+	--// xr_companion
+	xr_companion.use_inventory_item(obj:section())
+	--// xr_companion
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:take_item_from_box(box, item)
@@ -250,8 +263,21 @@ function actor_binder:map_location_added_callback(spot_type_str, object_id)
 	--'news_manager.send_task(db.actor, "new")
 end
 ----------------------------------------------------------------------------------------------------------------------
+local update_cnt = 0
+----------------------------------------------------------------------------------------------------------------------
 function actor_binder:update(delta)
 	object_binder.update(self, delta)
+
+	-- рация для ГГ
+	if update_cnt <= 50 then
+		update_cnt = update_cnt + 1
+	end
+	if update_cnt == 50 then
+		if not db.actor:object("hand_radio_f") then
+			xr_companion.spawn_item_in_inv("hand_radio_f")
+		end	
+	end
+	-- рация для ГГ	
 
 	-- DEBUG slowdown
 --	slowdown.update()
@@ -390,7 +416,11 @@ function actor_binder:update(delta)
 		level_tasks.add_lchanger_location()
 
 		self.bCheckStart = false		
-	end		
+	end
+	
+	--// xr_companion
+	xr_companion.reset_enemy_by_time()
+	
 	if rx_ai then rx_ai.actor_update() end
 	--art_mgr.update()
 

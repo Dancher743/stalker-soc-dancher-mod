@@ -461,6 +461,16 @@ function se_smart_terrain:smart_terrain_accepts_obj( obj, obj_agreement )
 --'		if obj:name() == "esc_wolf" then
 --'			printf( "community=%s rank=%d reputation=%d", community, obj:rank(), obj:reputation() )
 --'		end
+
+		if xr_companion.is_companion(obj.id) then
+			if not self:check_preset( community, obj:rank(), self.gparams.preset_name ) then
+				return false
+			end
+		else
+			if obj_agreement ~= agreed_exclusive and not self:check_preset( community, obj:rank(), self.gparams.preset_name ) then
+				return false
+			end
+		end
 	
 		if not self:check_preset( community, obj:rank(), self.gparams.preset_name ) then
 			return false
@@ -520,6 +530,14 @@ function se_smart_terrain:obj_accepts_smart_terrain( obj )
 			end
 		end
 
+		--' Если объекту запрещено переходить в online и эксклюзивные
+		--' смарты недоступны, то не пускаем его никуда. Это исключает
+		--' переброску отключенных до (или после) определённого события
+		--' людей и мутантов в другой неэксклюзивный смарт.
+		if obj:can_switch_online() == false then
+			return disagreed
+		end
+		
 		--' Надо убедиться что эксклюзивный смарттеррейн доступен, прежде чем запрещать все остальные
 --'		if any_exclusive then
 --'			if obj:name() == "gar_bandit_agr_10" then
@@ -536,6 +554,8 @@ function se_smart_terrain:obj_accepts_smart_terrain( obj )
 	return agreed
 end
 
+local team_smtr_assigned = {}
+
 -- может ли объект быть добавлен в smart terrain?
 -- вызывается симулятором при поиске задания для объекта/группы.
 -- если объект - группа, то вернёт true только если все объекты в группе вернут true
@@ -548,6 +568,38 @@ function se_smart_terrain:enabled(obj)
 	--------
 	self:register_if_needed()
 	self:initialize_if_needed()
+	
+	--// xr_companion
+	local st = db.storage[obj.id]
+	if st then
+		st = db.storage[obj.id].companion
+	end
+	
+	if st and xr_companion.is_companion(obj.id) then
+		local npc_level = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id())
+		if npc_level == level.name() 
+		or st.behavior == xr_companion.beh_wait_simple 
+		or st.behavior == xr_companion.beh_wait_low_aggr 
+		or st.behavior == xr_companion.beh_wait_ignore 
+		or st.behavior == xr_companion.beh_hide_simple 
+		or st.behavior == xr_companion.beh_hide_low_aggr 
+		or st.behavior == xr_companion.beh_hide_ignore 	
+		then
+			team_smtr_assigned[obj.id] = nil
+			return false
+		else
+			if team_smtr_assigned[obj.id] == self.id then
+				return true
+			elseif team_smtr_assigned[obj.id] then
+				return false
+			else
+				-- mylog("assigning ".. self:name() .. " to " .. obj:name() .. " on " .. npc_level)
+				team_smtr_assigned[obj.id] = self.id
+				return true
+			end
+		end
+	end	
+	--// xr_companion
 
 	if self:is_gulag_available() and not self.population_locked then
 		local b = self:obj_accepts_smart_terrain( obj )
@@ -584,6 +636,10 @@ function se_smart_terrain:suitable( obj )
 --'	end
 
 	local v = 0
+	
+	if xr_companion.is_companion(obj.id) and team_smtr_assigned[obj.id] == self.id then
+		return 100000
+	end
 	
 	--' Повысить подходящесть эксклюзивного смарттеррейна
 	if self:obj_accepts_smart_terrain(obj) == agreed_exclusive then
@@ -748,6 +804,14 @@ end
 
 -- выдать объекту задание.
 function se_smart_terrain:task( obj )
+	--// xr_companion
+	if xr_companion.is_companion(obj.id) then
+		xr_companion.update_level_names(obj.id)
+		local dest = xr_companion.get_offline_dest()
+		return CALifeSmartTerrainTask(dest)
+	end
+	--// xr_companion
+
 	local path_name = self.gulag:get_obj_job_path_name( obj.id )
 	if not path_name then
 		printf("[smart_terrain %s] task: obj=%s job_path=nil, CLEARING", self:name(), obj:name() )
@@ -1128,18 +1192,37 @@ function se_smart_terrain:update()
 	end
 end
 
+function prot_smt_td(obj)
+	if IsStalker(obj) or IsMonster(obj) then
+		return obj:smart_terrain_id()
+	else	
+		return 65535
+	end
+end
+
 --------------------
 function on_death( obj_id )
 --	printf( "on_death obj_id=%d", obj_id )
-
 	local sim = alife()
-
-	if sim then
-		local obj     = sim:object( obj_id )
-		local strn_id = obj:smart_terrain_id()
-
-		if strn_id ~= 65535 then
-			sim:object( strn_id ).gulag:clear_dead(obj_id)
+ 	if sim then
+		local obj = sim:object( obj_id )
+		if (obj and obj.smart_terrain_id) then
+			local strn_id = 65535
+			--- local result, smt_id = pcall(prot_smt_td,obj)
+			local t = nil
+			if IsStalker(obj) then t = m_net_utils.get_stalker_data(obj) elseif IsMonster(obj) then t = m_net_utils.get_monster_data(obj) end
+			-- t.smtrid
+			-- print_table_inlog(t)
+			if t.smtrid then
+				strn_id = tonumber(t.smtrid)
+			end
+			-- -- amk.logf("DEATH 5D "..tostring(strn_id))
+			if strn_id ~= 65535 then
+				local gulag = sim:object(strn_id)
+				if gulag and gulag.gulag then
+					sim:object(strn_id).gulag:clear_dead(obj_id)
+				end
+			end
 		end
 	end
 end

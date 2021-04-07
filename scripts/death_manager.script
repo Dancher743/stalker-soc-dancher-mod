@@ -121,6 +121,13 @@ function drop_manager:create_release_item()
     return
   end
   se_obj.death_droped = true
+  
+	--// xr_companion
+	if xr_companion.is_companion(self.npc:id()) then
+		self.npc:iterate_inventory(companion_item, self.npc)
+		return
+	end	
+	--// xr_companion
 
     --' Запускаем итератор на удаление предметов
     self.npc:iterate_inventory(keep_item, self.npc)

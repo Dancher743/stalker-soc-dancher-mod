@@ -504,5 +504,27 @@
 		<texture_below r="0" g="255" b="0">ui_beltbut_granade_t</texture_below>
 		<texture_above r="0" g="255" b="0">ui_beltbut_granade_t</texture_above>
 	</grenade_mini_spot>
+	
+	<map_companion>
+		<level_map spot="map_companion_spot"/>
+		<mini_map  spot="map_companion_spot_mini"/>
+	</map_companion>
+	<map_companion_spot  x="0" y="0" width="12" height="12" alignment="c" stretch="0" scale="0">
+		<texture x="787" y="997" width="26" height="26">ui\ui_common_companions_mod</texture>
+	</map_companion_spot>
+	<map_companion_spot_mini  x="0" y="0" width="12" height="12" alignment="c" stretch="1" scale="1">
+		<texture x="787" y="997" width="26" height="26">ui\ui_common_companions_mod</texture>
+	</map_companion_spot_mini>
+
+	<alife_presentation_companion>
+		<level_map spot="map_companion_spot"/>
+		<mini_map  spot="map_companion_spot_mini"/>
+	</alife_presentation_companion>
+	<alife_presentation_companion_spot  x="0" y="0" width="12" height="12" alignment="c" stretch="0" scale="0">
+		<texture x="787" y="997" width="26" height="26">ui\ui_common_companions_mod</texture>
+	</alife_presentation_companion_spot>
+	<alife_presentation_companion_spot_mini  x="0" y="0" width="12" height="12" alignment="c" stretch="1" scale="1">
+		<texture x="787" y="997" width="26" height="26">ui\ui_common_companions_mod</texture>
+	</alife_presentation_companion_spot_mini>
 
 </map_spots>

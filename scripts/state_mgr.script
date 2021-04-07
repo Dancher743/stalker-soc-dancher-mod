@@ -36,6 +36,7 @@ function evaluator_state_mgr_idle:evaluate()
 	if self.st.combat == true then return true end
 
 	return false
+
 end
 
 class "evaluator_state_mgr_idle_off" (property_evaluator)
@@ -55,7 +56,6 @@ function evaluator_state_mgr_idle_off:evaluate()
 --	amk.mylog("Checking idleoff for "..self.object:name().." = "..tostring(t))
 	return t
 end
-
 --' ћы уже в безраличном состо€нии idle или нет ()учет с проверкой alife
 class "evaluator_state_mgr_idle_alife" (property_evaluator)
 function evaluator_state_mgr_idle_alife:__init(name, state_manager) super (nil, name)
@@ -166,7 +166,6 @@ end
 
 function act_state_mgr_to_off:execute()
 	action_base.execute(self)
---	self.st:set_state("idle", nil, nil, nil, {animation = true})
 end
 
 function act_state_mgr_to_off:finalize()
@@ -222,7 +221,7 @@ function eva_state_mgr_locked:evaluate()
 	--printf("animation locked: %s", utils.to_str(self.st.planner:evaluator(self.st.properties["animation_locked"]):evaluate()))
 
 	--printf("combat[%s] alife[%s]", tostring(self.st.combat), tostring(self.st.alife))
-	if self.st.combat or self.st.alife then -- or self.st.override then 
+	if self.st.combat or self.st.alife then 
 		return true 
 	end
 
@@ -359,6 +358,7 @@ function state_manager:set_state(state_name, callback, timeout, target, emerg, s
 		-- abort("ERROR: ILLEGAL SET STATE CALLED!!! %s fo %s", tostring(state_name), self.npc:name())
 		state_name="idle"
 	end
+	
 	if target then
 		if target.look_position then
 			printf("look position: %s %s %s", target.look_position.x,
@@ -415,17 +415,17 @@ function state_manager:set_state(state_name, callback, timeout, target, emerg, s
 			--printf("[%s] stop shooting", self.npc:name())
 		end
 
-
 		--' ≈сли мы переключаемс€ из идущего положени€ в сто€щее - надо задизаблить перемещение
 		if state_lib.states[self.target_state].movement ~= move.stand and
-		   state_lib.states[state_name].movement == move.stand
+			state_lib.states[self.target_state].animation ~= nil and
+			state_lib.states[state_name].movement == move.stand
 		then
 			self.npc:movement_enabled(false)
 		end
 
-
 		self.target_state = state_name	
 		self.current_object = nil
+
 		switched = true
 	end
 
@@ -459,9 +459,20 @@ function state_manager:set_state(state_name, callback, timeout, target, emerg, s
 		end
 	end
 	
---	if switched == true then
---		self:update()
---	end
+	if switched == true then
+		if self.npc:best_enemy() then
+			if last_state == nil or last_state == "idle" then
+				self:update()
+			end
+		elseif self.npc:best_danger() then
+			if last_state == nil or last_state == "idle" then
+				self:update()
+			end			
+		end
+	end
+
+
+	
 end
 function state_manager:get_state()
 	return self.target_state
@@ -473,10 +484,6 @@ function state_manager:update()
 	self.planner:update()	
 	--self.planner:show("")
 end
-
-
-
-
 
 function set_state(npc, state_name, callback, timeout, target, emerg, synsound, extrakeys)
 	if db.storage[npc:id()].state_mgr then
@@ -491,13 +498,6 @@ function get_state(npc)
 end
 
 
-
-
-
-
-
-
-
 function bind_manager(object)
 	local manager = object:motivation_action_manager()
 
@@ -510,7 +510,7 @@ function bind_manager(object)
 	local operators		= {}
 	operators["state_mgr_to_idle_combat"]	= xr_actions_id.state_mgr + 1
 	operators["state_mgr_to_idle_alife"]	= xr_actions_id.state_mgr + 2
-	operators["state_mgr_to_idle_off"]	= xr_actions_id.state_mgr + 3
+	operators["state_mgr_to_idle_off"]		= xr_actions_id.state_mgr + 3
 
 	local state_manager = state_mgr.state_manager(object)
 	
@@ -553,3 +553,6 @@ function bind_manager(object)
 	
 	return state_manager
 end
+
+
+

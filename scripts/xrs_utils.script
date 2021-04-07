@@ -1,4 +1,3 @@
-
 function readvu32u8(packet)
   local v={}
   local len=packet:r_s32()

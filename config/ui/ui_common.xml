@@ -496,9 +496,6 @@
     <texture id="ui_listline3_back"		x="990" y="108" width="28" height="16" />
     <texture id="ui_listline3_e"		x="1008" y="108" width="4" height="16" />
 
-
-
-
     <!-- Для апгрейда -->
     <texture id="ui_button_main06_d" x="889" y="665" width="126" height="27" />
     <texture id="ui_button_main06_e" x="889" y="604" width="126" height="27" />

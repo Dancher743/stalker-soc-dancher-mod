@@ -16,13 +16,107 @@ end
 
 ----------------------------------------------------------------------
 
+-- Более адекватный рэндом - с более-менее нормальным кач-вом генерации
+-- внимание - работает медленно (правда не настолько как может подуматься 8))!
+-- Нежелательно пользовать для процессов критичных ко времени исполнения!
+function real_rand(first, second)
+	local vert = nil
+	local money = 97359
+	local out_rand = 0
+	if db.actor then
+		vert = db.actor:level_vertex_id()
+		money = db.actor:money()
+	else
+		vert = 168794
+	end
+	
+	local function reseed_rand(a, b)
+		math.randomseed(math.ceil(tonumber(time_global())/tonumber(vert)*math.random(5,75)+(money*out_rand)))
+		math.random()
+		if a and b then
+			out_rand = math.random(a, b)
+		elseif a then
+			out_rand = math.random(a)
+		else
+			out_rand = math.random()		
+		end
+		lastrand = out_rand
+	end
+	
+	if first and second then
+		math.random()
+		math.randomseed(math.ceil(tonumber(time_global())/tonumber(vert)*math.random(5,75)+money*lastrand))
+		math.random()
+		out_rand = math.random(first, second)
+		if out_rand == lastrand then
+			reseed_rand(first, second)
+		end
+		lastrand = out_rand
+		return out_rand
+	elseif first then
+		math.random()
+		math.randomseed(math.ceil(tonumber(time_global())/tonumber(vert)*math.random(5,75)+money*lastrand))
+		math.random()
+		out_rand = math.random(first)
+		if out_rand == lastrand then
+			reseed_rand(first)
+		end
+		lastrand = out_rand		
+		return out_rand
+	else
+		math.random()
+		math.randomseed(math.ceil(tonumber(time_global())/tonumber(vert)*math.random(5,75)+money*lastrand))
+		math.random()
+		out_rand = math.random()
+		if out_rand == lastrand then
+			reseed_rand()
+		end
+		if out_rand > 0 then
+			out_rand = math.random()
+		end
+		lastrand = out_rand				
+		return out_rand
+	end
+end
+
+--- Отладочная конструкция для загона в лог полезностей
+--- пользовать вот в таком стиле: 
+--- -- logf("Идентификатор нашего непися "..npc:name())
+local logf_console = nil
+
+function logf( fmt, ... )
+	logf_console = get_console()
+	logf = logf_main
+	logf_main( fmt, ... )
+end
+
+function logf_main( fmt, ... )
+    local c = select( "#", ... )
+    if c <= 0 then -- nothing to format
+        logf_console:execute( ":" .. string.gsub( fmt, " ", "\160" ) )
+    else
+        logf_console:execute( ":" .. string.gsub( string.format( fmt, ... ), " ", "\160" ) )
+    end
+end
+
+-- Записываем переменную
+function save_variable(variable_name, value)
+	xr_logic.pstor_store(db.actor, variable_name, value)
+end
+
+-- Загружаем переменную
+function load_variable(variable_name, value_if_not_found)
+	return xr_logic.pstor_retrieve(db.actor, variable_name, value_if_not_found)
+end
+
+-- Удаляем переменную
+function del_variable(variable_name)
+	if db.storage[db.actor:id()].pstor[variable_name] then
+		db.storage[db.actor:id()].pstor[variable_name] = nil
+	end
+end
 function printf(fmt,...)
---  local arg={...}
---  if arg==nil or arg[0]==nil then
---    mylog(fmt)
---  else
---    mylog(string.format(fmt,...))
---  end
+--	log(string.format(fmt,...))
 end
 
 local bufferedmessages={}
@@ -52,6 +146,205 @@ function mylog(msg)
   ]]
 end
 
+
+function dbglog(fmt,...)
+	local msg = string.format(fmt, ...)
+	local msg_no_ws = string.gsub(msg, "%s", "_")
+--	get_console():execute("dbg:" .. msg_no_ws)
+end
+
+--- Возвращает true если параметром передан квестовый непись
+function is_quest_npc(npc)
+	if npc then
+		local npc_name = npc:name()
+		if string.find(npc_name, "dead_stalker") or
+		   string.find(npc_name, "esc_novice_attacker") or
+		   string.find(npc_name, "tompson") or
+		   string.find(npc_name, "val_escort_") or
+		   string.find(npc_name, "monolit_trader") or
+		   string.find(npc_name, "merc_trader") or
+		   string.find(npc_name, "bandit_trader") or
+		   string.find(npc_name, "military_trader") or
+		   string.find(npc_name, "pri_trader") or
+		   string.find(npc_name, "escape_trader") or
+		   string.find(npc_name, "esc_wolf") or
+		   string.find(npc_name, "gar_dm_novice") or
+		   string.find(npc_name, "ecolog_v_tainike_spawn") or
+		   string.find(npc_name, "esc_ranger") or
+		   string.find(npc_name, "esc_fanat") or
+		   string.find(npc_name, "esc_fox") or
+		   string.find(npc_name, "esc_shustryi") or
+		   string.find(npc_name, "esc_plemiannik") or
+		   string.find(npc_name, "esc_provodnik") or
+		   string.find(npc_name, "gar_seriy") or
+		   string.find(npc_name, "gar_hellcar") or
+		   string.find(npc_name, "agr_krot") or
+		   string.find(npc_name, "agr_ratcatcher") or
+		   string.find(npc_name, "val_bandit_borov") or
+		   string.find(npc_name, "ds_borov") or
+		   string.find(npc_name, "ds_volkodav") or
+		   string.find(npc_name, "ds_mil_agr_boss") or
+		   string.find(npc_name, "ds_ara") or
+		   string.find(npc_name, "ds_mil_boss_nii") or
+		   string.find(npc_name, "ds_boss_aes") or
+		   string.find(npc_name, "ds_cook") or
+		   string.find(npc_name, "dar_stalker_explorer") or
+		   string.find(npc_name, "cit_doctor") or
+		   string.find(npc_name, "cit_vp") or
+		   string.find(npc_name, "cit_killer_leader") or
+		   string.find(npc_name, "cit_bandit_leader") or
+		   string.find(npc_name, "bar_barman") or
+		   string.find(npc_name, "bar_bar_osvedomitel") or
+		   string.find(npc_name, "bar_bar_hunter") or
+		   string.find(npc_name, "bar_stalker_drunk_dolg") or
+		   string.find(npc_name, "bar_stalker_lisiy") or
+		   string.find(npc_name, "bar_arena_manager") or
+		   string.find(npc_name, "bar_dolg_polkovnik_petrenko") or
+		   string.find(npc_name, "bar_dolg_general_voronin") or
+		   string.find(npc_name, "bar_dolg_leader") or
+		   string.find(npc_name, "bar_dolg_petrenko") or
+		   string.find(npc_name, "bar_dolg_ivancov") or
+		   string.find(npc_name, "bar_dolg_guard_commander") or
+		   string.find(npc_name, "bar_zastava_commander") or
+		   string.find(npc_name, "bar_ecolog_professor") or
+		   string.find(npc_name, "bar_svoboda_attack_commander") or
+		   string.find(npc_name, "yan_general_ecolog") or
+		   string.find(npc_name, "yan_ecolog_help") or
+		   string.find(npc_name, "yan_Semenov") or
+		   string.find(npc_name, "yan_ecolog_vasilyev") or
+		   string.find(npc_name, "yan_scientist_help") or
+		   string.find(npc_name, "yantar_semenov") or
+		   string.find(npc_name, "yan_ghost") or
+		   string.find(npc_name, "mil_stalker0012") or
+		   string.find(npc_name, "Mil_Miser") or
+		   string.find(npc_name, "Mil_Lukash") or
+		   string.find(npc_name, "mil_dolg_stalker") or
+		   string.find(npc_name, "mil_blockpost_freedomstalker001") or
+		   string.find(npc_name, "mil_freedom_member0012") or
+		   string.find(npc_name, "mil_freedom_member0021") or
+		   string.find(npc_name, "mil_freedom_member0005") or
+		   string.find(npc_name, "mil_freedom_stalker0026") or
+		   string.find(npc_name, "mil_Svoboda_stukach") or
+		   string.find(npc_name, "mil_Svoboda_leader") or
+		   string.find(npc_name, "mil_Svoboda_trader") or
+		   string.find(npc_name, "mil_Svoboda_master_Max") or
+		   string.find(npc_name, "mil_Svoboda_cook") or
+		   string.find(npc_name, "mil_Svoboda_blockpost_leader") or
+		   string.find(npc_name, "mil_Svoboda_master_Ugrumiy") or
+		   string.find(npc_name, "mil_Dolg_specnaz_silence") or
+		   string.find(npc_name, "mil_Dolg_specnaz_cherep") or
+		   string.find(npc_name, "mil_Killer_informator") or
+		   string.find(npc_name, "mil_Svoboda_engineer") or
+		   string.find(npc_name, "pri_monolith_ambush") or
+		   string.find(npc_name, "pri_monolith_leader") or
+		   string.find(npc_name, "aes_x") or
+		   string.find(npc_name, "aes_x_2") or
+		   string.find(npc_name, "osoznanie") or
+		   string.find(npc_name, "sim_stalker_veteran_gusarov") or
+		   string.find(npc_name, "sim_Svoboda_specnaz_leshii") or
+		   string.find(npc_name, "sim_stalker_master_chuchelo") or
+		   string.find(npc_name, "sim_stalker_general_upir") or
+		   string.find(npc_name, "sim_stalker_master_diador") or
+		   string.find(npc_name, "sim_ecolog_zob") or
+		   string.find(npc_name, "sim_stalker_novice_neumeha") or
+		   string.find(npc_name, "sim_bandit_master_kocherga") or
+		   string.find(npc_name, "sim_dolg_veteran_barin") or
+		   string.find(npc_name, "sim_stalker_veteran_vorobey") or
+		   string.find(npc_name, "sim_stalker_master_master") or
+		   string.find(npc_name, "sim_dolg_veteran_prapor") or
+		   string.find(npc_name, "sim_svoboda_specnaz_prut") or
+		   string.find(npc_name, "sim_stalker_veteran_umnik") or
+		   string.find(npc_name, "sim_bandit_master_fraer") or
+		   string.find(npc_name, "sim_stalker_master_polkan") or
+		   -- megadeath_mod: START
+		   string.find(npc_name, "agr_dolg_glavnyi") or
+		   string.find(npc_name, "agr_dolg_molodoy") or
+		   string.find(npc_name, "agr_dolg_ohrannik") or
+		   string.find(npc_name, "agr_dolg_sniper") or
+		   string.find(npc_name, "ecolog_v_tainike") or
+		   string.find(npc_name, "ecolog_v_doline") or
+		   string.find(npc_name, "agr_soldier_guard") or
+		   string.find(npc_name, "agr_soldier_guard_2") or
+		   string.find(npc_name, "neytral_drug_seregi") or
+		   string.find(npc_name, "u_agr_specnaz_partul") or
+		   string.find(npc_name, "neytral_serega_manyak") or
+		   string.find(npc_name, "x16_soldier_searcher") or
+		   string.find(npc_name, "yan_svoboda_informator") or
+		   string.find(npc_name, "mil_dolg_recon") or
+		   string.find(npc_name, "mil_soldier_hostage") or
+		   string.find(npc_name, "mil_svoboda_wounded") or
+		   string.find(npc_name, "mil_dolg_killer_commander") or
+		   string.find(npc_name, "mil_dolg_killer_1") or
+		   string.find(npc_name, "mil_dolg_killer_2") or
+		   string.find(npc_name, "mil_dolg_killer_sit") or
+		   string.find(npc_name, "mil_svoboda_bespredel") or
+		   string.find(npc_name, "mil_svoboda_guard_1_bespredel") or
+		   string.find(npc_name, "mil_svoboda_guard_2_bespredel") or
+		   string.find(npc_name, "mil_svoboda_guard_3_bespredel") or
+		   string.find(npc_name, "ros_killer_1") or
+		   string.find(npc_name, "ros_neytral_zasada") or
+		   string.find(npc_name, "ros_specnaz_zasada_pda") or
+		   -- megadeath_mod: END
+		   string.find(npc_name, "sidr_guard") then
+		return true else return false end
+	end
+end
+
+
+function qqq(n)
+	local scr = true
+	local con = true
+	local k = "debug data QQQ "..tostring(n)
+	if scr then
+		news_manager.send_tip(db.actor, k, nil, nil, 5000) 
+	end
+	if con then
+		get_console():execute	("load "..k)	
+		get_console():execute	("flush")	
+	end
+end
+
+function parse_data(str)
+	local string_parts = {}
+	if str == nil then
+		string_parts[1] = nil
+		return string_parts
+	end
+	local str_beg,str_end
+	str_end = str
+	local split_pos = find_split_pos(str_end)
+	while split_pos ~= nil do
+		str_beg, str_end = split_string(str_end,split_pos)
+		table.insert(string_parts,str_beg)
+		split_pos = find_split_pos(str_end)
+	end
+	table.insert(string_parts,str_end)
+	return string_parts
+end
+
+function find_split_pos(str)
+	local split_pos = string.find(str,",")
+	if split_pos == nil then
+		return nil
+	end
+	local br1_pos = string.find(str,"(",1,true)
+	local br2_pos = string.find(str,")",1,true)
+	if br1_pos ~= nil and br2_pos ~= nil and br1_pos < br2_pos and split_pos > br1_pos then
+		local str_end1 = string.sub(str,(br2_pos +1),string.len(str))
+		if string.find(str_end1,",") ~= nil then
+			split_pos = br2_pos + string.find(str_end1,",")
+		else
+			split_pos = nil
+		end
+	end
+	return split_pos
+end
+
+function split_string(str,split_pos)
+	local str_beg = (string.sub(str,1,split_pos-1))
+	local str_end = string.sub(str,(split_pos+1),string.len(str))
+	return str_beg,str_end
+end
 
 ----------------------------------------------------------------------
 if nil == time_global then
@@ -789,20 +1082,28 @@ function isWeapon(object)
     else return false end
 end
 
---Tvчисляет yaw в радианах
+--/ Вычисляет yaw в радианах
 function yaw( v1, v2 )
-    return  math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) )
+	if v1 and v2 then
+		return  math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) )
+	else return 1 end
 end
 
 function yaw_degree( v1, v2 )
-    return  (math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) ) * 57.2957)
+	if v1 and v2 then
+		return  (math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) ) * 57.2957)
+	else return 1 end
 end
 function yaw_degree3d( v1, v2 )
-    return  (math.acos((v1.x*v2.x + v1.y*v2.y + v1.z*v2.z)/(math.sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z )*math.sqrt(v2.x*v2.x + v2.y*v2.y + v2.z*v2.z)))*57.2957)
+	if v1 and v2 then
+		return  (math.acos((v1.x*v2.x + v1.y*v2.y + v1.z*v2.z)/(math.sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z )*math.sqrt(v2.x*v2.x + v2.y*v2.y + v2.z*v2.z)))*57.2957)
+	else return 1 end
 end
 
 function vector_cross (v1, v2)
-    return vector ():set (v1.y  * v2.z  - v1.z  * v2.y, v1.z  * v2.x  - v1.x  * v2.z, v1.x  * v2.y  - v1.y  * v2.x)
+	if v1 and v2 then
+		return vector ():set (v1.y  * v2.z  - v1.z  * v2.y, v1.z  * v2.x  - v1.x  * v2.z, v1.x  * v2.y  - v1.y  * v2.x)
+	else return vector():set(0, 0, 0) end
 end
 
 --Вращает вектор вокруг оси y против часовой стрелки
@@ -1059,6 +1360,38 @@ function print_table(table, subs)
   end
 end
 
+--/ Рекурсивная распечатка таблицы
+function print_table_inlog(table, subs)
+	local sub
+	if subs ~= nil then
+		sub = subs
+	else
+		sub = ""
+	end
+	for k,v in pairs(table) do
+		if type(v) == "table" then
+			logf(sub.." "..tostring(k)..": table")
+			print_table_inlog(v, sub.."    ")
+		elseif type(v) == "function" then
+			logf(sub.." "..tostring(k)..": function")
+		elseif type(v) == "userdata" then
+			logf(sub.." "..tostring(k)..": userdata")
+		elseif type(v) == "boolean" then
+			if v == true then
+				logf(sub.." "..tostring(k)..": true")
+			else
+				logf(sub.." "..tostring(k)..": false")
+			end
+		else
+			if v ~= nil then
+				logf(sub.." "..tostring(k)..": "..tostring(v))
+			else
+				logf(sub.." "..tostring(k)..": is NIL")
+			end
+		end
+	end
+end
+
 -------------------------------------------------------------------------------------------
 function switch_online (id)
     if id == -1 then return end
@@ -1148,10 +1481,20 @@ end
 
 -- Крешнуть игру (после вывода сообщения об ошибке в лог)
 function abort(fmt, ...)
-  local reason = string.format(fmt, ...)
-  assert("ERROR: " .. reason)
-  printf("ERROR: " .. reason)
-  printf("%s")
+	local reason = string.format(fmt, ...)
+	assert("ERROR: " .. reason)
+	printf("ERROR: " .. reason)
+	printf("%s")
+	--[[local message = tostring(msg)
+	logf("ERROR PATTERN: "..tostring(fmt))
+	logf("ERROR REASON: "..message)
+	local reason = string.format(fmt, message)
+	assert("ERROR: " .. reason)
+	printf("ERROR: " .. reason)
+	dbglog("%s", reason)
+	printf("%s")
+	local ooops
+	local crash = ooops/10]]--
 end
 
 function set_postprocess(name_ini_file)
