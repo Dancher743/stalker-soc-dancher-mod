@@ -50,13 +50,13 @@ end
 function exchange_exo(actor, npc)
 	dialogs.relocate_money(npc, exo_upgrade_cost, "out")
 	dialogs.relocate_item_section_with_removing(npc, "exo_outfit", "out")
-	dialogs.relocate_item_section(actor, "outfit_exo_s", "in")
+	dialogs.relocate_item_section(actor, "outfit_exo_m2", "in")
 end
 
 function exchange_exo_m1(actor, npc)
 	dialogs.relocate_money(npc, exo_upgrade_cost, "out")
 	dialogs.relocate_item_section_with_removing(npc, "outfit_exo_m1", "out")
-	dialogs.relocate_item_section(actor, "outfit_exo_m1_s", "in")	
+	dialogs.relocate_item_section(actor, "outfit_exo_m3", "in")	
 end
 
 
