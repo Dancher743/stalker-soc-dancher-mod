@@ -37,6 +37,18 @@
 		<texture x="946" y="893" width="19" height="19">ui\ui_common_dmx</texture>
 	</trader_npc_mini_spot>
 	
+	<!--Торговец (маленькая иконка) -->
+	<trader_npc_mapspot_small>
+		<level_map spot="trader_npc_spot_small"	    pointer="quest_pointer"/>
+		<mini_map  spot="trader_npc_mini_spot_small"	pointer="quest_pointer"/>
+	</trader_npc_mapspot_small>
+	<trader_npc_spot_small x="0" y="0" width="2" height="2" alignment="c" scale="1" stretch="1">
+		<texture x="946" y="893" width="19" height="19">ui\ui_common_dmx</texture>
+	</trader_npc_spot_small>
+	<trader_npc_mini_spot_small x="0" y="0" width="8" height="8" alignment="c" scale="1" stretch="1">
+		<texture x="946" y="893" width="19" height="19">ui\ui_common_dmx</texture>
+	</trader_npc_mini_spot_small>
+	
 	<!-- Проводник -->
 	<guider_npc_mapspot>
 		<level_map spot="guider_npc_spot"	    pointer="quest_pointer"/>
@@ -60,3 +72,15 @@
 	<informer_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1">
 		<texture>ui_sm_mapQuest_item</texture>
 	</informer_npc_mini_spot>
+	
+	<!-- Информатор (маленькая иконка) -->
+	<informer_npc_mapspot_small>
+		<level_map spot="informer_npc_spot_small"	    pointer="quest_pointer"/>
+		<mini_map  spot="informer_npc_mini_spot_small"	pointer="quest_pointer"/>
+	</informer_npc_mapspot_small>
+	<informer_npc_spot_small x="0" y="0" width="2" height="2" alignment="c" scale="1" stretch="1">
+		<texture>ui_mapQuest_item</texture>
+	</informer_npc_spot_small>
+	<informer_npc_mini_spot_small x="0" y="0" width="8" height="8" alignment="c" scale="1" stretch="1">
+		<texture>ui_sm_mapQuest_item</texture>
+	</informer_npc_mini_spot_small>

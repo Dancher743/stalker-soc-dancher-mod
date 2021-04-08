@@ -99,6 +99,7 @@ end
 --
 
 beep_dist_limit = 15
+beep_idle = 75
 
 function detector_advances_strategy()
     for k,v in pairs(db.artefacts) do
@@ -114,7 +115,7 @@ function detector_advances_strategy()
 				
 				--this.log_message(dist, time_global() - v.tim_beep)
 				
-           		if dist <= 20^2 and beep_dist < time_global() - v.tim_beep then
+           		if dist <= 20^2 and beep_dist < time_global() - (v.tim_beep + beep_idle) then
 					if not beep_bad:playing() then
 						db.artefacts[k].tim_beep = time_global()
 					    beep_bad:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 0.5)
@@ -156,7 +157,7 @@ function detector_elite_strategy()
 				        db.artefacts[k].spot = true
 						db.artefacts[k].spotname = artefact_map_spot_name
 			        end
-					if  beep_dist < time_global() - v.tim_beep and not beep_good:playing() then
+					if  beep_dist < time_global() - (v.tim_beep + beep_idle) and not beep_good:playing() then
 						db.artefacts[k].tim_beep = time_global()
 					    beep_good:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1)
 					end

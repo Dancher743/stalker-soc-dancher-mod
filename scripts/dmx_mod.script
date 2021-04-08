@@ -12,7 +12,7 @@ function add_mapspot(id)
     if sid==507 then level.map_add_object_spot(id, "boss_npc_mapspot", "Главнокомандующий «Долга»")
     elseif sid==707 then level.map_add_object_spot(id, "boss_npc_mapspot", "Главнокомандующий «Свободы»")
     elseif sid==003 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Сидорович
-    elseif sid==500 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Бармен
+    elseif sid==500 then level.map_add_object_spot(id, "trader_npc_mapspot_small", "Торговец") -- Бармен
 	elseif sid==506 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Петренко
     elseif sid==902 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Сахаров
     elseif sid==734 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Скряга
@@ -21,7 +21,7 @@ function add_mapspot(id)
 	elseif sid==5483 then level.map_add_object_spot(id, "guider_npc_mapspot", "Проводник") -- Проводник на Янтаре
 	elseif sid==5485 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Механик в Баре
 	elseif sid==775 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Шуруп
-	--elseif sid==515 then level.map_add_object_spot(id, "informer_npc_mapspot", "Информатор") -- Осведомитель в баре
+	elseif sid==515 then level.map_add_object_spot(id, "informer_npc_mapspot_small", "Информатор") -- Осведомитель в баре
 	end
 end
 
@@ -33,7 +33,7 @@ function remove_mapspot(id)
     if sid==507 then level.map_remove_object_spot(id, "boss_npc_mapspot") -- Воронин
     elseif sid==707 then level.map_remove_object_spot(id, "boss_npc_mapspot") -- Лукаш
     elseif sid==003 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Сидорович
-    elseif sid==500 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Бармен
+    elseif sid==500 then level.map_remove_object_spot(id, "trader_npc_mapspot_small") -- Бармен
 	elseif sid==506 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Петренко
     elseif sid==902 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Сахаров
 	elseif sid==734 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Скряга
@@ -42,6 +42,6 @@ function remove_mapspot(id)
 	elseif sid==5483 then level.map_remove_object_spot(id, "guider_npc_mapspot") -- Проводник на Янтаре
 	elseif sid==5485 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Механик в Баре
 	elseif sid==775 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Шуруп
-	--elseif sid==515 then level.map_remove_object_spot(id, "informer_npc_mapspot") -- Осведомитель в баре
+	elseif sid==515 then level.map_remove_object_spot(id, "informer_npc_mapspot_small") -- Осведомитель в баре
     end
 end
