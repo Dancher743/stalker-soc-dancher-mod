@@ -65,6 +65,40 @@ ph_snd_themes["dolg_speech"]		= {[[characters_voice\scenario\bar\barman_megafon\
 									   [[characters_voice\scenario\megafon\megafon_music_1]],
 									   [[characters_voice\scenario\megafon\megafon_music_2]],
 									   [[characters_voice\scenario\megafon\megafon_music_3]]}
+
+-- -------------------------------------------------------------ARENA_EXTENSION_MOD------------------------------------------------------------------
+ph_snd_themes["arena_fight_10_sec"] = {[[characters_voice\scenario\bar\arena_megafon\mega_arena_10_sec]]}
+ph_snd_themes["arena_fight_20_sec"] = {[[characters_voice\scenario\bar\arena_megafon\mega_arena_20_sec]]}
+ph_snd_themes["arena_fight_30_sec"] = {[[characters_voice\scenario\bar\arena_megafon\mega_arena_30_sec]]}
+ph_snd_themes["arena_fight_40_sec"] = {[[characters_voice\scenario\bar\arena_megafon\mega_arena_40_sec]]}
+ph_snd_themes["arena_fight_50_sec"] = {[[characters_voice\scenario\bar\arena_megafon\mega_arena_50_sec]]}
+
+ph_snd_themes["aem_beast"] = {[[aem_snd\aem_beast]]}
+ph_snd_themes["aem_bloodsucker"] = {[[aem_snd\aem_bloodsucker]]}
+ph_snd_themes["aem_burer"] = {[[aem_snd\aem_burer]]}
+ph_snd_themes["aem_fight_begin"] = {[[aem_snd\aem_fight_begin]]}
+ph_snd_themes["aem_foul"] = {[[aem_snd\aem_foul]]}
+ph_snd_themes["aem_no_chance"] = {[[aem_snd\aem_no_chance]]}
+ph_snd_themes["aem_out_of_time"] = {[[aem_snd\aem_out_of_time]]}
+ph_snd_themes["aem_pseudodog"] = {[[aem_snd\aem_pseudodog]]}
+ph_snd_themes["aem_snork"] = {[[aem_snd\aem_snork]]}
+ph_snd_themes["aem_special"] = {[[aem_snd\aem_special]]}
+ph_snd_themes["aem_victory"] = {[[aem_snd\aem_victory]]}
+
+ph_snd_themes["dolg_matugalnik"]		= {[[characters_voice\scenario\bar\barman_megafon\megaphone_barman_1]],
+									   [[characters_voice\scenario\bar\arena_megafon\mega_arena_new_fight]],
+									   [[characters_voice\scenario\bar\barman_megafon\megaphone_barman_2]],
+									   [[characters_voice\scenario\bar\dolg_megafon\mega_duty_propaganda_1]],
+									   [[characters_voice\scenario\bar\arena_megafon\mega_arena_new_fight]],
+									   [[characters_voice\scenario\bar\dolg_megafon\mega_duty_propaganda_2]],
+									   [[characters_voice\scenario\bar\dolg_megafon\mega_duty_propaganda_3]],
+									   [[characters_voice\scenario\bar\arena_megafon\mega_arena_new_fight]],
+									   [[characters_voice\scenario\bar\dolg_megafon\mega_duty_propaganda_4]],
+									   [[characters_voice\scenario\bar\dolg_megafon\mega_duty_propaganda_5]],
+									   [[characters_voice\scenario\bar\arena_megafon\mega_arena_new_fight]]}
+
+-- -------------------------------------------------------------ARENA_EXTENSION_MOD------------------------------------------------------------------
+
 ph_snd_themes["dolg_alarm"]			= {[[characters_voice\scenario\bar\dolg_megafon\megaphone_duty_alarm]]}
 ph_snd_themes["dolg_megafon_1_hit"] = {[[characters_voice\scenario\bar\dolg_megafon\duty_gunfire_mega_1]]}
 ph_snd_themes["dolg_megafon_2_hit"] = {[[characters_voice\scenario\bar\dolg_megafon\duty_gunfire_mega_2]]}

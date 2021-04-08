@@ -2149,3 +2149,35 @@ function check_items_in_inventory(section)
 end
 
 -----------------------------------
+------------------------------------------------------- ARENA_EXTENSION_MOD--------------------------------------------------------
+
+function aem_draw()
+	db.actor:set_character_community("trader",0,0)
+	aem_lights.draw()
+end
+
+function aem_win()
+	aem_lights.win()
+end
+
+function aem_foul()
+	aem_lights.foul()
+end
+
+function aem_death(actor, npc, p)
+	aem_manager.get_aem():on_death(npc, p[1])
+end
+
+function aem_finish()
+	aem_manager.get_aem():finish()
+end
+
+function switch(actor, npc)
+	if db.actor:has_info("aem_go_bar") then
+		npc:add_restrictions("bar_restrictor", "")
+	else
+		npc:remove_all_restrictions()
+	end
+end
+
+------------------------------------------------------- ARENA_EXTENSION_MOD--------------------------------------------------------

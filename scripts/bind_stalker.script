@@ -501,6 +501,9 @@ function actor_binder:update(delta)
 	
 	--' Обновление точек на карте
 	map_spots_npc.update()
+	
+	--' ARENA_EXTENSION_MOD
+	aem_manager.get_aem():update()
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)

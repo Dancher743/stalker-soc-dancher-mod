@@ -54,5 +54,6 @@ Using mods:
 46. Improved monsters behavior (demover123/Shadows/Charsi)
 47. Mechanics (Dancher)
 48. Companions v1.9C (KamikaZze)
+49. ARENA EXTENSION MOD ver. 0.3.2 (kstn/IG-2007)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
