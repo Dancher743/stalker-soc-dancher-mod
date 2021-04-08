@@ -40,33 +40,33 @@
 			</phrase>
 			<phrase id="2">
 				<dont_has_info>nimble_exchange_wpn_hpsa</dont_has_info>
-				<precondition>nimble_exchanger.check_actor_art_battery</precondition>
+				<precondition>nimble_exchanger.check_actor_hpsa_fund</precondition>
                 <text>nimble_exchange_dialog_2</text>
-				<action>nimble_exchanger.exchange_battery_on_hpsa</action>
+				<action>nimble_exchanger.exchange_hpsa</action>
 				<give_info>nimble_exchange_wpn_hpsa</give_info>
 				<next>6</next>
             </phrase>
 			<phrase id="3">
 				<dont_has_info>nimble_exchange_wpn_sig_m1</dont_has_info>
-				<precondition>nimble_exchanger.check_actor_art_pellicle</precondition>
+				<precondition>nimble_exchanger.check_actor_sig_fund</precondition>
                 <text>nimble_exchange_dialog_3</text>
-				<action>nimble_exchanger.exchange_battery_on_sig</action>
+				<action>nimble_exchanger.exchange_sig</action>
 				<give_info>nimble_exchange_wpn_sig_m1</give_info>
 				<next>6</next>
             </phrase>
 			<phrase id="4">
 				<dont_has_info>nimble_exchange_wpn_svd_m1</dont_has_info>
-				<precondition>nimble_exchanger.check_actor_art_glassbeads</precondition>
+				<precondition>nimble_exchanger.check_actor_svd_fund</precondition>
                 <text>nimble_exchange_dialog_4</text>
-				<action>nimble_exchanger.exchange_battery_on_svd</action>
+				<action>nimble_exchanger.exchange_svd</action>
 				<give_info>nimble_exchange_wpn_svd_m1</give_info>
 				<next>6</next>
             </phrase>
 			<phrase id="5">
 				<dont_has_info>nimble_exchange_wpn_rg6_m1</dont_has_info>
-				<precondition>nimble_exchanger.check_actor_art_kolobok</precondition>
+				<precondition>nimble_exchanger.check_actor_rg6_fund</precondition>
                 <text>nimble_exchange_dialog_5</text>
-				<action>nimble_exchanger.exchange_battery_on_rg6</action>
+				<action>nimble_exchanger.exchange_rg6</action>
 				<give_info>nimble_exchange_wpn_rg6_m1</give_info>
 				<next>6</next>
             </phrase>

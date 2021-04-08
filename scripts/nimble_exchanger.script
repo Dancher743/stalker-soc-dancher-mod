@@ -19,75 +19,69 @@ actor_arts =
 	"af_fuzz_kolobok"
 }
 
+actor_money =
+{
+	5000,
+	10000,
+	15000,
+	20000
+}
+
 -- Валидации обмена --
-
-function check_actor_art_battery(npc, actor)
-	if db.actor:object(actor_arts[1]) then
-		return true	
-	end
-	
-	return false
+function have_actor_fund(index)
+	local actor = db.actor
+	return actor:object(actor_arts[index]) and actor:money() >= actor_money[index]
 end
 
-function check_actor_art_pellicle(npc, actor)
-	if db.actor:object(actor_arts[2]) then
-		return true	
-	end
-	
-	return false
+function check_actor_hpsa_fund(actor, npc)
+	return have_actor_fund(1)
 end
 
-function check_actor_art_glassbeads(npc, actor)
-	if db.actor:object(actor_arts[3]) then
-		return true	
-	end
-	
-	return false
+function check_actor_sig_fund(actor, npc)
+	return have_actor_fund(2)
 end
 
-function check_actor_art_kolobok(npc, actor)
-	if db.actor:object(actor_arts[4]) then
-		return true	
-	end
-	
-	return false
+function check_actor_svd_fund(actor, npc)
+	return have_actor_fund(3)
 end
 
-function check_out_of_stock(npc, actor)
-	if 
-		has_alife_info("nimble_exchange_wpn_hpsa") and
+function check_actor_rg6_fund(actor, npc)
+	return have_actor_fund(4)
+end
+
+function check_out_of_stock()
+	return has_alife_info("nimble_exchange_wpn_hpsa") and
 		has_alife_info("nimble_exchange_wpn_sig_m1") and
 		has_alife_info("nimble_exchange_wpn_svd_m1") and
 		has_alife_info("nimble_exchange_wpn_rg6_m1")
-	then
-		return true
-	end
-	
-	return false
 end
 
-function check_not_out_of_stock(npc, actor)	
-	return not check_out_of_stock(npc, actor)
+function check_not_out_of_stock(actor, npc)	
+	return not check_out_of_stock()
 end
 
 -- Функции обмена --
 
-function exchange_battery_on_hpsa(npc, actor)
-	dialogs.relocate_item_section(actor, actor_arts[1], "out")
+function exchange_hpsa(actor, npc)
+	dialogs.relocate_money(npc, actor_money[1], "out")
+	dialogs.relocate_item_section(npc, actor_arts[1], "out")
 	dialogs.relocate_item_section(actor, nible_weapons[1], "in")	
 end
 
-function exchange_battery_on_sig(npc, actor)
-	dialogs.relocate_item_section(actor, actor_arts[2], "out")
+function exchange_sig(actor, npc)
+	dialogs.relocate_money(npc, actor_money[2], "out")
+	dialogs.relocate_item_section(npc, actor_arts[2], "out")
 	dialogs.relocate_item_section(actor, nible_weapons[2], "in")	
 end
 
-function exchange_battery_on_svd(npc, actor)
-	dialogs.relocate_item_section(actor, actor_arts[3], "out")
+function exchange_svd(actor, npc)
+	dialogs.relocate_money(npc, actor_money[3], "out")
+	dialogs.relocate_item_section(npc, actor_arts[3], "out")
 	dialogs.relocate_item_section(actor, nible_weapons[3], "in")	
 end
 
-function exchange_battery_on_rg6(npc, actor)
-	dialogs.relocate_item_section(actor, actor_arts[4], "out")
+function exchange_rg6(actor, npc)
+	dialogs.relocate_money(npc, actor_money[4], "out")
+	dialogs.relocate_item_section(npc, actor_arts[4], "out")
 	dialogs.relocate_item_section(actor, nible_weapons[4], "in")	
 end
