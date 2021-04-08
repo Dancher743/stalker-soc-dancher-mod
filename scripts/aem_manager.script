@@ -17,6 +17,8 @@ local update_time = game.CTime()
 local actor = db.actor
 local sim = alife()
 ---------------------------------------------------------------------------------------------------
+local pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])	-- звук сообщений об арене
+---------------------------------------------------------------------------------------------------
 -- вывод отладочной информации
 ---------------------------------------------------------------------------------------------------
 
@@ -551,7 +553,8 @@ end
 function CArenaext:startup()
 	--printf("CArenaext:startup()")
 	if actor:dont_has_info("aem_startup") then
-		actor:give_info_portion("aem_spam")
+		-- Отключаем по умолчанию.
+		--actor:give_info_portion("aem_spam")
 		actor:give_info_portion("aem_startup")
 		
 		local ct = level.get_time_minutes()
@@ -957,7 +960,8 @@ function CArenaext:update()
 			actor:disable_info_portion("aem_admin_dead")
 			actor:disable_info_portion("aem_arny_spread_out")
 			actor:disable_info_portion("aem_admin_spread_out")
-			actor:give_info_portion("aem_spam")
+			-- Отключаем по умолчанию.
+			--actor:give_info_portion("aem_spam")
 			admin_spawn()
 			db.storage[db.actor:id()].pstor["aem_rt"] = nil
 		end
@@ -2123,14 +2127,21 @@ function msg(text)
 		end
 	end
 
+	pda_tips:play_no_feedback(actor, sound_object.s2d, 0, vector(), 1.0)
 	msg = game.translate_string(text)
-	snd = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
-	snd:play_no_feedback(actor, sound_object.s2d, 0, vector(), 1.0)
-	actor:give_game_news("%c[255,238,155,23]"..who..":\\n%c[default]"..msg, "ui\\ui_iconstotal", icon, 0, 15000)
+	actor:give_game_news("%c[255,160,160,160]"..who..":\\n%c[default]"..msg, "ui\\ui_iconstotal", icon, 0, 9000)
 end
 
 function npc(npc)
 	return npc
+end
+
+function msg_spam_on()
+	msg("aem_spam_on")
+end
+
+function msg_spam_off()
+	msg("aem_spam_off")
 end
 ---------------------------------------------------------------------------------------------------
 -- функции для работы со временем
@@ -2464,7 +2475,9 @@ function admin_dead()
 	end
 	
 	-- иммитируется закрытие арены
-	actor:disable_info_portion("aem_spam")
+	if actor:has_info("aem_spam") then
+		actor:disable_info_portion("aem_spam")
+	end
 	actor:disable_info_portion("aem_megafone")
 	
 	rt = math.random(5,11)

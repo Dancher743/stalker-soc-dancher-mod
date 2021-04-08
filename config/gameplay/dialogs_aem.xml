@@ -313,6 +313,7 @@
             <phrase id="21">
                 <text>aem_extra_21</text>
                 <give_info>aem_spam</give_info>
+				<action>aem_manager.msg_spam_on</action>
             </phrase>
             <phrase id="3">
                 <text>aem_extra_3</text>
@@ -322,6 +323,7 @@
             <phrase id="31">
                 <text>aem_extra_31</text>
                 <disable_info>aem_spam</disable_info>
+				<action>aem_manager.msg_spam_off</action>
             </phrase>
             <phrase id="4">
                 <text>aem_extra_4</text>

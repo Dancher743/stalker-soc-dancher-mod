@@ -519,4 +519,11 @@
 	<string id="aem_drunk_4">
 		<text>Эх, день за днём одно и то же... всё водка, водка... короче я в баре.</text>
 		</string>
+		
+	<string id="aem_spam_on">
+		<text>Произведена подписка на рассылку сообщений об арене.</text>
+	</string>
+	<string id="aem_spam_off">
+		<text>Произведена отписка от рассылки сообщений об арене.</text>
+	</string>
 </string_table>

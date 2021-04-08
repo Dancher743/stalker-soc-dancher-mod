@@ -1,0 +1,23 @@
+; ARENA_EXTENSION_MOD
+
+#include "creatures\aem_monsters.ltx"
+#include "creatures\aem_stalkers.ltx"
+
+[aem_sound]:space_restrictor
+GroupControlSection		= spawn_group_restrictor
+$spawn				= ;"ai\space_restrictor"
+;$prefetch 			= 64
+class				= SPC_RS_S
+script_binding          	= bind_restrictor.bind
+custom_data			= scripts\aem\sound.ltx
+
+[aem_timer]:space_restrictor
+GroupControlSection		= spawn_group_restrictor
+$spawn				= ;"ai\space_restrictor"
+;$prefetch 			= 64
+class				= SPC_RS_S
+script_binding          	= bind_restrictor.bind
+custom_data			= scripts\aem\timer.ltx
+
+[aem_lamp]:lights_hanging_lamp
+class				= AEM_LAMP
