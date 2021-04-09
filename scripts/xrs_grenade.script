@@ -429,7 +429,10 @@ function action_fire_in_the_hole:execute()
 
 	if self.can_explode then
 		throw(self.a.grenade,self.a.throwing_type,self.a.target_point)
-		level.map_add_object_spot(self.a.grenade, "grenade_location", get_grenade(self.a.grenade):section())
+		
+		if pda_upgrade_manager.has_upgrade(2) then
+			level.map_add_object_spot(self.a.grenade, "grenade_location", get_grenade(self.a.grenade):section())
+		end
 		
 		local timeout = self.a.grenades[get_grenade(self.a.grenade):section()].explode_time-(time_global()-self.can_explode)
 		
@@ -718,7 +721,10 @@ function net_spawn()
 end
 
 function fake_pickup(obj)
-	level.map_remove_object_spot(obj:id(), "grenade_location")
+	if pda_upgrade_manager.has_upgrade(2) then
+		level.map_remove_object_spot(obj:id(), "grenade_location")
+	end
+
 	for k,v in pairs(gr_types) do
 		if obj:section()==v.."_test" or obj:section()==v.."_fake" then
 			alife():release(alife():object(obj:id()))

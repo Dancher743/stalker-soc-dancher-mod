@@ -4,7 +4,7 @@
 --
 
 -- Звук нотификации
-pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+local pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
 local notification_delay_time = 2000
 
@@ -28,11 +28,11 @@ function upgrade_one_pay_condition(actor, npc)
 	return actor:object("af_gold_fish")
 end
 
-function upgrade_one_pay(npc, actor)
-	dialogs.relocate_item_section(actor, "af_gold_fish", "out")
+function upgrade_one_pay(actor, npc)
+	dialogs.relocate_item_section(npc, "af_gold_fish", "out")
 end
 
-function upgrade_one_install(npc, actor)
+function upgrade_one_install(actor, npc)
 	pda_upgrade_manager.set_upgrade(1)
 	xr_effects.start_timer(notification_delay_time, show_upgrade_one_notification)
 end
@@ -45,11 +45,11 @@ function upgrade_two_pay_condition(actor, npc)
 	return actor:object("af_dummy_dummy")
 end
 
-function upgrade_two_pay(npc, actor)
-	dialogs.relocate_item_section(actor, "af_dummy_dummy", "out")
+function upgrade_two_pay(actor, npc)
+	dialogs.relocate_item_section(npc, "af_dummy_dummy", "out")
 end
 
-function upgrade_two_install(npc, actor)
+function upgrade_two_install(actor, npc)
 	pda_upgrade_manager.set_upgrade(2)
 	xr_effects.start_timer(notification_delay_time, show_upgrade_two_notification)
 end
@@ -62,13 +62,13 @@ function upgrade_three_pay_condition(actor, npc)
 	return actor:object("af_dummy_spring")
 end
 
-function upgrade_three_pay(npc, actor)
-	dialogs.relocate_item_section(actor, "af_dummy_spring", "out")
+function upgrade_three_pay(actor, npc)
+	dialogs.relocate_item_section(npc, "af_dummy_spring", "out")
 end
 
-function upgrade_three_install(npc, actor)
+function upgrade_three_install(actor, npc)
 	pda_upgrade_manager.set_upgrade(3)
-	xr_effects.start_timer(notification_delay_time, show_upgrade_three_notification)
+	show_upgrade_three_notification()
 end
 
 ----------------------------
@@ -77,7 +77,7 @@ end
 
 function show_upgrade_one_notification()
 	local title = "%c[255,160,160,160]КПК:"
-	local message = "%c[default]Программный модуль \"Передача денежных средств\" был успешно пропатчен."
+	local message = "%c[default]Программный модуль \"Денежные средства\" был успешно пропатчен."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_deficit")
 	
@@ -87,7 +87,7 @@ end
 
 function show_upgrade_two_notification()
 	local title = "%c[255,160,160,160]КПК:"
-	local message = "%c[default]Программный модуль \"Поиск ближайших КПК\" был успешно пропатчен."
+	local message = "%c[default]Программный модуль \"Карта\" был успешно пропатчен."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_locations")
 	
@@ -97,7 +97,7 @@ end
 
 function show_upgrade_three_notification()
 	local title = "%c[255,160,160,160]Научный лагерь экологов:"
-	local message = "%c[default]Произведена подписка на рассылку сообщений о предстоящих выбросах."
+	local message = "%c[default]Произведена подписка на рассылку сообщений о выбросах."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_scientist_job")
 	
