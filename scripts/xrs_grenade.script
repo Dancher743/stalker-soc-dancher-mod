@@ -64,11 +64,18 @@ snd_grenade_replics={
 		[[bandos\ready_11]]
 	},
 	monolith = {
+		[[mono\ready_1]],
+		[[mono\ready_2]],
+		[[mono\ready_3]],
+		[[mono\ready_4]],
+		[[mono\ready_5]],
 		[[mono\grenade_ready_1]],
 		[[mono\grenade_ready_2]],
 		[[mono\grenade_ready_3]],
 		[[mono\grenade_ready_4]],
-		[[mono\grenade_ready_5]]
+		[[mono\grenade_ready_5]],
+		[[mono\grenade_ready_6]],
+		[[mono\grenade_ready_7]]
 	},
 	killer = {
 		[[merc\ready_1]],
@@ -91,6 +98,10 @@ snd_grenade_replics={
 		[[freedom\grenade_ready_5]],
 		[[freedom\grenade_ready_6]],
 		[[freedom\grenade_ready_7]]
+	},
+	ecolog = {
+		[[ecolog\ready_1]],
+		[[ecolog\ready_2]]
 	}
 }
 ----------------------------------------------------------------------------------------------------------------------
