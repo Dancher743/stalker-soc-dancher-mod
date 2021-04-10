@@ -147,10 +147,10 @@ function evaluator_crazy_grenadier:evaluate()
 			end
 			if self.a.test_begun and not self.a.test_running and get_grenade(self.a.test_grenades.hi) and get_grenade(self.a.test_grenades.lo) then 
 				
-				throw(self.a.test_grenades.hi,'hi',self.a.target_point)
+				throw(self.a.test_grenades.hi,'hi',self.a.target_point, self.a.mark)
 				--level.map_add_object_spot(self.a.test_grenades.hi, "green_location", 1)	
 				
-				throw(self.a.test_grenades.lo,'lo',self.a.target_point)
+				throw(self.a.test_grenades.lo,'lo',self.a.target_point, self.a.mark)
 				--level.map_add_object_spot(self.a.test_grenades.lo, "red_location", 1)	
 				
 				self.a.test_running = true
@@ -229,7 +229,11 @@ function evaluator_crazy_grenadier:evaluate()
 			self.a.test_grenades_sect = get_grenade(self.a.grenade):section()
 			
 			self.a.test_end_time = timeout
-			self.a.testing = true
+			self.a.testing = false
+			
+			if ui_grenade_marks then
+				self.a.mark = be:id() == 0 and 'red' or npc:relation(db.actor) ~= game_object.enemy and 'green' or nil
+			end
 		end
 	end
 	return false
@@ -439,7 +443,7 @@ function action_fire_in_the_hole:execute()
 	end
 
 	if self.can_explode then
-		throw(self.a.grenade,self.a.throwing_type,self.a.target_point)
+		throw(self.a.grenade,self.a.throwing_type,self.a.target_point, self.a.mark)
 		
 		if pda_upgrade_manager.has_upgrade(2) then
 			level.map_add_object_spot(self.a.grenade, "grenade_location", get_grenade(self.a.grenade):section())
@@ -599,11 +603,21 @@ function update(delta)
 			local obj = level.object_by_id(k)
 			if obj then 
 				obj:explode(0)
+				if ui_grenade_marks then
+					ui_grenade_marks.start_fading(k)
+				end
 				pseudo_grenades[k]=nil
 			end
 		else
 			pseudo_grenades[k]=nil
+			if ui_grenade_marks then
+				ui_grenade_marks.start_fading(k)
+			end
 		end
+	end
+	
+	if ui_grenade_marks then
+		ui_grenade_marks.update_grenade_marks()
 	end
 	
 	for k,v in pairs(grenades) do
@@ -642,6 +656,9 @@ end
 function death_callback(npc)
 	if grenadiers[npc:id()] then
 		local grenade = grenadiers[npc:id()]
+		
+		if grenade == nil then return
+		
 		local dummy,timeout = get_grenade_radius(get_grenade(grenade):section())
 		grenade = alife():create(get_grenade(grenade):section(), npc:bone_position(grenade_bone), npc:level_vertex_id(), npc:game_vertex_id())
 		grenades[grenade.id] = time_global() + timeout		
@@ -703,8 +720,12 @@ function npc_update(binder)
 	end
 end
 
-function throw(id,typ,target)
+function throw(id,typ,target, mark)
 	if not get_grenade(id):get_physics_shell() then return end
+	
+	if ui_grenade_marks then
+		ui_grenade_marks.add_new_marker(id,mark)
+	end
 	
 	local bone = get_grenade(id):get_physics_shell():get_element_by_bone_name("wpn_body")
 	local dir=utils.vector_copy_by_val(target):sub(get_grenade(id):position())
