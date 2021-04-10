@@ -4,6 +4,9 @@
 --	TODO:
 ----------------------------------------------------------------------------------------------------------------------
 
+local greeting_sounds = ini_file([[misc\greeting_sounds.ltx]])
+local wait_excluded_npcs = rx_utils.collect_sections(greeting_sounds,{"wait_excluded_npcs"},nil,true)
+
 ---------------------------------------------------------------------------------------------------------------------
 --Evaluators
 ----------------------------------------------------------------------------------------------------------------------
@@ -121,7 +124,10 @@ function action_meet_wait:execute ()
 				if meet_manager.sound == "wait" then
 					idle_timeout = 10000
 				end
-				xr_sound.set_sound(self.object, meet_manager.sound, nil, idle_timeout)
+				
+				if not (meet_manager.sound == "wait" and wait_excluded_npcs[self.object:name()]) then
+					xr_sound.set_sound(self.object, meet_manager.sound, nil, idle_timeout)
+				end
 			end
 		end
 	else

@@ -524,7 +524,7 @@ function companion_start_following(npc, actor)
 		npc:set_relation(game_object.friend, db.actor) 
 		
 		trade_manager.trade_init(npc, "misc\\trade_obmen.ltx")
-		level.map_add_object_spot_ser(npc:id(), "alife_presentation_companion", "Ваш компаньон")	
+		level.map_add_object_spot_ser(npc:id(), "alife_presentation_companion", "Напарник")	
 		
 		st_c.enabled = true
 		st_c.behavior = xr_companion.beh_walk_simple
