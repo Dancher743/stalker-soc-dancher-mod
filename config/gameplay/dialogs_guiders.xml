@@ -57,6 +57,7 @@
              </phrase>
 			 <phrase id="12">
                 <text>guider_dialog_11</text>
+				<action>dialogs.break_dialog</action>
              </phrase>
 			 
 			<phrase id="81">

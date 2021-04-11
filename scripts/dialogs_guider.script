@@ -4,7 +4,7 @@
 --
 
 -- Стоимость услуги проводника:
-local cost = 5000
+local cost = 3000
 
 -- Валидация нужной суммы денег:
 
@@ -45,16 +45,16 @@ end
 
 -- Вызовы переходов:
 function transfer_to_escape(actor, guider)
-	dialogs.relocate_money(actor, cost, "out")
+	dialogs.relocate_money(guider, cost, "out")
 	fast_travel_manager.to_escape()
 end
 
 function transfer_to_yantar(actor, guider)
-	dialogs.relocate_money(actor, cost, "out")
+	dialogs.relocate_money(guider, cost, "out")
 	fast_travel_manager.to_yantar()
 end
 
 function transfer_to_bar(actor, guider)
-	dialogs.relocate_money(actor, cost, "out")
+	dialogs.relocate_money(guider, cost, "out")
 	fast_travel_manager.to_bar()
 end

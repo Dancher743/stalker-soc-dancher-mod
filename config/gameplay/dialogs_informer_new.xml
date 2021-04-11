@@ -24,6 +24,7 @@
 				<dont_has_info>new_way_escape_garbage</dont_has_info>
 				<precondition>dialogs_informer_new.actor_have_money</precondition>
                 <text>bar_informer_ways_dialog_2</text>
+				<action>dialogs_informer_new.relocate_money</action>
 				<give_info>new_way_escape_garbage</give_info>
 				<next>7</next>
             </phrase>
@@ -32,6 +33,7 @@
 				<dont_has_info>new_way_garbage_agroprom</dont_has_info>
 				<precondition>dialogs_informer_new.actor_have_money</precondition>
                 <text>bar_informer_ways_dialog_3</text>
+				<action>dialogs_informer_new.relocate_money</action>
 				<give_info>new_way_garbage_agroprom</give_info>
 				<next>7</next>
             </phrase>
@@ -40,6 +42,7 @@
 				<dont_has_info>new_way_garbage_darkvalley</dont_has_info>
 				<precondition>dialogs_informer_new.actor_have_money</precondition>
                 <text>bar_informer_ways_dialog_4</text>
+				<action>dialogs_informer_new.relocate_money</action>
 				<give_info>new_way_garbage_darkvalley</give_info>
 				<next>7</next>
             </phrase>
@@ -61,6 +64,7 @@
 				<has_info>yan_kill_brain_done</has_info>
 				<dont_has_info>new_way_yantar_agroprom</dont_has_info>
                 <text>bar_informer_ways_dialog_7</text>
+				<action>dialogs_informer_new.relocate_money</action>
 				<give_info>new_way_yantar_agroprom</give_info>
 				<next>9</next>
             </phrase>

@@ -1213,7 +1213,10 @@ function on_death( obj_id )
 			if IsStalker(obj) then t = m_net_utils.get_stalker_data(obj) elseif IsMonster(obj) then t = m_net_utils.get_monster_data(obj) end
 			-- t.smtrid
 			-- print_table_inlog(t)
-			if t.smtrid then
+			
+			if t == nil then
+				strn_id = obj:smart_terrain_id()
+			elseif t.smtrid then
 				strn_id = tonumber(t.smtrid)
 			end
 			-- -- amk.logf("DEATH 5D "..tostring(strn_id))
