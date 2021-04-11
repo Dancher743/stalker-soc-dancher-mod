@@ -14,6 +14,8 @@ local post_message_dolg = 1 --Сообщения от Долговцев
 local post_message_freedom = 1 --Сообщения от Свободовцев
 local post_message_random = 1
 
+-- Звук нотификации
+local pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
 --Вспомогательные функции для новостей
 local m_post_message = ""
@@ -1827,6 +1829,29 @@ nd_news_main_data.on_disconnect()
 end
 end
 
+function show_dynamic_news_on_notification(actor, npc)
+	show_dynamic_news_notification("on")
+end
+
+function show_dynamic_news_off_notification(actor, npc)
+	show_dynamic_news_notification("off")
+end
+
+function show_dynamic_news_notification(type)
+	local title = "Общий канал:"
+	local message = ""
+	local icon = Frect():set(498,47,83,47)
+	
+	if type == "on" then
+		message = "Произведена подписка на рассылку сообщений сталкеровской сети."
+	elseif type == "off" then
+		message = "Произведена отписка от рассылки сообщений сталкеровской сети."
+	end
+	
+	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]"..message
+	db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", icon, 0, 9000)
+	pda_tips:play(db.actor, 0, sound_object.s2d)
+end
 
 -------------------- Advanced Reconstruction Stalker Mod v0.5 --------------------
 --[[

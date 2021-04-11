@@ -31,7 +31,12 @@ local time = time_global()
 
 
 function show_news_main()
-if (isIsolatedLevel(level.name()) == true) then return end
+if (isIsolatedLevel(level.name()) == true) or 
+	db.actor:has_info("dynamic_news_off") 
+then
+	return 
+end
+
 if db.actor:has_info("surge_pda") then
 	--get_console():execute("unbind active_jobs")
 	--get_console():execute("unbind map")

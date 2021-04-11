@@ -762,4 +762,29 @@
 	<string id="tutorial_wounded_give_medkit_8">
 		<text>Ну, как ты?</text>
 	</string>
+	
+	<string id="escape_trader_dynamic_news_off_0">
+		<text>У меня есть вопрос по поводу сталкеровской сети.</text>
+	</string>
+	<string id="escape_trader_dynamic_news_off_1">
+		<text>Да, я слушаю.</text>
+	</string>
+	<string id="escape_trader_dynamic_news_off_2">
+		<text>Сможешь подключить меня к ней? Я хочу видеть сообщения.</text>
+	</string>
+	<string id="escape_trader_dynamic_news_off_3">
+		<text>Сможешь отключить меня от неё? Я больше не хочу видеть сообщения.</text>
+	</string>
+	<string id="escape_trader_dynamic_news_off_4">
+		<text>Забудь.</text>
+	</string>
+	<string id="escape_trader_dynamic_news_off_21">
+		<text>Готово. Если захочешь отключиться, то обратись ко мне.</text>
+	</string>
+	<string id="escape_trader_dynamic_news_off_31">
+		<text>Нет проблем, я отключил тебя от неё. Если захочешь подключиться, то обратись ко мне.</text>
+	</string>
+	<string id="escape_trader_dynamic_news_off_5">
+		<text>Спасибо.</text>
+	</string>
 </string_table>

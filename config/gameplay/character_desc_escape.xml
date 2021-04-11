@@ -26,6 +26,7 @@
 		<actor_dialog>escape_trader_done_blockpost_box</actor_dialog>
 		<actor_dialog>repair_sidr</actor_dialog>
 		<!--<actor_dialog>vehicles_dialogs</actor_dialog>-->
+		<actor_dialog>escape_trader_dynamic_news_off</actor_dialog>
 		<actor_dialog>escape_trader_join_lonely</actor_dialog>
 	</specific_character>
 <!---------------------------------------esc_wolf----------------------------------------------------->

@@ -268,4 +268,6 @@
 	<info_portion id="nimble_exchange_wpn_sig_m1"></info_portion>
 	<info_portion id="nimble_exchange_wpn_svd_m1"></info_portion>
 	<info_portion id="nimble_exchange_wpn_rg6_m1"></info_portion>
+	
+	<info_portion id="dynamic_news_off"></info_portion>
 </game_information_portions>

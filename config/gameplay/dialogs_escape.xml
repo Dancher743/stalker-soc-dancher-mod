@@ -1555,4 +1555,48 @@
             </phrase>
         </phrase_list>
     </dialog>
+	
+	<dialog id="escape_trader_dynamic_news_off">
+		<has_info>tutorial_end</has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>escape_trader_dynamic_news_off_0</text>
+                <next>1</next>
+            </phrase>
+			<phrase id="1">
+				<text>escape_trader_dynamic_news_off_1</text>
+                <next>2</next>
+				<next>3</next>
+				<next>4</next>
+            </phrase>
+			<phrase id="2">
+				<has_info>dynamic_news_off</has_info>
+				<text>escape_trader_dynamic_news_off_2</text>
+                <next>21</next>
+            </phrase>
+			<phrase id="21">
+				<text>escape_trader_dynamic_news_off_21</text>
+				<disable_info>dynamic_news_off</disable_info>
+				<action>nd_news_main.show_dynamic_news_on_notification</action>
+				<next>5</next>
+            </phrase>
+			<phrase id="3">
+				<dont_has_info>dynamic_news_off</dont_has_info>
+				<text>escape_trader_dynamic_news_off_3</text>
+				<next>31</next>
+            </phrase>
+			<phrase id="31">
+				<text>escape_trader_dynamic_news_off_31</text>
+				<give_info>dynamic_news_off</give_info>
+				<action>nd_news_main.show_dynamic_news_off_notification</action>
+				<next>5</next>
+            </phrase>
+			<phrase id="4">
+				<text>escape_trader_dynamic_news_off_4</text>
+            </phrase>
+			<phrase id="5">
+				<text>escape_trader_dynamic_news_off_5</text>
+            </phrase>
+		</phrase_list>
+	</dialog>
 </game_dialogs>
