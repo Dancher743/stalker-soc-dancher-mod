@@ -146,8 +146,8 @@ function __do_timer_action(select_string,params_string)
 				local slept_surge = title.."\\n%c[default]Недавно в Зоне произошёл выброс."
 				db.actor:give_game_news(slept_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
 				
-				-- Используем апгрейд номер три
-				use_pda_upgrade_three()
+				-- Выводим в новостях инфу о следующем выбросе
+				show_next_surge_time()
 				
 				return
 			else
@@ -248,7 +248,7 @@ function __do_timer_action(select_string,params_string)
 		h.impulse = 1000
 		for a=1,65534,1 do
 			cr=level.object_by_id(a)
-			if cr~=nil and cr:section()=="m_crow" and math.random(0,100)<70 then
+			if cr~=nil and cr:section()=="m_crow" then
 				h.draftsman = cr
 				h.direction = cr:direction()
 				cr:hit(h)
@@ -297,8 +297,8 @@ function __do_timer_action(select_string,params_string)
 		local end_surge = title.."\\n%c[default]Всё, ребята, выброс, слава Богу, закончился! Надеюсь никто не пострадал?"
 		db.actor:give_game_news(end_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
 		
-		-- Используем апгрейд номер три
-		use_pda_upgrade_three()
+		-- Выводим в новостях инфу о следующем выбросе
+		show_next_surge_time()
 		
 		--nd_keys.bind_keys()
 		db.Dead2 = 0
@@ -331,7 +331,7 @@ function spawn_arts_after_surge()
 	end
 end
 
-function use_pda_upgrade_three()
+function show_next_surge_time()
 	if pda_upgrade_manager.has_upgrade(3) then
 		local surge_next_time = load_variable("surge_next_time", 0)
 		
