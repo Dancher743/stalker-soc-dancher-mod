@@ -59,7 +59,7 @@ function update(npc)
 		return
 	end
 
-	if tt.ds_ltx ~= true and db.actor:alive() and npc:section() == 'stalker' then
+	if tt.ds_ltx ~= true and db.actor:alive() and npc:section() == 'stalker' and not xr_companion.is_companion(npc:id()) then
 	    local ltx = trade_generic.create_dinamic_ltx(npc)
         local dltx = create_ini_file(ltx)
         this.trade_init(npc, ltx, dltx)

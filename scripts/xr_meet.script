@@ -65,7 +65,7 @@ function action_meet_wait:initialize()
 	self.sound = "nil"
 
 	-- Çהמנמגאולסÿ.
-	if self.a.init_meet ~= "" then
+	if self.a.init_meet ~= "" and not xr_companion.is_companion(self.object:id()) then
 		xr_sound.set_sound_play(self.object, self.a.init_meet)
 	end
 end

@@ -350,6 +350,7 @@ function check_following(npc, actor)
 	
 	local npc_rank_level = npc:character_rank()
 	local actor_rank_level = db.actor:character_rank()
+	local max_ranks_diff = 300 * 2
 
 	local st = db.storage[npc:id()]
 	local actor_comm = db.actor:character_community()
@@ -359,6 +360,8 @@ function check_following(npc, actor)
 	local name = npc:name()
 	local profile = npc:profile_name()
 	local dead_friends = load_variable("dead_fr", 0)
+	
+	local max_number_of_companions = 2
 	
 	if not st 
 	or (is_quest_npc(npc) and not (string.find(npc:name(), "esc_wolf") and level.name() == "l07_military"))
@@ -389,12 +392,12 @@ function check_following(npc, actor)
 					return true					
 				else
 					local diff = actor_rank_level - npc_rank_level
-					if diff > 1 then
+					if diff > max_ranks_diff then
 						-- 5) ГГ значительно опытнее непися
 						not_follow_type = 5
 						return true						
 					else
-						if xr_companion.number_of_companions > 0 then
+						if xr_companion.number_of_companions >= max_number_of_companions then
 						-- 6) У ГГ уже есть напарник
 							not_follow_type = 6
 							return true	
