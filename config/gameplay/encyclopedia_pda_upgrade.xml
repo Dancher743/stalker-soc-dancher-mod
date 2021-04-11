@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<encyclopedia>
+	<article id="pda_upgrade_1_article" name="pda_upgrade_1_article_name" group="pda_upgrades" article_type="journal">
+			<text>pda_upgrade_1_article</text>
+	</article>
+	<article id="pda_upgrade_2_article" name="pda_upgrade_2_article_name" group="pda_upgrades" article_type="journal">
+			<text>pda_upgrade_2_article</text>
+	</article>
+	<article id="pda_upgrade_3_article" name="pda_upgrade_3_article_name" group="pda_upgrades" article_type="journal">
+			<text>pda_upgrade_3_article</text>
+	</article>
+</encyclopedia>

@@ -1,9 +1,14 @@
 <?xml version='1.0' encoding="windows-1251"?>
-
-<!-- Апгрейд КПК -->
-
 <game_information_portions>
-	<info_portion id="pda_upgrade_one"></info_portion>
-	<info_portion id="pda_upgrade_two"></info_portion>
-	<info_portion id="pda_upgrade_three"></info_portion>
+	<info_portion id="pda_upgrade_one">
+		<article>pda_upgrade_1_article</article>
+	</info_portion>
+	
+	<info_portion id="pda_upgrade_two">
+		<article>pda_upgrade_2_article</article>
+	</info_portion>
+	
+	<info_portion id="pda_upgrade_three">
+		<article>pda_upgrade_3_article</article>
+	</info_portion>
 </game_information_portions>

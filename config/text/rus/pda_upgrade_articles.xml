@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<string_table>
+	<string id="pda_upgrade_1_article_name">
+		<text>Больше денег в найденых КПК</text>
+	</string>
+	<string id="pda_upgrade_1_article">
+		<text>Теперь мой КПК сможет в два раза больше снимать денег с других найденых КПК. Отличный бонус к заработку.</text>
+	</string>
+	
+	<string id="pda_upgrade_2_article_name">
+		<text>Информативная карта</text>
+	</string>
+	<string id="pda_upgrade_2_article">
+		<text>Теперь мой КПК будет всегда отображать метки обнаруженных вражеских сталкеров как карте, так и мини-карте, а также брошенные гранаты. Будет очень полезно в боях.</text>
+	</string>
+	
+	<string id="pda_upgrade_3_article_name">
+		<text>Уведомления о выбросах</text>
+	</string>
+	<string id="pda_upgrade_3_article">
+		<text>Мой КПК подключили к системе рассылки экологов на Янатаре и теперь он получает уведомления о выбросах: через сколько часов произойдёт следующий и ещё за пару часов до него самого. Также они заменили кое-какие детали в моём КПК, и он больше не будет отключаться во время выбросов. Здорово!</text>
+	</string>
+
+	<string id="pda_upgrades">
+		<text>Улучшения для КПК</text>
+	</string>
+</string_table>
