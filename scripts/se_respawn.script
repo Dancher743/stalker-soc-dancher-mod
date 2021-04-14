@@ -580,7 +580,7 @@ function se_respawn:execute(current_time)
 		return
 	end
 	
-	local idle_hours = 6
+	local idle_hours = 4
 	local counter_max_value = 2
 	
 	local delta_time = game.CTime()

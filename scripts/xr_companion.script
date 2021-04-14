@@ -436,7 +436,7 @@ function companion_death(npc)
 		dead_friends = dead_friends + 1
 		save_variable("dead_fr", dead_friends)		
 
-		local title = "%c[255,160,160,160]Сообщение:"
+		local title = "%c[255,160,160,160]Напарник"
 		local text = ""
 
 		if dead_friends < 4 then

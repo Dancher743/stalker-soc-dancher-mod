@@ -45,7 +45,7 @@ local community =
  
 function kill_npc(victim, who)
   if victim and IsStalker(victim) then
-	local title = "%c[255,160,160,160]Некролог:"
+	local title = "%c[255,160,160,160]Некролог"
 	local dead_news = title.."\\n%c[default]"..level_name[level.name()].." погиб "..community[victim:character_community()].." "..victim:character_name().."."
 	db.actor:give_game_news(dead_news, "ui\\ui_iconstotal_amk", Frect():set(0,752,83,47), 2000, 3000)
    end
