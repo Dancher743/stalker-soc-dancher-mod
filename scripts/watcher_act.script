@@ -409,9 +409,9 @@ function act_grab_body:initialize()
 	self.st.block_search=true
 	if gi then
  		self.tt=time_global()+6000
-    state_mgr.set_state(npc,"search",nil,nil,{look_object=gi})
+		state_mgr.set_state(npc,"search",nil,nil,{look_object=gi})
 		ai_sounds.play_sound(npc, "begin")
-  else
+	else
     self.st.dest_lvid=nil
 	end
 end
@@ -425,26 +425,17 @@ function act_grab_body:execute()
     return
   end
 	if self.tt<time_global() then
-		self.items_cost = -1
+		self.items_count = 0
 		
-		if gi and gi:parent()==nil then
-			self.items_cost = 0
-			
+		if gi and gi:parent()==nil then		
 			gi:iterate_inventory(function (d,item)
 				if item ~= nil and item:section() ~= "bolt" then
-					self.items_cost = self.items_cost + item:cost()
 					gi:transfer_item(item,npc)
+					self.items_count = self.items_count + 1
 				end
 			end, nil)
+			
 			corpse_checked[gi:id()]=false
-						
-			if self.items_cost ~= nil then
-				if self.items_cost >= 2500 then
-					ai_sounds.play_sound(npc, "good")
-				elseif self.items_cost >= 0 and self.items_cost < 2500 then
-					ai_sounds.play_sound(npc, "bad")
-				end	
-			end
 		
 			amk.mylog(npc:name() .. " has taken "..gi:name(),"grb")			
 		end
@@ -458,7 +449,16 @@ function act_grab_body:finalize()
 	local npc=self.object
 	self.st.block_search=nil
 	trigger_timed(self.st,"tm1")
-  self.st.dest_lvid=nil -- Очищаем скорректированную точку назначения
+	self.st.dest_lvid=nil -- Очищаем скорректированную точку назначения
+	
+	if self.items_count then
+		if self.items_count >= 5 then
+			ai_sounds.play_sound(npc, "good")
+		else
+			ai_sounds.play_sound(npc, "bad")
+		end	
+	end
+	
 	action_base.finalize(self)
 end
 

@@ -136,7 +136,7 @@ function handradio:listen()
 		length = snd:length()
 	else
 		if math.random()<0.45 then
-			i = math.random(1,12)
+			i = math.random(1,4)
 			snd = sound_object("script_replics\\radio\\message\\radio_voice_"..i)
 			length = snd:length()
 		else

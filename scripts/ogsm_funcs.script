@@ -131,9 +131,11 @@ function __do_timer_action(select_string,params_string)
 				is_in_underground or
 				is_sleep and vars.surge_skip_by_sleep
 			then
+				--[[
 				if not is_in_underground then
 					level.set_weather("stormy")
 				end
+				]]--
 				
 				-- Устанавливаем таймер до следующего выбора
 				set_timer_of_next_surge()

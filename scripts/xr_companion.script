@@ -436,7 +436,7 @@ function companion_death(npc)
 		dead_friends = dead_friends + 1
 		save_variable("dead_fr", dead_friends)		
 
-		local title = "%c[255,160,160,160]Напарник"
+		local title = "%c[255,160,160,160]Напарники"
 		local text = ""
 
 		if dead_friends < 4 then
@@ -1202,8 +1202,8 @@ function add_to_binder(object, char_ini, scheme, section, st)
 		action:add_precondition(world_property(1099,false))
 	end	
 	if watcher_act then
-		--action:add_precondition(world_property(watcher_act.evid_see_stuff,false))
-		--action:add_precondition(world_property(watcher_act.evid_near_stuff,false))
+		action:add_precondition(world_property(watcher_act.evid_see_stuff,false))
+		action:add_precondition(world_property(watcher_act.evid_near_stuff,false))
 		action:add_precondition(world_property(watcher_act.evid_see_body,false))
 		action:add_precondition(world_property(watcher_act.evid_position_corrected,false))
 	end
@@ -1225,14 +1225,6 @@ function add_to_binder(object, char_ini, scheme, section, st)
 	if rx_facer then
 		action:add_precondition(world_property(rx_facer.evid_facer,false))
 	end
-	--[[
-	if watcher_act then
-		action:add_precondition(world_property(watcher_act.evid_see_stuff,false))
-		action:add_precondition(world_property(watcher_act.evid_near_stuff,false))
-		action:add_precondition(world_property(watcher_act.evid_see_body,false))
-		action:add_precondition(world_property(watcher_act.evid_position_corrected,false))
-	end
-	]]--
 	action:add_precondition(world_property(property_wounded, false))	
 	action:add_precondition(world_property(property_need_run, true))
 	action:add_effect(world_property(property_need_run, false))
@@ -1253,15 +1245,15 @@ function add_to_binder(object, char_ini, scheme, section, st)
 	action:add_precondition(world_property(property_need_run, false))
 
 	action = manager:action(watcher_act.actid_grab_item)
-	--action:add_precondition(world_property(property_need_companion, false))
+	action:add_precondition(world_property(property_need_companion, false))
 	action:add_precondition(world_property(property_need_run, false))
 
 	action = manager:action(watcher_act.actid_grab_body)
-	--action:add_precondition(world_property(property_need_companion, false))
+	action:add_precondition(world_property(property_need_companion, false))
 	action:add_precondition(world_property(property_need_run, false))	
 
 	action = manager:action(watcher_act.actid_reach_item)
-	--action:add_precondition(world_property(property_need_companion, false))
+	action:add_precondition(world_property(property_need_companion, false))
 	action:add_precondition(world_property(property_need_run, false))
 end
 
