@@ -366,7 +366,7 @@ function generic_object_binder:update(delta)
 		end
 		
 		-- Атака псевдособаки из билда 1935 (Автор: Charsi)
-        if self.object:clsid()==clsid.pseudodog_s and DogTimer < time_global() then
+        if self.object:clsid()==clsid.psy_dog_s and DogTimer < time_global() then
             local actor = db.actor
             local oTarget = self.object:get_enemy()
             local v1 = self.object:direction()
@@ -680,19 +680,19 @@ function generic_object_binder:hit_callback(obj, amount, local_direction, who, b
 	amk.on_monster_hit(obj, amount, local_direction, who, bone_index)
 	
 	-- Щит бюрера из Зова Припяти (Автор: demover123)
-	if self.object:clsid()==clsid.burer_s then
+	if obj:clsid()==clsid.burer_s then
 		if not self.time_hit then
 			self.time_hit = time_global() + 4000
 		end
 		
-		self.object:play_cycle("stand_tele_1", false)
+		obj:play_cycle("stand_tele_1", false)
 		local particle_start = particles_object("anomaly2\\burer_shield_01")
-		particle_start:play_at_pos(self.object:bone_position("bip01_head"))
-		self.object.health = self.object.health + 0.1
+		particle_start:play_at_pos(obj:bone_position("bip01_head"))
+		obj.health = obj.health + 0.1
 		
 		if self.time_hit <= time_global() then
-			if self.object:animation_count() > 0 then
-				self.object:clear_animations()
+			if obj:animation_count() > 0 then
+				obj:clear_animations()
 				particle_start:stop()
 			end
 		end

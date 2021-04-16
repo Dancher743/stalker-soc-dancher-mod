@@ -1174,8 +1174,14 @@ function add_to_binder(object, char_ini, scheme, section, st)
 	action:add_precondition(world_property(property_need_run, false))
 	action:add_precondition(world_property(stalker_ids.property_alive, true))
 	action:add_precondition(world_property(stalker_ids.property_enemy,false))
+	if rx_ff then
+		action:add_precondition(world_property(rx_ff.evid_dont_shoot,false))
+	end
 	if xrs_grenade and xrs_grenade.evid_aaa_grenade then
 		action:add_precondition(world_property(xrs_grenade.evid_aaa_grenade,false))		
+	end
+	if rx_gl then
+		action:add_precondition(world_property(rx_gl.evid_gl_reload,false))
 	end
 	if rx_bandage then
 		action:add_precondition(world_property(rx_bandage.evid_bandage,false))
@@ -1189,9 +1195,23 @@ function add_to_binder(object, char_ini, scheme, section, st)
 	if rx_reload then
 		action:add_precondition(world_property(rx_reload.evid_reload,false))	
 	end
+	if xrs_armor then 
+		action:add_precondition (world_property(xrs_armor.evid_armor, false)) 
+	end
 	if anomaly_evader then
 		action:add_precondition(world_property(1099,false))
 	end	
+	if watcher_act then
+		--action:add_precondition(world_property(watcher_act.evid_see_stuff,false))
+		--action:add_precondition(world_property(watcher_act.evid_near_stuff,false))
+		action:add_precondition(world_property(watcher_act.evid_see_body,false))
+		action:add_precondition(world_property(watcher_act.evid_position_corrected,false))
+	end
+	if ogsm_hideout then
+		action:add_precondition(world_property(ogsm_hideout.property_blowout, false))
+		action:add_precondition(world_property(ogsm_hideout.property_hideout_lost, false))
+		action:add_precondition(world_property(ogsm_hideout.property_inhide, false))
+	end
 	action:add_precondition(world_property(property_wounded, false))	
 	action:add_precondition(world_property(property_need_companion, true))
 	action:add_effect(world_property(property_need_companion, false))
@@ -1205,6 +1225,14 @@ function add_to_binder(object, char_ini, scheme, section, st)
 	if rx_facer then
 		action:add_precondition(world_property(rx_facer.evid_facer,false))
 	end
+	--[[
+	if watcher_act then
+		action:add_precondition(world_property(watcher_act.evid_see_stuff,false))
+		action:add_precondition(world_property(watcher_act.evid_near_stuff,false))
+		action:add_precondition(world_property(watcher_act.evid_see_body,false))
+		action:add_precondition(world_property(watcher_act.evid_position_corrected,false))
+	end
+	]]--
 	action:add_precondition(world_property(property_wounded, false))	
 	action:add_precondition(world_property(property_need_run, true))
 	action:add_effect(world_property(property_need_run, false))
@@ -1222,7 +1250,19 @@ function add_to_binder(object, char_ini, scheme, section, st)
 
 	action = manager:action(stalker_ids.action_retreat_from_enemy)
 	action:add_precondition(world_property(property_need_companion, false))
+	action:add_precondition(world_property(property_need_run, false))
+
+	action = manager:action(watcher_act.actid_grab_item)
+	--action:add_precondition(world_property(property_need_companion, false))
+	action:add_precondition(world_property(property_need_run, false))
+
+	action = manager:action(watcher_act.actid_grab_body)
+	--action:add_precondition(world_property(property_need_companion, false))
 	action:add_precondition(world_property(property_need_run, false))	
+
+	action = manager:action(watcher_act.actid_reach_item)
+	--action:add_precondition(world_property(property_need_companion, false))
+	action:add_precondition(world_property(property_need_run, false))
 end
 
 -- Функции включения/выключения схемы

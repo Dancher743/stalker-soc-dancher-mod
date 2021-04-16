@@ -259,7 +259,11 @@ function test_for_can_sleep(matras)
 		for a=1,65535 do
 			local obj = level.object_by_id(a)
 			if obj then
-				if ((IsStalker(obj) and get_npc_relation(obj,db.actor)=="enemy") or IsMonster(obj)) and obj:position():distance_to(db.actor:position())<ENEMY_RADIUS then
+				if 
+					obj:position():distance_to(db.actor:position())<ENEMY_RADIUS and 
+					obj:alive() and
+					((IsStalker(obj) and get_npc_relation(obj,db.actor)=="enemy") or IsMonster(obj))
+				then
 					news_manager.send_tip(db.actor, "sleep_warning_enemy", nil, "default", 5000)
 					return false
 				end

@@ -4,7 +4,15 @@
 
 local excluded_npcs={
 	bar_ecolog_professor = true,
-	yan_ecolog_help = true
+	yan_ecolog_help = true,
+	mil_dolg_stalker0000 = true,
+	mil_dolg_stalker0001 = true,
+	mil_dolg_stalker0002 = true,
+	mil_dolg_stalker0003 = true,
+	mil_dolg_stalker0004 = true,
+	mil_dolg_stalker0006 = true,
+	mil_dolg_stalker0006_0000 = true,
+	mil_dolg_stalker0007 = true
 }
 
 evid_see_stuff=6931
@@ -205,11 +213,6 @@ end
 function ev_see_stuff:evaluate()
 	local res=getGObject(self.st)~=nil
 	local npc=self.object
-	
-	if npc ~= nil and excluded_npcs[npc:name()] then
-		return
-	end
-	
   local actsch=db.storage[npc:id()].active_scheme
   if actsch and db.actor then
     xr_logic.try_switch_to_another_section(npc, db.storage[npc:id()][actsch], db.actor)
@@ -293,11 +296,6 @@ end
 
 function ev_near_stuff:evaluate()
 	local npc=self.object
-	
-	if npc ~= nil and excluded_npcs[npc:name()] then
-		return
-	end
-	
 	local gi=getGObject(self.st)
   if gi then
     if self.st.dest_lvid then
@@ -316,11 +314,6 @@ end
 
 function ev_see_body:evaluate()
 	local npc=self.object
-	
-	if npc ~= nil and excluded_npcs[npc:name()] then
-		return
-	end
-	
 	local gi=getGObject(self.st)
 	if gi then
     return IsStalker(gi) or IsMonster(gi)
@@ -336,11 +329,6 @@ end
 
 function ev_position_corrected:evaluate()
 	local npc=self.object
-	
-	if npc ~= nil and excluded_npcs[npc:name()] then
-		return
-	end
-	
   return self.st.position_corrected==true
 end
 
@@ -379,10 +367,6 @@ end
 
 function act_grab_item:execute()
 	local npc=self.object
-	
-	if npc ~= nil and excluded_npcs[npc:name()] then
-		return
-	end
 	
 	action_base.execute(self)
 	
@@ -434,11 +418,6 @@ end
 
 function act_grab_body:execute()
 	local npc=self.object
-	
-	if npc ~= nil and excluded_npcs[npc:name()] then
-		return
-	end
-	
 	action_base.execute(self)
 	local gi=getGObject(self.st)
   if not gi then
@@ -545,10 +524,6 @@ end
 function act_reach_item:execute()
 	local npc=self.object
 	
-	if npc ~= nil and excluded_npcs[npc:name()] then
-		return
-	end
-	
 	action_base.execute(self)
 	
 	local gi=getGObject(self.st)
@@ -585,7 +560,8 @@ function add_to_binder(object, char_ini, scheme, section, st)
 
   local zombi=npc:character_community()=="zombied" or npc:character_community()=="trader" or
           npc:character_community()=="arena_enemy" or npc:name()=="mil_stalker0012" or npc:name()=="yantar_ecolog_general" or -- сумашедший на милитари и Сахаров
-          npc:name()=="mil_freedom_member0021" -- Скрягу в зомби!
+          npc:name()=="mil_freedom_member0021" or -- Скрягу в зомби!
+		  excluded_npcs[npc:name()]
 	
 	local prop_idlecombat=xr_evaluators_id.state_mgr + 3
   local prop_contact=xr_evaluators_id.stohe_meet_base + 1
