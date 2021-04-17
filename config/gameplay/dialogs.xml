@@ -239,13 +239,6 @@
         </phrase_list>
     </dialog>
 	
-	<!-- Обмен предметами с НПС -->
-	<dialog id="dm_dialog_exchanging_items">
-		<has_info>yan_kill_brain_done</has_info>
-		<precondition>exchanging_items.exchanging_condition</precondition>
-		<init_func>exchanging_items.init_exchanging_items_dialog</init_func> 
-    </dialog>
-
 	<!-- COMPANION DIALOGS -->
     <!-- COMPANION STALKER -->	
 	
