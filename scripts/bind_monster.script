@@ -230,7 +230,7 @@ function generic_object_binder:update(delta)
 								level.hide_indicators()
 							end
 							
-							self.object:set_invisible(false)
+							--self.object:set_invisible(false)
 							target:set_actor_direction(-self.object:position():sub(target:position()):getH())
 							self.object:play_cycle("vampire_0", true)
 							self.bool_vamp_0 = true
@@ -242,7 +242,7 @@ function generic_object_binder:update(delta)
 								self.object:clear_animations()
 							end
 							if not self.bool_vamp_1 then
-								self.object:set_invisible(false)
+								--self.object:set_invisible(false)
 								self.object:play_cycle("vampire_1", true)
 								
 								if IsActor(target) then
@@ -263,7 +263,7 @@ function generic_object_binder:update(delta)
 								
 								if not self.ending_sucks then
 									self.ending_sucks = time_global() + 700
-									self.object:set_invisible(false)
+									--self.object:set_invisible(false)
 									local song_start = xr_sound.get_safe_sound_object("monsters\\bloodsucker\\vampire_hit")
 									song_start:play_at_pos(self.object, self.object:position(), sound_object.s3d)
 									self.object:play_cycle("vampire_2", true)
@@ -298,7 +298,7 @@ function generic_object_binder:update(delta)
 									self.bool_next_step = false
 									self.bool_vamp_0 = false
 									self.bool_vamp_1 = false
-									self.object:set_invisible(true)
+									--self.object:set_invisible(true)
 									rand = math.random(1,100)
 									
 									level.enable_input()
@@ -320,8 +320,8 @@ function generic_object_binder:update(delta)
 					
 						self.object:clear_animations()
 						
-						self.object:set_invisible(true)
-						self.object:set_invisible(false)
+						--self.object:set_invisible(true)
+						--self.object:set_invisible(false)
 									
 						if song_start_sucks:playing() then
 							song_start_sucks:stop()
@@ -347,16 +347,16 @@ function generic_object_binder:update(delta)
 						self.time_to_boogie = time_global() + (math.random(5,10) * 1000)
 					end
 					if self.time_to_boogie <= time_global() then
-						self.object:set_invisible(false)
+						--self.object:set_invisible(false)
 						self.object:play_cycle("stand_threaten_0", true)
 						local song_boogie = xr_sound.get_safe_sound_object("monsters\\bloodsucker\\bloodsucker_script_attack_"..math.random(0,1))
 						if not song_boogie:playing() then
-							song_boogie:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+							song_boogie:play_at_pos(self.object, self.object:position(), sound_object.s3d)
 						end
 						if not self.gotoinvis then
 							self.gotoinvis = true
 						else
-							self.object:set_invisible(true)
+							--self.object:set_invisible(true)
 							self.time_to_boogie = nil
 							self.gotoinvis = false
 						end
