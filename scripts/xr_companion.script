@@ -1202,7 +1202,6 @@ function add_to_binder(object, char_ini, scheme, section, st)
 		action:add_precondition(world_property(1099,false))
 	end	
 	if watcher_act then
-		action:add_precondition(world_property(watcher_act.evid_see_stuff,false))
 		action:add_precondition(world_property(watcher_act.evid_near_stuff,false))
 		action:add_precondition(world_property(watcher_act.evid_see_body,false))
 		action:add_precondition(world_property(watcher_act.evid_position_corrected,false))
@@ -1245,15 +1244,12 @@ function add_to_binder(object, char_ini, scheme, section, st)
 	action:add_precondition(world_property(property_need_run, false))
 
 	action = manager:action(watcher_act.actid_grab_item)
-	action:add_precondition(world_property(property_need_companion, false))
 	action:add_precondition(world_property(property_need_run, false))
 
 	action = manager:action(watcher_act.actid_grab_body)
-	action:add_precondition(world_property(property_need_companion, false))
 	action:add_precondition(world_property(property_need_run, false))	
 
 	action = manager:action(watcher_act.actid_reach_item)
-	action:add_precondition(world_property(property_need_companion, false))
 	action:add_precondition(world_property(property_need_run, false))
 end
 
