@@ -166,7 +166,7 @@ function keep_item(npc, item)
 	end
 	
 	-- вместо стандартного КПК спавним наш
-	if section == "device_pda" then
+	if section == "device_pda" and npc:character_community() ~= "arena_enemy" then
 		pda_hack.create_pda_npc(npc)
 	end
 	

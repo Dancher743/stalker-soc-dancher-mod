@@ -81,23 +81,4 @@
           </phrase_list>
         </dialog>
 		
-		<!-- Диалог для наводки на проводника на Кордоне -->
-		<dialog id="guider_dialog_share">
-          <phrase_list>
-             <phrase id="0">
-                <text>guider_dialog_share_0</text>
-				<next>1</next>
-             </phrase>
-			 
-			<phrase id="1">
-                <text>guider_dialog_share_1</text>
-				<next>2</next>
-             </phrase>
-			 
-			<phrase id="2">
-                <text>guider_dialog_share_2</text>
-             </phrase>
-          </phrase_list>
-        </dialog>
-		
 </game_dialogs>

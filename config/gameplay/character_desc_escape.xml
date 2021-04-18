@@ -62,7 +62,6 @@
 		<start_dialog>dm_hello_dialog</start_dialog>
 		<actor_dialog>dm_cool_info_dialog</actor_dialog>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
-		<actor_dialog>guider_dialog_share</actor_dialog>
 		<actor_dialog>tm_wolf_dialog</actor_dialog>
 		<actor_dialog>tm_wolf_reward</actor_dialog>
 	</specific_character>

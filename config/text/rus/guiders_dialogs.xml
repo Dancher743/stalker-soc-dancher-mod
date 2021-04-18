@@ -52,15 +52,4 @@
 	<string id="guider_cant_yantar_dialog_0">
 		<text>К сожалению, я не могу тебя туда провести из-за высокого уровня пси-излучания. Стать зомби я не хочу...</text>
 	</string>
-	
-	<string id="guider_dialog_share_0">
-		<text>Чего расскажешь?</text>
-	</string>
-	<string id="guider_dialog_share_1">
-		<text>У нас здесь обосновался проводник. Проводники могут тебя отвести куда-нибудь за определённую плату. Загляни к нему в дом, он находится слева от бункера Сидоровича.</text>
-	</string>
-	<string id="guider_dialog_share_2">
-		<text>Спасибо за информацию.</text>
-	</string>
-	
 </string_table>

@@ -9,8 +9,10 @@ function add_mapspot(id)
 	local sid = alife():object(id).m_story_id
 	if sid == nil then return end
 	
-    if sid==507 then level.map_add_object_spot(id, "boss_npc_mapspot", "Главнокомандующий «Долга»")
-    elseif sid==707 then level.map_add_object_spot(id, "boss_npc_mapspot", "Главнокомандующий «Свободы»")
+    if sid==507 then level.map_add_object_spot(id, "leader_npc_mapspot", "Главнокомандующий")	-- Воронин	
+    elseif sid==707 then level.map_add_object_spot(id, "leader_npc_mapspot", "Главнокомандующий")	-- Лукаш
+	elseif sid==6 and level.name() == "l01_escape" then level.map_add_object_spot(id, "leader_npc_mapspot", "Главнокомандующий") -- Волк
+	elseif sid==22 then level.map_add_object_spot(id, "leader_npc_mapspot", "Главнокомандующий") -- Фанат
     elseif sid==003 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Сидорович
     elseif sid==500 then level.map_add_object_spot(id, "trader_npc_mapspot_small", "Торговец") -- Бармен
 	elseif sid==506 then level.map_add_object_spot(id, "trader_npc_mapspot", "Торговец") -- Петренко
@@ -30,8 +32,10 @@ function remove_mapspot(id)
 	local sid = alife():object(id).m_story_id
 	if sid == nil then return end
 	
-    if sid==507 then level.map_remove_object_spot(id, "boss_npc_mapspot") -- Воронин
-    elseif sid==707 then level.map_remove_object_spot(id, "boss_npc_mapspot") -- Лукаш
+    if sid==507 then level.map_remove_object_spot(id, "leader_npc_mapspot") -- Воронин
+    elseif sid==707 then level.map_remove_object_spot(id, "leader_npc_mapspot") -- Лукаш
+	elseif sid==6 and level.name() == "l01_escape" then level.map_remove_object_spot(id, "leader_npc_mapspot") -- Волк
+	elseif sid==22 then level.map_remove_object_spot(id, "leader_npc_mapspot") -- Фанат
     elseif sid==003 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Сидорович
     elseif sid==500 then level.map_remove_object_spot(id, "trader_npc_mapspot_small") -- Бармен
 	elseif sid==506 then level.map_remove_object_spot(id, "trader_npc_mapspot") -- Петренко
