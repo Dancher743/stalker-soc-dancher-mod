@@ -405,12 +405,15 @@ function act_grab_body:initialize()
 	action_base.initialize(self)
 	local npc=self.object	
 	local gi=getGObject(self.st)
+	self.body_is_monster = IsMonster(gi)
 	amk.mylog(self.object:name().." is going to grab body","stmt")
 	self.st.block_search=true
 	if gi then
  		self.tt=time_global()+6000
 		state_mgr.set_state(npc,"search",nil,nil,{look_object=gi})
-		ai_sounds.play_sound(npc, "begin")
+		if not self.body_is_monster then
+			ai_sounds.play_sound(npc, "begin")
+		end
 	else
     self.st.dest_lvid=nil
 	end
@@ -451,7 +454,7 @@ function act_grab_body:finalize()
 	trigger_timed(self.st,"tm1")
 	self.st.dest_lvid=nil -- Очищаем скорректированную точку назначения
 	
-	if self.items_count then
+	if self.items_count and not self.body_is_monster then
 		if self.items_count >= 5 then
 			ai_sounds.play_sound(npc, "good")
 		else

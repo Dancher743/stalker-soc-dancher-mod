@@ -79,7 +79,8 @@ being_attacked = false
 actor_attacked = false
 
 -- Звуки нотификации
-pda_sos = xr_sound.get_safe_sound_object([[device\pda\pda_sos]])
+local pda_sos = xr_sound.get_safe_sound_object([[device\pda\pda_sos]])
+local pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 
 -----------------------------------------------------
 -- Функции сохранения и выгрузки из кастомдаты
@@ -436,17 +437,16 @@ function companion_death(npc)
 		dead_friends = dead_friends + 1
 		save_variable("dead_fr", dead_friends)		
 
-		local title = "%c[255,160,160,160]Напарники"
-		local text = ""
+		local title = "Напарник"
+		local text = npc:character_name().." погиб."
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_agr_agr_help_krot")
 
-		if dead_friends < 4 then
-			text = title.."\\n%c[default]Ваш напарник "..npc:character_name().." погиб."		
-		else
-			text = title.."\\n%c[default]Ваш напарник "..npc:character_name().." погиб. Вы приобрели дурную славу среди сталкеров."
+		if dead_friends >= 4 then
+			text = text.." Вы приобрели дурную славу среди сталкеров."
 		end
 
 		pda_sos:play(db.actor, 0, sound_object.s2d)
-		db.actor:give_game_news(text, "ui\\ui_iconsTotal", Frect():set(0,235,83,47), 0, 15000)
+		db.actor:give_game_news("%c[255,160,160,160]"..title.."\\n%c[default]"..text, task_texture, task_rect, 0, 15000)
 	end
 end
 
@@ -993,8 +993,13 @@ function action_companion_activity:execute()
 	end
 	
 	--  Проверка на враждебность
-	if self.object:relation(db.actor) == game_object.enemy then
-		db.actor:give_game_news(self.object:character_name() .. " стал вашим врагом!", "ui\\ui_iconsTotal", Frect():set(0,235,83,47), 0, 15000)
+	if self.object:relation(db.actor) == game_object.enemy then		
+		local title = "Напарник"
+		local text = self.object:character_name().." стал вашим врагом."
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_agr_agr_help_krot")
+		pda_tips:play(db.actor, 0, sound_object.s2d)
+		db.actor:give_game_news("%c[255,160,160,160]"..title.."\\n%c[default]"..text, task_texture, task_rect, 0, 15000)
+		
 		db.storage[self.object:id()].companion.enabled = false
 		xr_companion.number_of_companions = xr_companion.number_of_companions - 1
 		xr_companion.save_var_companion(self.object:id(), "is_companion", 0)
