@@ -107,4 +107,13 @@
 	<hud_date x="928" y="16.5" width="0" height="0">
 		<text font="medium" a="130"/>
 	</hud_date>
+	
+	<companion_health x="900" y="521" width="123" height="65" stretch="1">
+		<text x="45" y="23" font="graffiti32" r="238" g="155" b="23" a="255"/>
+		<texture>ui_hud_frame_patron</texture>
+	</companion_health>
+
+	<companion_name x="938" y="522.5" width="0" height="0">
+		<text font="medium" a="130"/>
+	</companion_name>
 </header>

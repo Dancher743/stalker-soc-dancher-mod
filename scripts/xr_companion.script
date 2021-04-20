@@ -1429,3 +1429,45 @@ function update_level_names(npc_id)
 	update_offline_dest(level.name(),cur_level_name)
   end
 end
+
+function update_hud()
+	for k, v in pairs(companions) do
+		if companions[k] == "companion" then
+			local companion = level.object_by_id(k)
+			if companion and companion:alive() then
+				local health = math.floor(companion.health * 100)
+				local name = companion:character_name()
+				
+				local hud = get_hud()
+				local companion_health_hud = hud:GetCustomStatic("companion_health")
+				local companion_name_hud = hud:GetCustomStatic("companion_name")
+				
+				if companion_health_hud == nil then
+					hud:AddCustomStatic("companion_health", true)
+					companion_health_hud = hud:GetCustomStatic("companion_health")
+				end
+				
+				if companion_name_hud == nil then
+					hud:AddCustomStatic("companion_name", true)
+					companion_name_hud = hud:GetCustomStatic("companion_name")
+				end
+				
+				companion_health_hud:wnd():SetText(tostring(health).."%")
+				companion_name_hud:wnd():SetText(tostring(name))
+			else
+				local hud = get_hud()
+				
+				local companion_health_hud = hud:GetCustomStatic("companion_health")
+				local companion_name_hud = hud:GetCustomStatic("companion_name")
+				
+				if companion_health_hud ~= nil then
+					hud:RemoveCustomStatic("companion_health")
+				end
+				
+				if companion_name_hud ~= nil then
+					hud:RemoveCustomStatic("companion_name")
+				end
+			end
+		end
+	end
+end
