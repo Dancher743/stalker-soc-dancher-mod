@@ -84,3 +84,15 @@
 	<informer_npc_mini_spot_small x="0" y="0" width="8" height="8" alignment="c" scale="1" stretch="1">
 		<texture>ui_sm_mapQuest_item</texture>
 	</informer_npc_mini_spot_small>
+	
+	<!-- Коллекционер -->
+	<collector_npc_mapspot>
+		<level_map spot="collector_npc_spot"	    pointer="quest_pointer"/>
+		<mini_map  spot="collector_npc_mini_spot"	pointer="quest_pointer"/>
+	</collector_npc_mapspot>
+	<collector_npc_spot x="0" y="0" width="4" height="4" alignment="c" scale="1" stretch="1">
+		<texture x="906" y="872" width="19" height="19">ui\ui_common_dmx</texture>
+	</collector_npc_spot>
+	<collector_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1">
+		<texture x="906" y="872" width="19" height="19">ui\ui_common_dmx</texture>
+	</collector_npc_mini_spot>

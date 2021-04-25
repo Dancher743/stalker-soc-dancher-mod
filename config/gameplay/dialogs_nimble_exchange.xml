@@ -3,7 +3,8 @@
 
 	<!-- Диалог после спасения и до возвращения из ТД -->
 	<dialog id="nimble_exchange_dialog_before_sleep">
-        <dont_has_info>esc_return</dont_has_info>
+        <has_info>tutorial_wounded_help</has_info>
+		<dont_has_info>esc_return</dont_has_info>
 		<phrase_list>
             <phrase id="0">
                 <text>nimble_exchange_dialog_after_safe_0</text>
@@ -22,6 +23,7 @@
 
 	<!-- Диалог после возвращения из ТД -->
 	<dialog id="nimble_exchange_dialog_after_sleep">
+		<has_info>tutorial_wounded_help</has_info>
 		<has_info>esc_return</has_info>
         <phrase_list>
 			<phrase id="0">
