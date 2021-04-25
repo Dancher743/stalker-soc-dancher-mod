@@ -131,11 +131,9 @@ function __do_timer_action(select_string,params_string)
 				is_in_underground or
 				is_sleep and vars.surge_skip_by_sleep
 			then
-				--[[
 				if not is_in_underground then
-					level.set_weather("stormy")
+					level.set_weather(wthr)
 				end
-				]]--
 				
 				-- Устанавливаем таймер до следующего выбора
 				set_timer_of_next_surge()
@@ -171,7 +169,7 @@ function __do_timer_action(select_string,params_string)
 		level.set_weather("amk_for_blow")
 		wfx1 = "p_surge_day_"..tostring(level.get_time_hours())
 		level.set_weather_fx(wfx1)
-		level.add_pp_effector("vibros_p.ppe", 1974, false)	
+		--level.add_pp_effector("vibros_p.ppe", 1974, false)	
 		local snd_obj = xr_sound.get_safe_sound_object([[anomaly\dezodor]])
 		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
 		db.actor:give_info_portion("surge_start")
@@ -280,7 +278,7 @@ function __do_timer_action(select_string,params_string)
 		level.add_pp_effector ("teleport.ppe", 2009, false)
 		local snd_obj2 = xr_sound.get_safe_sound_object([[ambient\earthquake]])
 		snd_obj2:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
-		level.set_weather("stormy")
+		level.set_weather(wthr)
 		del_variable("blt")
 		
 		-- Устанавливаем таймер до следующего выбора
