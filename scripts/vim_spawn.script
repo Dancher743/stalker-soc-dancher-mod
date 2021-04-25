@@ -40,13 +40,24 @@ end
 
 -- Заселение лаборатории Х-18
 -- Copyright    : AMK Mod
--- Author       : AMK Team
+-- Author       : AMK Team (взято из amk_spawn.script)
 -- Переработана под нужды VP mod (Dancher)
 --
 function lab_x18()
-	amk_spawn.x_spawn("x18_1")
-	amk_spawn.x_spawn("x18_2")
-	amk_spawn.x_spawn("x18_3")
+	alife():create("burer_weak",vector():set(-13.74,-10.82,-4.31),1249,1150)
+	alife():create("zombie_weak",vector():set(-13.74,-10.82,-4.31),1249,1150)
+	alife():create("zombie_weak",vector():set(-13.74,-10.82,-4.31),1249,1150)
+	alife():create("zombie_weak",vector():set(-13.74,-10.82,-4.31),1249,1150)
+
+	alife():create("burer_weak",vector():set(-39.57,-13.01,-15.61),233,1153)
+	alife():create("zombie_weak",vector():set(-39.57,-13.01,-15.61),233,1153)
+	alife():create("zombie_weak",vector():set(-39.57,-13.01,-15.61),233,1153)
+	alife():create("zombie_weak",vector():set(-39.57,-13.01,-15.61),233,1153)
+	
+	alife():create("burer_weak",vector():set(-13.65,-12.43,-10.48),4780,1156)
+	alife():create("zombie_weak",vector():set(-13.65,-12.43,-10.48),4780,1156)
+	alife():create("zombie_weak",vector():set(-13.65,-12.43,-10.48),4780,1156)
+	alife():create("zombie_weak",vector():set(-13.65,-12.43,-10.48),4780,1156)
 end
 
 -- Заселение лаборатории Х-16

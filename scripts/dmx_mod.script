@@ -24,7 +24,7 @@ function add_mapspot(id)
 	elseif sid==5485 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Механик в Баре
 	elseif sid==775 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Шуруп
 	elseif sid==515 then level.map_add_object_spot(id, "informer_npc_mapspot_small", "Информатор") -- Осведомитель в баре
-	elseif sid==7 and has_alife_info("tutorial_wounded_help") 
+	elseif sid==7 and has_alife_info("dar_x18_dream") 
 		then level.map_add_object_spot(id, "collector_npc_mapspot", "Коллекционер") -- Толик 
 	end
 end
@@ -49,6 +49,6 @@ function remove_mapspot(id)
 	elseif sid==5485 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Механик в Баре
 	elseif sid==775 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Шуруп
 	elseif sid==515 then level.map_remove_object_spot(id, "informer_npc_mapspot_small") -- Осведомитель в баре
-	elseif sid==7 and has_alife_info("tutorial_wounded_help") then level.map_remove_object_spot(id, "collector_npc_mapspot") -- Толик 
+	elseif sid==7 and has_alife_info("dar_x18_dream") then level.map_remove_object_spot(id, "collector_npc_mapspot") -- Толик 
     end
 end
