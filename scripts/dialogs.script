@@ -368,6 +368,9 @@ function check_following(npc, actor)
 	or string.find(profile, "sniper")
 	or string.find(profile, "leader")
 	or string.find(profile, "commander")
+	or string.find(profile, "engineer")
+	or string.find(profile, "guider")
+	or string.find(profile, "mechanic") 
 	or string.find(name, "val_rob")
 	then
 		-- 1) Это квестовый непись

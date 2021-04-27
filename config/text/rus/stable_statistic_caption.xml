@@ -191,3 +191,6 @@
 	<string id="rat_weak">
 		<text>крыса</text>
 	</string>
+	<string id="psy_dog_strong">
+		<text>сумеречная псевдособака</text>
+	</string>

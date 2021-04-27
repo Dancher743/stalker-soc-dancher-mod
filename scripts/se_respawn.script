@@ -272,9 +272,6 @@ function se_respawn:on_register()
 	-- производим первичную инициализацию
 	self.respawn_time = game.CTime()
 	
-	self.idle_time = game.CTime()
-	self.is_sleeping = false
-	
 	-- ƒл€ сбора статистики сохран€ем указатель на респавнер
 	respawners[self:name()] = self
 	if self.parent ~= nil then
@@ -579,7 +576,7 @@ function se_respawn:execute(current_time)
 		return
 	end
 	
-	local idle_hours = 12 + math.random(-4,4)
+	local idle_hours = 12 + math.random(-2,2)
 	local spawn_counts = math.random(1,2)
 	local execute_prob = math.random(0,3)
 	local prob = math.random(100)
@@ -587,7 +584,7 @@ function se_respawn:execute(current_time)
 	local delta_time = game.CTime()
 	delta_time:setHMS(idle_hours, 0, 0)
 	delta_time:add(current_time)
-	self.idle_time = delta_time
+	self.respawn_time = delta_time
 	
 	if prob > execute_prob then
 		return
@@ -692,7 +689,7 @@ function se_respawn:update()
 	
 	cse_alife_smart_zone.update(self)
 		
-	if current_time < self.idle_time then
+	if current_time < self.respawn_time then
 		return
 	end
 	
