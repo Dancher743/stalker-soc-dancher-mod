@@ -35,10 +35,7 @@ function show_spots(npc, id)
 		spot_relation_type = "neutral"
 	elseif npc_relation == game_object.friend then
 		spot_relation_type = "friend"
-	elseif 
-		npc_relation == game_object.enemy and
-		pda_upgrade_manager.has_upgrade(2)
-	then
+	else
 		spot_relation_type = "enemy"
 	end
 	
@@ -53,6 +50,17 @@ function show_spots(npc, id)
 		is_npc_alive(npc)
 	then
 		if added_spots[id] ~= nil then
+			if spot ~= added_spots[id] then
+				remove_spot(id)
+			else
+				return
+			end
+		end
+	
+		if
+			spot_relation_type == "enemy" and 
+			not pda_upgrade_manager.has_upgrade(2)
+		then
 			return
 		end
 		

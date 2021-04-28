@@ -179,7 +179,7 @@ function generic_object_binder:update(delta)
 				if dist < 1.5 then
 					if not self.sucks and not self.steal then
 						rand = math.random(100)
-						if rand > 90 then
+						if rand > 80 then
 							--if self.object.health < 1.0 then
 								self.sucks = true
 							--end
