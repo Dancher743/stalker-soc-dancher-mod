@@ -17,6 +17,7 @@
 				<next>3</next>
 				<next>4</next>
 				<next>5</next>
+				<next>10</next>
 				<next>6</next>
             </phrase>
 			
@@ -66,6 +67,28 @@
                 <text>bar_informer_ways_dialog_7</text>
 				<action>dialogs_informer_new.relocate_money</action>
 				<give_info>new_way_yantar_agroprom</give_info>
+				<next>9</next>
+            </phrase>
+			
+			<phrase id="10">
+				<dont_has_info>new_way_military_yantar</dont_has_info>
+				<precondition>dialogs_informer_new.actor_have_money</precondition>
+                <text>bar_informer_ways_dialog_10</text>
+				<next>101</next>
+				<next>102</next>
+            </phrase>
+			
+			<phrase id="101">
+				<dont_has_info>yan_kill_brain_done</dont_has_info>
+                <text>bar_informer_ways_dialog_5_1</text>
+            </phrase>
+			
+			<phrase id="102">
+				<has_info>yan_kill_brain_done</has_info>
+				<dont_has_info>new_way_military_yantar</dont_has_info>
+                <text>bar_informer_ways_dialog_7</text>
+				<action>dialogs_informer_new.relocate_money</action>
+				<give_info>new_way_military_yantar</give_info>
 				<next>9</next>
             </phrase>
 			

@@ -364,3 +364,15 @@ function garbage_to_escape()
     create_level_changer(5606,vector():set(-97.550,-0.547,-268.569),114105,272,
     121055,167,vector():set(-131.160,4.834,233.485),vector():set(0.0,-1.58,-1.0),"l01_escape", "to_escape", 0)
 end
+
+-- —о —кладов на янтарь
+function military_to_yantar()
+	create_level_changer(5607,vector():set(-383.87,-14.122,399.38),337,1848,
+	32169,1500,vector():set(-18.251,0.08,0.25),vector():set(0,-1.5,0),"l08_yantar", "to_yantar", 0)
+end
+
+-- —о янтар€ на —клады
+function yantar_to_military()
+    create_level_changer(5608,vector():set(-24.30, 0.434, 0.026), 29988, 1500,
+    594,1848,vector():set(-377.096,-14.008,397.739),vector():set(0,-2,0),"l07_military", "to_military", 0)
+end

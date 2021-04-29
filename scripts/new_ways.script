@@ -45,6 +45,14 @@ function add_ways_escape_garbage_back()
 	xr_effects.start_timer(2000, notificate_ways_garbage_to_escape)	
 end
 
+function add_ways_military_yantar_back()
+	sa_spawn.military_to_yantar()
+	xr_effects.start_timer(1000, notificate_ways_military_to_yantar)
+	
+	sa_spawn.yantar_to_military()
+	xr_effects.start_timer(2000, notificate_ways_yantar_to_military)	
+end
+
 -------------------------------------
 
 -- Функции, показывающие нотификации, когда новые пути получены --
@@ -87,6 +95,13 @@ function notificate_ways_garbage_to_escape()
 	notificate("l02_garbage", "l01_escape")
 end
 
+function notificate_ways_military_to_yantar()
+	notificate("l07_military", "l08_yantar")
+end
+
+function notificate_ways_yantar_to_military()
+	notificate("l08_yantar", "l07_military")
+end
 -------------------------------------
 
 function notificate(from, to)
@@ -112,6 +127,8 @@ function mark_ways_on_map()
 	mark_way_on_map(5595, "to_garbage")
 	mark_way_on_map(5605, "to_garbage")
 	mark_way_on_map(5606, "to_escape")
+	mark_way_on_map(5607, "to_yantar")
+	mark_way_on_map(5608, "to_military")
 	--mark_way_on_map(id, name)
 end
 

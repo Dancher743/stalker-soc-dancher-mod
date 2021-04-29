@@ -16,4 +16,8 @@
 	<info_portion id="new_way_yantar_agroprom">
 		<action>new_ways.add_ways_yantar_agroprom_back</action>
 	</info_portion>
+	
+	<info_portion id="new_way_military_yantar">
+		<action>new_ways.add_ways_military_yantar_back</action>
+	</info_portion>
 </game_information_portions>
