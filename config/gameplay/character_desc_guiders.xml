@@ -98,7 +98,7 @@
 			[spawn] \n
 			wpn_pb \n
 			ammo_9x18_fmj \n
-			wpn_svd \n
+			wpn_svu \n
 			ammo_7.62x54_ap = 1 \n
 			device_torch \n
 #include "gameplay\character_items.xml"\n
