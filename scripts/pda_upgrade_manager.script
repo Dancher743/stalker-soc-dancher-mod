@@ -80,7 +80,7 @@ function use_upgrade_three(hours)
 		hours_text = notification_surge_text["default"]
 	end
 	
-	local title = "%c[255,160,160,160]Научный лагерь экологов"
+	local title = "%c[255,160,160,160]Мобильная лаборатория на Янтаре"
 	local message = "%c[default]Следующий выброс ожидается через "..hours.." "..hours_text.."."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_scientist_job")

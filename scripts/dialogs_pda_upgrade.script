@@ -76,7 +76,7 @@ end
 ----------------------------
 
 function show_upgrade_one_notification()
-	local title = "%c[255,160,160,160]КПК:"
+	local title = "%c[255,160,160,160]КПК"
 	local message = "%c[default]Программный модуль \"Денежные средства\" был успешно пропатчен."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_deficit")
@@ -86,7 +86,7 @@ function show_upgrade_one_notification()
 end
 
 function show_upgrade_two_notification()
-	local title = "%c[255,160,160,160]КПК:"
+	local title = "%c[255,160,160,160]КПК"
 	local message = "%c[default]Программный модуль \"Карта\" был успешно пропатчен."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_locations")
@@ -96,7 +96,7 @@ function show_upgrade_two_notification()
 end
 
 function show_upgrade_three_notification()
-	local title = "%c[255,160,160,160]Научный лагерь экологов:"
+	local title = "%c[255,160,160,160]Мобильная лаборатория на Янтаре"
 	local message = "%c[default]Произведена подписка на рассылку сообщений о выбросах."
 	local news_text = title.."\\n"..message
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_scientist_job")
