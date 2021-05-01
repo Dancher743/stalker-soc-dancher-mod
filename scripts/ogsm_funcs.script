@@ -62,6 +62,26 @@ function g_start_timer(name,delay_d,delay_h,delay_m,action)
 	return true
 end
 
+function g_delete_timer(name)
+	for a=1,100,1 do
+		tmp=load_variable("gt"..a,nil)
+		if tmp~=nil and tmp==name then
+			del_variable("gt"..a)
+			del_variable("gt"..a.."d")
+			del_variable("gt"..a.."p")
+		end
+	end
+end
+
+function g_get_timer(name)
+	for a=1,100,1 do
+		tmp=load_variable("gt"..a,nil)
+		if tmp~=nil and tmp==name then
+			return tmp, load_variable("gt"..a.."d", nil), load_variable("gt"..a.."p", nil)
+		end
+	end
+end
+
 -- Проверка таймеров, использует 3 следующие за ним функции для выбора действия
 function check_timers()
 	local tmp
@@ -148,6 +168,9 @@ function __do_timer_action(select_string,params_string)
 				
 				-- Выводим в новостях инфу о следующем выбросе
 				show_next_surge_time()
+				
+				-- Запускаем таймер для нотификации
+				set_notification_timer()
 				
 				return
 			else
@@ -300,6 +323,9 @@ function __do_timer_action(select_string,params_string)
 		-- Выводим в новостях инфу о следующем выбросе
 		show_next_surge_time()
 		
+		-- Запускаем таймер для нотификации
+		set_notification_timer()
+		
 		--nd_keys.bind_keys()
 		db.Dead2 = 0
 		db.Flag2 = 0
@@ -332,18 +358,32 @@ function spawn_arts_after_surge()
 end
 
 function show_next_surge_time()
-	if pda_upgrade_manager.has_upgrade(3) then
-		local surge_next_time = load_variable("surge_next_time", 0)
+	if not pda_upgrade_manager.has_upgrade(3) then
+		return
+	end
+	
+	local surge_next_time = load_variable("surge_next_time", 0)
+	
+	if surge_next_time == 0 then return end
+	
+	pda_upgrade_manager.use_upgrade(3, surge_next_time)
+end
+
+function set_notification_timer()
+	if not pda_upgrade_manager.has_upgrade(3) then
+		return
+	end
+	
+	local surge_next_time = load_variable("surge_next_time", nil)
 		
-		if surge_next_time == 0 then return end
+	if surge_next_time == nil then 
+		return 
+	end
 		
-		pda_upgrade_manager.use_upgrade(3, surge_next_time)
-		
-		local notification_time = surge_next_time - pda_upgrade_manager.notification_time_before_surge
-		-- Запускаем таймер для нотификации
-		if notification_time > 0 then
-			g_start_timer("bl_pda_upgrade_3",0, notification_time, 0)
-		end
+	local notification_time = surge_next_time - pda_upgrade_manager.notification_time_before_surge
+	if notification_time > 0 then
+		g_delete_timer("bl_pda_upgrade_3")
+		g_start_timer("bl_pda_upgrade_3",0, notification_time, 0)
 	end
 end
 
@@ -395,6 +435,20 @@ function on_game_load()
 			g_start_timer("bl1", 0, vars.t_start, 0)
 			ogsm_hideout.first_run()
 			save_variable("frn",false)
+		end
+		
+		-- dirty fix of wrong next surge time 
+		local bl1, bl1_d, bl1_p = g_get_timer("bl1")
+		if bl1_d ~= nil then
+			local time = level.get_time_days()*60*24+level.get_time_hours()*60+level.get_time_minutes()
+			local surge_max_idle_time = (vars.t_surge + vars.t_surge_add_max) * 60
+			local surge_hours = bl1_d - time
+			
+			if surge_hours > surge_max_idle_time then
+				g_delete_timer("bl1")
+				set_timer_of_next_surge()
+				set_notification_timer()
+			end
 		end
 		
 		ogsm_hideout.get_level_hides()
