@@ -269,6 +269,8 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 --local update_cnt = 0
 ----------------------------------------------------------------------------------------------------------------------
+objs_to_remove = {}
+
 function actor_binder:update(delta)
 	object_binder.update(self, delta)
 
@@ -508,6 +510,12 @@ function actor_binder:update(delta)
 	
 	--' ARENA_EXTENSION_MOD
 	aem_manager.get_aem():update()
+	
+	--' Удаление
+	for id, se_obj in pairs(objs_to_remove) do
+		alife():release(se_obj, true)
+	end
+	objs_to_remove = {}
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)

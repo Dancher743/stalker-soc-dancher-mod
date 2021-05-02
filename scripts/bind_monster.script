@@ -347,12 +347,18 @@ function generic_object_binder:update(delta)
 						self.time_to_boogie = time_global() + (math.random(5,10) * 1000)
 					end
 					if self.time_to_boogie <= time_global() then
-						--self.object:set_invisible(false)
+						--[[
+						self.object:set_invisible(false)
 						self.object:play_cycle("stand_threaten_0", true)
+						]]--
+						
 						local song_boogie = xr_sound.get_safe_sound_object("monsters\\bloodsucker\\bloodsucker_script_attack_"..math.random(0,1))
 						if not song_boogie:playing() then
 							song_boogie:play_at_pos(self.object, self.object:position(), sound_object.s3d)
 						end
+						
+						self.time_to_boogie = nil
+						--[[
 						if not self.gotoinvis then
 							self.gotoinvis = true
 						else
@@ -360,6 +366,7 @@ function generic_object_binder:update(delta)
 							self.time_to_boogie = nil
 							self.gotoinvis = false
 						end
+						]]--
 					end
 				end
 			end

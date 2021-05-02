@@ -24,7 +24,7 @@ local simMaxCount = {
   bandit_novice     = 100,     bandit_regular         = 100,    bandit_veteran         = 100,     bandit_master     = 100,
   zombied_novice     = 100,     zombied_regular     = 100,    zombied_veteran     = 100,     zombied_master     = 100,
 	
-	rat_weak = 5, 
+	rat_weak = 6, 
 	tushkano_weak = 150,
 	flesh_weak = 14,		flesh_normal = 38,		flesh_strong = 22,
 	boar_weak = 52, 		boar_normal = 38,		boar_strong = 27,
@@ -484,7 +484,8 @@ function se_respawn:create(prob)
 						table.insert(self.spawned_obj ,obj.id)
 						return true
 					end
-					alife():release(obj, true)
+					bind_stalker.objs_to_remove[obj.id] = obj
+--					alife():release(obj, true)
 --					printf("SPAWNING [%s] -> [%s], CANT SPAWN. NO SMART_TERRAIN AVAILABLE!!!", tostring(self:name()), spawn_section)
 					return false
 				end
