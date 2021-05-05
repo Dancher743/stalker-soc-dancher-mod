@@ -192,25 +192,19 @@ function __do_timer_action(select_string,params_string)
 		level.set_weather("amk_for_blow")
 		wfx1 = "p_surge_day_"..tostring(level.get_time_hours())
 		level.set_weather_fx(wfx1)
+		
 		--level.add_pp_effector("vibros_p.ppe", 1974, false)	
-		local snd_obj = xr_sound.get_safe_sound_object([[anomaly\dezodor]])
-		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
-		db.actor:give_info_portion("surge_start")
-		local snd_obj = xr_sound.get_safe_sound_object([[surge\surge_phase_1]])
-		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
+		--local snd_obj = xr_sound.get_safe_sound_object([[anomaly\dezodor]])
+		--snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
 		
-		local title = "%c[255,160,160,160]Выброс"
-		local st_surge = title.."\\n%c[default]Сталкеры, внимание! Идёт выброс! Повторяю - идёт выброс! Советую всем срочно подыскать укрытие!"
-		db.actor:give_game_news(st_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
-		
-		local snd_wind = xr_sound.get_safe_sound_object([[ambient\whistling_wind1]])
-		snd_wind.volume = 0.5
-		snd_wind:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d + sound_object.looped)
-		
+		xr_effects.aes_earthshake(db.actor)
+		vim_utils.start_timer(1000, "ogsm_funcs.notificate_surge_phase_one")
+			
 		if not has_alife_info("surge_article") then
 			db.actor:give_info_portion("surge_article")
 		end
 		
+		db.actor:give_info_portion("surge_start")
 		g_start_timer("bl3",0,0,8)
 	end
 
@@ -230,12 +224,6 @@ function __do_timer_action(select_string,params_string)
 		local mid_surge = title.."\\n%c[default]Сталкеры, внимание! Выброс начнётся с минуты на минуту! Ищите глубокую нору, если жить охото!"
 		db.actor:give_game_news(mid_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
 		
-		local snd_wind = xr_sound.get_safe_sound_object([[ambient\whistling_wind1]])
-		if snd_wind:playing() then
-			snd_wind:stop()
-			snd_wind.volume = 1
-		end
-
 		xr_sound.set_actor_sound("")
 		level.set_weather("amk_for_blow")
 		local snd_obj = xr_sound.get_safe_sound_object([[ambient\earthquake]])
@@ -338,6 +326,14 @@ function __do_timer_action(select_string,params_string)
 
 -- Конец алгоритма выброса --
 
+end
+
+function notificate_surge_phase_one()
+	local snd_obj = xr_sound.get_safe_sound_object([[surge\surge_phase_1]])
+	snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
+	local title = "%c[255,160,160,160]Выброс"
+	local st_surge = title.."\\n%c[default]Сталкеры, внимание! Идёт выброс! Повторяю - идёт выброс! Советую всем срочно подыскать укрытие!"
+	db.actor:give_game_news(st_surge, "ui\\ui_iconstotal_shadows_rma", Frect():set(498,47,83,47), 0, 5000)
 end
 
 function set_timer_of_next_surge()

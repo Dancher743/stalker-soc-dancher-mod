@@ -599,7 +599,9 @@ function update(tg)
 					if v.test then
 --						level.map_add_object_spot(obj:id(),"red_location","")
 					else
---						level.map_add_object_spot(obj:id(),"grenade_location","")
+						if pda_upgrade_manager.has_upgrade(2) then
+							level.map_add_object_spot(obj:id(),"grenade_location","")
+						end
 					end
 					temp.fms[k].launch = nil
 					temp.fms[k].type = nil
@@ -623,7 +625,9 @@ function update(tg)
 							temp.rem[k] = true
 							printf("test:explode!:dist=[%s]",pos:distance_to(v.target))
 						else
---							level.map_remove_object_spot(k,"grenade_location")
+							if pda_upgrade_manager.has_upgrade(2) then
+								level.map_remove_object_spot(k,"grenade_location")
+							end
 							if check_victims(v.npc,pos,v.radius) then
 								printf("explode!:dist=[%s]",pos:distance_to(v.target))
 								obj:explode(0)
