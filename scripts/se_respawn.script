@@ -3,26 +3,23 @@ Respawner. Схема обновления популяции всего всего всего в симуляции.
 by Stohe (Диденко Руслан)
 --------------------------------------------------------------------------------------------------------------------]]
 
-function printf(fmt, ...)
-	--[[local msg = string.format(fmt, ...)
-	local msg_no_ws = string.gsub(msg, "%s", "_")
-	get_console():execute("dbg:" .. msg_no_ws)]]
-end
+--function printf()
+--end
 
 local section_name = "respawn"
 local i,k,v = 0,0,0
 
 -- Таблица ограничений на спаун: всего в симуляции не должно быть больше, чем указано.
 local simMaxCount = {
-  stalker_novice     = 100,    stalker_regular        = 100,    stalker_veteran     = 100,    stalker_master     = 100,
-  monolith_novice     = 100,    monolith_regular    = 100,    monolith_veteran     = 100,    monolith_master = 100,
-  military_novice     = 100,    military_regular     = 100,    military_veteran     = 100,    military_master = 100,
-  killer_novice     = 100,    killer_regular         = 100,    killer_veteran         = 100,     killer_master     = 100,
-  ecolog_novice     = 100,    ecolog_regular         = 100,    ecolog_veteran         = 100,     ecolog_master     = 100,
-  dolg_novice         = 100,     dolg_regular         = 100,    dolg_veteran         = 100,     dolg_master     = 100,
-  freedom_novice     = 100,     freedom_regular     = 100,    freedom_veteran     = 100,     freedom_master     = 100,
-  bandit_novice     = 100,     bandit_regular         = 100,    bandit_veteran         = 100,     bandit_master     = 100,
-  zombied_novice     = 100,     zombied_regular     = 100,    zombied_veteran     = 100,     zombied_master     = 100,
+	stalker_novice     = 100,    stalker_regular        = 100,    stalker_veteran     = 100,    stalker_master     = 100,
+	monolith_novice     = 100,    monolith_regular    = 100,    monolith_veteran     = 100,    monolith_master = 100,
+	military_novice     = 100,    military_regular     = 100,    military_veteran     = 100,    military_master = 100,
+	killer_novice     = 100,    killer_regular         = 100,    killer_veteran         = 100,     killer_master     = 100,
+	ecolog_novice     = 100,    ecolog_regular         = 100,    ecolog_veteran         = 100,     ecolog_master     = 100,
+	dolg_novice         = 100,     dolg_regular         = 100,    dolg_veteran         = 100,     dolg_master     = 100,
+	freedom_novice     = 100,     freedom_regular     = 100,    freedom_veteran     = 100,     freedom_master     = 100,
+	bandit_novice     = 100,     bandit_regular         = 100,    bandit_veteran         = 100,     bandit_master     = 100,
+	zombied_novice     = 100,     zombied_regular     = 100,    zombied_veteran     = 100,     zombied_master     = 100,
 	
 	rat_weak = 6, 
 	tushkano_weak = 150,
@@ -44,9 +41,9 @@ local simMaxCount = {
 }
 
 local idle_spawn_preset = {
-	seldom = 60*60,
-	medium = 60*60,
-	often = 60*60
+	seldom = 60*60*24,
+	medium = 60*60*12,
+	often = 60*60*6
 }
 
 -- Список респавнеров, для сбора статистики
@@ -373,119 +370,16 @@ function se_respawn:create(prob)
 				obj:brain():update()
 				local smart_terrain_id = obj:smart_terrain_id()
 	--			printf("SPAWN [%s] move_offline [%s], interactive [%s], smart_terrain_id [%s]", tostring(self:name()), tostring(self:move_offline()), tostring(self:interactive()), smart_terrain_id)
-				if smart_terrain_id ~= 65535 then	
+				if smart_terrain_id ~= 65535 then		
 					table.insert(self.spawned_obj ,obj.id)
 					local pos = obj.position
 --					printf("SPAWNING [%s] -> [%s], position [%s][%s][%s]", tostring(self:name()), spawn_section, pos.x, pos.y, pos.z)
 					local sm_obj = alife():object(smart_terrain_id)
 					printf("SPAWNING for SMART [%s] : [%s] -> [%s]", self:name(), obj:name(), sm_obj:name())
+
 					return true
 				else
-					if (spawn_section == "esc_stalker_respawn_1"
-					or  spawn_section == "mil_stalker_respawn_1"
-					or  spawn_section == "mil_stalker_respawn_2"
-                 	or  spawn_section == "mil_stalker_respawn_3"
-                        or  spawn_section == "rad_zombied_respawn_1"
-                        or  spawn_section == "rad_zombied_respawn_2"
-                        or  spawn_section == "rad_zombied_respawn_3"
-                 	or  spawn_section == "gar_stalker_respawn_1"
-                 	or  spawn_section == "gar_stalker_respawn_2"
-                 	or  spawn_section == "esc_stalker_respawn_2"
-                 	or  spawn_section == "bar_stalker_respawn_1"
-                 	or  spawn_section == "bar_stalker_respawn_2"
-                 	or  spawn_section == "bar_stalker_respawn_3"
-                 	or  spawn_section == "bar_stalker_respawn_4"
-                 	or  spawn_section == "agr_soldier_regular"
-                 	or  spawn_section == "agr_soldier_veteran"
-                 	or  spawn_section == "esc_soldier_respawn_1"
-                 	or  spawn_section == "esc_soldier_respawn_specnaz"
-                 	or  spawn_section == "rad_soldier_master"
-                 	or  spawn_section == "agr_bandit_respawn_1"
-                 	or  spawn_section == "agr_bandit_respawn_2"
-                 	or  spawn_section == "gar_bandit_respawn_1"
-                        or  spawn_section == "gar_bandit_respawn_2"
-                 	or  spawn_section == "esc_bandit_respawn_1"
-                 	or  spawn_section == "esc_bandit_respawn_2"
-                 	or  spawn_section == "cit_bandit_respawn_1"
-                 	or  spawn_section == "cit_bandit_respawn_2"
-                 	or  spawn_section == "val_bandit_respawn_1"
-                 	or  spawn_section == "val_bandit_respawn_2"
-                 	or  spawn_section == "val_bandit_respawn_3"
-                        or  spawn_section == "val_bandit_respawn_4"
-                 	or  spawn_section == "mil_killer_respawn_1"
-                 	or  spawn_section == "mil_killer_respawn_2"
-                 	or  spawn_section == "mil_killer_respawn_3"
-                 	or  spawn_section == "mil_killer_respawn_4"
-                 	or  spawn_section == "ros_killer_respawn_1"
-                 	or  spawn_section == "ros_killer_respawn_2"
-                 	or  spawn_section == "ros_killer_respawn_3"
-                 	or  spawn_section == "ros_killer_respawn_4"
-                 	or  spawn_section == "mil_freedom_respawn_1"
-                 	or  spawn_section == "mil_freedom_respawn_2"
-                 	or  spawn_section == "mil_freedom_respawn_3"
-                 	or  spawn_section == "gar_dolg_respawn_1"
-                 	or  spawn_section == "gar_dolg_respawn_2"
-                 	or  spawn_section == "bar_dolg_respawn_1"
-                 	or  spawn_section == "bar_dolg_respawn_2"
-                        or  spawn_section == "bar_dolg_respawn_3"
-                 	or  spawn_section == "yan_zombied_respawn_1"
-                 	or  spawn_section == "yan_zombied_respawn_2"
-                 	or  spawn_section == "yan_zombied_respawn_3"
-                 	or  spawn_section == "rad_monolith_respawn_1"
-                 	or  spawn_section == "rad_monolith_respawn_2"
-                 	or  spawn_section == "rad_monolith_respawn_3"
-                 	or  spawn_section == "bloodsucker_strong"
-                        or  spawn_section == "bloodsucker_weak"
-                 	or  spawn_section == "bloodsucker_normal"
-                 	or  spawn_section == "boar_weak"
-                 	or  spawn_section == "boar_normal"
-                 	or  spawn_section == "boar_strong"
-                 	or  spawn_section == "m_controller_normal"
-                        or  spawn_section == "dog_weak"
-                 	or  spawn_section == "dog_normal"
-                 	or  spawn_section == "dog_strong"
-                 	or  spawn_section == "gigant_strong"
-                        or  spawn_section == "gigant_normal"
-                 	or  spawn_section == "snork_strong"
-                 	or  spawn_section == "snork_normal"
-                 	or  spawn_section == "snork_weak"
-                 	or  spawn_section == "flesh_strong"
-                        or  spawn_section == "flesh_weak"
-                        or  spawn_section == "flesh_normal"
-						or  spawn_section == "m_poltergeist_normal_tele"
-                        or  spawn_section == "m_poltergeist_normal_flame"
-                        or  spawn_section == "pseudodog_strong"
-						--or  spawn_section == "zombie_weak"
-						--or  spawn_section == "zombie_normal"
-						--or  spawn_section == "zombie_strong"
-						or 	spawn_section == "burer_weak"
-						or 	spawn_section == "burer_normal"
-						or 	spawn_section == "burer_strong"
-						or 	spawn_section == "cat_weak"
-						or 	spawn_section == "cat_normal"
-						or 	spawn_section == "cat_strong"
-						or 	spawn_section == "chimera_weak"
-						or 	spawn_section == "chimera_normal"
-						or 	spawn_section == "chimera_strong"
-						or 	spawn_section == "fracture_weak"
-						or 	spawn_section == "fracture_normal"
-						or 	spawn_section == "fracture_strong"
-						or 	spawn_section == "tushkano_normal"
-						or 	spawn_section == "zombie_normal"
-						or 	spawn_section == "zombie_trup"
-						or 	spawn_section == "zombie_trup2"
-						or 	spawn_section == "m_rat_e"
-						or 	spawn_section == "rat_1"
-						or 	spawn_section == "rat_2"
-						or 	spawn_section == "rat_3"
-                        or  spawn_section == "psy_dog_radar"
-                        or  spawn_section == "yan_ecolog_respawn_1"
-                        or  spawn_section == "stalker" ) then
-						table.insert(self.spawned_obj ,obj.id)
-						return true
-					end
 					bind_stalker.objs_to_remove[obj.id] = obj
---					alife():release(obj, true)
 --					printf("SPAWNING [%s] -> [%s], CANT SPAWN. NO SMART_TERRAIN AVAILABLE!!!", tostring(self:name()), spawn_section)
 					return false
 				end
@@ -553,171 +447,50 @@ function se_respawn:remove_spawned(id)
 		end				
 	end	
 end
-
------------------------------<<RESPAWN_ADJUSTER>>-----------------------------<<
--- время начала игры 
-function time_get_start()
-	local t0 = game.CTime()
-	t0:set(2012,8,28, 7,0,0,0)
-	return t0
-end
-
--- время в часах, прошедшее от начала игры
-function time_get_curr()
-	local t1 = game.get_game_time()
-	local tdif = t1:diffSec(time_get_start())
-	--printf("time from the beginning = %s hours", math.floor(tdif/3600))
-	return math.floor(tdif/3600)
-end
-
--- Обновление респавнера.
-function se_respawn:execute(current_time)	
-	-- выход, если установлен событийный спавн.
-	if self.idle_spawn_min == -1 then
-		return
-	end
-	
-	local idle_hours = 12 + math.random(-2,2)
-	local spawn_counts = math.random(1,2)
-	local execute_prob = math.random(0,3)
-	local prob = math.random(100)
-	
-	local delta_time = game.CTime()
-	delta_time:setHMS(idle_hours, 0, 0)
-	delta_time:add(current_time)
-	self.respawn_time = delta_time
-	
-	if prob > execute_prob then
-		return
-	end
-	
-	for i=1,spawn_counts do
-		self:spawn()
-	end
-
-	--printf("%s HOURS BEFORE NEXT MOB RESPAWN", t_delta)
-end
-
--- OBSOLETE:
---[[
 -- Обновление респавнера. В зависимости от настроек обновляется либо только в офлайне, либо и там и там.
-function se_respawn:exec_npc()
-	--printf("RESPAWN: [%s] se_respawn exec_npc", tostring(self:name()))
+function se_respawn:execute()
+--	printf("RESPAWN: [%s] se_respawn execute", tostring(self:name()))
 	
-	-- выход, если установлен событийный спавн.
+	--' Выходим, если у нас установлен событийный спавн.
 	if self.idle_spawn_min == -1 then
 		return
 	end
 	
-	if not
-		(self:name() == "agr2_respawn_nii" or
-		self:name() == "agr2_respawn_factory" or
-		string.find(self:name(), "bandit") or
-		string.find(self:name(), "dolg") or
-		string.find(self:name(), "freed") or
-		string.find(self:name(), "killer") or
-		string.find(self:name(), "militar") or
-		string.find(self:name(), "monol") or
-		string.find(self:name(), "soldier") or
-		string.find(self:name(), "specnaz") or
-		string.find(self:name(), "stalker"))
-	then
-		return
-	end
-	
 	if self.respawn_time < game.get_game_time() then
+--		if not self.proxy_initialized then
+--			db.actor_proxy:init()
+--			self.proxy_initialized = true
+--		end
+
 		local idle_time = game.CTime()
-		idle_time:setHMSms( 1, 0, 0, 0)
+		idle_time:setHMSms( 0, 0, 0, math.random(self.idle_spawn_min, self.idle_spawn_max)*1000)
 		self.respawn_time = game.get_game_time() + idle_time
+		-- Производим попытку заспаунить объекты		
 		self:spawn()
-		--printf("spawn_count = %s", table.getn(self.spawned_obj))
-		--news_manager.send_tip(db.actor, "%c[255,240,155,25]Обновление NPC респавнера", nil, nil, 5000)
-	else
-		local t_s1 = xr_logic.pstor_retrieve(db.actor, "t_s1", 0)
-		local curr = time_get_curr()
-		local t_npc = 8
-		t_s1 = curr + t_npc
-		xr_logic.pstor_store(db.actor, "t_s1", t_s1)
-		--printf("%s HOURS BEFORE NEXT NPC RESPAWN", t_npc)
+		
+--		printf("spawn_count = %s", table.getn(self.spawned_obj))
 	end
 end
-
-function se_respawn:exec_mob()
-	--printf("RESPAWN: [%s] se_respawn exec_mob", tostring(self:name()))
-	
-	-- выход, если установлен событийный спавн.
-	if self.idle_spawn_min == -1 then
-		return
-	end
-	
-	if
-		self:name() == "agr2_respawn_nii" or
-		self:name() == "agr2_respawn_factory" or
-		string.find(self:name(), "bandit") or
-		string.find(self:name(), "dolg") or
-		string.find(self:name(), "freed") or
-		string.find(self:name(), "killer") or
-		string.find(self:name(), "militar") or
-		string.find(self:name(), "monol") or
-		string.find(self:name(), "soldier") or
-		string.find(self:name(), "specnaz") or
-		string.find(self:name(), "stalker")
-	then
-		return
-	end
-	
-	if self.respawn_time < game.get_game_time() then
-		local idle_time = game.CTime()
-		idle_time:setHMSms( 1, 0, 0, 0)
-		self.respawn_time = game.get_game_time() + idle_time
-		self:spawn()
-		--printf("spawn_count = %s", table.getn(self.spawned_obj))
-		--news_manager.send_tip(db.actor, "%c[25,240,25,25]Обновление MOB респавнера", nil, nil, 5000)
-	else
-		local t_s2 = xr_logic.pstor_retrieve(db.actor, "t_s2", 0)
-		local curr = time_get_curr()
-		local t_mob = 12
-		t_s2 = curr + t_mob
-		xr_logic.pstor_store(db.actor, "t_s2", t_s2)
-		--printf("%s HOURS BEFORE NEXT MOB RESPAWN", t_mob)
-	end
-end
-]]--
-
 -- Обновление в офлайне
 function se_respawn:update()
-	local current_time = game.get_game_time()
-	
-	cse_alife_smart_zone.update(self)
-		
-	if current_time < self.respawn_time then
+	cse_alife_smart_zone.update( self )
+	--'printf("RESPAWN: [%s] se_respawn update_offline", tostring(self:name()))
+	self:execute()
+end
+-- Обновление в онлайне
+function se_respawn:update_online()
+	--'cse_alife_smart_zone.update( self )
+	--'printf("RESPAWN: [%s] se_respawn update_online", tostring(self:name()))
+	if self.respawn_radius == -1 then
+		sim_statistic.respawn_enabled(self, false)
 		return
 	end
-	
-	self:execute(current_time)
-end
-
--- Обновление в онлайне, т.е. на текущей локации
-function se_respawn:update_online()
---[[
-	--cse_alife_smart_zone.update(self)
-	--printf("RESPAWN: [%s] se_respawn update_online", tostring(self:name()))
-	local curr = time_get_curr()
-	local t_s1 = xr_logic.pstor_retrieve(db.actor, "t_s1", 0)
-	if curr >= t_s1 then
-		if self.respawn_radius == -1 then
-			sim_statistic.respawn_enabled(self, false)
-			return
-		end
-		if db.actor:position():distance_to(self.position) >= self.respawn_radius then
-			self:exec_npc()
-		else
-			sim_statistic.respawn_enabled(self, false)
-		end
+	if db.actor:position():distance_to (self.position) >= self.respawn_radius then
+		self:execute()
+	else
+		sim_statistic.respawn_enabled(self, false)
 	end
-]]
 end
------------------------------<<RESPAWN_ADJUSTER>>----------------------------->>
 
 function spawn(name)
 	local spawner = respawners[name]
