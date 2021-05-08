@@ -188,5 +188,7 @@ function play_sound(npc, type)
 
 	local sound = xr_sound.get_safe_sound_object(path)
 	
-	sound:play_no_feedback(npc, sound_object.s3d, 0, npc:position(), 1.0)
+	if sound and not sound:playing() then
+		sound:play_no_feedback(npc, sound_object.s3d, 0, npc:position(), 1.0)
+	end
 end

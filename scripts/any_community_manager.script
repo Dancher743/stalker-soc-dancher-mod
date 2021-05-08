@@ -1,5 +1,5 @@
 -- Стоимость
-joining_cost = 20000
+joining_cost = 10000
 
 -- Звуки нотификации
 pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
