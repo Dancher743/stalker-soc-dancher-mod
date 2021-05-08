@@ -166,9 +166,12 @@ function keep_item(npc, item)
 	end
 	
 	-- вместо стандартного КПК спавним наш
-	if section == "device_pda" and npc:character_community() ~= "arena_enemy" then
-		pda_hack.create_pda_npc(npc)
+	if loot_money_manager.is_pda_hack_enabled then
+		if section == "device_pda" and npc:character_community() ~= "arena_enemy" then
+			loot_money_manager.create_pda_npc(npc)
+		end
 	end
+	
 	
     if always_keep_item[section] == true then
         return true

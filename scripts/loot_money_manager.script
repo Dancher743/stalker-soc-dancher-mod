@@ -1,13 +1,16 @@
 --[[---------------------------------------------------------------------------
-	File              : pda_hack.script
-	Description       : Сниманм деньги с КПК мервых сталкеров
+	File              : loot_money_manager.script (оригинал - pda_hack.script)
+	Description       : Сниманм деньги мервых сталкеров
 	Created           : 29.11.2014
 	Copyright         : naxac
 	Last edited		  : Dancher
 --]]---------------------------------------------------------------------------
 
+is_pda_hack_enabled = false
+is_relocate_enabled = true
+
 -- Звуки нотификации
-pda_news = xr_sound.get_safe_sound_object([[device\pda\pda_news]])
+local pda_news = xr_sound.get_safe_sound_object([[device\pda\pda_news]])
 
 local npc_community = 
 {
@@ -30,10 +33,10 @@ local npc_community =
 function use_pda(obj)
 	-- Читаем данные из нет_пэкета
 	local sobj = alife():object(obj:id())
-	local tbl = pda_hack.get_item_data(sobj)
+	local tbl = loot_money_manager.get_item_data(sobj)
 	local str = tbl.custom
 	if str == nil or string.len(tostring(str)) == 0 then
-		news_manager.send_tip(db.actor, "pda_hack: ERROR!!! Custom data is absent!")
+		news_manager.send_tip(db.actor, "loot_money_manager: ERROR!!! Custom data is absent!")
 		return
 	end
 	
@@ -59,6 +62,7 @@ function use_pda(obj)
 	end
 	
 	db.actor:give_money(deadmoney)
+	game_stats.money_quest_update(deadmoney)
 	
 	show_notification(deadmoney, community, name, deadmoney_amount_color)
 end
@@ -69,9 +73,9 @@ function create_pda_npc(npc, pda)
 				tostring(npc:character_rank())
 	-- Запишем все данные о владельце КПК в нет_пэкет КПК
 	local sobj = alife():create("pda_npc",vector(),0,0,npc:id())
-	local tbl = pda_hack.get_item_data(sobj)
+	local tbl = loot_money_manager.get_item_data(sobj)
 	tbl.custom = str
-	pda_hack.set_item_data(tbl,sobj)
+	loot_money_manager.set_item_data(tbl,sobj)
 end
 
 -- Перекодируем строку в латиницу, т.к. кириллицу сталкерский двиг не переваривает
@@ -93,7 +97,6 @@ function convert_string(str, mode)
 	end
 	return ret
 end
-
 
 function show_notification(money_amount, community, name, money_amount_color)
 	local title = "%c[255,160,160,160]КПК "..npc_community[community].." ("..name.."):"
@@ -122,6 +125,63 @@ function get_money_standart(rank)
 	
 	return deadmoney
 end
+
+------------------------------------------------------------------------------------
+-- Снимает деньги вторым способом - без использования КПК.
+-- Статья "SoC. Снятие денег с трупов", взято с сайта S.T.A.L.K.E.R. Inside Wiki.
+-- Адаптировал под свой мод Dancher.
+------------------------------------------------------------------------------------
+function relocate_deadmoney(npc)
+
+	--' Проверим, не вызывались ли мы уже для этого объекта. 
+	local se_obj = alife():object(npc:id())
+	if se_obj.deadmoney_processed == true then
+		return
+	end
+	se_obj.deadmoney_processed = true
+	
+	local community = npc:character_community()
+	local character_name = npc:character_name()
+	
+	if npc ~= nil and not string.find(npc:section(),"arena") and community~="arena_enemy" then
+		local deadmoney = 0
+		local npc_rank = ranks.get_obj_rank_name(npc)
+		
+		if npc_rank ~= nil then
+			if not pda_upgrade_manager.has_upgrade(2) then
+				if npc_rank == "novice" then 
+					deadmoney = math.random(36,75)
+				elseif npc_rank == "experienced" then 
+					deadmoney = math.random(75,150)
+				elseif npc_rank == "veteran" then 
+					deadmoney=math.random(150,250)
+				elseif npc_rank == "master" then 
+					deadmoney = math.random(250,500)
+				end
+			else
+				if npc_rank == "novice" then 
+					deadmoney = math.random(75,150)
+				elseif npc_rank == "experienced" then 
+					deadmoney = math.random(150,250)
+				elseif npc_rank == "veteran" then 
+					deadmoney = math.random(250,500)
+				elseif npc_rank == "master" then 
+					deadmoney = math.random(500,1000)
+				end
+			end
+		end
+		
+		db.actor:give_money(deadmoney)
+		game_stats.money_quest_update(deadmoney)
+		
+		local title = game.translate_string("general_in_money")
+		local text = game.translate_string(tostring(deadmoney)).." руб."
+		local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]"..text
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_money")
+		
+		db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
+	end
+end
 ----------------------------------------------------------------------------------
 -- Функции для работы с нет_пэкетами (АМК)
 function get_item_data(sobj)
@@ -134,9 +194,9 @@ function get_item_data(sobj)
 	stpk:r_seek(0)
 	uppk:r_seek(0)
 	local t={}
-	pda_hack.parse_object_packet(t,stpk,uppk,size)
-	pda_hack.parse_visual_packet(t,stpk,uppk,size)
-	pda_hack.parse_item_packet(t,stpk,uppk,size)
+	loot_money_manager.parse_object_packet(t,stpk,uppk,size)
+	loot_money_manager.parse_visual_packet(t,stpk,uppk,size)
+	loot_money_manager.parse_item_packet(t,stpk,uppk,size)
 	return t
 end
 
@@ -144,9 +204,9 @@ function set_item_data(t,sobj)
 	local stpk=net_packet()
 	local uppk=net_packet()
 	
-	pda_hack.fill_object_packet(t,stpk,uppk)
-	pda_hack.fill_visual_packet(t,stpk,uppk)
-	pda_hack.fill_item_packet(t,stpk,uppk)
+	loot_money_manager.fill_object_packet(t,stpk,uppk)
+	loot_money_manager.fill_visual_packet(t,stpk,uppk)
+	loot_money_manager.fill_item_packet(t,stpk,uppk)
 	
 	local size=stpk:w_tell()
 	local size1=uppk:w_tell()

@@ -147,8 +147,10 @@ function actor_binder:reinit()
 end
 
 function actor_binder:use_inv_item(obj, who)
-	if obj:section() == "pda_npc" then
-		pda_hack.use_pda(obj)
+	if loot_money_manager.is_pda_hack_enabled then
+		if obj:section() == "pda_npc" then
+			loot_money_manager.use_pda(obj)
+		end
 	end
 	
 	--// xr_companion

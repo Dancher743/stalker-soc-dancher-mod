@@ -21,6 +21,7 @@ function motivator_binder:__init (obj) super(obj)
 
     self.first_update = false
 	self.treasure_processed = false
+	self.deadmoney_processed = false
 end
 
 function motivator_binder:extrapolate_callback(cur_pt)
@@ -250,6 +251,13 @@ function motivator_binder:use_callback(obj, who)
 		if self.treasure_processed == false then
 			treasure_manager:get_treasure_manager():use(self.object)
 			self.treasure_processed = true
+		end
+		
+		if loot_money_manager.is_relocate_enabled then
+			if self.deadmoney_processed == false then
+				loot_money_manager.relocate_deadmoney(self.object)
+				self.deadmoney_processed = true
+			end
 		end
 	end
 end
