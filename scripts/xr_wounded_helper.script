@@ -29,14 +29,18 @@ community =
 -- Доп. функции для фичи "Лечим НПС".
 -- Случайное изменение отношений к ГГ после лечения НПС
 function change_relation(npc, actor)
-	if get_random_value() <= change_community_chance then
+
+	if npc:relation(actor) == game_object.enemy and
+		get_random_value() <= change_community_chance
+	then
 		npc:set_character_community(community[actor:character_community()], 0, 0)
-		
-		if get_random_value() <= friend_relation_chance then
-			npc:set_relation(game_object.friend, actor)
-		else
-			npc:set_relation(game_object.neutral, actor)
-		end
+		npc:set_relation(game_object.neutral, actor)
+	end
+	
+	if npc:relation(actor) == game_object.neutral and
+		get_random_value() <= friend_relation_chance
+	then
+		npc:set_relation(game_object.friend, actor)
 	end
 	
 	return npc:relation(actor)

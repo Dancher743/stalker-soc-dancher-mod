@@ -24,7 +24,6 @@ local nagrad = {
   "wpn_beretta",
   "wpn_wincheaster1300",
   "wpn_l85",
-  "svoboda_light_outfit",
   "wpn_addon_scope_susat"
  },
   level_4 = {
@@ -48,7 +47,6 @@ local nagrad = {
   "af_cristall",
   "wpn_colt1911",
   "wpn_lr300",
-  "svoboda_heavy_outfit",
   "wpn_addon_grenade_launcher_m203",
   "wpn_addon_silencer"
  },
@@ -57,9 +55,7 @@ local nagrad = {
   "af_dummy_pellicle",
   "af_dummy_battery",
   "wpn_vintorez",
-  "wpn_g36",
-  "scientific_outfit",
-  "ecolog_outfit"
+  "wpn_g36"
  }
 }
 
