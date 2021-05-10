@@ -557,7 +557,12 @@ local snd
 	
 	--amk.start_timer("healing_enemies",math.random(20,30),amk.pack_array_to_string( {npc:id(), npc:character_community()} ))
 	
-	give_medkit_helper.change_relation(npc, db.actor)
+	local npc_relation = xr_wounded_helper.change_relation(npc, db.actor)
+	
+	-- Выдаём награду
+	if npc_relation == game_object.friend then
+		ps.nagrada(npc, db.actor)
+	end
 	
 end
 	local smarts = {

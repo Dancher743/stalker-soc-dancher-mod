@@ -16,7 +16,7 @@ Using mods:
 8. Stashes fix from RMA Shadows Addon 0.8.5 (Ray Twitty aka Shadows)
 9. New-old ways from RMA Shadows Addon 0.8.5 (Ray Twitty aka Shadows)
 10. RevSound Mod (Череп Долговец)
-11. Visual fix from Final Upgrade v3 mod (buka)
+11. Visual fixes from Final Upgrade mod (buka)
 12. Guiders (Dancher) 
 13. Buy Barman's Room (Dancher)
 14. NPC Enter Any Community (based on PILOTELL's Enter Any Community 2.0 mod) (Dancher)
@@ -55,6 +55,6 @@ Using mods:
 47. Companions v1.9C (KamikaZze)
 48. ARENA EXTENSION MOD ver. 0.3.2 (kstn/IG-2007)
 49. Granade mark from CoP (Charsi)
-50. Weapons' HUD from Final Upgrade v10 mod (buka)
+50. Wounded NPC gives reward after healing (aka_sektor)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.

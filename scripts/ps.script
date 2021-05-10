@@ -1,0 +1,247 @@
+--
+--	NPC вылеченные игроком выдают ему рэндомно предмет, различный у разных группировок и рангов. 
+--	Автор: хз, но выложил на форум AMK Team данный мини-мод aka_sektor
+--
+
+local nagrad = {
+  
+  level_1 = {
+  "af_vyvert",
+  "af_blood",
+  "wpn_bm16",
+  "wpn_mp5"
+ },
+  level_2 = {
+  "af_gravi",
+  "af_mincer_meat",
+  "wpn_fort",
+  "wpn_toz34",
+  "wpn_addon_scope"
+ },
+  level_3 = {
+  "af_mincer_meat",
+  "af_rusty_kristall",
+  "wpn_beretta",
+  "wpn_wincheaster1300",
+  "wpn_l85",
+  "svoboda_light_outfit",
+  "wpn_addon_scope_susat"
+ },
+  level_4 = {
+  "wpn_ak74",
+  "wpn_sig550",
+  "wpn_svu",
+  "wpn_groza"
+ },
+  level_5 = {
+  "af_night_star",
+  "af_electra_moonlight",
+  "af_cristall",
+  "wpn_abakan",
+  "wpn_val",
+  "wpn_addon_silencer",
+  "wpn_addon_grenade_launcher"
+ },
+  level_6 = {
+  "af_night_star",
+  "af_electra_moonlight",
+  "af_cristall",
+  "wpn_colt1911",
+  "wpn_lr300",
+  "svoboda_heavy_outfit",
+  "wpn_addon_grenade_launcher_m203",
+  "wpn_addon_silencer"
+ },
+  level_7 = {
+  "af_dummy_glassbeads",
+  "af_dummy_pellicle",
+  "af_dummy_battery",
+  "wpn_vintorez",
+  "wpn_g36",
+  "scientific_outfit",
+  "ecolog_outfit"
+ }
+}
+
+function nagrada(first_speaker, second_speaker)
+	local item = ""
+	local npc = level.object_by_id(id)
+	local actor, npc
+	if db.actor and db.actor:id() == first_speaker:id() then
+		actor = first_speaker
+		npc = second_speaker
+	else
+		actor = second_speaker
+		npc = first_speaker
+	end
+	if npc:character_community() == "military" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_2[math.random(table.getn(nagrad.level_2))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_5[math.random(table.getn(nagrad.level_5))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_7[math.random(table.getn(nagrad.level_7))]
+	   end
+                  elseif npc:character_community() == "dolg" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_2[math.random(table.getn(nagrad.level_2))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_5[math.random(table.getn(nagrad.level_5))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_7[math.random(table.getn(nagrad.level_7))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "freedom" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_5[math.random(table.getn(nagrad.level_5))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_7[math.random(table.getn(nagrad.level_7))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "stalker" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_2[math.random(table.getn(nagrad.level_2))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_5[math.random(table.getn(nagrad.level_5))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_7[math.random(table.getn(nagrad.level_7))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "monolit" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "ecolog" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_7[math.random(table.getn(nagrad.level_7))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "bandit" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "killer" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "sniper" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "green" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_2[math.random(table.getn(nagrad.level_2))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_5[math.random(table.getn(nagrad.level_5))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_7[math.random(table.getn(nagrad.level_7))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "nebo" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_5[math.random(table.getn(nagrad.level_5))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "lastday" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_7[math.random(table.getn(nagrad.level_7))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "fotoman" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_5[math.random(table.getn(nagrad.level_5))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  elseif npc:character_community() == "vermaht" then
+	   if npc:rank() > 0 and npc:rank() < 300 then
+	            item = nagrad.level_1[math.random(table.getn(nagrad.level_1))]
+	   elseif npc:rank() > 300 and npc:rank() < 600 then
+	            item = nagrad.level_3[math.random(table.getn(nagrad.level_3))]
+	   elseif npc:rank() > 600 and npc:rank() < 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   elseif npc:rank() > 900 then
+	            item = nagrad.level_6[math.random(table.getn(nagrad.level_6))]
+	   else
+	            item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	   end
+                  else
+	         item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
+	end
+    dialogs.relocate_item_section(second_speaker, item , "in")
+end
