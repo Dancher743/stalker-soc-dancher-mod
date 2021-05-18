@@ -76,20 +76,20 @@ end
 ----------------------------
 
 function show_upgrade_one_notification()
-	local title = "%c[255,160,160,160]КПК"
-	local message = "%c[default]Программный модуль \"Денежные средства\" был успешно пропатчен."
+	local title = "%c[255,160,160,160]Системное сообщение:"
+	local message = "%c[default]Программный модуль КПК \"Денежные средства\" был успешно пропатчен."
 	local news_text = title.."\\n"..message
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_deficit")
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_money")
 	
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 9000)
 	pda_tips:play(db.actor, 0, sound_object.s2d)
 end
 
 function show_upgrade_two_notification()
-	local title = "%c[255,160,160,160]КПК"
-	local message = "%c[default]Программный модуль \"Карта\" был успешно пропатчен."
+	local title = "%c[255,160,160,160]Системное сообщение:"
+	local message = "%c[default]Программный модуль КПК \"Карта\" был успешно пропатчен."
 	local news_text = title.."\\n"..message
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_locations")
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_find_scientist_semenov")
 	
 	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 9000)
 	pda_tips:play(db.actor, 0, sound_object.s2d)

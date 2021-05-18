@@ -368,6 +368,7 @@ function motivator_binder:save(packet)
 	object_binder.save(self, packet)
 
 	packet:w_bool(self.treasure_processed)
+	packet:w_bool(self.deadmoney_processed)
 
 	xr_logic.save_obj(self.object, packet)
 	dialog_manager.save(self.object, packet)
@@ -385,8 +386,8 @@ function motivator_binder:load(reader)
 		abort("SAVE FILE IS CORRUPT")
 	end
 
-
 	self.treasure_processed = reader:r_bool()
+	self.deadmoney_processed = reader:r_bool()
 
 	xr_logic.load_obj(self.object, reader)
 
