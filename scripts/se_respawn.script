@@ -6,6 +6,8 @@ by Stohe (Диденко Руслан)
 --function printf()
 --end
 
+local debug_logs = false
+
 local section_name = "respawn"
 local i,k,v = 0,0,0
 
@@ -359,7 +361,7 @@ function se_respawn:create(prob)
 --		printf("SPAWN [%s] -> [%s]", tostring(self:name()), obj:name())
 
         --' DEBUG:
-        if debugger.is_debug_mode then
+        if debug_logs and debugger.is_debug_mode then
 			if IsMonster(obj) or IsStalker(obj) then
 				debugger.log("SPAWN: "..tostring(self:name()).." -> "..obj:name())
 			end

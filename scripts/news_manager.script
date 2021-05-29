@@ -113,7 +113,7 @@ tips_icons = {
     killer   = { 0, 658}
 }
 
-local last_encyclopedy_news_time = game.CTime()
+--local last_encyclopedy_news_time = game.CTime()
 
 function send_tip(actor, news_id, timeout, sender, showtime, sender_id)
 	if news_id == nil then return false end
@@ -222,11 +222,13 @@ end
 
 function send_encyclopedy(type, title)
 	--' ќграничение на количество показанных новостей.
+	--[[
 	local elapsed_time = game.CTime()
 	elapsed_time:setHMSms(0, 0, 1, 0)
 	elapsed_time = last_encyclopedy_news_time + elapsed_time
+	]]
 	
-	if elapsed_time < game.get_game_time() then
+	--if elapsed_time < game.get_game_time() then
 		local task_texture, task_rect = get_texture_info("ui_iconsTotal_locations", "ui_iconsTotal_locations")
 		local news_title = game.translate_string("pda_new_info_title")
 		local news_message = game.translate_string(title)
@@ -240,11 +242,11 @@ function send_encyclopedy(type, title)
 		if db.actor:is_talking() then	
 			db.actor:give_talk_message(news_text, task_texture, task_rect,"iconed_answer_item")
 		else
-			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
+			db.actor:give_game_news(news_text, task_texture, task_rect, 1000, 3000)
 		end
 	
-		last_encyclopedy_news_time = game.get_game_time()
-	end
+		--last_encyclopedy_news_time = game.get_game_time()
+	--end
 end
 
 function send_treasure(name)
