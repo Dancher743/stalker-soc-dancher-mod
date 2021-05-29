@@ -228,8 +228,13 @@ function send_encyclopedy(type, title)
 	
 	if elapsed_time < game.get_game_time() then
 		local task_texture, task_rect = get_texture_info("ui_iconsTotal_locations", "ui_iconsTotal_locations")
-		local news_title = game.translate_string("pda_new_info")
-		local news_message = game.translate_string("pda_new_info_added")
+		local news_title = game.translate_string("pda_new_info_title")
+		local news_message = game.translate_string(title)
+		
+		if news_message == title then
+			news_message = game.translate_string("pda_new_info_text_default")
+		end
+		
 		local news_text = "%c[255,160,160,160]"..news_title.."\\n%c[default]"..news_message
 		
 		if db.actor:is_talking() then	

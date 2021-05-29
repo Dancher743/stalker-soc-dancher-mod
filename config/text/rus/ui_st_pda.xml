@@ -216,10 +216,10 @@
 	<string id="st_detail_list_for_foo">
 		<text>Статистика</text>
 	</string>
-	<string id="pda_new_info">
-		<text>Информация</text>
+	<string id="pda_new_info_title">
+		<text>Новая информация:</text>
 	</string>
-	<string id="pda_new_info_added">
-		<text>Добавлена новая информация в КПК.</text>
+	<string id="pda_new_info_text_default">
+		<text>Добавлена в КПК.</text>
 	</string>
 </string_table>

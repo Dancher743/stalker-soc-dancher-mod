@@ -1,6 +1,6 @@
 --
---	NPC РІС‹Р»РµС‡РµРЅРЅС‹Рµ РёРіСЂРѕРєРѕРј РІС‹РґР°СЋС‚ РµРјСѓ СЂСЌРЅРґРѕРјРЅРѕ РїСЂРµРґРјРµС‚, СЂР°Р·Р»РёС‡РЅС‹Р№ Сѓ СЂР°Р·РЅС‹С… РіСЂСѓРїРїРёСЂРѕРІРѕРє Рё СЂР°РЅРіРѕРІ. 
---	РђРІС‚РѕСЂ: С…Р·, РЅРѕ РІС‹Р»РѕР¶РёР» РЅР° С„РѕСЂСѓРј AMK Team РґР°РЅРЅС‹Р№ РјРёРЅРё-РјРѕРґ aka_sektor
+--	NPC вылеченные игроком выдают ему рэндомно предмет, различный у разных группировок и рангов. 
+--	Автор: хз, но выложил на форум AMK Team данный мини-мод aka_sektor
 --
 
 local nagrad = {
@@ -239,5 +239,17 @@ function nagrada(first_speaker, second_speaker)
                   else
 	         item = nagrad.level_4[math.random(table.getn(nagrad.level_4))]
 	end
+	
     dialogs.relocate_item_section(second_speaker, item , "in")
+	notificate_reward(npc, item)
+end
+
+function notificate_reward(npc, item)
+	local title = npc:character_name()
+	local text = "Выручил ты меня, сталкер! Вот твоя награда: "..game.translate_string(amk.get_inv_name(item)).."."
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
+	local pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+	
+	db.actor:give_game_news("%c[255,160,160,160]"..title.."\\n%c[default]"..text, task_texture, task_rect, 0, 5000)
+	pda_tips:play(db.actor, 0, sound_object.s2d)
 end
