@@ -538,6 +538,7 @@ end
 function action_hideout:execute()
 	local npc = self.object
 	npc:disable_talk()
+	vim_utils.stop_play_sound(npc)
 end
 function action_hideout:finalize()
 	action_base.finalize(self)

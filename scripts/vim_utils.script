@@ -18,3 +18,13 @@ function start_timer(seconds, action, ...)
 
    level.add_call(on_progress, on_end)
 end
+
+-- Функция выключение звуков у NPC
+function stop_play_sound(npc)
+	if npc == nil or npc:alive() == false then
+		return
+	end
+	
+	xr_sound.set_sound(npc, nil)
+	_g.stop_play_sound(npc)
+end

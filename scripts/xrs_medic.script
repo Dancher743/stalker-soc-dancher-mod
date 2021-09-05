@@ -228,8 +228,8 @@ function action_self_medic:execute()
 			npc:add_animation("vodka_3")
 			npc:add_animation("sit_2_to_idle_0")
 			self.initialized=true
-			self.end_time = time_global() + 5000
-			self.end_time_total = self.end_time + 2000
+			self.end_time = time_global() + 6000
+			self.end_time_total = self.end_time
 		end
 		return
 	else
