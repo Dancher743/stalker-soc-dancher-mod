@@ -87,7 +87,7 @@ function spawn_vehicle(vehicle_name, spawnpoint_name)
 	local spawnpoint = vehicles_spawnpoints[spawnpoint_name]
 	
 	if spawnpoint == nil then
-		if debugger.is_debug_mode then
+		if debugger then
 			debugger.log("Неудалось заспавнить машину:"..vehicle_name..". Точка спавна не найдена в таблице.")
 		end
 		return
@@ -99,7 +99,7 @@ function spawn_vehicle(vehicle_name, spawnpoint_name)
 	
 	alife():create(vehicle_name, position, level_vertex_id, game_vertex_id)
 	
-	if debugger.is_debug_mode then
+	if debugger then
 		debugger.log("Была заспавнена машина: "..vehicle_name)
 	end
 end

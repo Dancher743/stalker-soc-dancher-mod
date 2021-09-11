@@ -361,7 +361,7 @@ function se_respawn:create(prob)
 --		printf("SPAWN [%s] -> [%s]", tostring(self:name()), obj:name())
 
         --' DEBUG:
-        if debug_logs and debugger.is_debug_mode then
+        if debugger and debug_logs then
 			if IsMonster(obj) or IsStalker(obj) then
 				debugger.log("SPAWN: "..tostring(self:name()).." -> "..obj:name())
 			end
