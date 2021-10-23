@@ -439,7 +439,6 @@ function companion_death(npc)
 
 		local title = "Напарник"
 		local text = npc:character_name().." погиб."
-		local task_texture, task_rect = get_texture_info("ui_iconsTotal_agr_agr_help_krot")
 
 		--[[
 		if dead_friends >= 4 then
@@ -448,7 +447,7 @@ function companion_death(npc)
 		]]
 
 		pda_sos:play(db.actor, 0, sound_object.s2d)
-		db.actor:give_game_news("%c[255,160,160,160]"..title.."\\n%c[default]"..text, task_texture, task_rect, 0, 15000)
+		db.actor:give_game_news("%c[255,160,160,160]"..title.."\\n%c[default]"..text, "ui\\ui_iconsTotal", Frect():set(0,235,83,47), 0, 15000)
 	end
 end
 
