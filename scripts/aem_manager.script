@@ -2494,3 +2494,12 @@ function admin_spawn()
 	-- сохранение id нового админа
 	xr_logic.pstor_store(actor, "aem_id", obj.id)
 end
+
+-------
+-- Проверяем является ли NPC администратором арены (Dancher)
+-------
+function is_npc_arena_admin(id)
+	local aem_id = xr_logic.pstor_retrieve(actor, "aem_id")
+	
+	return aem_id ~= nil and id == aem_id
+end

@@ -175,7 +175,7 @@ function generic_object_binder:update(delta)
 			local target = self.object:get_enemy()
 			if target and self.object:see(target) then
 				local dist = self.object:position():distance_to(target:position())
-				if (dist <= math.random(5,10) and 25 => math.random(100)) then
+				if (dist <= math.random(5,10) and 25 >= math.random(100)) then
 					if self.time_growl and self.time_growl > time_global() then
 						return
 					end

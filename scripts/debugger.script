@@ -180,6 +180,11 @@ function log(message)
 		return
 	end
 	
+	flog(message)
+end
+
+-- Выводим дебаг-сообщения (force log)
+function flog(message)
 	local title = "Дебаг-cообщение:"
 	local news_text = "%c[255,160,160,160]"..title.."\\n%c[default]"..tostring(message)
 	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")

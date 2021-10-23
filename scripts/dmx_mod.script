@@ -8,8 +8,9 @@
 
 -- Установка меток
 function add_mapspot(id)
-	local sid = alife():object(id).m_story_id
-	if sid == nil then return end
+	local obj = alife():object(id)
+	if obj == nil then return end
+	local sid = obj.m_story_id
 	
     if sid==507 then level.map_add_object_spot(id, "leader_npc_mapspot", "Главнокомандующий")	-- Воронин	
     elseif sid==707 then level.map_add_object_spot(id, "leader_npc_mapspot", "Главнокомандующий")	-- Лукаш
@@ -26,6 +27,7 @@ function add_mapspot(id)
 	elseif sid==5485 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Механик в Баре
 	elseif sid==775 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Шуруп
 	elseif sid==515 then level.map_add_object_spot(id, "informer_npc_mapspot_small", "Информатор") -- Осведомитель в баре
+	elseif aem_manager.is_npc_arena_admin(id) then level.map_add_object_spot(id, "admin_npc_mapspot", "Администратор") -- Админ арены в баре
 	elseif sid==7 and has_alife_info("dar_x18_dream") 
 		then level.map_add_object_spot(id, "collector_npc_mapspot", "Коллекционер") -- Толик 
 	end
@@ -33,8 +35,9 @@ end
 
 -- Удаление меток в оффлайне
 function remove_mapspot(id)
-	local sid = alife():object(id).m_story_id
-	if sid == nil then return end
+	local obj = alife():object(id)
+	if obj == nil then return end
+	local sid = obj.m_story_id
 	
     if sid==507 then level.map_remove_object_spot(id, "leader_npc_mapspot") -- Воронин
     elseif sid==707 then level.map_remove_object_spot(id, "leader_npc_mapspot") -- Лукаш
@@ -51,6 +54,7 @@ function remove_mapspot(id)
 	elseif sid==5485 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Механик в Баре
 	elseif sid==775 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Шуруп
 	elseif sid==515 then level.map_remove_object_spot(id, "informer_npc_mapspot_small") -- Осведомитель в баре
-	elseif sid==7 and has_alife_info("dar_x18_dream") then level.map_remove_object_spot(id, "collector_npc_mapspot") -- Толик 
+	elseif sid==7 and has_alife_info("dar_x18_dream") then level.map_remove_object_spot(id, "collector_npc_mapspot") -- Толик
+	elseif aem_manager.is_npc_arena_admin(id) then level.map_remove_object_spot(id, "admin_npc_mapspot") -- Админ арены в баре	
     end
 end

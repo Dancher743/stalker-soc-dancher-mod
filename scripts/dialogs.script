@@ -532,6 +532,10 @@ function companion_start_following(npc, actor)
 		trade_manager.trade_init(npc, "misc\\trade_obmen.ltx")
 		level.map_add_object_spot_ser(npc:id(), "alife_presentation_companion", "Напарник")	
 		
+		if not actor:has_info("encyclopedy_tutorial_companions") then
+			actor:give_info_portion("encyclopedy_tutorial_companions")
+		end
+		
 		st_c.enabled = true
 		st_c.behavior = xr_companion.beh_walk_simple
 	end	

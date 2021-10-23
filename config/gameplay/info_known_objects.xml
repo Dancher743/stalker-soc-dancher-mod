@@ -91,6 +91,7 @@
 	<article>tutorial_weakness</article>
 	<article>tutorial_weapon</article>
 	<article>tutorial_wound</article>
+	<article>tutorial_companions</article>
 </info_portion>
   
   <info_portion id="encyclopedy_zone_artifact_af-medusa">
@@ -438,6 +439,9 @@
 	</info_portion>
 	<info_portion id="encyclopedy_tutorial_wound">
 		<article>tutorial_wound</article>
+	</info_portion>
+	<info_portion id="encyclopedy_tutorial_companions">
+		<article>tutorial_companions</article>
 	</info_portion>
 
 	<info_portion id="encyclopedy_tutorial_diary"></info_portion>
