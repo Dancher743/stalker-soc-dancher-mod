@@ -584,6 +584,10 @@ custom_data = scripts\arena_respawn_custom_data.ltx
 
 
 ;--------- PERSONAL BOXES -----------------------
+[rukzak]:inventory_box
+visual = equipments\item_rukzak
+radius = 1
+
 [bar_room_box]:inventory_box
 visual = equipments\item_box_01.ogf
 radius = 1
@@ -592,9 +596,10 @@ radius = 1
 visual = equipments\item_box_01_visual.ogf
 radius = 0
 
-[bar_room_rukzak]:inventory_box
-visual = equipments\item_rukzak
-radius = 1
+[bar_room_rukzak]:rukzak
+
+[aes_rukzak_1]:rukzak
+custom_data = scripts\boxes\aes_rukzak_1.ltx
 
 ;**************************************************
 ;******************** AMK *************************

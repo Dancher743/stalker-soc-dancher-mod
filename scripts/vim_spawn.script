@@ -3,6 +3,9 @@
 --	Автор: Dancher
 --
 
+--
+-- Конфиги
+--
 local vehicles = 
 {
 	"ven_uaz_spawn",
@@ -15,6 +18,16 @@ local vehicles_spawnpoints =
 	agr_nii_hangar = { x = -134.17, y = -0.20, z = -221.87, level_vid = 104688, game_vid = 553 },
 	aes1_enter = { x = 923.72, y = -0.10, z = -383.72, level_vid = 407412, game_vid = 2400 }
 }
+
+--
+-- Главная функция скрипта
+--
+function spawn_all()
+	spawn_ways()
+	spawn_labs()
+	spawn_vehicles()
+	spawn_boxes()
+end
 
 function spawn_darkvalley_niva()
 	spawn_vehicle(vehicles[2], "dar_near_bridge")
@@ -36,8 +49,13 @@ end
 function spawn_labs()
 	lab_x18()
 	lab_x16()
+	
+	if debugger then
+		debugger.log("Лаборатории были заселены успешно.")
+	end
 end
 
+-- Копирайт:
 -- Заселение лаборатории Х-18
 -- Copyright    : AMK Mod
 -- Author       : AMK Team (взято из amk_spawn.script)
@@ -60,6 +78,7 @@ function lab_x18()
 	alife():create("zombie_weak",vector():set(-13.65,-12.43,-10.48),4780,1156)
 end
 
+-- Копирайт:
 -- Заселение лаборатории Х-16
 -- Copyright    : Shadows Addon
 -- Author       : Ray Twitty aka Shadows
@@ -74,6 +93,7 @@ function lab_x16()
 	alife():create("zombie_strong",vector():set(-114.6,21.5,-30.2),227,1530)
 end
 
+-- Копирайт:
 -- Функция создающая точки перехода между локами
 -- Copyright    : Shadows Addon
 -- Author       : Ray Twitty aka Shadows
@@ -101,5 +121,18 @@ function spawn_vehicle(vehicle_name, spawnpoint_name)
 	
 	if debugger then
 		debugger.log("Была заспавнена машина: "..vehicle_name)
+	end
+end
+
+function spawn_boxes()
+-- Спавним рюкзак с ПКМ на ЧАЭС-1 около УАЗика с мертвыми военными
+	local position = vector():set(921.6799, -0.0001, -239.0056)
+	local level_vertex = 407061
+	local game_vertex = 2273
+
+	alife():create("aes_rukzak_1",position,level_vertex,game_vertex)
+	
+	if debugger then
+		debugger.log("Все ящики были добавлены успешно.")
 	end
 end
