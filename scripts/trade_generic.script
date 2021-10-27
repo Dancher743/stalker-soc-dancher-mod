@@ -120,6 +120,7 @@ local af =
 		{'wpn_mp5_m2',            sell = 60},
 		{'wpn_mp5_m1',            sell = 60},
 		{'wpn_mp5',               sell = 60},
+		{'wpn_p90',               sell = 60},
 		{'wpn_spas12_m1',         sell = 80},
 		{'wpn_spas12',            sell = 80},
 		{'wpn_winchester_m1',     sell = 80},
@@ -198,6 +199,8 @@ ammo_9x18_fmj			= {3, 'wpn_fort', 'wpn_pb', 'wpn_pm', 'wpn_fort_m1', 'wpn_mp5_m1
 ammo_9x18_pmm			= {3, 'wpn_fort', 'wpn_pb', 'wpn_pm', 'wpn_fort_m1', 'wpn_mp5_m1'},
 ammo_9x19_pbp			= {6, 'wpn_beretta', 'wpn_hpsa', 'wpn_mp5', 'wpn_walther', 'wpn_mp5_m2', 'wpn_walther_m1'},
 ammo_9x19_fmj			= {6, 'wpn_beretta', 'wpn_hpsa', 'wpn_mp5', 'wpn_walther', 'wpn_mp5_m2', 'wpn_walther_m1'},
+['ammo_5.7x28_fmj']		= {6, 'wpn_p90'},
+['ammo_5.7x28_ap']		= {6, 'wpn_p90'},
 ['ammo_11.43x23_hydro']	= {3, 'wpn_colt1911', 'wpn_desert_eagle', 'wpn_sig220', 'wpn_usp', 'wpn_colt_m1'},
 ['ammo_11.43x23_fmj']	= {3, 'wpn_colt1911', 'wpn_desert_eagle', 'wpn_sig220', 'wpn_usp', 'wpn_colt_m1'},
 ammo_12x70_buck			= {3, 'wpn_bm16', 'wpn_spas12', 'wpn_toz34', 'wpn_wincheaster1300', 'wpn_spas12_m1', 'wpn_winchester_m1'},
@@ -221,7 +224,7 @@ ammo_gauss              = {2, 'wpn_gauss'},
 --аддоны
 wpn_addon_scope					= {1, 'wpn_ak74', 'wpn_abakan', 'wpn_ak74_m1', 'wpn_abakan_m2'}, --прицел ПСО
 wpn_addon_scope_susat			= {1, 'wpn_lr300'},                                              --прицел ИН
-wpn_addon_silencer				= {1, 'wpn_mp5', 'wpn_lr300', 'wpn_desert_eagle', 'wpn_usp', 'wpn_sig220', 'wpn_beretta', 'wpn_fort', 'wpn_fort_m1', 'wpn_mp5_m1', 'wpn_eagle_m1'},    --глушитель
+wpn_addon_silencer				= {1, 'wpn_mp5', 'wpn_p90', 'wpn_lr300', 'wpn_desert_eagle', 'wpn_usp', 'wpn_sig220', 'wpn_beretta', 'wpn_fort', 'wpn_fort_m1', 'wpn_mp5_m1', 'wpn_eagle_m1'},    --глушитель
 wpn_addon_grenade_launcher		= {1, 'wpn_ak74', 'wpn_ak74_m1'},                                            --гранатомёт ОТ
 wpn_addon_grenade_launcher_m203 = {1, 'wpn_lr300', 'wpn_sig550', 'wpn_lr300_m1', 'wpn_sig_m1', 'wpn_sig_m2'} --гранатомёт Ин
 }

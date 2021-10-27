@@ -37,7 +37,7 @@ Using mods:
 29. New bolt (from AMK Mod)
 30. NPC can gather (from AMK Mod)
 31. Stalkers are not blind mod (Red75)
-32. PKM weapon (gosuke/oleg199966)
+32. PKM and P90 weapons (gosuke/oleg199966)
 33. Reworked mod "New Map Spots Nps ShoC" (naxac/Dancher) 
 34. Controller Show Phantoms (naxac)
 35. PDA upgrade (Dancher) 
