@@ -35,4 +35,5 @@ end
 
 function sakharov_give_equipment(first_speaker, second_speaker)
 	dialogs.relocate_item_section(second_speaker, "detector_elite", "in")
+	dialogs.relocate_n_items_section(second_speaker, "arc_art_box_basic", "in", 2)
 end

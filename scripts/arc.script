@@ -21,11 +21,11 @@ function info(str, timeout)
 end
 
 function warning(msg)
-  amk.send_tip(tostring(msg), "Внимание:", nil, 3)
+--  amk.send_tip(tostring(msg), "Внимание:", nil, 3)
 end
 
 function fault(msg)
-  amk.send_tip(tostring(msg), "Ошибка:", nil, 5)
+--  amk.send_tip(tostring(msg), "Ошибка:", nil, 5)
 end
 
 function round(a)
