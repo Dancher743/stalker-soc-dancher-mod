@@ -236,12 +236,14 @@ function actor_binder:on_item_take (obj)
 	if rx_ai then
 		rx_ai.actor_item_take(obj)
 	end 
+	arc_main.get_item(obj)	
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_drop (obj)
     level_tasks.proceed(self.object)
 	inventory.on_item_drop(obj)
     --game_stats.update_drop_item (obj, self.object)
+	arc_main.lose_item(obj)
 end
 ----------------------------------------------------------------------------------------------------------------------
 
@@ -427,6 +429,8 @@ function actor_binder:update(delta)
 
 		self.bCheckStart = false		
 	end
+	
+	arc_main.actor_update()
 	
 	--// xr_companion
 	xr_companion.reset_enemy_by_time()
