@@ -235,7 +235,10 @@ function actor_binder:on_item_take (obj)
 
 	if rx_ai then
 		rx_ai.actor_item_take(obj)
-	end 
+	end
+	
+	bind_det_arts.on_item_take(obj)
+	
 	arc_main.get_item(obj)	
 end
 ----------------------------------------------------------------------------------------------------------------------

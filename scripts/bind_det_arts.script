@@ -38,6 +38,7 @@ local list_arts =
 
 local beep_good = xr_sound.get_safe_sound_object("device\\detectors\\art_beep1")
 local beep_bad = xr_sound.get_safe_sound_object("device\\detectors\\da_beep")
+local pda_sos = xr_sound.get_safe_sound_object([[device\pda\pda_sos]])
 
 function start_update()
     for id = 1, 65535 do
@@ -59,6 +60,15 @@ end
 
 function update()
 	set_detector_strategy()
+end
+
+function on_item_take(obj)
+	local obj_clsid = obj:clsid()
+	if obj_clsid ~= clsid.artefact then
+		return
+	end
+	
+	try_notify_about_rad_art(obj)
 end
 
 function iteration_del_spot()
@@ -112,8 +122,6 @@ function detector_advances_strategy()
 				if dist <= beep_dist_limit then
 					beep_dist = beep_dist_limit
 				end
-				
-				--this.log_message(dist, time_global() - v.tim_beep)
 				
            		if dist <= 20^2 and beep_dist < time_global() - (v.tim_beep + beep_idle) then
 					if not beep_bad:playing() then
@@ -186,10 +194,32 @@ function get_artefact_map_spot_name(section)
 	return artefact_map_spot_name
 end
 
-function log_message(text1, text2)
-	local news_text = "%c[255,160,160,160]"..game.translate_string(text1).." , "..game.translate_string(text2)
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_grouping")
-	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 1000)
+--
+-- Добавление элитному детектору сообщение о поднятом радиоактивным артефакте
+-- Автор: Dancher
+--
+function try_notify_about_rad_art(obj)
+	local obj_sect = obj:section()
+	local ini = system_ini()
+	
+	if inventory.belt["detector_elite"] then
+		if ini:section_exist(obj_sect) then
+			if ini:line_exist(obj_sect, "radiation_restore_speed") then
+			local radiation = ini:r_float(obj_sect, "radiation_restore_speed")
+				if radiation > 0 then
+					show_message_about_rad_art()
+				end
+			end
+		end
+	end
 end
 
-----------
+function show_message_about_rad_art()
+	local title = "%c[255,160,160,160]Детектор"
+	local message = "%c[default]Обнаружен радиоактивный артефакт. Немедленно переложите его в контейнер."
+	local news_text = title.."\\n"..message
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_yan_find_scientist")
+	
+	db.actor:give_game_news(news_text, task_texture, task_rect, 0, 9000)
+	pda_sos:play(db.actor, 0, sound_object.s2d)
+end
