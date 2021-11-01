@@ -30,8 +30,10 @@
                 <text>nimble_exchange_dialog_0</text>
 				<next>1</next>
 				<next>9</next>
+				<next>11</next>
             </phrase>
 			<phrase id="1">
+				<dont_has_info>exchange_everything</dont_has_info>
 				<precondition>nimble_exchanger.check_not_out_of_stock</precondition>
                 <text>nimble_exchange_dialog_1</text>
                 <next>2</next>
@@ -85,6 +87,21 @@
 			<phrase id="9">
 				<precondition>nimble_exchanger.check_out_of_stock</precondition>
                 <text>nimble_exchange_dialog_9</text>
+				<next>10</next>
+				<next>7</next>
+            </phrase>
+			<phrase id="10">
+				<dont_has_info>nimble_exchange_wpn_fn2000</dont_has_info>
+				<precondition>nimble_exchanger.check_actor_fn2000_fund</precondition>
+                <text>nimble_exchange_dialog_10</text>
+				<action>nimble_exchanger.exchange_fn2000</action>
+				<give_info>nimble_exchange_wpn_fn2000</give_info>
+				<give_info>exchange_everything</give_info>
+				<next>6</next>
+            </phrase>
+			<phrase id="11">
+				<has_info>exchange_everything</has_info>
+                <text>nimble_exchange_dialog_11</text>
             </phrase>
         </phrase_list>
     </dialog>

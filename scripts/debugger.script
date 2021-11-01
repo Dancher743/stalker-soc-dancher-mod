@@ -303,10 +303,13 @@ function nimble_exchange_debug()
 	end
 	
 	local actor = db.actor
+	give_info("dar_x18_dream")
+	give_info("tutorial_wounded_help")
 	spawn_item(actor, nimble_exchanger.actor_arts[1])
 	spawn_item(actor, nimble_exchanger.actor_arts[2])
 	spawn_item(actor, nimble_exchanger.actor_arts[3])
 	spawn_item(actor, nimble_exchanger.actor_arts[4])
+	spawn_item(actor, nimble_exchanger.actor_arts[5])
 end
 
 -- Выдаём ГГ денежку

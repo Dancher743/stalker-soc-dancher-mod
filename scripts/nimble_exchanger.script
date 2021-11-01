@@ -8,7 +8,8 @@ nible_weapons =
 	"wpn_hpsa",
 	"wpn_sig_m1",
 	"wpn_svd_m1",
-	"wpn_rg6_m1"
+	"wpn_rg6_m1",
+	"wpn_fn2000"
 }
 
 actor_arts =
@@ -16,7 +17,8 @@ actor_arts =
 	"af_electra_moonlight",
 	"af_dummy_pellicle",
 	"af_dummy_glassbeads",
-	"af_fuzz_kolobok"
+	"af_fuzz_kolobok",
+	"af_night_star"
 }
 
 actor_money =
@@ -24,7 +26,8 @@ actor_money =
 	5000,
 	10000,
 	15000,
-	20000
+	20000,
+	30000
 }
 
 -- Валидации обмена --
@@ -49,39 +52,55 @@ function check_actor_rg6_fund(actor, npc)
 	return have_actor_fund(4)
 end
 
+function check_actor_fn2000_fund(actor, npc)
+	return have_actor_fund(5)
+end
+
 function check_out_of_stock()
 	return has_alife_info("nimble_exchange_wpn_hpsa") and
 		has_alife_info("nimble_exchange_wpn_sig_m1") and
 		has_alife_info("nimble_exchange_wpn_svd_m1") and
-		has_alife_info("nimble_exchange_wpn_rg6_m1")
+		has_alife_info("nimble_exchange_wpn_rg6_m1") and
+		not has_alife_info("nimble_exchange_wpn_fn2000")
+		
 end
 
 function check_not_out_of_stock(actor, npc)	
 	return not check_out_of_stock()
 end
 
+function exchange_everything(actor, npc)
+	return check_out_of_stock() and has_alife_info("nimble_exchange_wpn_fn2000")
+end
+
 -- Функции обмена --
 
 function exchange_hpsa(actor, npc)
 	dialogs.relocate_money(npc, actor_money[1], "out")
-	dialogs.relocate_item_section(npc, actor_arts[1], "out")
+	dialogs.relocate_item_section_with_removing(npc, actor_arts[1], "out")
 	dialogs.relocate_item_section(actor, nible_weapons[1], "in")	
 end
 
 function exchange_sig(actor, npc)
 	dialogs.relocate_money(npc, actor_money[2], "out")
-	dialogs.relocate_item_section(npc, actor_arts[2], "out")
+	dialogs.relocate_item_section_with_removing(npc, actor_arts[2], "out")
 	dialogs.relocate_item_section(actor, nible_weapons[2], "in")	
 end
 
 function exchange_svd(actor, npc)
 	dialogs.relocate_money(npc, actor_money[3], "out")
-	dialogs.relocate_item_section(npc, actor_arts[3], "out")
+	dialogs.relocate_item_section_with_removing(npc, actor_arts[3], "out")
 	dialogs.relocate_item_section(actor, nible_weapons[3], "in")	
 end
 
 function exchange_rg6(actor, npc)
 	dialogs.relocate_money(npc, actor_money[4], "out")
-	dialogs.relocate_item_section(npc, actor_arts[4], "out")
+	dialogs.relocate_item_section_with_removing(npc, actor_arts[4], "out")
 	dialogs.relocate_item_section(actor, nible_weapons[4], "in")	
+end
+
+function exchange_fn2000(actor, npc)
+	dialogs.relocate_money(npc, actor_money[5], "out")
+	dialogs.relocate_item_section_with_removing(npc, actor_arts[5], "out")
+	dialogs.relocate_item_section(actor, nible_weapons[5], "in")	
 end
