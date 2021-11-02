@@ -77,12 +77,7 @@ function transfer_medkit(first_speaker, second_speaker)
 		save_variable("dead_fr", dead_friends)	
 	end
 		
-	if second_speaker:relation(first_speaker) ~= game_object.enemy then
-		second_speaker:set_relation(game_object.friend, first_speaker)
-	else
-		xr_wounded.help_wounded(second_speaker)
-	end
-	
+	xr_wounded.help_wounded(second_speaker)
 	first_speaker:change_character_reputation(10);
 end
 

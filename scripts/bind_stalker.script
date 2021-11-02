@@ -113,10 +113,6 @@ function actor_binder:net_destroy()
 
 	xr_sound.stop_all_sound_object()
 	
-	if ui_grenade_marks then
-		ui_grenade_marks.remove_grenade_marks()
-	end
-
 	object_binder.net_destroy(self)
 end
 ----------------------------------------------------------------------------------------------------------------------
