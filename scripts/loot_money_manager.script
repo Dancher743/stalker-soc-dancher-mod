@@ -6,8 +6,10 @@
 	Last edited		  : Dancher
 --]]---------------------------------------------------------------------------
 
+-- Конфиги
 is_pda_hack_enabled = false
 is_relocate_enabled = true
+deadmoney_loot_chance = 33
 
 -- Звуки нотификации
 local pda_news = xr_sound.get_safe_sound_object([[device\pda\pda_news]])
@@ -132,7 +134,10 @@ end
 -- Адаптировал под свой мод Dancher.
 ------------------------------------------------------------------------------------
 function relocate_deadmoney(npc)
-
+	if npc == nil then
+		return
+	end
+	
 	--' Проверим, не вызывались ли мы уже для этого объекта. 
 	local se_obj = alife():object(npc:id())
 	if se_obj.deadmoney_processed == true then
@@ -142,8 +147,14 @@ function relocate_deadmoney(npc)
 	
 	local community = npc:character_community()
 	local character_name = npc:character_name()
+	local npc_money = npc:money()
 	
-	if npc ~= nil and not string.find(npc:section(),"arena") and community~="arena_enemy" then
+	if 
+		deadmoney_loot_chance >= math.random(99) and
+		npc_money > 0 and 
+		not string.find(npc:section(),"arena") and 
+		community~="arena_enemy" 
+	then
 		local deadmoney = 0
 		local npc_rank = ranks.get_obj_rank_name(npc)
 		
@@ -171,8 +182,14 @@ function relocate_deadmoney(npc)
 			end
 		end
 		
+		
+		if deadmoney > npc_money then		
+			deadmoney = npc_money
+		end
+		
 		db.actor:give_money(deadmoney)
 		game_stats.money_quest_update(deadmoney)
+		npc:give_money(-deadmoney)
 		
 		local title = game.translate_string("general_in_money")
 		local text = game.translate_string(tostring(deadmoney)).." руб."

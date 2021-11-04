@@ -219,7 +219,8 @@ function ev_see_stuff:evaluate()
   end
 	local act_sec=db.storage[npc:id()].active_section or ""
 	if (not npc:alive()) or xr_wounded.is_wounded(npc) or npc:best_enemy() or 
-      bad_danger(npc) or (actsch and db.storage[npc:id()][actsch].no_loot) then
+      bad_danger(npc) or (actsch and db.storage[npc:id()][actsch].no_loot) or 
+	  xr_companion.is_companion(npc:id()) then
 		if res then
 			freeGObject(self.st)
 			amk.mylog(npc:name() .. " distracted. sect "..act_sec,"grb")
