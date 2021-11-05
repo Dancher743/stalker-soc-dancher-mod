@@ -167,7 +167,9 @@ function action_medic:execute()
 			--db.storage[wounded_npc:id()].wounded.wound_manager.medkit_eaten=true
 			--db.storage[wounded_npc:id()].wounded.wound_manager:update()
 			
-			has_medic[self.a.target_wounded]=nil
+			if self.a.target_wounded ~= nil then
+				has_medic[self.a.target_wounded]=nil
+			end
 			self.a.target_wounded = nil
 			self.a.from_point = nil
 		end

@@ -4,11 +4,7 @@ local time_previous = time_global()
 local time_step = 150
 
 function change_inv_arts_radiation(delta)
-  local value = inv_arts_radiation + delta
-  if value < 0 then
-	value = 0
-  end
-  inv_arts_radiation = value
+  inv_arts_radiation = inv_arts_radiation + delta
 end
 
 function apply_radiation()
