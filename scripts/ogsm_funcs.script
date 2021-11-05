@@ -338,10 +338,14 @@ end
 
 function set_timer_of_next_surge()
 	local t_surge =  vars.t_surge
+	
+	local t_surge_days_add_min = vars.t_surge_days_add_min
+	local t_surge_days_add_max = vars.t_surge_days_add_max
+	
 	local t_surge_add_min = vars.t_surge_add_min
 	local t_surge_add_max = vars.t_surge_add_max
 	
-	local surge_next_time = t_surge+math.random(t_surge_add_min,t_surge_add_max)
+	local surge_next_time = t_surge*math.random(t_surge_days_add_min,t_surge_days_add_max)+math.random(t_surge_add_min,t_surge_add_max)
 	save_variable("surge_next_time", surge_next_time)
 	g_start_timer("bl1",0, surge_next_time, 0)
 end

@@ -149,39 +149,50 @@ function relocate_deadmoney(npc)
 	local character_name = npc:character_name()
 	local npc_money = npc:money()
 	
-	if 
-		deadmoney_loot_chance >= math.random(99) and
+	if
 		npc_money > 0 and 
 		not string.find(npc:section(),"arena") and 
 		community~="arena_enemy" 
 	then
 		local deadmoney = 0
+		local loot_chance = 0
 		local npc_rank = ranks.get_obj_rank_name(npc)
 		
 		if npc_rank ~= nil then
 			if not pda_upgrade_manager.has_upgrade(2) then
 				if npc_rank == "novice" then 
 					deadmoney = math.random(36,75)
+					loot_chance = 85
 				elseif npc_rank == "experienced" then 
 					deadmoney = math.random(75,150)
+					loot_chance = 65
 				elseif npc_rank == "veteran" then 
 					deadmoney=math.random(150,250)
+					loot_chance = 45
 				elseif npc_rank == "master" then 
 					deadmoney = math.random(250,500)
+					loot_chance = 25
 				end
 			else
 				if npc_rank == "novice" then 
 					deadmoney = math.random(75,150)
+					loot_chance = 95
 				elseif npc_rank == "experienced" then 
 					deadmoney = math.random(150,250)
+					loot_chance = 75
 				elseif npc_rank == "veteran" then 
 					deadmoney = math.random(250,500)
+					loot_chance = 55
 				elseif npc_rank == "master" then 
 					deadmoney = math.random(500,1000)
+					loot_chance = 35
 				end
 			end
 		end
 		
+		if loot_chance < math.random(100) then
+			return
+		end
 		
 		if deadmoney > npc_money then		
 			deadmoney = npc_money
