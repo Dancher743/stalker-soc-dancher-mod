@@ -111,6 +111,8 @@ local look_radius_box = 100
 local timer_alife_freq 			= 5 		-- Как часто генерить события в оффлайн (игровые минуты)
 local timer_alife_showed		= 0			-- Последнее событие в оффлайн
 
+local is_look_rukzak = false --грабить рюкзаки?
+
 function init()
 	if (initialized == false) then
 		if amk.load_variable("freeplay",0) == 2 then -- Фриплей - везде гуляем.
@@ -220,7 +222,7 @@ function add_fresh_meat(obj)
 					end
 				end
 				if map ~= "" then table.insert(off_npcs[map].artefacts, {id = obj.id, name = obj:name()}) end
-			elseif (obj:section_name()=="inventory_box" and box_is_protected(obj)==false) then
+			elseif ((obj:section_name()=="inventory_box" or (obj:section_name()=="m_inventory_box" and is_look_rukzak)) and box_is_protected(obj)==false) then
 				table.insert(off_npcs[map].inv_boxes, {id = obj.id, name = obj:name()})
 			end
 			
