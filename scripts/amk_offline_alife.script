@@ -372,7 +372,6 @@ end
 
 --генерируем оффлайн событи€
 function offline_alife()
-	
 	local lname = maps[math.random(table.getn(maps))]
 --	update_tables(lname)
 	amk.mylog("Offline_alife - "..lname)
@@ -380,59 +379,68 @@ function offline_alife()
 	amk.oau_reason="cn offline_alife chp1"
 	if off_npcs[lname] then st = table.getn(off_npcs[lname].stalkers) end
 	if st>0 then
-	amk.oau_reason="cn offline_alife chp2"
+		amk.oau_reason="cn offline_alife chp2"
 		for search = 1,search_intensivity do
-	amk.oau_reason="cn offline_alife chp3"
+			amk.oau_reason="cn offline_alife chp3"
 			local rnd = math.random(st)
-	amk.oau_reason="cn offline_alife chp4"
+			amk.oau_reason="cn offline_alife chp4"
 			if off_npcs[lname].stalkers[rnd] then 
-	amk.oau_reason="cn offline_alife chp5"
+				amk.oau_reason="cn offline_alife chp5"
 				local victim = alife():object(off_npcs[lname].stalkers[rnd].id)
-	amk.oau_reason="cn offline_alife chp6"
-				if victim and not victim.online and victim.health and victim.can_switch_online and victim:health()>0 and victim:can_switch_online() and victim:name() == off_npcs[lname].stalkers[rnd].name then
-	amk.oau_reason="cn offline_alife chp7 "..tostring(victim and victim:name())
+				amk.oau_reason="cn offline_alife chp6"
+				if victim and not victim.online and victim.health and victim.can_switch_online and victim:health()>0 and 	victim:can_switch_online() and victim:name() == off_npcs[lname].stalkers[rnd].name then
+					amk.oau_reason="cn offline_alife chp7 "..tostring(victim and victim:name())
 					local vdata = collect_info(victim,lname)
-	amk.oau_reason="cn offline_alife chp8 "..tostring(victim and victim:name())
+					amk.oau_reason="cn offline_alife chp8 "..tostring(victim and victim:name())
+					
 					if table.getn(vdata.enemies)>0 then
 					--есть вражина - воюем нах!
-	amk.oau_reason="cn offline_alife chp9 "..tostring(victim and victim:name())
+						amk.oau_reason="cn offline_alife chp9 "..tostring(victim and victim:name())
+						debugger.flog("есть вражина - воюем нах!")
 						on_enemies_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.monsters)>0 then
 					--есть монстр€тина - видели, слышали, убили, сдохли...
-	amk.oau_reason="cn offline_alife chp10 "..tostring(victim and victim:name())
+						amk.oau_reason="cn offline_alife chp10 "..tostring(victim and victim:name())
+						debugger.flog("есть монстр€тина - видели, слышали, убили, сдохли...")
 						on_monsters_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.corpses.stalkers)>0 then
 					--есть труп сталкера
-	amk.oau_reason="cn offline_alife chp11 "..tostring(victim and victim:name())
+						amk.oau_reason="cn offline_alife chp11 "..tostring(victim and victim:name())
+						debugger.flog("есть труп сталкера")
 						on_npc_corpses_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.corpses.monsters)>0 then
 					--есть труп монстра
-	amk.oau_reason="cn offline_alife chp12 "..tostring(victim and victim:name())
+						amk.oau_reason="cn offline_alife chp12 "..tostring(victim and victim:name())
+						debugger.flog("есть труп монстра")
 						on_monster_corpses_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.weapons.seen)>0 then
 					--есть бесхозное оружие
-	amk.oau_reason="cn offline_alife chp13 "..tostring(victim and victim:name())
+						debugger.flog("есть бесхозное оружие")
+						amk.oau_reason="cn offline_alife chp13 "..tostring(victim and victim:name())
 						on_weapons_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.artefacts)>0 then
 					--есть арты
-	amk.oau_reason="cn offline_alife chp14 "..tostring(victim and victim:name())
+						debugger.flog("есть арты")
+						amk.oau_reason="cn offline_alife chp14 "..tostring(victim and victim:name())
 						on_artifacts_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.inv_boxes)>0 then
+						debugger.flog("есть контейнеры. Ќадо обыскать.")
 					--есть контейнеры. Ќадо обыскать.
-	amk.oau_reason="cn offline_alife chp18 "..tostring(victim and victim:name())
+						amk.oau_reason="cn offline_alife chp18 "..tostring(victim and victim:name())
 						on_inv_boxes_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif items[victim.id] and table.getn(items[victim.id]) > 0 then
+						debugger.flog("попробуем продать вс€кого")
 					--попробуем продать вс€кого
-	amk.oau_reason="cn offline_alife chp15 "..tostring(victim and victim:name())
+						amk.oau_reason="cn offline_alife chp15 "..tostring(victim and victim:name())
 						amk.mylog("Offline: lets trade")
-	amk.oau_reason="cn offline_alife chp17 "..tostring(victim and victim:name())
+						amk.oau_reason="cn offline_alife chp17 "..tostring(victim and victim:name())
 						process_trade(victim)
 						amk.mylog("Offline: trade done")
 						break
@@ -705,7 +713,7 @@ function on_enemies_found(victim, vdata)
 									end
 								end
 								amk.mylog("on_offline_death - "..defender.player:name()..", "..attacker.player:name()..", "..attacker.weapon:name())
-								news_main.on_offline_death(defender.player, attacker.player, attacker.weapon)
+								--news_main.on_offline_death(defender.player, attacker.player, attacker.weapon)
 								-- «аберем вещички с трупа
 								local itA, v_itA
 								local l_objA
@@ -773,7 +781,7 @@ function on_enemies_found(victim, vdata)
 										end
 									end
 									amk.mylog("on_offline_death - "..defender.player:name()..", "..attacker.player:name()..", "..attacker.weapon:name())
-									news_main.on_offline_death(defender.player, attacker.player, attacker.weapon)
+									--news_main.on_offline_death(defender.player, attacker.player, attacker.weapon)
 									-- «аберем вещички с трупа
 									local itB, v_itB
 									local l_objB
@@ -819,7 +827,7 @@ function on_enemies_found(victim, vdata)
 			elseif (vv.health <= health_wound and vv.health > 0) then
 				amk.mylog("”частник команды ј ранен. "..vv.player:name())
 				set_npc_health(vv.player, health_wound_set)
-				news_main.on_offline_wound(vv.player)
+				--news_main.on_offline_wound(vv.player)
 				table.remove(team_A, kk)
 			end
 		end
@@ -832,7 +840,7 @@ function on_enemies_found(victim, vdata)
 			elseif (vv.health <= health_wound and vv.health > 0) then
 				amk.mylog("”частник команды B ранен. "..vv.player:name())
 				set_npc_health(vv.player, health_wound_set)
-				news_main.on_offline_wound(vv.player)
+				--news_main.on_offline_wound(vv.player)
 				table.remove(team_B, kk)
 			end
 		end		
@@ -980,7 +988,7 @@ function on_monsters_found(victim, vdata)
 									end
 								end
 								amk.mylog("on_offline_death - "..defender.player:name()..", "..attacker.player:name()..", "..attacker.weapon:name())
-								news_main.on_offline_death(defender.player, attacker.player, attacker.weapon)
+								--news_main.on_offline_death(defender.player, attacker.player, attacker.weapon)
 								-- «аберем вещички с трупа
 								local itA, v_itA
 								local l_objA
@@ -1039,7 +1047,7 @@ function on_monsters_found(victim, vdata)
 										if (defender.rank < attacker.rank) then coeff = 0.5 end
 										if (defender.rank > attacker.rank) then coeff = 2 end
 										amk.mylog("on_offline_death - "..defender.player:name()..", "..attacker.player:name()..", nil")
-										news_main.on_offline_death(defender.player, attacker.player, nil)
+										--news_main.on_offline_death(defender.player, attacker.player, nil)
 										-- «абитрать вещички с трупа не будем. ’от€, может некоторые клептоманы...
 										-- ј вот труп грохнуть... Ќадо подумать :)
 									end
@@ -1068,7 +1076,7 @@ function on_monsters_found(victim, vdata)
 			elseif (vv.health <= health_wound and vv.health > 0) then
 				amk.mylog("”частник команды ј ранен. "..vv.player:name())
 				set_npc_health(vv.player, health_wound_set)
-				news_main.on_offline_wound(vv.player)
+				--news_main.on_offline_wound(vv.player)
 				table.remove(team_A, kk)
 			end
 		end
@@ -1081,7 +1089,7 @@ function on_monsters_found(victim, vdata)
 			elseif (vv.health <= health_wound and vv.health > 0) then
 				amk.mylog("”частник команды B ранен. "..vv.player:name())
 				set_npc_health(vv.player, health_wound_set)
-				news_main.on_offline_wound(vv.player)
+				--news_main.on_offline_wound(vv.player)
 				table.remove(team_B, kk)
 			end
 		end		
@@ -1107,7 +1115,7 @@ function on_npc_corpses_found(victim, vdata)
 		v_obj = vdata.corpses.stalkers[i]
 		local corpse = alife():object(v_obj.id)
 		if (corpse and corpse:name() == v_obj.name) then
-			news_main.on_offline_corpse_found(victim, corpse)
+			--news_main.on_offline_corpse_found(victim, corpse)
 			id = corpse.id
 			if (id and items[id]) then
 				for a=1, table.getn(items[id]) do
@@ -1143,7 +1151,7 @@ function on_monster_corpses_found(victim, vdata)
 		v_obj = vdata.corpses.monsters[i]
 		local corpse = alife():object(v_obj.id)
 		if (corpse and corpse:name() == v_obj.name) then
-			news_main.on_offline_corpse_found(victim, corpse)		
+			--news_main.on_offline_corpse_found(victim, corpse)		
 			id = corpse.id
 			if (id and items[id]) then
 				for a=1, table.getn(items[id]) do
@@ -1217,7 +1225,10 @@ end
 
 -- ќ, нычка - это гуд.
 function on_inv_boxes_found(victim, vdata)
-	if (victim == nil or vdata == nil) then return end
+	if (victim == nil or vdata == nil) then 
+		debugger.flog("не удалось обыскать :(")
+		return 
+	end
 	local obj, v_obj
 	local object
 	local v_id = victim.id
@@ -1240,10 +1251,12 @@ function on_inv_boxes_found(victim, vdata)
 						if (v_itA) then
 							local itA = alife():object(v_itA.id)
 							if (itA and itA:name()==v_itA.name and itA.parent_id == v_obj.id) then
+								debugger.flog("–ешим, подбираем или нет?")
 								--news_main.trace("on_inv_boxes_found - found "..itA:section_name().." in "..object:name())
 								-- –ешим, подбираем или нет?
 								local bTake = is_valuable(itA)
 								if bTake then
+									debugger.flog("спиздили :)")
 									local l_objA = pick_item(victim, itA)
 								end
 							else
@@ -1671,7 +1684,7 @@ function process_trade(npc)
 					-- ѕродадим через новости.
 					--news_main.trace("Offline: "..npc:name().." собираетс€ продать через новости "..zz:name())
 					--amk.mylog("Offline: "..npc:name().." собираетс€ продать через новости "..vv:name())
-					news_main.on_offline_trade(npc, zz)
+					--news_main.on_offline_trade(npc, zz)
 					table.remove(sell_list, 1)
 				end
 			end
