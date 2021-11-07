@@ -14,7 +14,7 @@ function apply_radiation()
   if time_delta >= time_step then
     local delta_radiation = inv_arts_radiation*math.min(7, time_delta/time_step)
     
-    if delta_radiation>0 then
+    if delta_radiation>0 and not vim_cars.is_actor_inside_car() then
       db.actor.radiation = delta_radiation
     end
     time_previous = time_current

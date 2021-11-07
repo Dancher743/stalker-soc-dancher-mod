@@ -37,7 +37,7 @@ then
 	return 
 end
 
-if db.actor:has_info("surge_pda") then
+if db.actor:has_info("surge_off_devices") then
 	--get_console():execute("unbind active_jobs")
 	--get_console():execute("unbind map")
 	--get_console():execute("unbind contacts")

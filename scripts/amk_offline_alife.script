@@ -79,6 +79,13 @@ local protected = {
 	573
 }
 
+local protected_customs =
+{
+	["bar_room_box"] = true,
+	["bar_room_rukzak"] = true,
+	["aes_rukzak_1"] = true
+}
+
 local smart_filters = {
 	"esc_bridge", "esc_blokpost"
 }
@@ -110,8 +117,6 @@ local look_radius_box = 100
 
 local timer_alife_freq 			= 5 		-- Как часто генерить события в оффлайн (игровые минуты)
 local timer_alife_showed		= 0			-- Последнее событие в оффлайн
-
-local is_look_rukzak = false --грабить рюкзаки?
 
 function init()
 	if (initialized == false) then
@@ -222,7 +227,7 @@ function add_fresh_meat(obj)
 					end
 				end
 				if map ~= "" then table.insert(off_npcs[map].artefacts, {id = obj.id, name = obj:name()}) end
-			elseif ((obj:section_name()=="inventory_box" or (obj:section_name()=="m_inventory_box" and is_look_rukzak)) and box_is_protected(obj)==false) then
+			elseif (obj:section_name()=="inventory_box" and (not protected_customs[obj:section_name()] and box_is_protected(obj)==false)) then
 				table.insert(off_npcs[map].inv_boxes, {id = obj.id, name = obj:name()})
 			end
 			

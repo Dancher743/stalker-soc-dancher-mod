@@ -1,0 +1,16 @@
+--
+--	Vanilla Improved Mod
+--	Скрипт с функциями машинам
+--	Автор: Dancher
+--	Особая благодрность Shadows & Charsi (DMX Mod), наработки которых я использовал для данного скрипта
+--
+
+local car_engaged = false
+
+function update(car_object)
+	car_engaged = car_object:get_car():engaged()
+end
+
+function is_actor_inside_car()
+	return car_engaged
+end

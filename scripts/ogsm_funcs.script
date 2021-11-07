@@ -235,7 +235,7 @@ function __do_timer_action(select_string,params_string)
 		local snd_obj = xr_sound.get_safe_sound_object([[anomaly\blowout]])
 		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
 		ogsm_surge.play_sounds()
-		db.actor:give_info_portion("surge_pda")
+		db.actor:give_info_portion("surge_off_devices")
 		g_start_timer("bl5",0,0,4)
 	end
 
@@ -299,7 +299,7 @@ function __do_timer_action(select_string,params_string)
 		spawn_arts_after_surge()
 		
 		db.actor:disable_info_portion("surge_start")
-		db.actor:disable_info_portion("surge_pda")
+		db.actor:disable_info_portion("surge_off_devices")
 				
 		local snd_obj = xr_sound.get_safe_sound_object([[surge\after_surge]])
 		snd_obj:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)

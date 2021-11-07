@@ -27,7 +27,7 @@ function is_on_location()
 end
 
 function is_surge()
-	return has_alife_info("surge_pda")
+	return has_alife_info("surge_off_devices")
 end
 
 class "PdaNoiseWnd" (CUIScriptWnd)

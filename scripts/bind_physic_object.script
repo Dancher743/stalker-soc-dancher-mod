@@ -97,6 +97,10 @@ function generic_physics_binder:update(delta)
 	if self.object:section() == "mattress" then
 		sleep_manager.mattress_update(self.object)
 	end
+	
+	if self.object:clsid() == clsid.car_s then
+		vim_cars.update(self.object)
+    end
 end
 
 function generic_physics_binder:net_spawn(data)

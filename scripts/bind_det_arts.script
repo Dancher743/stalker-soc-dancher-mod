@@ -108,8 +108,9 @@ end
 -- «а основу вз€т оригинальный код автора Singapur22
 --
 
-beep_dist_limit = 15
-beep_idle = 75
+local beep_dist_limit = 15
+local beep_idle = 75
+local beep_idle_surge = 2000
 
 function detector_advances_strategy()
     for k,v in pairs(db.artefacts) do
@@ -125,7 +126,14 @@ function detector_advances_strategy()
 				
            		if dist <= 20^2 and beep_dist < time_global() - (v.tim_beep + beep_idle) then
 					if not beep_bad:playing() then
-						db.artefacts[k].tim_beep = time_global()
+						local time_beep_delta = time_global()
+						
+						if db.actor:has_info("surge_off_devices") then
+							time_beep_delta = time_beep_delta + beep_idle_surge
+						end
+						
+						db.artefacts[k].tim_beep = time_beep_delta
+						
 					    beep_bad:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 0.5)
 					end
 				end
