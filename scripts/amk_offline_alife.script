@@ -285,7 +285,7 @@ function build_tables()
 	end
 	
 	sell_table = {}
-	local sini = ini_file("misc\\trade_generic.ltx")
+	local sini = ini_file("misc\\trade_offline_alife.ltx")
 	local cfg_sell = utils.cfg_get_string(sini, "trader", "sell_condition", npc, false, false, "")
 	if sini and sini:section_exist(cfg_sell) then
 		local result, id, value = nil, nil, nil
