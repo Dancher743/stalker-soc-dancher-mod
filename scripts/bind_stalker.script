@@ -80,10 +80,16 @@ function actor_binder:net_spawn(data)
 	sak_off_corpses.off_corpses()
 	
 	if xrs_ai then xrs_ai.actor_net_spawn(self) end
+	if rx_ai then 
+		rx_ai.actor_net_spawn()
+	end
 	
-  if rx_ai then 
-	rx_ai.actor_net_spawn()
-  end
+	if (amk_offline_alife) then
+		amk_offline_alife.init()
+		amk_offline_alife.update_npc_tables()
+		amk_offline_alife.update_trade()
+	end
+	
 	return true
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -515,6 +521,11 @@ function actor_binder:update(delta)
 	
 	--' ARENA_EXTENSION_MOD
 	aem_manager.get_aem():update()
+	
+	--' Обновление жизни в оффлайне (AMK)
+	if (amk_offline_alife) then
+      amk_offline_alife.update()
+    end
 	
 	--' Удаление
 	for id, se_obj in pairs(objs_to_remove) do

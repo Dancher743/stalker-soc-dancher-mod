@@ -56,5 +56,6 @@ Using mods:
 48. ARENA EXTENSION MOD ver. 0.3.2 (kstn/IG-2007)
 49. Wounded NPC gives reward after healing (aka_sektor)
 50. Artefacts containers (Sumrak/naxac/Shtern_1488)
+51. Offline A-Life (AMK Team)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
