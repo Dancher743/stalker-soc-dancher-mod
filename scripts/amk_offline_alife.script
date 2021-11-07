@@ -396,47 +396,47 @@ function offline_alife()
 					if table.getn(vdata.enemies)>0 then
 					--есть вражина - воюем нах!
 						amk.oau_reason="cn offline_alife chp9 "..tostring(victim and victim:name())
-						debugger.flog("есть вражина - воюем нах!")
+						--debugger.flog("есть вражина - воюем нах!")
 						on_enemies_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.monsters)>0 then
 					--есть монстрятина - видели, слышали, убили, сдохли...
 						amk.oau_reason="cn offline_alife chp10 "..tostring(victim and victim:name())
-						debugger.flog("есть монстрятина - видели, слышали, убили, сдохли...")
+						--debugger.flog("есть монстрятина - видели, слышали, убили, сдохли...")
 						on_monsters_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.corpses.stalkers)>0 then
 					--есть труп сталкера
 						amk.oau_reason="cn offline_alife chp11 "..tostring(victim and victim:name())
-						debugger.flog("есть труп сталкера")
+						--debugger.flog("есть труп сталкера")
 						on_npc_corpses_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.corpses.monsters)>0 then
 					--есть труп монстра
 						amk.oau_reason="cn offline_alife chp12 "..tostring(victim and victim:name())
-						debugger.flog("есть труп монстра")
+						--debugger.flog("есть труп монстра")
 						on_monster_corpses_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.weapons.seen)>0 then
 					--есть бесхозное оружие
-						debugger.flog("есть бесхозное оружие")
+						--debugger.flog("есть бесхозное оружие")
 						amk.oau_reason="cn offline_alife chp13 "..tostring(victim and victim:name())
 						on_weapons_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.artefacts)>0 then
 					--есть арты
-						debugger.flog("есть арты")
+						--debugger.flog("есть арты")
 						amk.oau_reason="cn offline_alife chp14 "..tostring(victim and victim:name())
 						on_artifacts_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif table.getn(vdata.inv_boxes)>0 then
-						debugger.flog("есть контейнеры. Надо обыскать.")
+						--debugger.flog("есть контейнеры. Надо обыскать.")
 					--есть контейнеры. Надо обыскать.
 						amk.oau_reason="cn offline_alife chp18 "..tostring(victim and victim:name())
 						on_inv_boxes_found(victim, vdata)
 						break	--прерываем цикл - событие отработано
 					elseif items[victim.id] and table.getn(items[victim.id]) > 0 then
-						debugger.flog("попробуем продать всякого")
+						--debugger.flog("попробуем продать всякого")
 					--попробуем продать всякого
 						amk.oau_reason="cn offline_alife chp15 "..tostring(victim and victim:name())
 						amk.mylog("Offline: lets trade")
@@ -1226,7 +1226,7 @@ end
 -- О, нычка - это гуд.
 function on_inv_boxes_found(victim, vdata)
 	if (victim == nil or vdata == nil) then 
-		debugger.flog("не удалось обыскать :(")
+		--debugger.flog("не удалось обыскать :(")
 		return 
 	end
 	local obj, v_obj
@@ -1251,12 +1251,12 @@ function on_inv_boxes_found(victim, vdata)
 						if (v_itA) then
 							local itA = alife():object(v_itA.id)
 							if (itA and itA:name()==v_itA.name and itA.parent_id == v_obj.id) then
-								debugger.flog("Решим, подбираем или нет?")
+								--debugger.flog("Решим, подбираем или нет?")
 								--news_main.trace("on_inv_boxes_found - found "..itA:section_name().." in "..object:name())
 								-- Решим, подбираем или нет?
 								local bTake = is_valuable(itA)
 								if bTake then
-									debugger.flog("спиздили :)")
+									--debugger.flog("спиздили :)")
 									local l_objA = pick_item(victim, itA)
 								end
 							else
