@@ -154,6 +154,16 @@ function give_info(info_name)
 	log("Был дан инфопоршень: "..info_name)
 end
 
+-- Убираем инфопоршень
+function disable_info(info_name)
+	if not is_debug_mode then
+		return
+	end
+	
+	db.actor:disable_info_portion(info_name)
+	log("Был убран инфопоршень: "..info_name)
+end
+
 -- Выводим координаты
 function show_coordinats()
 	if not is_debug_mode then
@@ -257,6 +267,7 @@ function do_custom_action()
 	
 	local actor = db.actor
 	--give_info("bar_svoboda_rg6_done")
+	--disable_info("surge_off_devices")
 	--spawn_item(actor, "wpn_pkm")
 	log("Было совершено пользовательское действие №1")
 end
@@ -269,6 +280,7 @@ function do_custom_action2()
 	
 	local actor = db.actor
 	--give_info("bar_svoboda_rg6_done")
+	--disable_info("surge_off_devices")
 	--spawn_item(actor, "wpn_pkm")
 	log("Было совершено пользовательское действие №2")
 end
