@@ -31,6 +31,7 @@ function buy(actor, npc)
 	pay(actor)
 	spawn_presonal_box()
 	spawn_presonal_rukzak()
+	spawn_presonal_safe()
 end
 
 
@@ -53,4 +54,14 @@ function spawn_presonal_rukzak()
 	v.z = 19.139627456665
 	
 	alife():create("bar_room_rukzak",v,34184,1239)
+end
+
+function spawn_presonal_safe()
+	local v = vector()
+    
+	v.x = 113.65
+	v.y = -4.0
+	v.z = 15.81
+	
+	alife():create("bar_room_safe",v,33617,1239)
 end

@@ -5,7 +5,14 @@
 --
 
 local excluded_levels = {
-	l05_bar = true
+	l05_bar = true,
+	-- исключаем подземные уровни, там не надо арты спавнить
+	l03u_agr_underground = true,
+	l08u_brainlab = true, 
+	l10u_bunker = true,
+	l04u_labx18 = true,
+	l12u_sarcofag = true,
+	l12u_control_monolith = true
 }
 
 --' Обновление аномалий для рождения артефактов.

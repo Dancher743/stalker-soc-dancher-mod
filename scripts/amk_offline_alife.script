@@ -32,13 +32,13 @@ local maps={
 	"l07_military",
 	"l08_yantar"--,
 	--"l08u_brainlab",
-	--"l10_radar",
+	"l10_radar",
 	--"l10u_bunker",
-	--"l11_pripyat",
-	--"l12_stancia",
-	--"l12_stancia_2",
-	--"l12u_control_monolith",
-	--"l12u_sarcofag"
+	"l11_pripyat",
+	"l12_stancia",
+	"l12_stancia_2",
+--	"l12u_control_monolith",
+--	"l12u_sarcofag"
 }
 
 local protected = {
@@ -83,6 +83,7 @@ local protected_customs =
 {
 	["bar_room_box"] = true,
 	["bar_room_rukzak"] = true,
+	["bar_room_safe"] = true,
 	["aes_rukzak_1"] = true
 }
 
@@ -114,6 +115,8 @@ local rate_kill_base = 100
 local rate_art_found = 100
 local to_actor = 150
 local look_radius_box = 100
+local look_radius_art_min = 100
+local look_radius_art_max = 1100
 
 local timer_alife_freq 			= 5 		-- Как часто генерить события в оффлайн (игровые минуты)
 local timer_alife_showed		= 0			-- Последнее событие в оффлайн
@@ -554,7 +557,8 @@ function collect_info(victim,map)
 			for a=1,table.getn(off_npcs[map].artefacts) do
 				if off_npcs[map].artefacts[a] then
 					local artefact = alife():object(off_npcs[map].artefacts[a].id)
-					if (artefact and artefact.can_switch_online and artefact:can_switch_online() and artefact:name() == off_npcs[map].artefacts[a].name and victim.position:distance_to(artefact.position)<look_radius and sobj_is_far(artefact, to_actor)) then
+					local look_radius_art = math.random(look_radius_art_min, look_radius_art_max)
+					if (artefact and artefact.can_switch_online and artefact:can_switch_online() and artefact:name() == off_npcs[map].artefacts[a].name and victim.position:distance_to(artefact.position)<look_radius_art and sobj_is_far(artefact, to_actor)) then
 						if artefact.parent_id==nil or artefact.parent_id==65535 or (alife():object(artefact.parent_id) and (alife():object(artefact.parent_id):section_name()=="inventory_box" or (alife():object(artefact.parent_id):clsid()>172 and alife():object(artefact.parent_id):clsid()<180))) then
 							table.insert(vdata.artefacts, {id = artefact.id, name = artefact:name()})
 						end
