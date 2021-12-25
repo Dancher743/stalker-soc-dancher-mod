@@ -284,6 +284,11 @@ function CTreasure:remove_map_spots(id)
 	level.map_remove_object_spot(id, "treasure_looted")
 end
 
+function CTreasure:is_box_for_treasure(box_story_id)
+	local k = self.treasure_by_target[box_story_id]
+	return k ~= nil and self.treasure_info[k] ~= nil
+end
+
 --' Сохранение
 function CTreasure:save(p)
 	--' Сохраняем размер таблицы
@@ -324,6 +329,10 @@ function take_item_from_box(box, box_story_id)
 	else
 		get_treasure_manager():treasure_looted(box, box_story_id)
 	end
+end
+
+function is_box_for_treasure(box_story_id)
+	return get_treasure_manager():is_box_for_treasure(box_story_id)
 end
 
 function save(p)
