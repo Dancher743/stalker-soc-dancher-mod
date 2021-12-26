@@ -5,7 +5,8 @@ local particles={}
 
 local table_enemy_cont = {}
 local rand = math.random(1,100)
-local DogTimer = 0
+local BurerNum
+local BurerTimer, DogTimer = 0, 0
 
 function bind(obj)
 	printf("_bp: monster.bind: name='%s', id='%d'", obj:name(), obj:id())
@@ -217,6 +218,27 @@ function generic_object_binder:update(delta)
 	            DogTimer = time_global() + 2500*(1+math.random(-0.2,0.2)) + 700
             end
         elseif DogNum and DogTimer < time_global() + 2500 then level.remove_pp_effector(395) DogNum = nil end
+		
+		-- Атака бюрера из Зова Припяти (Авторы: Shadows and Charsi)
+        if self.object:clsid()==clsid.burer_s and BurerTimer < time_global() then
+            local actor = db.actor
+            local oTarget = self.object:get_enemy()
+            local v1 = self.object:direction()
+            local v2 = actor:direction()
+            if oTarget and (oTarget:id()==0) and (v1.x*v2.x)+(v1.z*v2.z)<-0.6 and self.object:see(actor) and self.object:position():distance_to(actor:position())<25 then
+	            BurerNum = 1
+				actor.power = -1.0
+			    local active_slot = actor:active_slot()
+                if active_slot==1 or active_slot==2 then
+					self.object:play_cycle("stand_attack_0", false)
+                    vim_utils.start_timer(1000, "bind_monster.burer_set_stand_tele_animation", self.object)
+					actor:drop_item(actor:active_item()) 
+				end
+	            BurerTimer = time_global() + 6000*(1+math.random(-0.2,0.2))
+            end
+        elseif BurerNum and BurerTimer < time_global() + 6000 then
+			BurerNum = nil 
+		end
 		
 	else
 		self.object:set_tip_text_default()
@@ -604,4 +626,12 @@ function play_particle(obj,params)
 		particles[obj:id()]={}
 	end
 	table.insert(particles[obj:id()],params)
+end
+
+function burer_set_stand_tele_animation(object)
+	if not object:clsid()==clsid.burer_s then
+		return
+	end
+
+	object:play_cycle("stand_tele_1")
 end
