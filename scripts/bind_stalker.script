@@ -243,11 +243,9 @@ function actor_binder:on_item_take (obj)
 	
 	arc_main.get_item(obj)
 
-	--- dunin_ammo ---
     if dunin_ammo and obj:clsid() == clsid.wpn_ammo then
 		dunin_ammo.on_take(obj)
-    end
-	--- dunin_ammo ---	
+    end	
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_drop (obj)
@@ -255,11 +253,9 @@ function actor_binder:on_item_drop (obj)
 	inventory.on_item_drop(obj)
     --game_stats.update_drop_item (obj, self.object)
 	arc_main.lose_item(obj)
-		--- dunin_ammo ---
     if dunin_ammo and obj:clsid() == clsid.wpn_ammo then
 		dunin_ammo.on_drop(obj)
     end
-	--- dunin_ammo ---
 end
 ----------------------------------------------------------------------------------------------------------------------
 
@@ -448,12 +444,9 @@ function actor_binder:update(delta)
 	
 	arc_main.actor_update()
 	
-	-- Обновление упаковщика патронов
-	--- dunin_ammo ---
 	if dunin_ammo and not self.object:is_talking() then
 		dunin_ammo.on_update()
 	end
-	--- dunin_ammo ---
 	
 	--// xr_companion
 	xr_companion.reset_enemy_by_time()

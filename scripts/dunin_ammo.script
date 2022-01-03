@@ -1,98 +1,68 @@
--- Автор исходного скрипта переупаковщика - Dunin, реализация - IG-2007
--- Реализация на платформе "Чистого Неба" - OGSM team - Alex Ros , DEXXX
--- Алгоритм отсроченной переупаковки со счётчиком - Alex Rinic
--- Версия 1.00002
-
 local ammo = {}
 local inited = false
-local repack = false
-local Ncycle = 80
-local repacktask = {}
--- используем разные таблицы, так как получение net-packet пачки и переупаковка разнесены по времени
---[[local loginfotbl = {} - при необходимости использовать для тестов]]--
-
+local repack = false 
+ 
 --------
 -- инициализация переменных, выполняется единожды
 --------
 function init()
-	local result, section, value
+	local i, result, section, value
 	-- отсюда возьмём размеры полных пачек
 	local sys = system_ini()
 	-- список патронов возьмём из "death_generic.ltx"
 	local ini = ini_file("misc\\death_generic.ltx")
 	local n = ini:line_count("ammo_sections")
-	--[[local invw]]--
 	for i=0,n-1 do
 		result, section, value = ini:r_line("ammo_sections",i,"","")
 		ammo[section] = {}
 		ammo[section].repack = false
 		ammo[section].box = sys:r_u32(section, "box_size")
-		--[[loginfotbl[section] = {}
-		loginfotbl[section].invw = sys:r_float(section, "inv_weight") - для лога]]--
-		repacktask[section] = {}
-		repacktask[section].updcounter = 0
-		repacktask[section].needpack = false
-		-- инициируем счётчик для переупаковки с задержкой
-		-- обязательно присваиваем значение
 	end
 	repack = false
 	inited = true
 end
-
--- проверяем, можно ли отключить за ненадобностью update()
--- используем в качестве результата true/false
-function check_onoff()
-	local result, section, value
-	local sys = system_ini()
-	-- пробегаемся по списку патронов из "death_generic.ltx"
-	local ini = ini_file("misc\\death_generic.ltx")
-	local n = ini:line_count("ammo_sections")
-	-- ... и проверяем, сколько секций стоят в очереди за переупаковкой =))
-	local ctr = 0
-	for i=0,n-1 do
-		result, section, value = ini:r_line("ammo_sections",i,"","")
-		if ( ammo[section].repack == false ) then
-			ctr = ctr + 1
-		end
-	end
-	if (ctr > 0) then
-		return false
-	else
-		return true
-	end
-end
-
+ 
 --------
--- вызывается при добавлении в инвентарь ГГ любых патронов
+-- вызывается при добавлении в инвентарь ГГ любых патрон
 --  obj - game_object добавляемой пачки
 -- здесь будем только ставить флажки о необходимости проверки,
 -- саму проверку и перепаковку сделаем в апдейте актёра,
--- если перепаковку делать прям здесь, то будет глюк при загрузкe и
--- при взятии из нычки кучи патронов (взять всё)
+-- если перепаковку делать прям здесь, то будет глюк при загрузки и
+-- при взятии из нычки кучи патрон (взять всё)
 --------
 function on_take(obj)
 	if not inited then
 		init()
 	end
-
+ 
 	local section = obj:section()
 	--dbglog("on_take('%s')", section)
-
-	if section and ammo[section] ~= nil then
-		if ammo[section].box > 1 then
-			if ammo[section].repack == false then
-				local boxsize = ammo[section].box
-				-- проверяем, нужно ли в принципе запускать переупаковку (есть ли в инвентаре как минимум 2 неполных пачки)
-				if ( enum_ammo_checker(section, boxsize, 2) == true ) then
-					ammo[section].repack = true
-					repack = true
-				end
-			end
-			repacktask[section].updcounter = 0
-			repacktask[section].needpack = false
-			-- принудительно выставляем в ноль, даже если это было сделано после инициализации
-			-- это необходимо для корректной работы счётчика
+         --local msg = string.format("on_take('%s')", obj: name())
+	--get_console():execute("dbg:" .. msg)
+ 
+	if ammo[section] ~= nil and section ~= nil and ammo[section].repack == false then
+		if get_ammo_size(obj) < ammo[section].box then
+			ammo[section].repack = true
+			repack = true
 		end
+	end
+end
+ 
+ 
+--------
+-- вызывается из апдейта актёра
+-- проверяет наличие флажков и вызывает процедуру переупаковки
+--------
+function on_update()
+	if repack then
+		local section, data
+		for section, data in pairs(ammo) do
+			if data.repack then
+				repack_ammo(section, data.box)
+				data.repack = false
+			end
+		end
+		repack = false
 	end
 end
 
@@ -101,211 +71,80 @@ end
 --  obj - game_object удаляемой пачки
 -- обнуляем счётчик, так как если ГГ заряжает оружие, то 
 -- перепаковщик попытается получить id-шник удалённой из инвентаря пачки
+-- Взято из версии 1.00002
 --------
 function on_drop(obj)
-	if inited then
-		if inited == true then
+	if not inited then
+		init()
+	end
+	
+	local section = obj:section()
+	--dbglog("on_drop('%s')", section)
 
-			local section = obj:section()
-			--dbglog("on_drop('%s')", section)
-
-			if section and ammo[section] ~= nil then
-				if ammo[section].box > 1 then
-					repacktask[section].updcounter = 0
-					if repacktask[section].needpack == true then
-						repacktask[section].needpack = false
-						ammo[section].repack = true
-						repack = true
-					end
-				end
-			end
-		end
+	if section and ammo[section] ~= nil and ammo[section].box > 1 then
+		ammo[section].repack = true
 	end
 end
-
---------
--- вызывается из апдейта актёра
--- проверяет наличие флажков и вызывает процедуру переупаковки
---------
-function on_update()
-	if repack then
-		if repack == true then
-			local section, data
-			for section, data in pairs(ammo) do
-				if data.repack then
-					local itrnm = repacktask[section].updcounter
-					-- при получении пачки в инвентарь движку нужно время, чтобы обработать данные
-					-- поэтому запускаем переупаковку только через N циклов update()
-					if itrnm >= Ncycle then
-						repack_ammo(section, data.box)
-						repacktask[section].updcounter = 0
-						repacktask[section].needpack = true
-						data.repack = false
-					else
-						repacktask[section].updcounter = itrnm + 1
-					end
-				end
-			end
-			if check_onoff() == true then
-				for k, v in pairs(repacktask) do
-					repacktask[k].updcounter = 0
-					repacktask[k].needpack = false
-				end
-				repack = false
-				-- если игрок выкинул из инвентаря все неполные пачки - вырубаем update() и чистим полностью записи счётчика
-			end
-		end
-	end
-end
-
+ 
 --------
 -- переупаковка патронов заданного типа
---  section - строка, имя секции (тип патронов)
---  box_size - количество патронов в полной пачке
+--  section - строка, имя секции (тип патрон)
+--  box_size - колличество патрон в полной пачке
 -- сначало составляем список неполных пачек, затем
--- удаляем их и создаём нужное количество полных
+-- удаляем их и создаём нужное колличество полных
 --------
 function repack_ammo(section, box_size)
 	--dbglog("repack_ammo('%s')", section)
 	local s, t = enum_ammo(section, box_size)
-	if s and t then
-		if (s > 0) and (table.getn(t) > 1) then
-			--dbglog("repacking(magazins=%d, bullets=%d)", table.getn(t), s)
-			local sim = alife()
-			local pos = db.actor:position()
-			local lvid = db.actor:level_vertex_id()
-			local gvid = db.actor:game_vertex_id()
-			local pid = db.actor:id()
-
-			if ( repacktask[section].updcounter < Ncycle ) and ( repacktask[section].needpack == false ) then
-				ammo[section].repack = true
-				repacktask[section].updcounter = 0
-				repack = true
-				-- игрок прихватил ещё патронов этого типа ? - id могли измениться, прерываем переупаковку
-			else
-				-- используем пошаговое получение данных из таблицы, так как
-				-- использование in pairs/in ipairs при удалении объектов, занесённых в таблицу, по их id
-				-- будет иметь непредсказуемые результаты
-				for i = 1, table.getn(t) do
-					local idtr = tonumber(t[i])
-					sim:release(sim:object(idtr), true)
-				end
-
-				-- тут ставим s > box_size аналогично механизму se_respawn.create_ammo а не s >= box_size
-				while s > box_size do
-					sim:create_ammo(section, pos, lvid, gvid, pid, box_size)
-					s = s - box_size
-				end
-
-				if s > 0 then
-					sim:create_ammo(section, pos, lvid, gvid, pid, s)
-				end
-
-				repacktask[section].needpack = false
-			end
+	if (s > 0) and (table.getn(t) > 1) then
+		--dbglog("repacking(magazins=%d, bullets=%d)", table.getn(t), s)
+		local i, id
+		local sim = alife()
+		local pos = db.actor:position()
+		local lvid = db.actor:level_vertex_id()
+		local gvid = db.actor:game_vertex_id()
+		local pid = db.actor:id()
+ 
+		for i, id in pairs(t) do
+			sim:release(sim:object(id), true)
+		end
+ 
+		while s >= box_size do
+			sim:create_ammo(section, pos, lvid, gvid, pid, box_size)
+			s = s - box_size
+		end
+ 
+		if s > 0 then
+			sim:create_ammo(section, pos, lvid, gvid, pid, s)
 		end
 	end
 end
-
+ 
 --------
 -- пробегаемся по инветарю ГГ и собираем инфу о неполных пачках
---  section - строка, имя секции (тип патронов)
---  box_size - количество патронов в полной пачке
--- возвращает сумарное количество патронов в неполных пачках и массив id-шников этих пачек
---------
---completion ammo canned heat (cans)
+--  section - строка, имя секции (тип патрон)
+--  box_size - колличество патрон в полной пачке
+-- возвращает сумарное колличество патрон в неполных пачках и массив id-шников этих пачек
 --------
 function enum_ammo(section, box_size)
-	local obj, size
+	local i, obj, size
 	local s = 0
 	local t = {}
 	for i=0, db.actor:object_count()-1 do
 		obj = db.actor:object(i)
-		if obj and obj:section() == section then
+		if obj:section() == section then
 			size = get_ammo_size(obj)
-			-- переменная для затычки на случай бага с потерей значения в пакете
-			local get_packet_error = 0
-			-- переменная для затычки на случай бага с потерей значения в пакете
-			
-			-- затычка на случай бага с потерей значения в пакете
-			if size then
-				local nmsize = tonumber(size)
-				if nmsize ~= size then
-					get_packet_error = 1
-				end
-				if nmsize <= 0 and nmsize == size then
-					get_packet_error = 1
-				end
-			else
-				get_packet_error = 1
+			if size < box_size then
+				table.insert(t, obj:id())
+				s = s + size
 			end
-			-- затычка на случай бага с потерей значения в пакете
-			
-			if get_packet_error == 0 then
-				if size < box_size then
-						table.insert(t, obj:id())
-						s = s + size
-				end
-			end
-			
-			get_packet_error = 0
-			-- даже если попытка вызвать кол-во патронов в пачке провалилась устанавливаем переменную в 0
-			-- в текущей итерации лучше оставить такую пачку без добавления в таблицу
-			-- при следующей загрузке net-packet такой пачки всё равно будет заново переписан движком и тогда при вызове update
-			-- переупаковка пройдёт корректно
 		end
 	end
 	return s, t
 end
-
--- Проверяем количество неполных пачек заданного типа
-function enum_ammo_checker(section, box_size, howmany)
-	local obj, size
-	local numcheck = 0
-	for i=0, db.actor:object_count()-1 do
-		obj = db.actor:object(i)
-		if obj and obj:section() == section then
-			size = get_ammo_size(obj)
-			-- переменная для затычки на случай бага с потерей значения в пакете
-			local get_packet_error = 0
-			-- переменная для затычки на случай бага с потерей значения в пакете
-			
-			-- затычка на случай бага с потерей значения в пакете
-			if size then
-				local nmsize = tonumber(size)
-				if nmsize ~= size then
-					get_packet_error = 1
-				end
-				if nmsize <= 0 and nmsize == size then
-					get_packet_error = 1
-				end
-			else
-				get_packet_error = 1
-			end
-			-- затычка на случай бага с потерей значения в пакете
-			
-			if get_packet_error == 0 then
-				if size < box_size then
-						numcheck = numcheck + 1
-				end
-			end
-			
-			get_packet_error = 0
-			-- даже если попытка вызвать кол-во патронов в пачке провалилась устанавливаем переменную в 0
-			-- в текущей итерации лучше оставить такую пачку без добавления в таблицу
-			-- при следующей загрузке net-packet такой пачки всё равно будет заново переписан движком и тогда при вызове update
-			-- пересчёт пройдёт корректно
-		end
-	end
-	if ( numcheck >= howmany ) then
-		return true
-	else
-		return false
-	end
-end
-
+ 
 --------
--- возвращает количество патронов в пачке
+-- возвращает колличество патрон в пачке
 -- вроде подходящих функций нет, пришлось делать через net_packet
 --------
 function get_ammo_size(obj)

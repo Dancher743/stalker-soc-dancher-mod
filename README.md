@@ -57,6 +57,6 @@ Using mods:
 49. Wounded NPC gives reward after healing (aka_sektor)
 50. Artefacts containers (Sumrak/naxac/Shtern_1488)
 51. Offline A-Life (AMK Team)
-52. Dunin Ammo v1.00002 (Dunin/IG-2007/Alex Rinic)
+52. Dunin Ammo (Dunin)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
