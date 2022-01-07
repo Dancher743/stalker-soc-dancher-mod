@@ -58,5 +58,6 @@ Using mods:
 50. Artefacts containers (Sumrak/naxac/Shtern_1488)
 51. Offline A-Life (AMK Team)
 52. Dunin Ammo (Dunin)
+53. Skycubes from Panaramic Mod V2.1 Final (Argus)
 
 Used scripts from mods as OGSM, AMK Mod, RMA Shadows Addon and etc. with saving copyrights.
