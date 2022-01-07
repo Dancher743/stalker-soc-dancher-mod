@@ -138,6 +138,13 @@ loot_bad_sounds =
 		[[bandit\loot_bad_3]]
 	},
 	
+	monolith = 
+	{
+		[[monolith\loot_bad_1]],
+		[[monolith\loot_bad_2]],
+		[[monolith\loot_bad_3]]
+	},
+	
 	killer = 
 	{
 		[[killer\loot_bad_1]],

@@ -68,7 +68,14 @@ snd_grenade_replics={
 		[[mono\ready_2]],
 		[[mono\ready_3]],
 		[[mono\ready_4]],
-		[[mono\ready_5]]
+		[[mono\ready_5]],
+		[[mono\grenade_ready_1]],
+		[[mono\grenade_ready_2]],
+		[[mono\grenade_ready_3]],
+		[[mono\grenade_ready_4]],
+		[[mono\grenade_ready_5]],
+		[[mono\grenade_ready_6]],
+		[[mono\grenade_ready_7]]
 	},
 	killer = {
 		[[merc\ready_1]],
