@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<game_dialogs>
+	<dialog id="bar_room_upgrade_dialog">
+	<has_info>guard_said_can_go_1</has_info>
+	<precondition>bar_room_manager.is_room_not_fully_upgraded</precondition>
+	<phrase_list>
+		<phrase id="0">
+			<text>bar_room_upgrade_dialog_0</text>
+            <next>1</next>
+        </phrase>
+		<phrase id="1">
+			<text>bar_room_upgrade_dialog_1</text>
+            <next>2</next>
+			<next>3</next>
+			<next>4</next>
+        </phrase>
+		<phrase id="2">
+			<precondition>dialogs_bar_room_upgrade.upgrade_one_pay_condition</precondition>
+			<text>bar_room_upgrade_dialog_2</text>
+			<action>dialogs_bar_room_upgrade.upgrade_one_pay</action>
+			<next>21</next>
+        </phrase>
+		<phrase id="21">
+			<text>bar_room_upgrade_dialog_2_1</text>
+            <next>5</next>
+        </phrase>
+		<phrase id="3">
+			<precondition>dialogs_bar_room_upgrade.upgrade_two_pay_condition</precondition>
+			<text>bar_room_upgrade_dialog_3</text>
+			<action>dialogs_bar_room_upgrade.upgrade_two_pay</action>
+			<next>31</next>
+        </phrase>
+		<phrase id="31">
+			<text>bar_room_upgrade_dialog_3_1</text>
+            <next>5</next>
+        </phrase>
+		<phrase id="4">
+			<text>bar_room_upgrade_dialog_4</text>
+        </phrase>
+		<phrase id="5">
+			<text>bar_room_upgrade_dialog_5</text>
+        </phrase>
+	</phrase_list>
+	</dialog>
+</game_dialogs>

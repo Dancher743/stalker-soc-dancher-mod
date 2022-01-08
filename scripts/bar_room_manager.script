@@ -1,0 +1,137 @@
+--
+-- Скрипт барной комнаты.
+-- В составе скрипта: покупка и апгрейд.
+-- См. также - dialogs_bar_room_upgrade.script для диалогов.
+-- Автор: Dancher (Daniil Dubovik)
+--
+
+---------------------
+------ CONFIGS ------
+-- TODO: transfer to "gamedata/config" folder
+---------------------
+
+local room_cost = 30000
+
+local room_upgrades_pay =
+{
+	"af_ameba_slug",
+	"af_dummy_battery"
+}
+
+local room_upgrades_id = 
+{
+	[1] = "bar_room_upgrade_one",
+	[2] = "bar_room_upgrade_two"
+}
+
+----------------------
+------ UPGRADES ------
+----------------------
+
+function is_room_not_fully_upgraded()
+	-- TODO: Replace this hard-coding by loop.
+	return not (has_upgrade(1) and 
+				has_upgrade(2))
+end
+
+function has_upgrade_pay_condition(id)
+	return db.actor:object(room_upgrades_pay[id])
+end
+
+function has_upgrade(id)
+	return has_alife_info(room_upgrades_id[id])
+end
+
+function set_upgrade(id)
+	local room_upgrade_id = room_upgrades_id[id]
+	
+	if not room_upgrade_id then
+		return
+	end
+	
+	db.actor:give_info_portion(room_upgrade_id)
+	
+	if debugger then
+		debugger.log("Был дан апгрейд барной комнаты под номером "..id)
+	end
+end
+
+function get_pay(id)
+	return room_upgrades_pay[id]
+end
+
+--------------------
+------ BUYING ------
+--------------------
+
+function check_room_money(actor, barman)
+	if actor:money() >= room_cost then
+		return true
+	end
+	
+	return false
+end
+
+--[[function check_player_on_money()
+	if not player_money() then
+		db.actor:give_info_portion("buy_bar_room_player_cant_pay")
+	else
+		db.actor:disable_info_portion("buy_bar_room_player_cant_pay") 
+	end
+end]]--
+
+function pay_room(actor)
+	actor:give_money(room_cost * -1)
+	game_stats.money_quest_update(room_cost * -1)
+	dialogs.relocate_money(actor, room_cost, "out")
+end
+
+function buy_room(actor, npc)
+	pay_room(actor)
+	spawn_presonal_box_fake()
+	spawn_presonal_rukzak()
+end
+
+-------------------
+------ SPAWN ------
+-------------------
+
+function spawn_presonal_box_fake()     
+	local v = vector()
+    
+	v.x = 116.28103637695
+	v.y = -5.3041343688965
+	v.z = 16.828926086426
+	
+	alife():create("bar_room_box_fake",v,33908,1239)
+end
+
+function spawn_presonal_box()     
+	local v = vector()
+    
+	v.x = 116.28103637695
+	v.y = -5.3041343688965
+	v.z = 16.828926086426
+	
+	alife():create("bar_room_box",v,33908,1239)
+end
+
+function spawn_presonal_rukzak()
+	local v = vector()
+    
+	v.x = 116.35326385498
+	v.y = -4.3978548049927
+	v.z = 19.139627456665
+	
+	alife():create("bar_room_rukzak",v,34184,1239)
+end
+
+function spawn_presonal_safe()
+	local v = vector()
+    
+	v.x = 113.65
+	v.y = -4.0
+	v.z = 15.81
+	
+	alife():create("bar_room_safe",v,33617,1239)
+end
