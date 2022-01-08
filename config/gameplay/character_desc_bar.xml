@@ -36,6 +36,7 @@
 		<actor_dialog>tm_barman_reward</actor_dialog>
 		<!--<actor_dialog>repair</actor_dialog>-->
 		<actor_dialog>barman_sleep_dialog_start</actor_dialog>
+		<actor_dialog>bar_room_upgrade_dialog</actor_dialog>	
 	</specific_character>
 
 	<specific_character id="bar_stalker_white_novice_1" team_default = "1">

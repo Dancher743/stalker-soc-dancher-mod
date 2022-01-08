@@ -4022,7 +4022,7 @@
         <phrase_list>
             <phrase id="0">
                 <text>barman_sleep_dialog_buy_room_0</text>
-				<action>buy_bar_room.check_player_on_money</action>
+				<action>bar_room_manager.check_player_on_money</action>
 				<next>1</next>
             </phrase>
 			
@@ -4033,10 +4033,10 @@
             </phrase>
 			
 			<phrase id="2">
-				<!--<dont_has_info>buy_bar_room_player_cant_pay</dont_has_info>-->
-				<precondition>buy_bar_room.check_player_money</precondition>
+				<!--<dont_has_info>bar_room_manager_player_cant_pay</dont_has_info>-->
+				<precondition>bar_room_manager.check_room_money</precondition>
                 <text>barman_sleep_dialog_buy_room_2</text>
-				<action>buy_bar_room.buy</action>
+				<action>bar_room_manager.buy_room</action>
 				<next>4</next>
             </phrase>
 			<phrase id="3">

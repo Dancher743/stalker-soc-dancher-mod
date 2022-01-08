@@ -2,12 +2,24 @@
 
 <string_table>
 	<string id="bar_room_upgrade_dialog_0">
-		<text>Вы, случайно, комнату не улучшаете?</text>
+		<text>Я хочу использовать дополнительные ящики в задней комнате для хранения своих вещей.</text>
 	</string>
 	<string id="bar_room_upgrade_dialog_1">
-		<text>Держите артефакт.</text>
+		<text>Сейф заклинило, надо бы починить дверцу. А вот ящик забыл убрать, на нём кодовый замок и, по неосторожности, крышка захлопнулась. Кода я не знаю, но знаю того, кто его знает. Давай договоримся за пару артефактов. Принесёшь "Слизняк", и я узнаю код к замку на крышке ящика, за "Батарейку" - починим дверцу сейфа. После этого сможешь складывать в ящик и сейф свои личные вещи. Как раз толстые металические стенки сейфа будут сдерживать фонящие артефакты.</text>
 	</string>
 	<string id="bar_room_upgrade_dialog_2">
+		<text>Держи "Слизняк" за ящик.</text>
+	</string>
+	<string id="bar_room_upgrade_dialog_3">
+		<text>Есть "Батарейка", почини сейф.</text>
+	</string>
+	<string id="bar_room_upgrade_dialog_4">
 		<text>В другой раз.</text>
+	</string>
+	<string id="bar_room_upgrade_dialog_5">
+		<text>Готово.</text>
+	</string>
+	<string id="bar_room_upgrade_dialog_6">
+		<text>Спасибо!</text>
 	</string>
 </string_table>
