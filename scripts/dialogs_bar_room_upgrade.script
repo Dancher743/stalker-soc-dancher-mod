@@ -2,25 +2,26 @@
 -- Скриптовая часть для диалогов апгрейда барной комнаты.
 -- Автор: Dancher
 --
+local manager = bar_room_manager
 
 function upgrade_one_pay_condition(actor, npc)
-	return bar_room_manager.has_upgrade_pay_condition(1)
+	return manager.has_upgrade_pay_condition(1) and not manager.has_upgrade(1)
 end
 
 function upgrade_two_pay_condition(actor, npc)
-	return bar_room_manager.has_upgrade_pay_condition(2)
+	return manager.has_upgrade_pay_condition(2) and not manager.has_upgrade(2)
 end
 
 function upgrade_one_pay(actor, npc)
-	local pay_item = bar_room_manager.get_pay(1)
+	local pay_item = manager.get_pay(1)
 	dialogs.relocate_item_section_with_removing(npc, pay_item, "out")
-	bar_room_manager.spawn_presonal_box()
-	bar_room_manager.set_upgrade(1)
+	manager.spawn_presonal_box()
+	manager.set_upgrade(1)
 end
 
 function upgrade_two_pay(actor, npc)
-	local pay_item = bar_room_manager.get_pay(2)
+	local pay_item = manager.get_pay(2)
 	dialogs.relocate_item_section_with_removing(npc, pay_item, "out")
-	bar_room_manager.spawn_presonal_safe()
-	bar_room_manager.set_upgrade(2)
+	manager.spawn_presonal_safe()
+	manager.set_upgrade(2)
 end

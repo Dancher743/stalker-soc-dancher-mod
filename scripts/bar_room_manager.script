@@ -29,7 +29,7 @@ local room_upgrades_id =
 ----------------------
 
 function is_room_not_fully_upgraded()
-	-- TODO: Replace it by loop.
+	-- TODO: Replace this hard-coding by loop.
 	return not (has_upgrade(1) and 
 				has_upgrade(2))
 end
