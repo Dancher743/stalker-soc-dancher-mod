@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<string_table>
+	<string id="bar_room_upgrade_dialog_0">
+		<text>Вы, случайно, комнату не улучшаете?</text>
+	</string>
+	<string id="bar_room_upgrade_dialog_1">
+		<text>Держите артефакт.</text>
+	</string>
+	<string id="bar_room_upgrade_dialog_2">
+		<text>В другой раз.</text>
+	</string>
+</string_table>
