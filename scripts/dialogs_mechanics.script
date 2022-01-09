@@ -7,12 +7,12 @@ local gauss_ammo_cost = 5000
 local gauss_ammo_art = "af_electra_flash"
 local gauss_ammo_item = "ammo_gauss"
 
-local gauss_wpn_upgrad_cost = 10000
+local gauss_wpn_upgrad_cost = 15000
 local gauss_wpn_base = "wpn_gauss"
 local gauss_wpn_upgraded = "wpn_gauss_m1"
 local gauss_wpn_art = "af_dummy_battery"
 
-local exo_upgrade_cost = 40000
+local exo_upgrade_cost = 30000
 
 ------------------------
 -- Gauss gun and ammo --

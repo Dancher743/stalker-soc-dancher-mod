@@ -15,7 +15,7 @@ local room_cost = 30000
 local room_upgrades_pay =
 {
 	"af_ameba_slug",
-	"af_dummy_battery"
+	"af_soul"
 }
 
 local room_upgrades_id = 
