@@ -162,30 +162,30 @@ function relocate_deadmoney(npc)
 			if not pda_upgrade_manager.has_upgrade(2) then
 				if npc_rank == "novice" then 
 					deadmoney = math.random(36,75)
-					loot_chance = 85
+					loot_chance = 25
 				elseif npc_rank == "experienced" then 
 					deadmoney = math.random(75,150)
-					loot_chance = 65
+					loot_chance = 45 
 				elseif npc_rank == "veteran" then 
 					deadmoney=math.random(150,250)
-					loot_chance = 45
+					loot_chance = 65
 				elseif npc_rank == "master" then 
 					deadmoney = math.random(250,500)
-					loot_chance = 25
+					loot_chance = 85
 				end
 			else
 				if npc_rank == "novice" then 
 					deadmoney = math.random(75,150)
-					loot_chance = 95
+					loot_chance = 35 
 				elseif npc_rank == "experienced" then 
 					deadmoney = math.random(150,250)
-					loot_chance = 75
+					loot_chance = 55
 				elseif npc_rank == "veteran" then 
 					deadmoney = math.random(250,500)
-					loot_chance = 55
+					loot_chance = 75
 				elseif npc_rank == "master" then 
 					deadmoney = math.random(500,1000)
-					loot_chance = 35
+					loot_chance = 95
 				end
 			end
 		end
