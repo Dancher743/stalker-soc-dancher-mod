@@ -1,0 +1,22 @@
+--
+--	Менеджер исследованых уровней
+--	Автор: Dancher
+--
+
+function on_game_load()
+	local level_name = level.name()
+	
+	if level_name == "l12_stancia" then
+		on_stancia_explored()
+	end
+end
+
+function on_stancia_explored()
+	if not is_stancia_explored() then
+		db.actor:give_info_portion("l12_stancia_explored")
+	end
+end
+
+function is_stancia_explored()
+	return has_alife_info("l12_stancia_explored")
+end
