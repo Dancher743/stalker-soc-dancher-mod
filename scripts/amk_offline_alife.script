@@ -23,21 +23,21 @@ local maps={
 	"l01_escape",
 	"l02_garbage",
 	"l03_agroprom",
---	"l03u_agr_underground",
-	"l04_darkvalley",
---	"l04u_labx18",
-	"l05_bar",
-	"l06_rostok",
-	"l07_military",
-	"l08_yantar",
---	"l08u_brainlab",
-	"l10_radar",
---	"l10u_bunker",
-	"l11_pripyat",
-	"l12_stancia",
-	"l12_stancia_2"
---	"l12u_control_monolith",
---	"l12u_sarcofag"
+--  "l03u_agr_underground",
+    "l04_darkvalley",
+--  "l04u_labx18",
+    "l05_bar",
+    "l06_rostok",
+    "l07_military",
+    "l08_yantar"
+--  "l08u_brainlab",
+--  "l10_radar",
+--  "l10u_bunker",
+--  "l11_pripyat",
+--  "l12_stancia",
+--  "l12_stancia_2",
+--  "l12u_control_monolith",
+--  "l12u_sarcofag"
 }
 
 local protected_boxes = {
@@ -86,9 +86,11 @@ local can_loot_treasures = false
 
 function init()
 	if (initialized == false) then
-		if amk.load_variable("freeplay",0) == 2 then -- Фриплей - везде гуляем.
-			maps={ "l01_escape", "l02_garbage", "l03_agroprom",	"l04_darkvalley", "l05_bar", "l06_rostok", "l07_military",
-				"l08_yantar", "l10_radar", "l11_pripyat", "l12_stancia", "l12_stancia_2" }
+		if level_exploring_manager.is_stancia_explored() then
+			table.insert(maps, "l10_radar")
+			table.insert(maps, "l11_pripyat")
+			table.insert(maps, "l12_stancia")
+			table.insert(maps, "l12_stancia_2")
 		end
 		build_tables()
 		iTime = (game_minutes() - iFreq) + 3
