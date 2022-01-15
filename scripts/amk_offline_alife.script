@@ -28,7 +28,7 @@ local maps={
 --  "l04u_labx18",
     "l05_bar",
     "l06_rostok",
-    "l07_military",
+--  "l07_military",
     "l08_yantar"
 --  "l08u_brainlab",
 --  "l10_radar",
@@ -87,6 +87,7 @@ local can_loot_treasures = false
 function init()
 	if (initialized == false) then
 		if level_exploring_manager.is_stancia_explored() then
+			table.insert(maps, "l07_military")
 			table.insert(maps, "l10_radar")
 			table.insert(maps, "l11_pripyat")
 			table.insert(maps, "l12_stancia")
