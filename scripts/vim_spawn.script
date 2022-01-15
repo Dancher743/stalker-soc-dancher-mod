@@ -98,9 +98,7 @@ end
 -- Copyright    : Shadows Addon
 -- Author       : Ray Twitty aka Shadows
 function spawn_ways()
-	sa_spawn.aes2_to_aes1()
 	sa_spawn.aes1_to_pripyat()
-	sa_spawn.sarcofag_to_aes1()
 end
 
 function spawn_vehicle(vehicle_name, spawnpoint_name)	
