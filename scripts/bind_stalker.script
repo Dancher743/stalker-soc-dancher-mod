@@ -75,6 +75,7 @@ function actor_binder:net_spawn(data)
 -------------------------------------------
 
 	ogsm_funcs.on_game_load()
+	ogsm_freeplay.mark_lc()
 	fast_travel_manager.reset()
 	new_ways.mark_ways_on_map()
 	sak_off_corpses.off_corpses()
