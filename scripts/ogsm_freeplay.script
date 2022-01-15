@@ -138,28 +138,12 @@ else
 
 level.add_pp_effector("teleport.ppe", 2008, false)
 
--- Кордон - Темная долина
-spawn_level_changer(6001, vector():set(368.9,15.17,-42.65), "l01_escape", vector():set(-44.77, 0.43, -541.35), "l04_darkvalley", "to_darkvalley", 0)
-
--- ЧАЭС - Припять
-spawn_level_changer(6002, vector():set(918.1,-0.1,-401.96), "l12_stancia", vector():set(31.28,1.135,420.61), "l11_pripyat", "to_pripyat", 0, vector():set(0,-3.1,0))
-
--- ЧАЭС2 - ЧАЭС
--- spawn_level_changer(6003, vector():set(554.52,150,201), "l12_stancia_2", vector():set(117.6,-0.1,-76.3), "l12_stancia", "to_aes", 1, vector():set(0,-1.5,0))
-spawn_level_changer(6003, vector():set(-42.15,-0.02,56.03), "l12_stancia_2", vector():set(126,-0.1,-76.3), "l12_stancia", "to_aes", 0, vector():set(0,-1.5,0))
-
--- ЧАЭС - ЧАЭС2
-spawn_level_changer(6004, vector():set(117.6,-0.1,-76.3), "l12_stancia", vector():set(-42.15,-0.02,64), "l12_stancia_2", "to_aes", 0)
-
--- Удаление лишних переходов
-disable_sar_entrance()
+sa_spawn.aes2_to_aes1()
+sa_spawn.sarcofag_to_aes1()
 
 -- Перемещаем актора, засчитываем все задания
 db.actor:set_actor_position(vector():set(1035.12,-0.0999,229.564))
 set_complete_tasks()
-
--- Ставим стандартную погоду
-level.set_weather("default")
 
 end
 end
