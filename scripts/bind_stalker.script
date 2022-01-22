@@ -542,6 +542,10 @@ function actor_binder:update(delta)
       amk_offline_alife.update()
     end
 	
+	if sickness_manger then
+		sickness_manger.update()
+	end
+	
 	--' Удаление
 	for id, se_obj in pairs(objs_to_remove) do
 		alife():release(se_obj, true)

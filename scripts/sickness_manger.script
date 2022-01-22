@@ -1,0 +1,58 @@
+--
+--	Менеджер болезней
+--	Обрабатывает болезни ГГ
+--	Автор: Dancher
+--
+
+sickness_immune_name = "actor_sickness_immune"
+local next_update_time
+
+function on_game_start()
+	amk.save_variable(sickness_immune_name, math.random(25, 75) / 100)
+end
+
+function update()
+	local time = time_global()
+	
+	if next_update_time == nil then
+		set_next_update_time(time)
+		return
+	end
+	
+	if next_update_time > time then
+		return
+	end
+	
+	if math.random() < 0.25 then
+		debugger.flog("tremor")
+		make_tremor()
+	elseif math.random() < 0.25 then
+		debugger.flog("blind")
+		make_blind()
+	elseif math.random() < 0.25 then
+		debugger.flog("power")
+		lose_power()
+	end
+	
+	set_next_update_time(time)
+end
+
+function set_next_update_time(time)
+	next_update_time = time + 1000 * math.random(5, 15)
+end
+
+function make_tremor()
+	local actor = db.actor
+	
+	if actor:active_slot() == 2 then
+		actor:drop_item(actor:active_item())
+	end
+end
+
+function make_blind()
+	level.add_pp_effector("yantar_underground_psi.ppe", 3001, false, "")
+end
+
+function lose_power()
+	db.actor.power = -0.25
+end
