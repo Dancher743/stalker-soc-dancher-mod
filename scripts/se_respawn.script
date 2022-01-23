@@ -43,7 +43,8 @@ local simMaxCount = {
 local idle_spawn_preset = {
 	seldom = 60*60*24,
 	medium = 60*60*12,
-	often = 60*60*6
+	often = 60*60*6,
+	once = -100000
 }
 
 -- Список респавнеров, для сбора статистики
