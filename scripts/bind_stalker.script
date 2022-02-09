@@ -91,9 +91,7 @@ function actor_binder:net_spawn(data)
 		amk_offline_alife.update_npc_tables()
 		amk_offline_alife.update_trade()
 	end
-	
-	amk.mod_call("spawn_unspawned_respawners")
-	
+		
 	return true
 end
 ----------------------------------------------------------------------------------------------------------------------
