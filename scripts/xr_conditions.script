@@ -490,7 +490,7 @@ end
 -- true, если в указанном гулаге актор является кому-то врагом
 function gulag_empty_actor(actor, npc, p)
     local gulag = xr_gulag.get_gulag_by_name(p[1])
-	local r = gulag and gulag:npc_is_enemy_to_anybody(actor)
+	local r = gulag and (not gulag_empty(actor, npc, p)) and gulag:npc_is_enemy_to_anybody(actor)
     return r
 end
 
