@@ -164,6 +164,17 @@ function disable_info(info_name)
 	log("Был убран инфопоршень: "..info_name)
 end
 
+-- Убираем инфопоршень
+function has_info(info_name)
+	if not is_debug_mode then
+		return false
+	end
+	
+	local result = db.actor:has_info(info_name)
+	log("Имеется ли инфопоршень "..info_name.."? "..tostring(result).."!")
+	return result
+end
+
 -- Выводим координаты
 function show_coordinats()
 	if not is_debug_mode then
@@ -254,8 +265,10 @@ function give_starter_pack()
 	spawn_item(actor, "wpn_groza")
 	spawn_items(actor, "ammo_9x39_ap", 8)
 	spawn_items(actor, "ammo_vog-25", 5)
-	spawn_items(actor, "medkit_army", 5)
-	spawn_items(actor, "antirad", 5)
+	spawn_items(actor, "medkit_army", 10)
+	spawn_items(actor, "antirad", 10)
+	spawn_items(actor, "bandage", 20)
+	spawn_items(actor, "arc_art_box_basic", 3)
 	spawn_items(actor, "af_electra_moonlight", 5)
 end
 
@@ -268,6 +281,7 @@ function do_custom_action()
 	local actor = db.actor
 	--give_info("bar_svoboda_rg6_done")
 	--disable_info("surge_off_devices")
+	--has_info("bar_deactivate_radar_done)
 	--spawn_item(actor, "wpn_pkm")
 	log("Было совершено пользовательское действие №1")
 end
@@ -281,6 +295,7 @@ function do_custom_action2()
 	local actor = db.actor
 	--give_info("bar_svoboda_rg6_done")
 	--disable_info("surge_off_devices")
+	--has_info("bar_deactivate_radar_done")
 	--spawn_item(actor, "wpn_pkm")
 	log("Было совершено пользовательское действие №2")
 end
