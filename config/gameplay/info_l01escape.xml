@@ -264,11 +264,11 @@
 	<info_portion id="nimble_stay_newbie_camp"></info_portion>
 
 	<!-- Обмен пушками Шустрого -->
-	<info_portion id="nimble_exchange_wpn_hpsa"></info_portion>
-	<info_portion id="nimble_exchange_wpn_sig_m1"></info_portion>
-	<info_portion id="nimble_exchange_wpn_svd_m1"></info_portion>
-	<info_portion id="nimble_exchange_wpn_rg6_m1"></info_portion>
-	<info_portion id="nimble_exchange_wpn_fn2000"></info_portion>
+	<info_portion id="exchange_wpn_hpsa"></info_portion>
+	<info_portion id="exchange_wpn_sig_m1"></info_portion>
+	<info_portion id="exchange_wpn_svd_m1"></info_portion>
+	<info_portion id="exchange_wpn_rg6_m1"></info_portion>
+	<info_portion id="exchange_wpn_fn2000"></info_portion>
 	<info_portion id="exchange_everything"></info_portion>
 	
 	<info_portion id="dynamic_news_off"></info_portion>

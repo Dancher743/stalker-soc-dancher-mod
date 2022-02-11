@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <string_table>
-	<string id="nimble_exchange_dialog_after_safe_0">
+	<string id="exchange_dialog_after_safe_0">
 		<text>Чем ещё занимаешься?</text>
 	</string>
-	<string id="nimble_exchange_dialog_after_safe_1">
+	<string id="exchange_dialog_after_safe_1">
 		<text>Я занимаюсь поиском редких стволов. Могу достать для тебя парочку. Однако сейчас я хочу перевести дух после случившегося... Подойди ко мне немного позже.</text>
 	</string>
-	<string id="nimble_exchange_dialog_after_safe_2">
+	<string id="exchange_dialog_after_safe_2">
 		<text>Здорово! Постараюсь не забыть...</text>
 	</string>
-	<string id="nimble_exchange_dialog_0">
+	<string id="exchange_dialog_0">
 		<text>Как насчёт редких стволов достать?</text>
 	</string>
-	<string id="nimble_exchange_dialog_1">
+	<string id="exchange_dialog_1">
 		<text>Разумеется. У меня есть парочка таких, и все они существуют в единичном экземпляре. Это значит, что в Зоне ты нигде и ни у кого таких не увидишь. Обменяю на редкие артефакты с доплатой. Вот список:
 		\n 1. Пистолет ХПСС-1м. Надежный, мощный и кучный. Отдам за "Лунный свет" и 5000 рублей.
 		\n 2. Автомат СИП Штурмовой. Облегчённая где-то в два раза версия оригинала. Отдам за "Плёнку" и 10000 рублей.
@@ -21,34 +21,34 @@
 		\n И ешё раз повторюсь - в единичном экземпляре! Это значит, что после обмена ты не сможешь получить от меня аналогичное оружие снова.
 		</text>
 	</string>
-	<string id="nimble_exchange_dialog_2">
+	<string id="exchange_dialog_2">
 		<text>Пистолет ХПСС-1м.</text>
 	</string>
-	<string id="nimble_exchange_dialog_3">
+	<string id="exchange_dialog_3">
 		<text>Автомат СИП Штурмовой.</text>
 	</string>
-	<string id="nimble_exchange_dialog_4">
+	<string id="exchange_dialog_4">
 		<text>Винтовка СВД м2 "Дальнобойщик".</text>
 	</string>
-	<string id="nimble_exchange_dialog_5">
+	<string id="exchange_dialog_5">
 		<text>Гранатомёт Бульдог-6 м209.</text>
 	</string>
-	<string id="nimble_exchange_dialog_6">
+	<string id="exchange_dialog_6">
 		<text>Держи!</text>
 	</string>
-	<string id="nimble_exchange_dialog_7">
+	<string id="exchange_dialog_7">
 		<text>В другой раз.</text>
 	</string>
-	<string id="nimble_exchange_dialog_8">
+	<string id="exchange_dialog_8">
 		<text>Как знаешь.</text>
 	</string>	
-	<string id="nimble_exchange_dialog_9">
+	<string id="exchange_dialog_9">
 		<text>Что ж, есть ещё кое-что... Винтовка ФТ-200М. Данная винтовка - это автоматно-гранатомётный комплекс, оснащённый компьютеризованным прицелом-модулем управления огня. Очень редкая винтовка. Отдам её за не менее редкую "Ночную звезду" и 30000 рублей сверху. Берёшь?</text>
 	</string>
-	<string id="nimble_exchange_dialog_10">
+	<string id="exchange_dialog_10">
 		<text>Беру!</text>
 	</string>
-	<string id="nimble_exchange_dialog_11">
+	<string id="exchange_dialog_11">
 		<text>Ты выменял у меня всё, что было. К сожалению, я больше ничего не cмогу тебе предложить...</text>
 	</string>
 </string_table>

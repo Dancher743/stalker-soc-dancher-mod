@@ -1,5 +1,5 @@
 --
--- Обмен пушками у Шустрого.
+-- Менеджер обмена.
 -- Автор: Dancher (Daniil Dubovik)
 --
 
@@ -57,11 +57,11 @@ function check_actor_fn2000_fund(actor, npc)
 end
 
 function check_out_of_stock()
-	return has_alife_info("nimble_exchange_wpn_hpsa") and
-		has_alife_info("nimble_exchange_wpn_sig_m1") and
-		has_alife_info("nimble_exchange_wpn_svd_m1") and
-		has_alife_info("nimble_exchange_wpn_rg6_m1") and
-		not has_alife_info("nimble_exchange_wpn_fn2000")
+	return has_alife_info("exchange_wpn_hpsa") and
+		has_alife_info("exchange_wpn_sig_m1") and
+		has_alife_info("exchange_wpn_svd_m1") and
+		has_alife_info("exchange_wpn_rg6_m1") and
+		not has_alife_info("exchange_wpn_fn2000")
 		
 end
 
@@ -70,7 +70,7 @@ function check_not_out_of_stock(actor, npc)
 end
 
 function exchange_everything(actor, npc)
-	return check_out_of_stock() and has_alife_info("nimble_exchange_wpn_fn2000")
+	return check_out_of_stock() and has_alife_info("exchange_wpn_fn2000")
 end
 
 -- Функции обмена --

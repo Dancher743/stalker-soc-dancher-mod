@@ -297,6 +297,7 @@ function do_custom_action2()
 	--disable_info("surge_off_devices")
 	--has_info("bar_deactivate_radar_done")
 	--spawn_item(actor, "wpn_pkm")
+	debug_exchange()
 	log("Было совершено пользовательское действие №2")
 end
 
@@ -324,7 +325,7 @@ function give_all_outfits()
 end
 
 -- Дебаг-функция обмена с заказчиком предметов
-function nimble_exchange_debug()
+function debug_exchange()
 	if not is_debug_mode then
 		return
 	end
@@ -332,11 +333,12 @@ function nimble_exchange_debug()
 	local actor = db.actor
 	give_info("dar_x18_dream")
 	give_info("tutorial_wounded_help")
-	spawn_item(actor, nimble_exchanger.actor_arts[1])
-	spawn_item(actor, nimble_exchanger.actor_arts[2])
-	spawn_item(actor, nimble_exchanger.actor_arts[3])
-	spawn_item(actor, nimble_exchanger.actor_arts[4])
-	spawn_item(actor, nimble_exchanger.actor_arts[5])
+	add_money(db.actor, money_to_actor * 8)
+	spawn_item(actor, exchange_manager.actor_arts[1])
+	spawn_item(actor, exchange_manager.actor_arts[2])
+	spawn_item(actor, exchange_manager.actor_arts[3])
+	spawn_item(actor, exchange_manager.actor_arts[4])
+	spawn_item(actor, exchange_manager.actor_arts[5])
 end
 
 -- Выдаём ГГ денежку
