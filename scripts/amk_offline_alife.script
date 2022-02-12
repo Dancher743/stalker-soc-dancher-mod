@@ -86,13 +86,17 @@ local can_loot_treasures = false
 
 function init()
 	if (initialized == false) then
-		if level_exploring_manager.is_stancia_explored() then
-			table.insert(maps, "l07_military")
+		if has_alife_info("bar_deactivate_radar_done") then
 			table.insert(maps, "l10_radar")
+		end
+	
+		if has_alife_info("freeplay") then
+			table.insert(maps, "l07_military")
 			table.insert(maps, "l11_pripyat")
 			table.insert(maps, "l12_stancia")
 			table.insert(maps, "l12_stancia_2")
 		end
+		
 		build_tables()
 		iTime = (game_minutes() - iFreq) + 3
 		timer_alife_showed = game_minutes() - math.random(timer_alife_freq)
