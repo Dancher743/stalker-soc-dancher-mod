@@ -79,7 +79,6 @@ function actor_binder:net_spawn(data)
 	fast_travel_manager.reset()
 	new_ways.mark_ways_on_map()
 	sak_off_corpses.off_corpses()
-	level_exploring_manager.on_game_load()
 	
 	if xrs_ai then xrs_ai.actor_net_spawn(self) end
 	if rx_ai then 
