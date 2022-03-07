@@ -8,6 +8,7 @@
 
 -- Установка меток
 function add_mapspot(id)
+	if id == nil then return end
 	local obj = alife():object(id)
 	if obj == nil then return end
 	local sid = obj.m_story_id
@@ -27,7 +28,13 @@ function add_mapspot(id)
 	elseif sid==5485 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Механик в Баре
 	elseif sid==775 then level.map_add_object_spot(id, "repair_npc_mapspot", "Механик") -- Шуруп
 	elseif sid==515 then level.map_add_object_spot(id, "informer_npc_mapspot_small", "Информатор") -- Осведомитель в баре
-	elseif aem_manager.is_npc_arena_admin(id) then level.map_add_object_spot(id, "admin_npc_mapspot", "Администратор") -- Админ арены в баре
+	elseif aem_manager.is_npc_arena_admin(id) then
+		-- Админ арены в баре
+		if has_alife_info("aem_go_bar") then
+			level.map_add_object_spot(id, "admin_npc_mapspot_small", "Администратор") 
+		else
+			level.map_add_object_spot(id, "admin_npc_mapspot", "Администратор")
+		end
 	elseif sid==7 and has_alife_info("dar_x18_dream") 
 		then level.map_add_object_spot(id, "collector_npc_mapspot", "Коллекционер") -- Толик 
 	end
@@ -35,6 +42,7 @@ end
 
 -- Удаление меток в оффлайне
 function remove_mapspot(id)
+	if id == nil then return end
 	local obj = alife():object(id)
 	if obj == nil then return end
 	local sid = obj.m_story_id
@@ -54,7 +62,16 @@ function remove_mapspot(id)
 	elseif sid==5485 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Механик в Баре
 	elseif sid==775 then level.map_remove_object_spot(id, "repair_npc_mapspot") -- Шуруп
 	elseif sid==515 then level.map_remove_object_spot(id, "informer_npc_mapspot_small") -- Осведомитель в баре
+	elseif aem_manager.is_npc_arena_admin(id) then 
+		-- Админ арены в баре
+		level.map_remove_object_spot(id, "admin_npc_mapspot_small")
+		level.map_remove_object_spot(id, "admin_npc_mapspot")
 	elseif sid==7 and has_alife_info("dar_x18_dream") then level.map_remove_object_spot(id, "collector_npc_mapspot") -- Толик
-	elseif aem_manager.is_npc_arena_admin(id) then level.map_remove_object_spot(id, "admin_npc_mapspot") -- Админ арены в баре	
     end
+end
+
+-- Обновление меток по запросу
+function force_update_mapspot(id)
+	remove_mapspot(id)
+	add_mapspot(id)
 end

@@ -986,6 +986,8 @@ function CArenaext:update()
 				msg(txt[rnd])
 			end
 			actor:give_info_portion("aem_go_bar")
+			local aem_id = xr_logic.pstor_retrieve(actor, "aem_id")
+			dmx_mod.force_update_mapspot(aem_id)
 			db.storage[db.actor:id()].pstor["aem_ct"] = nil
 		end
 	end
@@ -1028,15 +1030,18 @@ function CArenaext:update()
 				xr_logic.pstor_store(actor, "aem_ct", ct)
 			end
 		else
+			local aem_id = xr_logic.pstor_retrieve(actor, "aem_id")
 			if curr >= self.nt then
 				--printf("CArenaext:update(aem_open)")
 				actor:give_info_portion("aem_open")
 				actor:disable_info_portion("aem_go_bar")
+				dmx_mod.force_update_mapspot(aem_id)
 			elseif (curr + 3 >= self.nt) and (self.lt + 3 < self.nt) then
 				-- включение мегафона и освещения щита "Арена"
 				actor:give_info_portion("aem_megafone")
 				--aem_lights.shield_on()
 				actor:disable_info_portion("aem_go_bar")
+				dmx_mod.force_update_mapspot(aem_id)
 			end
 			if actor:has_info("aem_spam") then
 				if (curr >= self.nt) and (self.lt < self.nt) then

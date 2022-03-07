@@ -108,3 +108,15 @@
 	<admin_npc_mini_spot x="0" y="0" width="15" height="15" alignment="c" scale="1" stretch="1" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
 		<texture r="255" g="255" b="99" a="255" x="860" y="956" width="19" height="19">ui\ui_common_dmx</texture>
 	</admin_npc_mini_spot>
+	
+	<!-- Aдминистратор (маленькая иконка) -->
+	<admin_npc_mapspot_small>
+		<level_map spot="admin_npc_spot_small"	    pointer="quest_pointer"/>
+		<mini_map  spot="admin_npc_mini_spot_small"	pointer="quest_pointer"/>
+	</admin_npc_mapspot_small>
+	<admin_npc_spot_small x="0" y="0" width="2" height="2" alignment="c" scale="1" stretch="1" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture r="255" g="255" b="99" a="255" x="860" y="956" width="19" height="19">ui\ui_common_dmx</texture>
+	</admin_npc_spot_small>
+	<admin_npc_mini_spot_small x="0" y="0" width="8" height="8" alignment="c" scale="1" stretch="1" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
+		<texture r="255" g="255" b="99" a="255" x="860" y="956" width="19" height="19">ui\ui_common_dmx</texture>
+	</admin_npc_mini_spot_small>
