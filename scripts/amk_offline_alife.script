@@ -213,24 +213,26 @@ end
 
 --строим таблицу уровней, на которых будет работать оффлайн alife
 function build_maps_table()
-		if has_alife_info("agroprom_military_case_done") then
+		has_radar_deactivated = has_alife_info("bar_deactivate_radar_done")
+
+		if has_alife_info("agroprom_military_case_done") or has_radar_deactivated then
 			table.insert(maps, "l01_escape")
 			table.insert(maps, "l02_garbage")
 			table.insert(maps, "l03_agroprom")
 		end
 		
-		if has_alife_info("bar_darklab_document_done") then
+		if has_alife_info("bar_darklab_document_done") or has_radar_deactivated then
 			table.insert(maps, "l04_darkvalley")
 		end
 		
 		table.insert(maps, "l05_bar")
 		
-		if has_alife_info("yan_kill_brain_done") then
+		if has_alife_info("yan_kill_brain_done") or has_radar_deactivated then
 			table.insert(maps, "l06_rostok")
 			table.insert(maps, "l08_yantar")
 		end
 
-		if has_alife_info("bar_deactivate_radar_done") then
+		if has_radar_deactivated then
 			table.insert(maps, "l07_military")
 			table.insert(maps, "l10_radar")
 		end
