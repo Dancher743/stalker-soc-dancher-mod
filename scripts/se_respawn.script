@@ -2,12 +2,15 @@
 Respawner. Схема обновления популяции всего всего всего в симуляции.
 by Stohe (Диденко Руслан)
 --------------------------------------------------------------------------------------------------------------------]]
+--[[ Оригинальный файл se_respawn.script взят из мода Final update --]]
 
---function printf()
---end
+function printf(fmt, ...)
+	local msg = string.format(fmt, ...)
+	local msg_no_ws = string.gsub(msg, "%s", "_")
+	get_console():execute("dbg:" .. msg_no_ws)
+end
 
 local debug_logs = false
-
 local section_name = "respawn"
 local i,k,v = 0,0,0
 
@@ -359,13 +362,12 @@ function se_respawn:create(prob)
 		local tt = self.sectSpawnProps[spawn_section]
 
 --		printf("SPAWN [%s] -> [%s]", tostring(self:name()), obj:name())
-
         --' DEBUG:
         if debugger and debug_logs then
-			if IsMonster(obj) or IsStalker(obj) then
-				debugger.log("SPAWN: "..tostring(self:name()).." -> "..obj:name())
-			end
-		end
+            if IsMonster(obj) or IsStalker(obj) then
+                debugger.log("SPAWN: "..tostring(self:name()).." -> "..obj:name())
+            end
+        end
 
 		if self.item_spawn == false then				
 			if tt.check == true then
@@ -377,11 +379,11 @@ function se_respawn:create(prob)
 					local pos = obj.position
 --					printf("SPAWNING [%s] -> [%s], position [%s][%s][%s]", tostring(self:name()), spawn_section, pos.x, pos.y, pos.z)
 					local sm_obj = alife():object(smart_terrain_id)
-					printf("SPAWNING for SMART [%s] : [%s] -> [%s]", self:name(), obj:name(), sm_obj:name())
+--					printf("SPAWNING for SMART [%s] : [%s] -> [%s]", self:name(), obj:name(), sm_obj:name())
 
 					return true
 				else
-					bind_stalker.objs_to_remove[obj.id] = obj
+					alife():release(obj, true)
 --					printf("SPAWNING [%s] -> [%s], CANT SPAWN. NO SMART_TERRAIN AVAILABLE!!!", tostring(self:name()), spawn_section)
 					return false
 				end
@@ -449,50 +451,100 @@ function se_respawn:remove_spawned(id)
 		end				
 	end	
 end
+
+-----------------------------<<RESPAWN_ADJUSTER>>----------------------------->>
+local t0, tgs, ts1, ts2 = game.CTime(), game.CTime()
+-- время начала игры
+tgs:set(2012,5,1, 7,0,0,0)
+
+function se_respawn:npc_rsp()
+	local name = self:name()
+	if
+		name == "agr2_respawn_nii" or
+		name == "agr2_respawn_factory" or
+		string.find(name, "bandit") or
+		string.find(name, "dolg") or
+		string.find(name, "freed") or
+		string.find(name, "killer") or
+		string.find(name, "militar") or
+		string.find(name, "monol") or
+		string.find(name, "soldier") or
+		string.find(name, "specnaz") or
+		string.find(name, "stalker")
+	then
+		return true
+	end
+	return false
+end
+
 -- Обновление респавнера. В зависимости от настроек обновляется либо только в офлайне, либо и там и там.
-function se_respawn:execute()
---	printf("RESPAWN: [%s] se_respawn execute", tostring(self:name()))
-	
-	--' Выходим, если у нас установлен событийный спавн.
+function se_respawn:exec_npc()
 	if self.idle_spawn_min == -1 then
 		return
 	end
-	
-	if self.respawn_time < game.get_game_time() then
---		if not self.proxy_initialized then
---			db.actor_proxy:init()
---			self.proxy_initialized = true
---		end
-
-		local idle_time = game.CTime()
-		idle_time:setHMSms( 0, 0, 0, math.random(self.idle_spawn_min, self.idle_spawn_max)*1000)
-		self.respawn_time = game.get_game_time() + idle_time
-		-- Производим попытку заспаунить объекты		
-		self:spawn()
-		
---		printf("spawn_count = %s", table.getn(self.spawned_obj))
-	end
-end
--- Обновление в офлайне
-function se_respawn:update()
-	cse_alife_smart_zone.update( self )
-	--'printf("RESPAWN: [%s] se_respawn update_offline", tostring(self:name()))
-	self:execute()
-end
--- Обновление в онлайне
-function se_respawn:update_online()
-	--'cse_alife_smart_zone.update( self )
-	--'printf("RESPAWN: [%s] se_respawn update_online", tostring(self:name()))
-	if self.respawn_radius == -1 then
-		sim_statistic.respawn_enabled(self, false)
+	if self:npc_rsp() == false then
 		return
 	end
-	if db.actor:position():distance_to (self.position) >= self.respawn_radius then
-		self:execute()
+	if self.respawn_time < self.gt then
+		local idle_time = t0 idle_time:setHMSms(1,0,0,0)
+		self.respawn_time = self.gt + idle_time
+		self:spawn()
+--		printf("NPC Respawner:[%s],Spawn Count=%d", self:name(), table.getn(self.spawned_obj))
+--		news_manager.send_tip(db.actor, "%c[255,240,155,25]Обновление NPC респавнера", nil, nil, 5000)
 	else
-		sim_statistic.respawn_enabled(self, false)
+		local tnpc = math.random(6,12)
+		ts1 = self.curr + tnpc
+		xr_logic.pstor_store(db.actor,"ts1",ts1)
+--		printf("SET [%d] HOURS TO NEXT NPC RESPAWN", tnpc)
 	end
 end
+
+function se_respawn:exec_mob()
+	if self.idle_spawn_min == -1 then
+		return
+	end
+	if self:npc_rsp() == true then
+		return
+	end
+	if self.respawn_time < self.gt then
+		local idle_time = t0 idle_time:setHMSms(1,0,0,0)
+		self.respawn_time = self.gt + idle_time
+		self:spawn()
+--		printf("MOB Respawner:[%s],Spawn Count=%d", self:name(), table.getn(self.spawned_obj))
+--		news_manager.send_tip(db.actor, "%c[25,240,25,25]Обновление MOB респавнера", nil, nil, 5000)
+	else
+		local tmob = math.random(6,12)
+		ts2 = self.curr + tmob
+		xr_logic.pstor_store(db.actor,"ts2",ts2)
+--		printf("SET [%d] HOURS TO NEXT MOB RESPAWN", tmob)
+	end
+end
+
+-- Обновление в офлайне
+function se_respawn:update()
+	cse_alife_smart_zone.update(self)
+	if not db.actor then
+		return
+	end
+	self.gt = game.get_game_time()
+	self.curr = math.floor((self.gt:diffSec(tgs))/3600)
+	if ts1 == nil or ts2 == nil then
+		ts1 = xr_logic.pstor_retrieve(db.actor,"ts1",0)
+		ts2 = xr_logic.pstor_retrieve(db.actor,"ts2",0)
+--		printf("REMAINING HOURS TO NEXT RESPAWNS:[NPC]ts1=%d,[MOB]ts2=%d",(ts1-self.curr),(ts2-self.curr))
+	end
+	if self.curr >= ts1 then
+		self:exec_npc()
+	end
+	if self.curr >= ts2 then
+		self:exec_mob()
+	end
+end
+
+-- Обновление в онлайне, т.е. на текущей локации
+function se_respawn:update_online()
+end
+-----------------------------<<RESPAWN_ADJUSTER>>-----------------------------<<
 
 function spawn(name)
 	local spawner = respawners[name]
@@ -520,7 +572,7 @@ function stats()
 	local total_spawned = 0
 	local total_avail = 0
 	local total = 0
-	printf("***************** RESPAWN STATISTIC *********************")
+--	printf("***************** RESPAWN STATISTIC *********************")
 	for k,v in pairs(respawners) do
 		local s = xr_logic.pick_section_from_condlist(db.actor_proxy, v, v.conditions)
 		local pops = "DISABLE"
@@ -533,8 +585,8 @@ function stats()
 		else
 			str_pops = tostring(pops)
 		end
-		printf("[%s] spawns [%s] object", tostring(v:name()), str_pops)
-		print_table(v.respawn_section)
+--		printf("[%s] spawns [%s] object", tostring(v:name()), str_pops)
+--		print_table(v.respawn_section)
 		-- Увеличиваем общие счетчики
 		total = total + v.max_count
 		if pops ~= "DISABLE" then
@@ -542,11 +594,11 @@ function stats()
 			total_spawned = total_spawned + pops
 		end
 	end
-	printf("*** SUMMARY ***")
-	printf("	total = %s", total)
-	printf("	total_avail = %s", total_avail)
-	printf("	total_spawned = %s", total_spawned)
-	printf("***************")
+--	printf("*** SUMMARY ***")
+--	printf("	total = %s", total)
+--	printf("	total_avail = %s", total_avail)
+--	printf("	total_spawned = %s", total_spawned)
+--	printf("***************")
 end
 
 
@@ -554,7 +606,7 @@ end
 -- Сбор продвинутой статистики статистики по лимитам
 function lstats()
 	local can_spawn = {}
-	printf("***************** LIMITS STATISTIC *********************")
+--	printf("***************** LIMITS STATISTIC *********************")
 	for k,v in pairs(respawners) do
 		-- Запоминаем максимальное количество весов для данного респавнера
 		local wage = 0
@@ -581,22 +633,22 @@ function lstats()
 		total_current = total_current + cs
 		total_limit = total_limit + gl
 		
-		printf("%s current=%s limit=%s", k, cs, gl)
+--		printf("%s current=%s limit=%s", k, cs, gl)
 	end
-	printf("TOTAL: current=%s limit=%s", total_current, total_limit)
+--	printf("TOTAL: current=%s limit=%s", total_current, total_limit)
 end
 
 
 -- Сбор статистики по ненастроенным объектам
 function estats()
-	printf("***************** SPAWN ERROR STATISTIC *********************")
+--	printf("***************** SPAWN ERROR STATISTIC *********************")
 	for k,v in pairs(respawners) do
 		-- Заносим максимальное количество всех типов чуваков, которые данный респавнер может наспаунить.
 		for kk,vv in pairs(v.respawn_section) do
 			local tt = v.sectSpawnProps[vv.section]
 			if tt.community == "nil" or tt.rank == "nil" then
-				printf("respawner [%s]", tostring(v:name()))
-				printf("Section [%s] community[%s] rank [%s]", vv.section, tt.community, tt.rank)
+--				printf("respawner [%s]", tostring(v:name()))
+--				printf("Section [%s] community[%s] rank [%s]", vv.section, tt.community, tt.rank)
 			end
 		end
 	end	
