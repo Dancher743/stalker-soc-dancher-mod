@@ -263,13 +263,14 @@ function give_starter_pack()
 	spawn_item(actor, "dolg_scientific_outfit")
 	spawn_item(actor, "wpn_vintorez")
 	spawn_item(actor, "wpn_groza")
-	spawn_items(actor, "ammo_9x39_ap", 8)
-	spawn_items(actor, "ammo_vog-25", 5)
-	spawn_items(actor, "medkit_army", 10)
+	spawn_items(actor, "ammo_9x39_ap", 10)
+	spawn_items(actor, "ammo_vog-25", 10)
+	spawn_items(actor, "medkit_army", 20)
 	spawn_items(actor, "antirad", 10)
 	spawn_items(actor, "bandage", 20)
-	spawn_items(actor, "arc_art_box_basic", 3)
+	spawn_items(actor, "arc_art_box_basic", 2)
 	spawn_items(actor, "af_electra_moonlight", 5)
+	spawn_items(actor, "conserva", 10)
 end
 
 -- Делаем какое-то первое действие для своих нужд
