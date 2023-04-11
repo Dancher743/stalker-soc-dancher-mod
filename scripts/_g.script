@@ -116,10 +116,10 @@ function del_variable(variable_name)
 	end
 end
 function printf(fmt,...)
---	log(string.format(fmt,...))
---local con = get_console()
---con:execute(string.gsub(string.format(fmt,...), " ", "_"))
---con:execute("flush")
+	log(string.format(fmt,...))
+	--local con = get_console()
+	--con:execute(string.gsub(string.format(fmt,...), " ", "_"))
+	--con:execute("flush")
 end
 
 local bufferedmessages={}
