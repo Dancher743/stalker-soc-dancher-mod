@@ -266,8 +266,9 @@ end
 function CTreasure:treasure_looted(box, box_story_id)
 	printf("!!! treasure looted")
 	local k = self.treasure_by_target[box_story_id]
-
-	if k == nil or self.treasure_info[k] == nil then 
+	local has_spot = level.map_has_object_spot(box:id(), "treasure")
+	
+	if has_spot == 0 or k == nil or self.treasure_info[k] == nil then 
 		return
 	end
 
