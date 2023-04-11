@@ -281,7 +281,7 @@ function do_custom_action()
 	local actor = db.actor
 	--give_info("bar_svoboda_rg6_done")
 	--disable_info("surge_off_devices")
-	--has_info("bar_deactivate_radar_done)
+	--has_info("bar_deactivate_radar_done")
 	--spawn_item(actor, "wpn_pkm")
 	log("Было совершено пользовательское действие №1")
 end
