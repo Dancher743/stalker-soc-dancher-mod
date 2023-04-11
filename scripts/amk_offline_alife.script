@@ -373,7 +373,13 @@ end
 
 --генерируем оффлайн события
 function offline_alife()
-	local lname = maps[math.random(table.getn(maps))]
+	local maps_count = table.getn(maps)
+	
+	if maps_count == 0 then
+		return
+	end
+
+	local lname = maps[math.random(maps_count)]
 --	update_tables(lname)
 	amk.mylog("Offline_alife - "..lname)
 	local st = 0
