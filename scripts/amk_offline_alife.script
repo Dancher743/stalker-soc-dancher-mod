@@ -219,13 +219,12 @@ function build_maps_table()
 			table.insert(maps, "l01_escape")
 			table.insert(maps, "l02_garbage")
 			table.insert(maps, "l03_agroprom")
+			table.insert(maps, "l05_bar")
 		end
 		
 		if has_alife_info("bar_darklab_document_done") or has_radar_deactivated then
 			table.insert(maps, "l04_darkvalley")
-		end
-		
-		table.insert(maps, "l05_bar")
+		end		
 		
 		if has_alife_info("yan_kill_brain_done") or has_radar_deactivated then
 			table.insert(maps, "l06_rostok")
